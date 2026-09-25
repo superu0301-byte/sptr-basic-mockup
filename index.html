@@ -248,6 +248,7 @@ a{color:inherit}
 .chap{display:grid;grid-template-columns:62px 1fr auto;gap:12px;padding:11px 12px;border-radius:12px;cursor:pointer;align-items:center}
 .chap:hover{background:var(--bg3)}
 .chap.on{background:var(--goldbg)}
+.chn{font-style:normal;font-weight:700;font-size:12.5px;color:var(--gold);margin-right:8px}
 .chap .ts{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:700;font-size:14px}
 .txl{padding:10px 12px;border-radius:12px;cursor:pointer;display:grid;grid-template-columns:62px 1fr;gap:12px;font-size:15px}
 .txl:hover{background:var(--bg3)}
@@ -535,6 +536,34 @@ html.rm #bob{animation:none}
 .dur2{position:absolute;right:8px;top:8px;z-index:2;font-weight:700;font-size:14px;color:#fff;text-shadow:0 1px 4px #000}
 .sin2{padding:12px 14px 14px}.sin2 p{font-size:13.5px;color:var(--ink2);margin:8px 0 0;line-height:1.5}
 
+/* title modal — centered, streaming-style (hero · actions · details · seasons + episodes) */
+.ovl.tovl{justify-content:center;align-items:flex-start;overflow-y:auto;overflow-x:hidden;padding:34px 16px 48px;background:rgba(0,0,0,.62)}
+.tmod{width:min(880px,100%);height:auto;overflow:visible;border-radius:12px;border:none;box-shadow:0 26px 70px rgba(0,0,0,.45);animation:tmodin .24s ease-out}
+@keyframes tmodin{from{transform:translateY(14px) scale(.97);opacity:.35}}
+.tmod .thero{aspect-ratio:16/8.4;border-radius:12px 12px 0 0;overflow:hidden}
+.tmod .thero svg.th{animation:kb 18s ease-in-out infinite alternate}
+.tmod .thc{left:48px;right:48px;bottom:34px}
+.tmod .ttl{font-size:clamp(34px,4.4vw,56px)}
+.tmod .tbtns{gap:10px}.tmod .tbtns .btn.xl{padding:11px 26px 11px 20px}
+.tmod .tbody{padding:10px 48px 44px}
+.tmod .tinfo{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:34px}
+.tmod .tcast div{font-size:14.5px}
+.tmod .teh{margin:34px 0 10px}.tmod .teh h3{font-size:23px}
+.tsea{min-width:260px;font-weight:700;font-size:15px;padding:9px 12px;border-radius:8px}
+.tsl{font-size:14px;color:var(--mut);margin:-2px 0 10px}
+.tmod .tep{grid-template-columns:46px 150px minmax(0,1fr);gap:16px;padding:18px 14px;border-radius:8px}
+.tmod .tep .n{font-size:22px;font-variant-numeric:tabular-nums}
+.tmod .tep.cur{background:var(--bg3);box-shadow:inset 0 0 0 1px var(--line2)}
+.tmod .tth{border-radius:6px}
+[data-theme=blush] .thero{--artbg:#f7eef2}
+[data-theme=blush] .thero:after{background:linear-gradient(0deg,var(--bg2) 0%,color-mix(in srgb,var(--bg2) 62%,transparent) 36%,transparent 70%)}
+[data-theme=blush] .thc{color:var(--ink)}[data-theme=blush] .thc .bblab{color:var(--au2)}
+[data-theme=blush] .ttl{background:linear-gradient(180deg,#673048 0%,#9f4d6d 60%,#c98ba1 100%);-webkit-background-clip:text;background-clip:text;filter:none}
+[data-theme=blush] .ttl.th{background:none;color:var(--ink)}
+[data-theme=blush] .thc .cbtn,[data-theme=blush] .simc .cbtn{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 38%,transparent);background:rgba(251,247,248,.75)}
+[data-theme=blush] .thc .cbtn.on{border-color:var(--gold);color:var(--gold)}
+[data-theme=blush] .tclose{background:rgba(251,247,248,.92);color:var(--ink);box-shadow:0 0 0 1px var(--line2)}
+.simc .cbtn{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 45%,transparent);background:transparent}
 /* player (theater) */
 .theater .player{border-radius:12px;max-height:76vh;width:100%}
 .pback{position:absolute;left:14px;top:14px;z-index:3;display:flex;align-items:center;gap:6px;color:#fff;font-weight:700;padding:8px 14px 8px 8px;border-radius:999px;background:rgba(0,0,0,.4)}
@@ -556,6 +585,39 @@ html.rm #bob{animation:none}
 .ptt{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;max-width:46%}
 .ptt b{margin-right:6px}
 
+/* watch: full-screen player, streaming-style */
+body.watching .hdr,body.watching .tabbar,body.watching .chgbtn,body.watching .mock{display:none}
+.theater{position:relative;margin:-32px calc(50% - 50vw) 0;height:100vh;height:100svh;background:#000;color:#fff;overflow:hidden}
+.theater .player{position:absolute;inset:0;aspect-ratio:auto;max-height:none;border-radius:0;background:#000;--artbg:#0e0a0d}
+.theater .player>svg.th{opacity:.92}
+.ptop{position:absolute;left:0;right:0;top:0;z-index:4;display:flex;align-items:center;gap:14px;padding:20px 26px 40px;background:linear-gradient(180deg,rgba(0,0,0,.6),transparent)}
+.pic{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;color:#fff;border-radius:50%;transition:transform .15s}.pic:hover:not([disabled]){transform:scale(1.15)}.pic.sm{width:36px;height:36px}.pic[disabled]{opacity:.3;cursor:default}
+.ptools{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22)}.ptools:hover{background:rgba(255,255,255,.2)}
+.theater .pbig{z-index:3;width:92px;height:92px;background:rgba(0,0,0,.45);border:2px solid rgba(255,255,255,.7)}
+.theater .pctl{z-index:4;padding:60px 26px 20px;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 60%,transparent)}
+.ptop,.theater .pctl,.theater .skipi{transition:opacity .35s}
+.theater.idle{cursor:none}.theater.idle .ptop,.theater.idle .pctl{opacity:0;pointer-events:none}
+.theater .tline{gap:18px}
+.theater .track{height:5px;background:rgba(255,255,255,.3);border-radius:0;transition:height .12s}.theater .track:hover{height:8px}
+.theater .track .f{background:var(--livebg,#e50914);border-radius:0}
+.theater .track .k{top:0;height:100%;width:3px;background:rgba(0,0,0,.55)}
+.theater .track .kn{width:17px;height:17px;background:var(--livebg,#e50914);box-shadow:none}
+.theater .remain{font-size:16px;min-width:64px;font-variant-numeric:tabular-nums}
+.theater .prow{margin-top:16px;gap:26px;font-size:16px}
+.theater .pbtn{width:52px;height:52px;padding:0;justify-content:center;border-radius:50%;transition:transform .15s}.theater .pbtn:hover{background:none;transform:scale(1.15)}.theater .pbtn.on{color:#fff;background:rgba(255,255,255,.14)}
+.theater .p10 i{font-size:10px}
+.theater .ptt{max-width:none;font-size:18px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.theater .ptt b{margin-right:10px}.pep{margin-right:10px;color:rgba(255,255,255,.85)}
+.spdb{position:relative}.spdb i{position:absolute;right:-4px;bottom:0;font-style:normal;font-size:11px;font-weight:800;background:var(--livebg,#e50914);border-radius:4px;padding:0 4px;line-height:1.4}
+.theater .skipi{z-index:4;bottom:128px}.theater .nextup{z-index:4;bottom:128px}.theater .ccap{z-index:3;bottom:150px}
+.epp{position:absolute;right:26px;bottom:124px;z-index:5;width:min(560px,calc(100% - 52px));max-height:min(62vh,560px);display:flex;flex-direction:column;background:rgba(20,20,20,.96);border-radius:8px;box-shadow:0 16px 40px rgba(0,0,0,.6);overflow:hidden}
+.epph{display:flex;align-items:center;gap:8px;padding:14px 14px 12px 10px;border-bottom:1px solid rgba(255,255,255,.1)}.epph b{display:block;font-size:18px}.epph span{display:block;font-size:13px;color:rgba(255,255,255,.7)}
+.eppl{overflow-y:auto;padding:6px 0}
+.eppi{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;padding:12px 18px 12px 12px;cursor:pointer;border-left:3px solid transparent}
+.eppi:hover{background:rgba(255,255,255,.07)}.eppi.on{background:rgba(255,255,255,.1);border-left-color:var(--livebg,#e50914)}
+.eppi .n{font-size:18px;color:rgba(255,255,255,.75);text-align:center;font-variant-numeric:tabular-nums}
+.eppt{display:flex;justify-content:space-between;gap:10px}.eppt b{font-size:15.5px}.eppt span{font-size:13.5px;color:rgba(255,255,255,.7);white-space:nowrap}
+.eppx{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;margin-top:10px;align-items:start}.eppx .tth{display:block;aspect-ratio:16/9;border-radius:4px}.eppx .tth .pl{opacity:1}.eppx p{margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82)}
+.eppbar{display:block;height:3px;margin-top:10px;background:rgba(255,255,255,.25)}.eppbar i{display:block;height:100%;background:var(--livebg,#e50914)}
 /* new & hot */
 .hpills{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 26px;position:sticky;top:66px;z-index:5;background:var(--bg);padding:10px 0}
 .hpill{display:inline-flex;gap:8px;align-items:center;padding:9px 18px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink);background:var(--bg3)}
@@ -1023,6 +1085,12 @@ body{overflow-x:clip}
 .bm{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--mut)}.bm .ok{color:var(--green);font-weight:700}.bm .pc{color:var(--gold);font-weight:700}
 .bx{padding:0 6px;border:1px solid var(--line2);border-radius:4px;font-size:12px;line-height:1.5;color:var(--ink2)}
 .btg{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;font-size:14px;color:var(--ink2)}.btg i{width:4px;height:4px;border-radius:50%;background:var(--line2)}
+/* hover card plays a silent preview: slow push-in + the price line drawing itself */
+@media (prefers-reduced-motion:no-preference){html:not(.rm) #bob.nfb .bth svg.th{animation:kb 9s ease-in-out infinite alternate}html:not(.rm) #bob.nfb .drawline{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.8s .15s ease-out forwards}}
+#bob.nfb .bmute{position:absolute;right:12px;bottom:14px;z-index:3;width:34px;height:34px}
+[data-theme=blush] #bob.nfb .bmute{background:rgba(251,247,248,.8)}
+.nfi .t10 b,#bob.nfb .t10 b{font-size:13px}
+[data-theme=blush] .tth:after{background:linear-gradient(0deg,rgba(69,48,59,.28),transparent)}
 @media (max-width:1100px){.nfx{--n:4}}
 @media (max-width:800px){.nfx{--n:3}}
 @media (max-width:560px){.nfx{--n:2.2}}
@@ -1123,13 +1191,15 @@ body{overflow-x:clip}
   .ntrack{grid-auto-columns:44%}.ntrack.t10r{grid-auto-columns:64%}
   .todo{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:80%;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}.todo>*{scroll-snap-align:start}
   .ovl.tovl{padding:0}.tmod{border-radius:0;min-height:100%}
+  .tmod .thc{left:16px;right:16px;bottom:16px}.tmod .tbody{padding:6px 16px 90px}.tmod .tinfo{grid-template-columns:minmax(0,1fr);gap:12px}.tmod .tep{grid-template-columns:40px 110px minmax(0,1fr);gap:10px;padding:12px 6px}.tmod .tep .n{display:block;font-size:17px}.tsea{min-width:0;max-width:62%}.tmod .thero{aspect-ratio:4/3;border-radius:0}
   .thero{aspect-ratio:16/12}.thc{left:16px;right:16px;bottom:14px}.ttl{font-size:36px;margin-bottom:14px}
   .tbtns .btn.xl{flex:1;padding:10px 12px;font-size:16px}
   .tbody{padding:4px 16px 90px}.tinfo{grid-template-columns:minmax(0,1fr);gap:10px}
   .tep{grid-template-columns:120px minmax(0,1fr);gap:12px;padding:12px 4px}.tep .n{display:none}
   .tep p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .tsim{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .theater .player{border-radius:10px}
+  .theater .player{border-radius:0}
+  .theater{margin-top:-16px;height:max(300px,56.25vw)}.ptop{padding:10px 10px 30px}.pic{width:44px;height:44px}.ptools{display:none}.theater .pctl{padding:40px 12px 10px}.theater .prow{gap:6px;margin-top:8px}.theater .pbtn{width:40px;height:40px}.theater .pbtn .ic{width:24px;height:24px}.spdb{display:none}.epp{right:8px;left:8px;width:auto;bottom:88px;max-height:60%}.eppx{grid-template-columns:minmax(0,1fr)}.eppx .tth{display:none}.theater .skipi,.theater .nextup{bottom:88px}.theater .pbig{width:64px;height:64px}
   .pback{padding:6px 12px 6px 6px;font-size:14px;top:10px;left:10px}
   .skipi{right:12px;bottom:74px;padding:7px 14px;font-size:14px}
   .nextup{left:auto;right:8px;top:8px;bottom:auto;width:auto;max-width:calc(100% - 110px)}.nuth,.nextup .nuin>b,.nuact .nq{display:none}.nuin{padding:8px 10px}.nuact{margin-top:6px}.nextup .btn.sm{min-height:34px;padding:5px 12px}
@@ -1265,6 +1335,10 @@ const I = {
   logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
   send:'<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',
   minus:'<path d="M5 12h14"/>',
+  arrowl:'<path d="M20 12H4M11 19l-7-7 7-7"/>',
+  flag:'<path d="M5 22V3.5"/><path d="M5 4h11.5l-2.2 4.3 2.2 4.2H5"/>',
+  stack:'<rect x="2.5" y="9" width="14" height="11" rx="1.5"/><path d="M6.5 5.5h14v11"/>',
+  gauge:'<path d="M3.5 17.5a9.5 9.5 0 1 1 17 0"/><path d="m12 14 4.5-4.5"/><circle cx="12" cy="14.5" r="1.3"/>',
   pin:'<path d="M12 21s-7-6.1-7-11.4a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.6" r="2.4"/>',
   ticket:'<path d="M3 8a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.2a1.8 1.8 0 0 0 0 3.6V16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.2a1.8 1.8 0 0 0 0-3.6z"/><path d="M15 7.5v1.5M15 11.25v1.5M15 15v1.5"/>',
   headset:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14h2.5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM20 14h-2.5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1H19a1 1 0 0 0 1-1z"/>',
@@ -1470,6 +1544,29 @@ const ROUNDS = {0:'รอบ 5–29 ส.ค. 2569', 1:'รอบ 2–26 ก.ย.
 const LATEST_REC = CLIPS.filter(c => c.cat === 'brec').sort((a, b) => b.rdate - a.rdate)[0].id;
 CLIPS.forEach((c, i) => { c.seed = 101 + i * 17; if (!c.ch) { const q = c.dur * 60 / 4; c.ch = CH([['0:00','เริ่มต้น + ภาพรวม'],[mmss(q),'หลักการสำคัญ'],[mmss(q * 2),'เคสตัวอย่างจากกราฟจริง'],[mmss(q * 3),'สรุป + สิ่งที่ต้องฝึกต่อ']]); } c.tx = c.tx || []; });
 const byClip = id => CLIPS.find(c => c.id === id);
+/* episodes: each lesson (เนื้อหาที่ N) is a season and its parts are episodes N.1, N.2 … — EP.1 = its two clips, EP.2–4 = the parts (chapters) of the Master Clip */
+const EPD = {
+  b11:'หุ้นคืออะไร ทำไมราคาขึ้นลง ตลาดเปิดปิดกี่โมง แล้วเปิดหน้าจอ Streaming อ่าน Bid / Offer และปริมาณซื้อขายครั้งแรก',
+  b12:'ตั้งค่า TradingView ให้พร้อมดูกราฟแท่งเทียนรายวัน ใช้ E Fin Stock Pickup คัดหุ้นที่วอลุ่มผิดปกติ แล้วสร้าง Watchlist ของตัวเอง',
+  b2:['ที่มาของ Dow Theory และเหตุผลที่นักเทรดทุกสไตล์ต้องอ่านเทรนด์ให้เป็นก่อนตัดสินใจ','แยกภาพใหญ่ ภาพกลาง ภาพเล็ก ให้ออก แล้วดูให้ครบทั้ง 3 ภาพก่อนเข้าเทรด','ยอดใหม่สูงกว่ายอดเก่า จุดต่ำใหม่สูงกว่าจุดต่ำเก่า คือขาขึ้น ฝึกนับยอดและจุดต่ำจากกราฟจริง','แนวรับแนวต้านคือโซนที่แรงซื้อแรงขายเคยหยุดราคา ไม่ใช่เส้นเป๊ะๆ เส้นเดียว','เลือกเฉพาะโซนที่ราคาเคารพหลายครั้ง ตีเส้นน้อยแต่อ่านกราฟง่ายขึ้น','ไล่เคสจริง 3 หุ้น ราคาทะลุแนวต้านแล้วกลับมาทดสอบเป็นแนวรับ','ทบทวนทั้งบทใน 3 นาที แล้วรับโจทย์การบ้านกราฟ 3 ข้อส่งให้โค้ชตรวจ'],
+  b3:['คนที่อยู่รอดในตลาดคือคนที่รักษาเงินต้นได้ ไม่ใช่คนที่หาจุดเข้าได้แม่นที่สุด','ก่อนเข้าทุกครั้งต้องรู้ว่าจุด Stop loss อยู่ตรงไหน และจะออกเมื่อไหร่','กำหนดว่ายอมเสียได้กี่เปอร์เซ็นต์ของพอร์ตต่อไม้ ก่อนกดซื้อ','คำนวณจำนวนหุ้นที่ควรซื้อจากระยะห่างถึงจุด Stop loss','รวมทุกอย่างเป็นแผนเทรดเดียว: จุดเข้า Stop loss เป้าหมาย และขนาดไม้'],
+  b4:['อ่านปริมาณการซื้อขายเพื่อดูว่าแรงซื้อหรือแรงขายกำลังจริงจัง','Breakout ที่มีวอลุ่มหนุนมีโอกาสไปต่อ ส่วนที่ไม่มีวอลุ่มระวังเป็นกับดัก','RSI บอกแรงส่งของราคา MACD บอกจังหวะเปลี่ยนโมเมนตัม ใช้เป็นตัวช่วยไม่ใช่สัญญาณเดี่ยว','ใช้ Indicator ร่วมกับ Dow Theory และแนวรับแนวต้าน เพื่อยืนยันแผนเทรด'],
+};
+const EPI = {};
+[1, 2, 3, 4].forEach(n => {
+  const ms = CLIPS.filter(c => c.cat === 'basic' && parseInt(c.ep) === n);
+  EPI[n] = ms.length > 1 ? ms.map((c, i) => ({n:`${n}.${i + 1}`, ep:n, clip:c.id, s:0, e:c.dur * 60, t:c.title.replace(/^EP\.[\d.]+\s*/, ''), d:EPD[c.id], seed:c.seed}))
+    : ms[0].ch.map((h, i, a) => ({n:`${n}.${i + 1}`, ep:n, clip:ms[0].id, s:toSec(h.t), e:i < a.length - 1 ? toSec(a[i + 1].t) : ms[0].dur * 60, t:h.title, d:EPD[ms[0].id][i], seed:ms[0].seed + i * 13}));
+});
+const EPALL = [1, 2, 3, 4].flatMap(n => EPI[n]);
+const epById = k => EPALL.find(x => x.n === k);
+const clipPos = c => S.pos[c.id] ?? Math.round((c.prog || 0) * c.dur * 60);
+const epProg = x => { const c = byClip(x.clip), pos = c.prog === 1 ? c.dur * 60 : clipPos(c); return Math.max(0, Math.min(1, (pos - x.s) / (x.e - x.s))); };
+const epMin = x => Math.max(1, Math.round((x.e - x.s) / 60));
+const epAt = (c, pos) => { const l = EPALL.filter(x => x.clip === c.id); return l.find(x => pos >= x.s && pos < x.e) || l[l.length - 1]; };
+/* the episode to resume in a lesson: the one in progress, else the first not finished, else the first */
+const epCur = n => EPI[n].find(x => { const p = epProg(x); return p > 0 && p < 1; }) || EPI[n].find(x => epProg(x) < 1) || EPI[n][0];
+function playEp(x) { const c = byClip(x.clip), pos = clipPos(c), inside = pos > x.s && pos < x.e && c.prog < 1; S.pos[c.id] = inside ? pos : x.s; S.modal = null; go('watch', c.id); }
 const LIVES = [
   {id:'L1', title:'LIVE MENTOR (ช่องหลัก)', sub:'Mentor โค้ชแพค · โค้ชนอฟ · สรุปตลาดวันนี้และหุ้นน่าจับตา', coaches:['แพค','นอฟ'], start:D(9,24,9,30), viewers:1248, hue:HUES.gold, seed:777},
   {id:'L2', title:'Small Group · โค้ชเจ', sub:'เทรดทองเริ่มต้นจาก 0', coaches:['เจ'], start:D(9,24,9,50), viewers:86, hue:HUES.amber, seed:778},
@@ -1500,7 +1597,7 @@ const rankChip = () => S.tier === 'adv' ? '<span class="rankc adv">ADVANCE</span
 let ACT = {}, seq = 0;
 const A = fn => { const k = 'a' + (++seq); ACT[k] = fn; return k; };
 function toast(msg, undo) { const t = $('#toast'); t.innerHTML = ic('check', 16) + esc(msg) + (undo ? '<button class="undo" id="undoBtn">เลิกทำ</button>' : ''); t.classList.add('show'); t.classList.toggle('act', !!undo); if (undo) $('#undoBtn').onclick = () => { undo(); t.classList.remove('show', 'act'); render(); }; clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show', 'act'), undo ? 5000 : 2200); }
-function go(v, id) { if (S.tier !== 'adv' && lockedFor(v, id)) { S.modal = 'locked'; S.search = false; S.notif = false; render(); return; } if (S.view === 'watch' && v !== 'watch') S.mini = S.clip; if (v === 'watch') { S.mini = null; if (!S.watchedToday) { S.watchedToday = true; ME.streak++; ME.goal[0] = Math.min(ME.goal[1], ME.goal[0] + 1); setTimeout(() => toast('เยี่ยม! เรียนต่อเนื่อง ' + ME.streak + ' วันแล้ว'), 400); } } S.view = v; if (v === 'watch' && id) { S.clip = id; S.wtab = 'chap'; } if (v === 'livewatch' && id) S.live = id; if (v === 'coach' && id) S.coach = id; S.search = false; S.notif = false; render(); window.scrollTo(0, 0); }
+function go(v, id) { if (v === 'watch' && S.view !== 'watch') S.back = S.view; if (v !== 'watch') { S.epsPanel = false; S.epsSeason = 0; } if (S.tier !== 'adv' && lockedFor(v, id)) { S.modal = 'locked'; S.search = false; S.notif = false; render(); return; } if (S.view === 'watch' && v !== 'watch') S.mini = S.clip; if (v === 'watch') { S.mini = null; if (!S.watchedToday) { S.watchedToday = true; ME.streak++; ME.goal[0] = Math.min(ME.goal[1], ME.goal[0] + 1); setTimeout(() => toast('เยี่ยม! เรียนต่อเนื่อง ' + ME.streak + ' วันแล้ว'), 400); } } S.view = v; if (v === 'watch' && id) { S.clip = id; S.wtab = 'chap'; } if (v === 'livewatch' && id) S.live = id; if (v === 'coach' && id) S.coach = id; S.search = false; S.notif = false; render(); window.scrollTo(0, 0); }
 document.addEventListener('click', e => {
   const a = e.target.closest('[data-a]'); if (a && ACT[a.dataset.a]) { e.preventDefault(); e.stopPropagation(); ACT[a.dataset.a](e); return; }
   const g = e.target.closest('[data-go]'); if (g) { const [v, id] = g.dataset.go.split(':'); go(v, id); return; }
@@ -1516,7 +1613,8 @@ document.addEventListener('keydown', e => {
     if (e.key === '?') { S.modal = 'keys'; render(); return; }
     if ((e.key === 't' || e.key === 'T') && !S.modal && !S.search) { nextTheme(); return; }
   }
-  if (e.key === 'Escape') hideBob();
+  if (e.key === 'Escape') { hideBob(); if (S.epsPanel) { S.epsPanel = false; render(); return; } }
+  if (e.key === ' ' && S.view === 'watch' && !typing && !S.modal && !S.search && !(e.target.closest && e.target.closest('button,[role=link],[role=slider]'))) { e.preventDefault(); S.paused = !S.paused; render(); return; }
   if (e.target.matches && e.target.matches('.track[role=slider]') && /^(ArrowLeft|ArrowRight|Home|End)$/.test(e.key)) { e.preventDefault(); const c = byClip(S.clip), tot = c.dur * 60, p = S.pos[c.id] ?? Math.round((c.prog && c.prog < 1 ? c.prog : 0) * tot); S.pos[c.id] = e.key === 'Home' ? 0 : e.key === 'End' ? tot : Math.min(tot, Math.max(0, p + (e.key === 'ArrowLeft' ? -10 : 10))); render(); const t = $('.track[role=slider]'); if (t) t.focus(); return; }
   if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[role=link][tabindex="0"]')) { e.preventDefault(); e.target.click(); return; }
   if (e.key === 'Tab') { const dlg = document.querySelector('#ovl [role=dialog]'); if (dlg) { const f = [...dlg.querySelectorAll('button:not([disabled]),input,select,textarea,[tabindex="0"]')].filter(x => x.offsetParent !== null); if (f.length) { const first = f[0], last = f[f.length - 1]; if (!dlg.contains(document.activeElement)) { e.preventDefault(); first.focus(); } else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } } }
@@ -1642,45 +1740,55 @@ function intro() {
   el.addEventListener('click', end); addEventListener('keydown', end); setTimeout(end, 2600);
 }
 
-/* title ("ข้อมูลเพิ่มเติม") modal */
+/* title ("ข้อมูลเพิ่มเติม") modal — streaming-style: hero, actions, details, seasons + episodes, similar */
 function seriesOf(c) {
-  if (c.cat === 'basic' || c.cat === 'brec') { const recs = CLIPS.filter(x => x.cat === 'brec').sort((a, b) => a.rdate - b.rdate);
-    return {name:'Basic Technical', big:'Basic<br>Technical', label:'ซีรีส์คอร์ส', year:'2569', desc:'อ่านกราฟเป็นใน 4 สัปดาห์ ตั้งแต่ความรู้เบื้องต้น Dow Theory แนวรับแนวต้าน Money Management จนถึง Volume และ Indicators ทุกบทมี Master Clip คลาสสดพุธและเสาร์ แบบทดสอบ และการบ้านกราฟที่โค้ชตรวจให้', cast:'โค้ชแนน · ทีมโค้ช Basic', genre:'กราฟเทคนิค · หุ้นไทย · คลาสสด', vibe:'เข้าใจง่าย · ใช้ได้จริง · มีการบ้าน',
-      seasons:[{k:'main', l:'บทเรียนหลัก (5 ตอน)', eps:CLIPS.filter(x => x.cat === 'basic')}, {k:'rec', l:`คลาสสดย้อนหลัง (${recs.length} ตอน)`, eps:recs}]}; }
+  if (c.cat === 'basic' || c.cat === 'brec') { const recs = CLIPS.filter(x => x.cat === 'brec').sort((a, b) => b.rdate - a.rdate);
+    return {name:'Basic Technical', big:'Basic<br>Technical', label:'ซีรีส์คอร์ส', year:'2569', desc:'อ่านกราฟเป็นใน 4 สัปดาห์ ตั้งแต่ความรู้เบื้องต้น Dow Theory แนวรับแนวต้าน Money Management จนถึง Volume และ Indicators แต่ละเนื้อหาแบ่งเป็นตอนสั้นๆ ดูจบทีละตอน มีคลาสสดพุธและเสาร์ แบบทดสอบ และการบ้านกราฟที่โค้ชตรวจให้', cast:'โค้ชแนน · ทีมโค้ช Basic', genre:'กราฟเทคนิค · หุ้นไทย · คลาสสด', vibe:'เข้าใจง่าย · ใช้ได้จริง · มีการบ้าน',
+      count:`${EPALL.length} ตอน · 4 เนื้อหา`,
+      seasons:[...[1, 2, 3, 4].map(n => ({k:'e' + n, l:`เนื้อหาที่ ${n} · ${GRAD[n - 1].t}`, sl:`เนื้อหาที่ ${n}`, eps:EPI[n], epi:true})), {k:'rec', l:`คลาสสดย้อนหลัง (${recs.length} ตอน)`, sl:'คลาสสดย้อนหลัง', eps:recs}]}; }
   if (c.cat === 'adv') { const eps = CLIPS.filter(x => x.cat === 'adv' && x.coach === c.coach).sort((a, b) => a.title.localeCompare(b.title)), co = COACHES.find(x => x.name === c.coach);
-    if (eps.length > 1) return {name:serName(c), big:serName(c), label:'ซีรีส์ Advanced', year:'2569', desc:'พฤติกรรมหุ้นพร้อมเล่น Price pattern และ Momentum จากประสบการณ์จริงของโค้ช' + c.coach + ' ดูทีละตอนแล้วลองหาเคสในตลาดจริง', cast:'โค้ช' + c.coach, genre:(co ? co.tags : ['Advanced']).join(' · '), vibe:'เจาะลึก · ใช้กับกราฟจริง', seasons:[{k:'main', l:`ทุกตอน (${eps.length})`, eps}]}; }
+    if (eps.length > 1) return {name:serName(c), big:serName(c), label:'ซีรีส์ Advanced', year:'2569', desc:'พฤติกรรมหุ้นพร้อมเล่น Price pattern และ Momentum จากประสบการณ์จริงของโค้ช' + c.coach + ' ดูทีละตอนแล้วลองหาเคสในตลาดจริง', cast:'โค้ช' + c.coach, genre:(co ? co.tags : ['Advanced']).join(' · '), vibe:'เจาะลึก · ใช้กับกราฟจริง', count:`${eps.length} ตอน`, seasons:[{k:'main', l:`ทุกตอน (${eps.length})`, sl:'ทุกตอน', eps}]}; }
   return null;
 }
 const simOf = c => { const tg = new Set(tagsOf(c)); return CLIPS.filter(x => x.id !== c.id && x.cat !== 'brec' && !(c.cat !== 'adv' && x.cat === c.cat && (c.cat === 'basic'))).map(x => [x, tagsOf(x).filter(t => tg.has(t)).length + (x.cat === c.cat ? 1 : 0) + (TOP10.includes(x.id) ? .5 : 0) + x.seed % 7 / 100]).sort((a, b) => b[1] - a[1]).map(a => a[0]); };
+/* one row in the episode list: an episode of a lesson (x.n like "2.3") or a whole clip (replays / Advanced) */
 function epRow(x, i, cur) {
-  const nm = x.cat === 'brec' ? `${x.day} ${fd(x.rdate)} · ${x.kind}` : (x.ep ? 'EP.' + x.ep + ' ' : '') + shortT(x);
-  const desc = x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
-  const pct = x.prog > 0 ? Math.min(1, x.prog) : 0;
-  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="ตอนที่ ${i + 1} ${esc(nm)} · ${x.dur} นาที${x.prog === 1 ? ' · ดูจบแล้ว' : ''}"><span class="n">${i + 1}</span><div class="tth">${art(x.seed, x.hue, {n:16})}${pct ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(nm)}</b><span>${x.dur} นาที</span></div><p>${esc(desc)}</p>${x.prog === 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
+  const isEp = !!x.n, c = isEp ? byClip(x.clip) : x, pct = isEp ? epProg(x) : x.prog > 0 ? Math.min(1, x.prog) : 0;
+  const num = isEp ? x.n : i + 1, nm = isEp ? x.t : x.cat === 'brec' ? `${x.day} ${fd(x.rdate)} · ${x.kind}` : (x.ep ? 'EP.' + x.ep + ' ' : '') + shortT(x);
+  const desc = isEp ? x.d : x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
+  const mins = isEp ? epMin(x) : x.dur, act = isEp ? A(() => playEp(x)) : A(() => { S.modal = null; go('watch', x.id); });
+  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${act}" aria-label="ตอน ${num} ${esc(nm)} · ${mins} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${art(isEp ? x.seed : x.seed, c.hue, {n:16})}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(nm)}</b><span>${mins} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
 }
 function simCard(x) {
   const on = S.saved.has(x.id);
-  return `<div class="simc" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${esc(x.title)}"><div class="sth">${art(x.seed, x.hue, {n:18})}<span class="dur2">${x.dur} นาที</span><span class="ntl">${esc(shortT(x))}</span></div><div class="sin2"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1">${dnaTag(x)}<div class="bmeta" style="margin-top:4px">${lvlTag(x)}<span class="hdb">${x.ch.length} บทย่อย</span></div></div><button class="cbtn sm" style="color:var(--ink);border-color:color-mix(in srgb,var(--ink) 50%,transparent);background:transparent" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(x.id); render(); })}">${ic(on ? 'check' : 'plus', 17)}</button></div><p>${esc(descOf(x))}</p></div></div>`;
+  return `<div class="simc" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${esc(x.title)}"><div class="sth">${art(x.seed, x.hue, {n:18})}<span class="dur2">${x.dur} นาที</span><span class="ntl">${esc(shortT(x))}</span></div><div class="sin2"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1">${dnaTag(x)}<div class="bmeta" style="margin-top:4px">${lvlTag(x)}<span class="hdb">${x.ch.length} บทย่อย</span></div></div><button class="cbtn sm" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(x.id); render(); })}">${ic(on ? 'check' : 'plus', 17)}</button></div><p>${esc(descOf(x))}</p></div></div>`;
 }
+/* open the details modal on a lesson (season) of Basic Technical */
+function openSeason(n) { S.tid = EPI[n] ? epCur(n).clip : 'b2'; S.season = 'e' + n; S.modal = 'title'; hideBob(); render(); }
 function titleHTML() {
   const c = byClip(S.tid) || byClip('b2'), sr = seriesOf(c);
-  const sea = sr ? (sr.seasons.find(x => x.k === S.season) || sr.seasons.find(x => x.eps.includes(c)) || sr.seasons[0]) : null;
-  const all = sr ? sr.seasons.flatMap(x => x.eps) : [c], on = S.saved.has(c.id), liked = S.liked.has(c.id), t10 = TOP10.indexOf(c.id);
-  const lab = sr ? sr.label : c.cat === 'adv' ? 'คลิป Advanced' : serName(c);
-  const pl = c.prog > 0 && c.prog < 1 ? `เล่นต่อ ${c.ep ? 'EP.' + c.ep : ''}` : c.prog === 1 ? 'ดูอีกครั้ง' : 'เล่น';
+  const sea = sr ? (sr.seasons.find(x => x.k === S.season) || (c.cat === 'basic' ? sr.seasons.find(x => x.k === 'e' + parseInt(c.ep)) : null) || sr.seasons.find(x => x.eps.includes(c)) || sr.seasons[0]) : null;
+  const on = S.saved.has(c.id), liked = S.liked.has(c.id), t10 = TOP10.indexOf(c.id), lab = sr ? sr.label : c.cat === 'adv' ? 'คลิป Advanced' : serName(c);
+  /* main action: resume the lesson in view (episodes) or the clip */
+  const cur = sea && sea.epi ? epCur(+sea.k.slice(1)) : null, cp = cur ? epProg(cur) : 0;
+  const pl = cur ? `${cp > 0 && cp < 1 ? 'เล่นต่อ' : cp >= 1 ? 'ดูอีกครั้ง' : 'เล่น'} ตอน ${cur.n}` : c.prog > 0 && c.prog < 1 ? 'เล่นต่อ' : c.prog === 1 ? 'ดูอีกครั้ง' : 'เล่น';
+  const play = cur ? A(() => playEp(cur)) : A(() => { S.modal = null; go('watch', c.id); });
+  const close = A(() => { S.modal = null; render(); });
   return `<div class="ovl tovl"><div class="tmod" role="dialog" aria-label="ข้อมูล ${esc(sr ? sr.name : c.title)}">
-    <div class="thero">${art(c.seed + 3, c.hue, {n:44})}<button class="tclose" aria-label="ปิด" data-a="${A(() => { S.modal = null; render(); })}">${ic('x', 22)}</button>
+    <div class="thero">${art(c.seed + 3, c.hue, {n:44, live:true})}<button class="tclose" aria-label="ปิด" data-a="${close}">${ic('x', 22)}</button>
       <div class="thc"><div class="bblab"><span class="nS">SPTR</span>${esc(lab)}</div><h2 class="ttl ${sr ? '' : 'th'}">${sr ? sr.big : esc(c.title)}</h2>
-        <div class="tbtns"><button class="btn xl" data-a="${A(() => { S.modal = null; go('watch', c.id); })}">${ic('play', 22)}${pl}</button>
-          <button class="btn ghost" aria-pressed="${on}" data-a="${A(() => { toggleSave(c.id); render(); })}">${ic(on ? 'check' : 'plus', 16)}${on ? 'อยู่ในรายการแล้ว' : 'รายการของฉัน'}</button>
-          <button class="btn ghost" aria-pressed="${liked}" data-a="${A(() => { liked ? S.liked.delete(c.id) : S.liked.add(c.id); render(); })}">${ic('thumb', 16)}${liked ? 'ชอบแล้ว' : 'ชอบ'}</button></div></div></div>
+        <div class="tbtns"><button class="btn xl" data-a="${play}">${ic('play', 22)}${pl}</button>
+          <button class="cbtn" aria-pressed="${on}" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(c.id); render(); })}">${ic(on ? 'check' : 'plus', 20)}</button>
+          <button class="cbtn ${liked ? 'on' : ''}" aria-pressed="${liked}" aria-label="${liked ? 'เลิกชอบ' : 'ชอบ'}" data-a="${A(() => { liked ? S.liked.delete(c.id) : S.liked.add(c.id); render(); })}">${ic('thumb', 19)}</button>
+          <span class="hsp"></span><button class="cbtn" aria-label="${S.muted ? 'เปิดเสียงตัวอย่าง' : 'ปิดเสียงตัวอย่าง'}" data-a="${A(() => { S.muted = !S.muted; render(); })}">${ic(S.muted ? 'mute' : 'vol', 19)}</button></div></div></div>
     <div class="tbody"><div class="tinfo"><div>
-      <div class="tmeta">${dnaTag(c)}<span>${sr ? sr.year : esc(c.date)}</span><span>${sr ? `${all.length} ตอน` : `${c.dur} นาที`}</span><span class="hdb">มีบทย่อย</span>${SUMS[c.id] || sr ? '<span class="hdb">สรุป + แบบทดสอบ</span>' : ''}<span class="hdb">ถอดความ</span></div>
-      <div class="tmeta" style="margin-top:8px">${lvlTag(c)}<span>${esc(tagsOf(c).join(' · '))}</span></div>
+      <div class="tmeta"><span>${sr ? sr.year : esc(c.date)}</span><span>${sr ? sr.count : `${c.dur} นาที`}</span><span class="hdb">HD</span><span class="hdb">ถอดความ</span>${SUMS[c.id] || sr ? '<span class="hdb">สรุป + แบบทดสอบ</span>' : ''}</div>
+      <div class="tmeta" style="margin-top:8px">${lvlTag(c)}${dnaTag(c).replace('class="dna"', 'class="dna" style="margin:0"')}</div>
       ${t10 >= 0 ? `<div class="rankl">${ic('trend', 16)}อันดับ ${t10 + 1} บนกระดานสัปดาห์นี้</div>` : ''}
       <p class="tdesc">${esc(sr ? sr.desc : c.title + ' · ในคลิป: ' + c.ch.map(h => h.title).join(' → '))}</p></div>
       <div class="tcast"><div><span>สอนโดย:</span> ${esc(sr ? sr.cast : (c.cat === 'adv' ? 'โค้ช' : '') + c.coach)}</div><div><span>หมวด:</span> ${esc(sr ? sr.genre : tagsOf(c).join(' · '))}</div><div><span>รายการนี้:</span> ${esc(sr ? sr.vibe : 'ดูจบในครั้งเดียว · มีบทย่อย')}</div></div></div>
-    ${sr ? `<div class="teh"><h3>ตอน</h3>${sr.seasons.length > 1 ? `<select aria-label="เลือกชุดตอน" data-in="${A(e => { S.season = e.target.value; render(); })}">${sr.seasons.map(x => `<option value="${x.k}" ${x === sea ? 'selected' : ''}>${x.l}</option>`).join('')}</select>` : `<span class="muted">${sea.l}</span>`}</div>${sea.eps.map((x, i) => epRow(x, i, x.id === c.id)).join('')}`
+    ${sr ? `<div class="teh"><h3>ตอน</h3>${sr.seasons.length > 1 ? `<select class="tsea" aria-label="เลือกเนื้อหา" data-in="${A(e => { S.season = e.target.value; render(); const t = $('.tsea'); if (t) t.focus(); })}">${sr.seasons.map(x => `<option value="${x.k}" ${x === sea ? 'selected' : ''}>${x.l}</option>`).join('')}</select>` : `<span class="muted">${sea.l}</span>`}</div>
+      ${sea.epi ? `<div class="tsl">${esc(sea.l)} · ${sea.eps.length} ตอน · ${sea.eps.reduce((a, x) => a + epMin(x), 0)} นาที</div>` : ''}${sea.eps.map((x, i) => epRow(x, i, sea.epi ? x === cur : x.id === c.id)).join('')}`
       : `<div class="teh"><h3>บทย่อยในคลิปนี้</h3><span class="muted">${c.ch.length} ช่วง</span></div>${c.ch.map((h, i) => `<div class="tep" data-a="${A(() => { S.modal = null; S.pos[c.id] = toSec(h.t); go('watch', c.id); })}" aria-label="บทย่อย ${i + 1} ${esc(h.title)} เริ่มนาที ${h.t}"><span class="n">${i + 1}</span><div class="tth">${art(c.seed + i * 13, c.hue, {n:16})}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(h.title)}</b><span>${h.t}</span></div></div></div>`).join('')}`}
     <div class="teh"><h3>เนื้อหาที่คล้ายกัน</h3></div><div class="tsim">${simOf(c).slice(0, 6).map(simCard).join('')}</div>
     <div class="teh"><h3>เกี่ยวกับ ${esc(sr ? sr.name : shortT(c))}</h3></div><div class="tabout"><div><span class="k">สอนโดย:</span> ${esc(sr ? sr.cast : (c.cat === 'adv' ? 'โค้ช' : '') + c.coach)}</div><div><span class="k">หมวด:</span> ${esc(sr ? sr.genre : tagsOf(c).join(' · '))}</div><div><span class="k">ระดับ:</span> ${lvlTag(c)} ${c.cat === 'adv' ? 'เหมาะกับคนที่จบ Basic แล้ว' : 'เริ่มเรียนได้เลย ไม่ต้องมีพื้นฐาน'}</div></div>
@@ -2002,21 +2110,27 @@ function bcal() {
         ${mine.slice(0, 2).map(bkItem).join('') || `<div class="mybz">ยังไม่มีการจอง · อยู่ กทม. กดวันที่มีจุดสีเขียว แล้วเลือก "จอง onsite" มาเรียนกับโค้ชที่ห้องเรียนได้</div>`}</div></div>
   </div>`;
 }
-/* all videos, streaming-style: full-width dark band · "continue watching" + one row per EP · title on the thumbnail · hover preview card */
+/* all videos, streaming-style: "continue watching" + one row per lesson (its episodes N.1, N.2 …, then the live-class replays) · title on the thumbnail · hover preview card */
 const TART = {b11:['หุ้นเบื้องต้น', 'Streaming · EP.1.1'], b12:['TradingView', 'เครื่องมือดูกราฟ · EP.1.2'], b2:['DOW THEORY', 'แนวรับแนวต้าน · EP.2'], b3:['MONEY MANAGEMENT', 'บริหารเงินทุน · EP.3'], b4:['VOLUME', '& Indicators · EP.4']};
-const tartOf = c => c.cat === 'basic' ? TART[c.id] || [shortT(c), 'EP.' + c.ep] : [c.kind === 'ตลาดจริง' ? 'ตลาดจริง' : 'CASE CLINIC', `คลาสสด EP.${c.rep} · ${c.day} ${fd(c.rdate)}`];
-const tartHTML = c => { const [b, s] = tartOf(c); return `<span class="nfl ${/^[A-Z &]+$/.test(b) ? 'lat' : ''}" aria-hidden="true"><b>${esc(b)}</b><small>${esc(s)}</small></span>`; };
-function nfTile(c) {
-  const pct = c.prog > 0 ? Math.round(Math.min(1, c.prog) * 100) : 0, mc = c.cat === 'basic', nw = c.id === LATEST_REC;
-  const lab = `${mc ? 'Master Clip ' + shortT(c) : `คลาสสดย้อนหลัง EP.${c.rep} ${c.day} ${fd(c.rdate)} ${c.kind}`} · ${c.dur} นาที${c.prog === 1 ? ' · ดูจบแล้ว' : pct ? ` · ดูไป ${pct}%` : ''}`;
-  return `<div class="nfc" data-id="${c.id}" data-a="${playOrInfo(c)}" aria-label="${esc(lab)}"><div class="nfi ${nw ? 'nw' : ''}">${art(c.seed, c.hue, {n:22})}<span class="nfg" aria-hidden="true"></span>${mc ? `<span class="t10" aria-hidden="true">EP<b>${c.ep}</b></span>` : ''}${tartHTML(c)}${nw ? '<span class="nfnew" aria-hidden="true">คลาสล่าสุด</span>' : ''}</div>${pct ? `<span class="nfp" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ''}</div>`;
+const isEpi = x => !!(x && x.n && x.clip);
+const tartOf = x => isEpi(x) ? [x.t, `ตอน ${x.n} · ${epMin(x)} นาที`] : x.cat === 'basic' ? TART[x.id] || [shortT(x), 'EP.' + x.ep] : [x.kind === 'ตลาดจริง' ? 'ตลาดจริง' : 'CASE CLINIC', `คลาสสด EP.${x.rep} · ${x.day} ${fd(x.rdate)}`];
+const tartHTML = x => { const [b, s] = tartOf(x); return `<span class="nfl ${/^[A-Z &]+$/.test(b) ? 'lat' : ''}" aria-hidden="true"><b>${esc(b)}</b><small>${esc(s)}</small></span>`; };
+const itemOf = el => el.dataset.ep ? epById(el.dataset.ep) : byClip(el.dataset.id);
+const itemProg = x => isEpi(x) ? epProg(x) : x.prog > 0 ? Math.min(1, x.prog) : 0;
+const itemPlay = x => isEpi(x) ? () => playEp(x) : () => { S.modal = null; go('watch', x.id); };
+const itemInfo = x => isEpi(x) ? () => openSeason(x.ep) : () => openTitle(x.id);
+function nfTile(x) {
+  const ep = isEpi(x), c = ep ? byClip(x.clip) : x, p = itemProg(x), pct = Math.round(p * 100), nw = !ep && x.id === LATEST_REC;
+  const lab = `${ep ? `ตอน ${x.n} ${x.t}` : `คลาสสดย้อนหลัง EP.${x.rep} ${x.day} ${fd(x.rdate)} ${x.kind}`} · ${ep ? epMin(x) : x.dur} นาที${p >= 1 ? ' · ดูจบแล้ว' : pct ? ` · ดูไป ${pct}%` : ''}`;
+  const act = A(() => (matchMedia('(hover: none)').matches ? itemInfo(x) : itemPlay(x))());
+  return `<div class="nfc" ${ep ? `data-ep="${x.n}"` : `data-id="${x.id}"`} data-a="${act}" aria-label="${esc(lab)}"><div class="nfi ${nw ? 'nw' : ''}">${art(ep ? x.seed : x.seed, c.hue, {n:22})}<span class="nfg" aria-hidden="true"></span>${ep ? `<span class="t10" aria-hidden="true">ตอน<b>${x.n}</b></span>` : ''}${tartHTML(x)}${nw ? '<span class="nfnew" aria-hidden="true">คลาสล่าสุด</span>' : ''}</div>${pct ? `<span class="nfp" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ''}</div>`;
 }
 const nfGeo = t => { const c = t.querySelector('.nfc'), cs = getComputedStyle(t), step = c ? c.offsetWidth + parseFloat(cs.columnGap) : t.clientWidth; return {step, n:Math.max(1, Math.floor((t.clientWidth - 2 * parseFloat(cs.paddingLeft)) / step + .02))}; };
 const nfSlide = d => e => { const t = e.target.closest('.nfw').querySelector('.nft'), g = nfGeo(t); hideBob(); t.scrollBy({left:d * g.n * g.step, behavior:reduceMotion() ? 'auto' : 'smooth'}); };
-function nfRow(title, status, clips, more) {
+function nfRow(title, status, items, more) {
   const plain = title.replace(/<[^>]+>/g, '');
   return `<section class="nfr s0" aria-label="${esc(plain)}"><div class="nfrh"><h3>${title}</h3>${status}${more ? `<button class="nfall" data-a="${A(more)}">ดูทั้งหมด${ic('chev', 15)}</button>` : ''}<span class="nfpg" aria-hidden="true"></span></div>
-    <div class="nfw"><button class="nfa prev" aria-label="เลื่อน ${esc(plain)} ย้อนกลับ" data-a="${A(nfSlide(-1))}">${ic('back', 28)}</button><div class="nft">${clips.map(nfTile).join('')}</div><button class="nfa next" aria-label="เลื่อน ${esc(plain)} ถัดไป" data-a="${A(nfSlide(1))}">${ic('chev', 28)}</button></div></section>`;
+    <div class="nfw"><button class="nfa prev" aria-label="เลื่อน ${esc(plain)} ย้อนกลับ" data-a="${A(nfSlide(-1))}">${ic('back', 28)}</button><div class="nft">${items.map(nfTile).join('')}</div><button class="nfa next" aria-label="เลื่อน ${esc(plain)} ถัดไป" data-a="${A(nfSlide(1))}">${ic('chev', 28)}</button></div></section>`;
 }
 /* arrows + page dashes follow the scroll position */
 function nfSync(t) {
@@ -2027,21 +2141,27 @@ function nfSync(t) {
 }
 document.addEventListener('scroll', e => { if (e.target.classList && e.target.classList.contains('nft')) nfSync(e.target); hideBob(); }, true);
 window.addEventListener('resize', () => { hideBob(); document.querySelectorAll('.nft').forEach(nfSync); });
-/* hover preview: grows from the tile after a short pause (desktop pointer only) */
+/* player: hide the controls after a few quiet seconds (kept while paused, while the episode list is open, or while a control has keyboard focus) */
+let idleT = 0;
+function wakePlayer() { const t = document.querySelector('.theater'); if (!t) return; t.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { const x = document.querySelector('.theater'); if (x && !S.paused && !S.epsPanel && !x.contains(document.activeElement)) x.classList.add('idle'); }, 3000); }
+['mousemove', 'touchstart', 'keydown'].forEach(ev => document.addEventListener(ev, wakePlayer, {passive:true}));
+/* hover preview: grows from the tile after a short pause and plays a silent preview (desktop pointer only) */
 let bobT = 0;
 function hideBob() { clearTimeout(bobT); const b = document.getElementById('bob'); if (b) b.remove(); }
 function showBob(tile) {
-  const c = byClip(tile.dataset.id); if (!c || !document.body.contains(tile)) return;
+  const x = itemOf(tile); if (!x || !document.body.contains(tile)) return;
   hideBob();
+  const ep = isEpi(x), c = ep ? byClip(x.clip) : x, p = itemProg(x), pct = Math.round(p * 100), sv = S.saved.has(c.id), lk = S.liked.has(c.id);
   const r = tile.querySelector('.nfi').getBoundingClientRect(), W = Math.round(r.width * 1.5), pad = 16;
   const left = Math.min(Math.max(r.left + r.width / 2 - W / 2, pad), document.documentElement.clientWidth - W - pad), top = r.top + r.height / 2 - W * 9 / 32;
-  const pct = c.prog > 0 ? Math.round(Math.min(1, c.prog) * 100) : 0, sv = S.saved.has(c.id), lk = S.liked.has(c.id), ep = c.cat === 'basic' ? c.ep : c.rep;
+  const again = () => showBob(tile), mins = ep ? epMin(x) : x.dur, left2 = ep ? Math.round(epMin(x) * (1 - p)) : Math.round(x.dur * (1 - p));
+  const tags = ep ? [`เนื้อหาที่ ${x.ep}`, 'กราฟเทคนิค', 'พื้นฐาน'] : ['คลาสสด ' + x.kind, ...tagsOf(x).slice(0, 2)];
   const el = document.createElement('div'); el.id = 'bob'; el.className = 'nfb';
   el.style.cssText = `left:${left + scrollX}px;top:${top + scrollY}px;width:${W}px`;
-  el.innerHTML = `<div class="bth" data-go="watch:${c.id}">${art(c.seed, c.hue, {n:26})}<span class="nfg" aria-hidden="true"></span>${c.cat === 'basic' ? `<span class="t10" aria-hidden="true">EP<b>${c.ep}</b></span>` : ''}${tartHTML(c)}${pct ? `<span class="bpb"><i style="width:${pct}%"></i></span>` : ''}</div>
-    <div class="bin"><div class="brow"><button class="cbtn pl" aria-label="เล่น" data-go="watch:${c.id}">${ic('play', 18)}</button><button class="cbtn" aria-label="${sv ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(c.id); showBob(tile); })}">${ic(sv ? 'check' : 'plus', 18)}</button><button class="cbtn ${lk ? 'on' : ''}" aria-label="${lk ? 'เลิกถูกใจ' : 'ถูกใจ'}" data-a="${A(() => { lk ? S.liked.delete(c.id) : S.liked.add(c.id); toast(lk ? 'เลิกถูกใจแล้ว' : 'ถูกใจแล้ว ระบบจะแนะนำคลิปแนวนี้ให้มากขึ้น'); showBob(tile); })}">${ic('thumb', 17)}</button><span class="hsp"></span><button class="cbtn" aria-label="ข้อมูลเพิ่มเติม" data-a="${A(() => openTitle(c.id))}">${ic('down', 18)}</button></div>
-      <div class="bm"><span class="${c.prog === 1 ? 'ok' : pct ? 'pc' : ''}">${c.prog === 1 ? 'ดูจบแล้ว' : pct ? `ดูไป ${pct}% · เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที` : 'ยังไม่ได้ดู'}</span><span class="bx">EP.${ep}</span><span>${c.dur} นาที</span></div>
-      <div class="btg">${[c.cat === 'basic' ? 'Master Clip' : 'คลาสสด ' + c.kind, ...tagsOf(c).slice(0, 2)].map(esc).join('<i></i>')}</div></div>`;
+  el.innerHTML = `<div class="bth" data-a="${A(itemPlay(x))}">${art(ep ? x.seed : x.seed, c.hue, {n:26, live:true})}<span class="nfg" aria-hidden="true"></span>${ep ? `<span class="t10" aria-hidden="true">ตอน<b>${x.n}</b></span>` : ''}${tartHTML(x)}<button class="cbtn sm bmute" aria-label="${S.muted ? 'เปิดเสียงตัวอย่าง' : 'ปิดเสียงตัวอย่าง'}" data-a="${A(() => { S.muted = !S.muted; again(); })}">${ic(S.muted ? 'mute' : 'vol', 16)}</button>${pct ? `<span class="bpb"><i style="width:${pct}%"></i></span>` : ''}</div>
+    <div class="bin"><div class="brow"><button class="cbtn pl" aria-label="เล่น" data-a="${A(itemPlay(x))}">${ic('play', 18)}</button><button class="cbtn" aria-label="${sv ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(c.id); again(); })}">${ic(sv ? 'check' : 'plus', 18)}</button><button class="cbtn ${lk ? 'on' : ''}" aria-label="${lk ? 'เลิกถูกใจ' : 'ถูกใจ'}" data-a="${A(() => { lk ? S.liked.delete(c.id) : S.liked.add(c.id); toast(lk ? 'เลิกถูกใจแล้ว' : 'ถูกใจแล้ว ระบบจะแนะนำคลิปแนวนี้ให้มากขึ้น'); again(); })}">${ic('thumb', 17)}</button><span class="hsp"></span><button class="cbtn" aria-label="ข้อมูลเพิ่มเติมและตอนทั้งหมด" data-a="${A(itemInfo(x))}">${ic('down', 18)}</button></div>
+      <div class="bm"><span class="${p >= 1 ? 'ok' : pct ? 'pc' : ''}">${p >= 1 ? 'ดูจบแล้ว' : pct ? `ดูไป ${pct}% · เหลือ ${left2} นาที` : 'ยังไม่ได้ดู'}</span><span class="bx">${ep ? 'ตอน ' + x.n : 'EP.' + x.rep}</span><span>${mins} นาที</span><span class="bx">HD</span></div>
+      <div class="btg">${tags.map(esc).join('<i></i>')}</div></div>`;
   el.addEventListener('mouseleave', hideBob);
   document.body.appendChild(el);
 }
@@ -2052,13 +2172,14 @@ document.addEventListener('mouseover', e => {
 });
 document.addEventListener('mouseout', e => { const t = e.target.closest && e.target.closest('.nfc'); if (t && !t.contains(e.relatedTarget)) clearTimeout(bobT); });
 function vAll() {
-  const cont = ['b2', ...CLIPS.filter(c => c.cat === 'brec' && c.prog > 0 && c.prog < 1).sort((a, b) => b.rdate - a.rdate).map(c => c.id)].map(byClip);
-  return `<section class="nfx" aria-labelledby="nfxh"><div class="nfxh"><h2 id="nfxh">${CDL}วิดีโอทั้งหมด</h2><span>Basic Technical · Master Clip และคลาสสดย้อนหลังทุกครั้ง</span></div>
+  const cont = [epCur(ME.ep), ...CLIPS.filter(c => c.cat === 'brec' && c.prog > 0 && c.prog < 1).sort((a, b) => b.rdate - a.rdate)];
+  return `<section class="nfx" aria-labelledby="nfxh"><div class="nfxh"><h2 id="nfxh">${CDL}วิดีโอทั้งหมด</h2><span>Basic Technical · 4 เนื้อหา · ${EPALL.length} ตอน · คลาสสดย้อนหลังทุกครั้ง</span></div>
     ${nfRow(`ดูต่อสำหรับคุณ${esc(ME.nick)}`, '', cont, () => { S.lib = 'continue'; go('library'); })}
     ${GRAD.map(g => {
-      const clips = [...CLIPS.filter(c => c.cat === 'basic' && parseInt(c.ep) === g.ep), ...CLIPS.filter(c => c.cat === 'brec' && c.rep === g.ep).sort((a, b) => b.rdate - a.rdate)];
-      const st = g.st === 'done' ? `<span class="nfs ok">${ic('check', 14)}ผ่านแล้ว</span>` : g.st === 'cur' ? `<span class="nfs cur">กำลังเรียน · ${Math.round(byClip(g.clip).prog * 100)}%</span>` : '<span class="nfs">ยังไม่เริ่ม</span>';
-      return nfRow(`<span class="nfep">EP.${g.ep}</span>${esc(g.t)}`, st, clips, () => { S.bview = 'rec'; S.rep = g.ep; go('learn'); });
+      const items = [...EPI[g.ep], ...CLIPS.filter(c => c.cat === 'brec' && c.rep === g.ep).sort((a, b) => b.rdate - a.rdate)];
+      const done = EPI[g.ep].filter(x => epProg(x) >= 1).length;
+      const st = g.st === 'done' ? `<span class="nfs ok">${ic('check', 14)}ผ่านแล้ว</span>` : g.st === 'cur' ? `<span class="nfs cur">กำลังเรียน · ดูแล้ว ${done} จาก ${EPI[g.ep].length} ตอน</span>` : `<span class="nfs">${EPI[g.ep].length} ตอน · ยังไม่เริ่ม</span>`;
+      return nfRow(`<span class="nfep">เนื้อหาที่ ${g.ep}</span>${esc(g.t)}`, st, items, () => openSeason(g.ep));
     }).join('')}</section>`;
 }
 function vHomeBasic() {
@@ -2197,7 +2318,7 @@ function vWatch() {
   const list = c.cat === 'basic' ? CLIPS.filter(x => x.cat === 'basic') : c.cat === 'brec' ? [byClip(MASTER[c.rep]), ...CLIPS.filter(x => x.cat === 'brec' && x.rep === c.rep).sort((a, b) => b.rdate - a.rdate)] : CLIPS.filter(x => x.cat === c.cat && x.id !== c.id).slice(0, 6);
   const tabs = [['chap',`บทย่อย (${c.ch.length})`],['sum','สรุป + ทดสอบ'],['notes',`โน้ตของฉัน (${notes.length})`],['tx','ถอดความ']];
   let tb = '';
-  if (S.wtab === 'chap') tb = c.ch.map((ch, i) => `<div class="chap ${i === curCh ? 'on' : ''}" data-a="${seek(toSec(ch.t))}"><span class="ts">${ch.t}</span><span>${esc(ch.title)}</span>${i === curCh ? `<span class="gold">${ic('play', 14)}</span>` : ''}</div>`).join('');
+  if (S.wtab === 'chap') tb = c.ch.map((ch, i) => { const ex = EPALL.find(x => x.clip === c.id && x.s === toSec(ch.t) && x.e - x.s < c.dur * 60); return `<div class="chap ${i === curCh ? 'on' : ''}" data-a="${seek(toSec(ch.t))}"><span class="ts">${ch.t}</span><span>${ex ? `<em class="chn">ตอน ${ex.n}</em>` : ''}${esc(ch.title)}</span>${i === curCh ? `<span class="gold">${ic('play', 14)}</span>` : ''}</div>`; }).join('');
   if (S.wtab === 'notes') tb = `<div style="display:flex;gap:10px;align-items:flex-start"><span class="tag g" style="margin-top:10px">${mmss(pos)}</span><input id="noteIn" placeholder="จดโน้ตที่นาทีนี้…" style="flex:1"><button class="btn sm" data-a="${A(() => { const v = $('#noteIn').value.trim(); if (!v) { $('#noteErr').textContent = 'พิมพ์โน้ตก่อนบันทึก'; return; } S.notes.push({clip:c.id, t:mmss(pos), text:v}); render(); toast('บันทึกโน้ตแล้ว'); })}" style="margin-top:4px">บันทึก</button></div><div class="err" id="noteErr"></div>
       <div style="margin-top:8px">${notes.map(n => `<div class="nitem"><span class="ts gold" style="font-weight:700;cursor:pointer" data-a="${seek(toSec(n.t))}">${n.t}</span><span>${esc(n.text)}</span><span></span></div>`).join('') || '<div class="muted" style="padding:10px 0">ยังไม่มีโน้ตในคลิปนี้</div>'}</div>`;
   if (S.wtab === 'tx') tb = c.tx.length ? c.tx.map(([t, x]) => `<div class="txl" data-a="${seek(toSec(t))}"><span class="gold" style="font-weight:700">${t}</span><span>${esc(x)}</span></div>`).join('') + '<div class="muted" style="font-size:13.5px;padding:8px 12px">ตัวอย่างบางช่วง · ระบบจริงถอดความทั้งคลิปอัตโนมัติ และค้นหาได้จากช่องค้นหาด้านบน</div>' : '<div class="muted" style="padding:10px">คลิปนี้ยังไม่มีข้อความถอดความในตัวอย่าง</div>';
@@ -2207,17 +2328,25 @@ function vWatch() {
   const side = c.cat === 'basic' ? `<div class="card pad" style="margin-bottom:14px"><div style="font-weight:700;margin-bottom:10px">หลังดูจบ</div>
       <div class="ji" style="margin-bottom:8px"><div class="ico" style="background:var(--purplebg);color:var(--purple)">${ic('layers', 18)}</div><div class="tx"><b>แบบทดสอบ EP.${c.ep.charAt(0)} · 20 ข้อ</b><span>${c.prog === 1 ? 'พร้อมทำ' : `ดูอีก ${Math.round(c.dur * (1 - (c.prog || 0)))} นาทีเพื่อปลดล็อก`}</span></div></div>
       ${c.ep === '2' || c.ep === '3' ? `<div class="ji"><div class="ico" style="background:var(--goldbg);color:var(--gold)">${ic('note', 18)}</div><div class="tx"><b>การบ้านกราฟ EP.${c.ep} · 3 ข้อ</b><span>${c.ep === '2' ? 'ผ่าน 1/3' : '0/3'}</span></div><button class="btn sm ghost" data-a="${A(openHw)}">ส่ง</button></div>` : ''}</div>` : '';
+  /* the part (episode) playing now and what comes next */
+  const cep = c.cat === 'basic' ? epAt(c, pos) : null, eix = cep ? EPALL.indexOf(cep) : -1, nep = eix >= 0 ? EPALL[eix + 1] : null;
   const nx = nextOf(c), remain = total - pos, showNext = nx && remain <= 90 && !nuSkip.has(c.id);
-  return `<div class="theater"><div class="player" role="region" aria-label="เพลเยอร์ ${esc(c.title)}">${art(c.seed, c.hue, {n:40})}
-      <button class="pback" data-a="${A(() => go(c.cat === 'basic' || c.cat === 'brec' ? 'learn' : 'home'))}">${ic('back', 20)}กลับ</button>
-      <span class="pbig">${ic('play', 30)}</span>
-      ${pos < 50 ? `<button class="skipi" data-a="${seek(50)}">ข้ามอินโทร</button>` : ''}${showNext ? nextUpHTML(c, nx) : ''}
+  const goNext = nep ? A(() => playEp(nep)) : nx ? A(() => go('watch', nx.id)) : null, nextLab = nep ? `ตอน ${nep.n} ${nep.t}` : nx ? nx.title : '';
+  const head = cep ? `<b>Basic Technical</b><span class="pep">ตอน ${cep.n}</span>${esc(cep.t)}` : c.cat === 'brec' ? `<b>คลาสสดย้อนหลัง EP.${c.rep}</b>${esc(c.day + ' ' + fd(c.rdate) + ' · ' + c.kind)}` : `<b>${esc(serName(c))}</b>${esc(shortT(c))}`;
+  const pn = S.epsSeason || (c.cat === 'basic' ? parseInt(c.ep) : c.cat === 'brec' ? c.rep : 0);
+  const panel = S.epsPanel && pn ? `<div class="epp" role="dialog" aria-label="ตอนทั้งหมดในเนื้อหาที่ ${pn}"><div class="epph"><button class="pic sm" aria-label="เนื้อหาก่อนหน้า" ${pn > 1 ? `data-a="${A(() => { S.epsSeason = pn - 1; render(); })}"` : 'disabled'}>${ic('back', 20)}</button><div><b>เนื้อหาที่ ${pn}</b><span>${esc(GRAD[pn - 1].t)}</span></div><button class="pic sm" aria-label="เนื้อหาถัดไป" ${pn < 4 ? `data-a="${A(() => { S.epsSeason = pn + 1; render(); })}"` : 'disabled'}>${ic('chev', 20)}</button><span class="hsp"></span><button class="pic sm" aria-label="ปิดรายการตอน" data-a="${A(() => { S.epsPanel = false; render(); })}">${ic('x', 20)}</button></div>
+      <div class="eppl">${EPI[pn].map(x => { const on = x === cep, pr = epProg(x); return `<div class="eppi ${on ? 'on' : ''}" data-a="${A(() => { S.epsPanel = false; playEp(x); })}" aria-label="ตอน ${x.n} ${esc(x.t)}${on ? ' กำลังเล่น' : ''}"><span class="n">${x.n}</span><div class="eppb"><div class="eppt"><b>${esc(x.t)}</b><span>${epMin(x)} นาที</span></div>${on ? `<div class="eppx"><span class="tth">${art(x.seed, c.hue, {n:14})}<span class="pl">${ic('play', 16)}</span></span><p>${esc(x.d)}</p></div>` : ''}${pr > 0 ? `<span class="eppbar"><i style="width:${pr * 100}%"></i></span>` : ''}</div></div>`; }).join('')}</div></div>` : '';
+  const togglePlay = A(() => { S.paused = !S.paused; render(); });
+  return `<div class="theater ${S.paused ? 'paused' : ''}"><div class="player" role="region" aria-label="เพลเยอร์ ${esc(c.title)}">${art(c.seed, c.hue, {n:40})}
+      <div class="ptop"><button class="pic" aria-label="กลับ" data-a="${A(() => { S.epsPanel = false; S.epsSeason = 0; go(S.back && S.back !== 'watch' ? S.back : 'home'); })}">${ic('arrowl', 32)}</button><span class="hsp"></span><button class="ptools" data-a="${A(() => { const t = $('#wtools'); if (t) t.scrollIntoView({behavior:reduceMotion() ? 'auto' : 'smooth'}); })}">${ic('down', 16)}บทย่อย · สรุป · โน้ต</button><button class="pic" aria-label="แจ้งปัญหาของคลิปนี้" data-a="${A(() => toast('ส่งเรื่องให้ทีมแล้ว ขอบคุณที่แจ้งปัญหา'))}">${ic('flag', 28)}</button></div>
+      ${S.paused ? `<button class="pbig" aria-label="เล่นต่อ" data-a="${togglePlay}">${ic('play', 34)}</button>` : ''}
+      ${pos < 50 ? `<button class="skipi" data-a="${seek(50)}">ข้ามอินโทร</button>` : ''}${showNext ? nextUpHTML(c, nx) : ''}${panel}
       <div class="pctl"><div class="tline"><div class="track" role="slider" aria-label="ตำแหน่งในคลิป" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${pos}" aria-valuetext="${mmss(pos)} จาก ${mmss(total)}" data-a="${A(e => { const r = e.target.closest('.track').getBoundingClientRect(); S.pos[c.id] = Math.round(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * total); render(); })}">
-        <div class="f" style="width:${pos / total * 100}%"></div>${c.ch.slice(1).map(ch => `<span class="k" style="left:${toSec(ch.t) / total * 100}%"></span>`).join('')}${notes.map(n => `<span class="nm" style="left:${toSec(n.t) / total * 100}%" title="${esc(n.text)}"></span>`).join('')}<span class="kn" style="left:${pos / total * 100}%"></span></div><span class="remain" aria-hidden="true">-${mmss(remain)}</span></div>
-        <div class="prow"><button class="pbtn" aria-label="เล่น">${ic('play', 26)}</button><button class="pbtn p10" aria-label="ย้อนกลับ 10 วินาที" data-a="${seek(Math.max(0, pos - 10))}">${ic('rw', 26)}<i>10</i></button><button class="pbtn p10" aria-label="ข้ามไป 10 วินาที" data-a="${seek(Math.min(total, pos + 10))}">${ic('fw', 26)}<i>10</i></button><button class="pbtn pv" aria-label="เสียง">${ic('vol', 24)}</button>
-          <span class="sp"></span><span class="ptt"><b>${esc(serName(c))}</b>${esc(epLabel(c))}</span><span class="sp"></span>
-          ${nx ? `<button class="pbtn" aria-label="ตอนถัดไป: ${esc(nx.title)}" title="ตอนถัดไป" data-go="watch:${nx.id}">${ic('next', 24)}</button>` : ''}<button class="pbtn" aria-label="ตอนทั้งหมดและข้อมูล" title="ตอนทั้งหมด" data-a="${A(() => openTitle(c.id))}">${ic('eps', 24)}</button><button class="pbtn" aria-label="ความเร็ว ${S.speed} เท่า กดเพื่อเปลี่ยน" data-a="${A(() => { const sp = [1, 1.25, 1.5, 2, 0.75]; S.speed = sp[(sp.indexOf(S.speed) + 1) % sp.length]; render(); toast('ความเร็ว ' + S.speed + 'x'); })}">${S.speed}x</button><button class="pbtn ${ccOn ? 'on' : ''}" aria-pressed="${ccOn}" aria-label="คำบรรยาย" data-a="${A(() => { S.cc = !ccOn; render(); })}">${ic('cc', 22)}</button><button class="pbtn pf" aria-label="เต็มจอ" data-a="${A(() => toast('เปิดเต็มจอ (ในระบบจริง)'))}">${ic('full', 22)}</button></div></div>${ccOn ? `<div class="ccap">${esc(capText)}</div>` : ''}</div></div>
-  <div class="wgrid" style="margin-top:18px"><div>
+        <div class="f" style="width:${pos / total * 100}%"></div>${c.ch.slice(1).map(ch => `<span class="k" style="left:${toSec(ch.t) / total * 100}%"></span>`).join('')}${notes.map(n => `<span class="nm" style="left:${toSec(n.t) / total * 100}%" title="${esc(n.text)}"></span>`).join('')}<span class="kn" style="left:${pos / total * 100}%"></span></div><span class="remain" aria-label="เหลือเวลา ${mmss(remain)}">${mmss(remain)}</span></div>
+        <div class="prow"><button class="pbtn" aria-label="${S.paused ? 'เล่น' : 'หยุดชั่วคราว'}" data-a="${togglePlay}">${ic(S.paused ? 'play' : 'pause', 34)}</button><button class="pbtn p10" aria-label="ย้อนกลับ 10 วินาที" data-a="${seek(Math.max(0, pos - 10))}">${ic('rw', 34)}<i>10</i></button><button class="pbtn p10" aria-label="ข้ามไป 10 วินาที" data-a="${seek(Math.min(total, pos + 10))}">${ic('fw', 34)}<i>10</i></button><button class="pbtn pv" aria-label="${S.pmuted ? 'เปิดเสียง' : 'ปิดเสียง'}" data-a="${A(() => { S.pmuted = !S.pmuted; render(); })}">${ic(S.pmuted ? 'mute' : 'vol', 32)}</button>
+          <span class="sp"></span><span class="ptt">${head}</span><span class="sp"></span>
+          ${goNext ? `<button class="pbtn" aria-label="ตอนถัดไป: ${esc(nextLab)}" title="ตอนถัดไป: ${esc(nextLab)}" data-a="${goNext}">${ic('next', 32)}</button>` : ''}<button class="pbtn ${S.epsPanel ? 'on' : ''}" aria-label="ตอนทั้งหมด" aria-expanded="${!!S.epsPanel}" data-a="${A(() => { if (!pn) { openTitle(c.id); return; } S.epsPanel = !S.epsPanel; S.epsSeason = 0; render(); })}">${ic('stack', 32)}</button><button class="pbtn ${ccOn ? 'on' : ''}" aria-pressed="${ccOn}" aria-label="คำบรรยาย" data-a="${A(() => { S.cc = !ccOn; render(); })}">${ic('cc', 32)}</button><button class="pbtn spdb" aria-label="ความเร็ว ${S.speed} เท่า กดเพื่อเปลี่ยน" data-a="${A(() => { const sp = [1, 1.25, 1.5, 2, 0.75]; S.speed = sp[(sp.indexOf(S.speed) + 1) % sp.length]; render(); toast('ความเร็ว ' + S.speed + 'x'); })}">${ic('gauge', 32)}${S.speed !== 1 ? `<i>${S.speed}x</i>` : ''}</button><button class="pbtn pf" aria-label="เต็มจอ" data-a="${A(() => { try { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); } catch (e) { toast('เปิดเต็มจอ (ในระบบจริง)'); } })}">${ic('full', 30)}</button></div></div>${ccOn ? `<div class="ccap">${esc(capText)}</div>` : ''}</div></div>
+  <div class="wgrid" id="wtools" style="margin-top:18px"><div>
     <div class="ptitle" style="margin-top:0"><h1>${esc(c.title)}</h1><div class="acts">
       <button class="btn sm ${S.liked.has(c.id) ? 'on' : 'ghost'}" data-a="${A(() => { S.liked.has(c.id) ? S.liked.delete(c.id) : S.liked.add(c.id); render(); })}">${ic('thumb', 15)}ชอบ</button>
       <button class="btn sm ${S.saved.has(c.id) ? 'on' : 'ghost'}" data-a="${A(() => { toggleSave(c.id); render(); })}">${ic(S.saved.has(c.id) ? 'check' : 'plus', 15)}รายการของฉัน</button>
@@ -2495,7 +2624,7 @@ function changesHTML() {
     ['ปฏิทิน: ชื่อคลาสเหลือ "09:30 M…" สีไม่มีคำอธิบาย','ชื่อเต็ม สีมีป้ายกำกับ กดซ่อน/แสดงได้'],
     ['ต้องกด "เพิ่มเติม" ทีละวัน · ปุ่มเลื่อนเดือนไอคอนหาย','มุมมองสัปดาห์เห็นครบทุกคลาส + ปุ่มเลื่อนชัดเจน'],
   ];
-  const add = [['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
+  const add = [['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
   return `<div class="ovl" style="padding:0;justify-content:flex-end"><aside class="drawer" role="dialog" aria-label="สิ่งที่เปลี่ยน"><div style="display:flex;align-items:center"><h3>เปลี่ยนอะไรจากของเดิม</h3><button class="ibtn" style="margin-left:auto" aria-label="ปิด" data-a="${A(() => { S.changes = false; render(); })}">${ic('x', 18)}</button></div>
     <div class="muted" style="font-size:14.5px;margin-bottom:10px">ตัดสิ่งที่ไม่จำเป็น รวมสิ่งที่ซ้ำ แล้วเพิ่มสิ่งที่ทำให้อยากกลับมาเรียน</div>
     <div style="font-weight:700;margin-top:14px">ตัด / รวม / ย้าย</div>${ch.map(([o, n]) => `<div class="chg"><span class="o">${o}</span><span class="gold">${ic('chev', 16)}</span><span>${n}</span></div>`).join('')}
@@ -2511,14 +2640,15 @@ function changesHTML() {
 /* ---------- render ---------- */
 function render() {
   hideBob();
-  const oEl = document.querySelector('#ovl .tmod') || document.querySelector('#ovl .ovl'), oSc = oEl ? oEl.scrollTop : 0, oKey = render.k;
+  const oEl = document.querySelector('#ovl .ovl'), oSc = oEl ? oEl.scrollTop : 0, oKey = render.k;
   ACT = {}; seq = 0; gid = 0;
   renderChrome();
   const v = {home:S.tier === 'adv' ? vHome : vHomeBasic, learn:vLearn, coach:vCoach, watch:vWatch, livewatch:vLiveWatch, live:S.tier === 'adv' ? vLive : vLiveBasic, library:vLibrary, me:vMe, hot:vHot}[S.view] || vHome;
   $('#view').innerHTML = v() + `<button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}</span>`;
   document.querySelectorAll('.nft').forEach(nfSync);
+  document.body.classList.toggle('watching', S.view === 'watch');
   $('#ovl').innerHTML = (S.search ? searchHTML() : '') + (S.notif ? notifHTML() : '') + (S.modal ? modalHTML() : '') + (S.changes ? changesHTML() : '');
-  render.k = S.modal + ':' + S.tid; if (render.k === oKey && oSc) { const n = document.querySelector('#ovl .tmod') || document.querySelector('#ovl .ovl'); if (n) n.scrollTop = oSc; }
+  render.k = S.modal + ':' + S.tid; if (render.k === oKey && oSc) { const n = document.querySelector('#ovl .ovl'); if (n) n.scrollTop = oSc; }
   const mc = S.mini && S.view !== 'watch' ? byClip(S.mini) : null;
   $('#mini').innerHTML = mc ? `<div class="minip" role="region" aria-label="คลิปที่ดูค้างไว้ กดเพื่อดูต่อ" data-go="watch:${mc.id}">${thumb(mc)}<div style="min-width:0"><div class="t">${esc(mc.title)}</div><div class="muted" style="font-size:12.5px;margin-top:2px">หยุดไว้ที่ ${mmss(S.pos[mc.id] ?? Math.round((mc.prog && mc.prog < 1 ? mc.prog : 0) * mc.dur * 60))} · แตะเพื่อดูต่อ</div></div><button class="ibtn" aria-label="ปิดมินิเพลเยอร์" data-a="${A(() => { S.mini = null; render(); })}">${ic('x', 18)}</button></div>` : '';
   document.body.classList.toggle('has-mini', !!mc);
