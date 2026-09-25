@@ -484,16 +484,6 @@ html.warm #warm{opacity:.16}
 .tile .ts2{font-size:14px;color:var(--ink2)}
 .tile .ta{margin-top:auto;padding-top:10px}
 
-/* hover preview card */
-#bob{position:absolute;z-index:80;background:var(--bg2);border-radius:10px;box-shadow:0 22px 54px rgba(0,0,0,.7);overflow:hidden;transform-origin:50% 35%;animation:bobin .22s ease-out}
-@keyframes bobin{from{transform:scale(.7);opacity:.3}}
-html.rm #bob{animation:none}
-@media (prefers-reduced-motion:reduce){#bob{animation:none}}
-#bob .bth{aspect-ratio:16/9;cursor:pointer}
-#bob .bin{padding:14px 16px 16px}
-#bob .brow{display:flex;gap:8px;align-items:center}
-#bob .cbtn{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 50%,transparent);background:transparent}
-#bob .cbtn.pl{background:linear-gradient(135deg,#f6d983,#d9a63f);color:#1a1408;border-color:transparent}
 .bmeta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--ink2)}
 .match{color:var(--green);font-weight:700}
 .lvls{border:1px solid color-mix(in srgb,var(--ink) 45%,transparent);padding:0 7px;font-size:12.5px;color:var(--ink2);white-space:nowrap}
@@ -592,6 +582,10 @@ body.watching .hdr,body.watching .tabbar,body.watching .chgbtn,body.watching .mo
 .theater .player>svg.th{opacity:.92}
 .ptop{position:absolute;left:0;right:0;top:0;z-index:4;display:flex;align-items:center;gap:14px;padding:20px 26px 40px;background:linear-gradient(180deg,rgba(0,0,0,.6),transparent)}
 .pic{width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;color:#fff;border-radius:50%;transition:transform .15s}.pic:hover:not([disabled]){transform:scale(1.15)}.pic.sm{width:36px;height:36px}.pic[disabled]{opacity:.3;cursor:default}
+.pcam{position:absolute;right:26px;top:96px;z-index:2;display:flex;width:min(220px,18vw);aspect-ratio:1;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px var(--acc,#e3b857),0 14px 30px rgba(0,0,0,.45)}.pcam.duo{width:min(300px,26vw);aspect-ratio:3/2}
+.pcam i{flex:1;background-size:190% auto;background-position:50% 8%;background-repeat:no-repeat}.pcam.duo i{background-size:260% auto}
+.pcam em{position:absolute;left:0;right:0;bottom:0;padding:6px 8px;background:linear-gradient(0deg,rgba(8,14,32,.85),rgba(8,14,32,0));color:#fff;font-size:14px;font-style:normal;font-weight:700;text-align:center}
+.pmark{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:17px;letter-spacing:.16em;color:var(--acc,#e3b857)}
 .ptools{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:700;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22)}.ptools:hover{background:rgba(255,255,255,.2)}
 .theater .pbig{z-index:3;width:92px;height:92px;background:rgba(0,0,0,.45);border:2px solid rgba(255,255,255,.7)}
 .theater .pctl{z-index:4;padding:60px 26px 20px;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 60%,transparent)}
@@ -599,25 +593,25 @@ body.watching .hdr,body.watching .tabbar,body.watching .chgbtn,body.watching .mo
 .theater.idle{cursor:none}.theater.idle .ptop,.theater.idle .pctl{opacity:0;pointer-events:none}
 .theater .tline{gap:18px}
 .theater .track{height:5px;background:rgba(255,255,255,.3);border-radius:0;transition:height .12s}.theater .track:hover{height:8px}
-.theater .track .f{background:var(--livebg,#e50914);border-radius:0}
+.theater .track .f{background:var(--acc,var(--gold));border-radius:0}
 .theater .track .k{top:0;height:100%;width:3px;background:rgba(0,0,0,.55)}
-.theater .track .kn{width:17px;height:17px;background:var(--livebg,#e50914);box-shadow:none}
+.theater .track .kn{width:17px;height:17px;background:var(--acc,var(--gold));box-shadow:0 0 0 4px rgba(0,0,0,.25)}
 .theater .remain{font-size:16px;min-width:64px;font-variant-numeric:tabular-nums}
 .theater .prow{margin-top:16px;gap:26px;font-size:16px}
 .theater .pbtn{width:52px;height:52px;padding:0;justify-content:center;border-radius:50%;transition:transform .15s}.theater .pbtn:hover{background:none;transform:scale(1.15)}.theater .pbtn.on{color:#fff;background:rgba(255,255,255,.14)}
 .theater .p10 i{font-size:10px}
 .theater .ptt{max-width:none;font-size:18px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.theater .ptt b{margin-right:10px}.pep{margin-right:10px;color:rgba(255,255,255,.85)}
-.spdb{position:relative}.spdb i{position:absolute;right:-4px;bottom:0;font-style:normal;font-size:11px;font-weight:800;background:var(--livebg,#e50914);border-radius:4px;padding:0 4px;line-height:1.4}
+.spdb{position:relative}.spdb i{position:absolute;right:-4px;bottom:0;font-style:normal;font-size:11px;font-weight:800;background:var(--acc,var(--gold));color:var(--accink,#1a1408);border-radius:4px;padding:0 4px;line-height:1.4}
 .theater .skipi{z-index:4;bottom:128px}.theater .nextup{z-index:4;bottom:128px}.theater .ccap{z-index:3;bottom:150px}
 .epp{position:absolute;right:26px;bottom:124px;z-index:5;width:min(560px,calc(100% - 52px));max-height:min(62vh,560px);display:flex;flex-direction:column;background:rgba(20,20,20,.96);border-radius:8px;box-shadow:0 16px 40px rgba(0,0,0,.6);overflow:hidden}
 .epph{display:flex;align-items:center;gap:8px;padding:14px 14px 12px 10px;border-bottom:1px solid rgba(255,255,255,.1)}.epph b{display:block;font-size:18px}.epph span{display:block;font-size:13px;color:rgba(255,255,255,.7)}
 .eppl{overflow-y:auto;padding:6px 0}
 .eppi{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;padding:12px 18px 12px 12px;cursor:pointer;border-left:3px solid transparent}
-.eppi:hover{background:rgba(255,255,255,.07)}.eppi.on{background:rgba(255,255,255,.1);border-left-color:var(--livebg,#e50914)}
+.eppi:hover{background:rgba(255,255,255,.07)}.eppi.on{background:rgba(255,255,255,.1);border-left-color:var(--acc,var(--gold))}
 .eppi .n{font-size:18px;color:rgba(255,255,255,.75);text-align:center;font-variant-numeric:tabular-nums}
 .eppt{display:flex;justify-content:space-between;gap:10px}.eppt b{font-size:15.5px}.eppt span{font-size:13.5px;color:rgba(255,255,255,.7);white-space:nowrap}
 .eppx{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;margin-top:10px;align-items:start}.eppx .tth{display:block;aspect-ratio:16/9;border-radius:4px}.eppx .tth .pl{opacity:1}.eppx p{margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82)}
-.eppbar{display:block;height:3px;margin-top:10px;background:rgba(255,255,255,.25)}.eppbar i{display:block;height:100%;background:var(--livebg,#e50914)}
+.eppbar{display:block;height:3px;margin-top:10px;background:rgba(255,255,255,.25)}.eppbar i{display:block;height:100%;background:var(--acc,var(--gold))}
 /* new & hot */
 .hpills{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 26px;position:sticky;top:66px;z-index:5;background:var(--bg);padding:10px 0}
 .hpill{display:inline-flex;gap:8px;align-items:center;padding:9px 18px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink);background:var(--bg3)}
@@ -713,13 +707,7 @@ body.watching .hdr,body.watching .tabbar,body.watching .chgbtn,body.watching .mo
 .scm{display:flex;align-items:center;gap:7px;margin-top:6px;font-size:13.5px;color:var(--mut);min-width:0}.scm>span:not(.lvc){white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.scm .av{flex:none}
 .dotsep{width:3px;height:3px;border-radius:50%;background:var(--mut);flex:none}
 .ntrack.sc4{grid-auto-columns:calc((100% - 48px)/4);gap:16px}
-.rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.rc{display:grid;grid-template-columns:128px minmax(0,1fr);gap:14px;align-items:center;padding:10px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);cursor:pointer;transition:border-color .15s}
-.rc:hover,.rc:focus-visible{border-color:var(--goldln)}.rc:hover .scplay,.rc:focus-visible .scplay{opacity:1;transform:none}
-.rth{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:#0d0d0d}.rth .scplay{width:36px;height:36px}
-.rct{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.4;margin:3px 0 8px}
 .rpb{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden}.rpb i{display:block;height:100%;background:linear-gradient(90deg,#d9a63f,#f6d983)}
-.rleft{display:block;font-size:12.5px;color:var(--mut);margin-top:6px}
 .catg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
 .ctile{text-align:left;display:flex;flex-direction:column;gap:3px;padding:18px;border-radius:16px;background:linear-gradient(160deg,var(--bg3),var(--bg2));border:1px solid var(--line);min-height:156px;transition:border-color .15s,transform .15s}
 .ctile:hover,.ctile:focus-visible{border-color:var(--goldln);transform:translateY(-2px)}
@@ -1040,56 +1028,116 @@ html.rm .hsbar{display:none}@media (prefers-reduced-motion:reduce){.hsbar{transi
 .tkv{width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--ink2)}
 .tkf{justify-content:flex-start;align-items:center;flex-wrap:wrap}
 .btn.dng{color:var(--live)}.btn.dng:hover{border-color:var(--live);color:var(--live)}
-/* Basic: all videos — streaming-style rows in the page theme (Netflix sizing: 5 tiles across the full width, next tile peeking at the edge) */
+/* all videos — streaming-style rows in the page theme (5 tiles across the full width, the next one peeking at the edge) with SPTR touches: pill badges, coach photo, arrows + page counter in the row header */
 body{overflow-x:clip}
-.nfx{--nfs:max(20px,2.8cqw);--g:max(6px,.55cqw);--n:5;--tw:calc((100cqw - 2 * var(--nfs) - (var(--n) - 1) * var(--g)) / var(--n));
+.nfx{--nfs:max(20px,2.8cqw);--g:max(8px,.7cqw);--n:5;--tw:calc((100cqw - 2 * var(--nfs) - (var(--n) - 1) * var(--g)) / var(--n));
   --nfscrim:linear-gradient(0deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.24) 45%,rgba(0,0,0,0) 72%);--nftxt:#fff;--nfsub:rgba(255,255,255,.88);--nfti:linear-gradient(180deg,#fff 0%,#f6e3a6 55%,#d6a646 100%);
   position:relative;container-type:inline-size;margin:44px calc(50% - 50vw) -96px;padding:34px 0 100px;background:linear-gradient(180deg,color-mix(in srgb,var(--bg3) 70%,var(--bg)),var(--bg3) 160px);border-top:1px solid var(--line)}
-[data-theme=blush] .nfx,[data-theme=blush] #bob.nfb{--nfscrim:linear-gradient(0deg,rgba(251,247,248,.96) 0%,rgba(251,247,248,.72) 42%,rgba(251,247,248,0) 74%);--nftxt:#5a2a40;--nfsub:#6f5a64;--nfti:linear-gradient(180deg,#673048 0%,#9f4d6d 60%,#c98ba1 100%)}
+.nfx.mid{margin-bottom:0;padding-bottom:44px;border-bottom:1px solid var(--line)}
+[data-theme=str] .nfx,[data-theme=str] .nfb{--nfscrim:linear-gradient(0deg,rgba(7,12,26,.9) 0%,rgba(7,12,26,.45) 44%,rgba(7,12,26,0) 74%)}
+[data-theme=blush] .nfx,[data-theme=blush] .nfb{--nfscrim:linear-gradient(0deg,rgba(251,247,248,.96) 0%,rgba(251,247,248,.72) 42%,rgba(251,247,248,0) 74%);--nftxt:#5a2a40;--nfsub:#6f5a64;--nfti:linear-gradient(180deg,#673048 0%,#9f4d6d 60%,#c98ba1 100%)}
 .nfxh{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:0 var(--nfs)}
 .nfxh h2{display:inline-flex;align-items:center;margin:0;color:var(--ink);font-size:clamp(21px,1.6cqw,30px);font-weight:800;letter-spacing:-.01em}.nfxh span{color:var(--mut);font-size:clamp(13px,.8cqw,15.5px)}
-.nfr{margin-top:clamp(20px,1.9cqw,36px)}
-.nfrh{display:flex;align-items:center;gap:12px;padding:0 var(--nfs);margin-bottom:clamp(8px,.6cqw,12px);min-height:30px}
+.nfr{margin-top:clamp(20px,1.8cqw,34px)}
+.nfrh{display:flex;align-items:center;gap:12px;padding:0 var(--nfs);margin-bottom:clamp(6px,.45cqw,10px);min-height:34px}
 .nfrh h3{margin:0;color:var(--ink);font-size:clamp(17px,1.3cqw,25px);font-weight:700;line-height:1.3}
-.nfep{font-family:Georgia,"Times New Roman",serif;color:var(--gold);margin-right:.4em}
+.nfep{display:inline-flex;align-items:center;height:1.45em;padding:0 .6em;margin-right:.5em;border-radius:999px;background:var(--goldbg);color:var(--gold);font-size:.7em;font-weight:800;vertical-align:.14em}
 .nfs{display:inline-flex;align-items:center;gap:4px;font-size:clamp(12.5px,.75cqw,15px);color:var(--mut)}.nfs.ok{color:var(--green)}.nfs.cur{color:var(--gold)}
-.nfall{display:inline-flex;align-items:center;gap:2px;font-size:clamp(13px,.75cqw,15px);font-weight:700;color:var(--gold);opacity:0;transform:translateX(-8px);transition:opacity .25s,transform .25s}
-.nfr:hover .nfall,.nfall:focus-visible{opacity:1;transform:none}
-.nfpg{margin-left:auto;display:flex;gap:3px;opacity:0;transition:opacity .25s}.nfpg i{width:14px;height:3px;border-radius:2px;background:var(--line2)}.nfpg i.on{background:var(--gold)}.nfr:hover .nfpg{opacity:1}
+.nfall{display:inline-flex;align-items:center;gap:2px;font-size:clamp(13px,.75cqw,15px);font-weight:700;color:var(--ink2);white-space:nowrap}.nfall:hover{color:var(--gold)}
+.nfnav{display:inline-flex;align-items:center;gap:6px}
+.nfpg{min-width:44px;margin-right:2px;text-align:right;font-size:13.5px;color:var(--mut);font-variant-numeric:tabular-nums;white-space:nowrap}
+.nfnav .narr[disabled]{opacity:.35;cursor:default;border-color:var(--line2);color:var(--ink)}
+.nfr.one .nfnav{display:none}
+@media (hover:none){.nfnav .narr{display:none}}
 .nfw{position:relative}
-.nft{display:grid;grid-auto-flow:column;grid-auto-columns:var(--tw);gap:var(--g);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:2px var(--nfs) 4px}.nft::-webkit-scrollbar{display:none}
+.nft{display:grid;grid-auto-flow:column;grid-auto-columns:var(--tw);gap:var(--g);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:6px var(--nfs) 8px}.nft::-webkit-scrollbar{display:none}
 .nfc{cursor:pointer;min-width:0;outline:none}
-.nfi{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:var(--artbg,#12151b);box-shadow:0 0 0 1px var(--line),0 4px 14px rgba(0,0,0,.06);transition:box-shadow .2s,transform .2s}
+.nfi{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--artbg,#12151b);box-shadow:0 0 0 1px var(--line),0 4px 14px rgba(0,0,0,.06);transition:box-shadow .2s,transform .25s cubic-bezier(.2,.8,.25,1)}
 .nfi svg.th{position:absolute;inset:0;width:100%;height:100%}
-.nfc:hover .nfi{box-shadow:0 0 0 1px var(--goldln),0 8px 22px rgba(0,0,0,.1)}.nfc:focus-visible .nfi{box-shadow:0 0 0 3px var(--acc,var(--gold))}
-.nfg{position:absolute;inset:0;background:var(--nfscrim)}
-.nfl{position:absolute;left:7%;right:7%;bottom:9%;z-index:1}
-.nfl b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--nftxt);font-size:clamp(14px,calc(var(--tw) * .075),28px);font-weight:800;line-height:1.12}
-.nfl.lat b{font-family:Georgia,"Times New Roman",serif;letter-spacing:.05em;background:var(--nfti);-webkit-background-clip:text;background-clip:text;color:transparent}
-.nfl small{display:block;margin-top:.35em;color:var(--nfsub);font-size:clamp(11px,calc(var(--tw) * .038),14px);font-weight:600;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nfi .t10{position:absolute;left:0;top:0;z-index:1;border-radius:8px 0 4px 0;width:auto;min-width:30px;padding:0 5px}
-.nfi.nw .nfl{bottom:calc(9% + 20px)}
-.nfnew{position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:2;padding:2px 12px;border-radius:4px 4px 0 0;background:var(--livebg,#d42f44);color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap}
-.nfp{display:block;width:60%;height:3px;margin:9px auto 0;border-radius:2px;background:var(--line2)}.nfp i{display:block;height:100%;border-radius:2px;background:var(--acc,var(--gold))}
-.nfa{position:absolute;top:calc(var(--tw) * .28125 + 2px);transform:translateY(-50%);z-index:3;width:38px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;color:var(--ink);background:color-mix(in srgb,var(--bg2) 90%,transparent);border:1px solid var(--line2);box-shadow:0 6px 18px rgba(0,0,0,.12);opacity:0;transition:opacity .2s,color .2s}
-.nfa.prev{left:max(4px,calc((var(--nfs) - 38px) / 2))}.nfa.next{right:max(4px,calc((var(--nfs) - 38px) / 2))}
-.nfa:hover{color:var(--gold)}.nfr:hover .nfa,.nfa:focus-visible{opacity:1}.nfr.s0 .nfa.prev,.nfr.s1 .nfa.next{display:none}
-@media (hover:none){.nfa{display:none}.nfall{opacity:1;transform:none}}
-#bob.nfb{background:var(--bg2);color:var(--ink);border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--line2),0 20px 48px rgba(0,0,0,.22);transform-origin:50% 40%}
-#bob.nfb .bth{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--artbg,#12151b)}#bob.nfb .bth:after{display:none}#bob.nfb .bth svg.th{position:absolute;inset:0;width:100%;height:100%}
-#bob.nfb .nfl b{font-size:26px}#bob.nfb .nfl small{font-size:13px}#bob.nfb .t10{position:absolute;left:0;top:0;z-index:1;width:auto;min-width:30px;padding:0 5px;border-radius:0 0 4px 0}
-.bpb{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--line2);z-index:2}.bpb i{display:block;height:100%;background:var(--acc,var(--gold))}
-#bob.nfb .bin{padding:14px 16px 16px}#bob.nfb .brow{display:flex;gap:8px;align-items:center}
-#bob.nfb .cbtn{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 35%,transparent);background:transparent}#bob.nfb .cbtn:hover{border-color:var(--ink)}
-#bob.nfb .cbtn.pl{background:var(--btn,linear-gradient(135deg,#f6d983,#d9a63f));color:var(--accink,#1a1408);border-color:transparent}#bob.nfb .cbtn.on{border-color:var(--gold);color:var(--gold);background:var(--goldbg)}
-.bm{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--mut)}.bm .ok{color:var(--green);font-weight:700}.bm .pc{color:var(--gold);font-weight:700}
-.bx{padding:0 6px;border:1px solid var(--line2);border-radius:4px;font-size:12px;line-height:1.5;color:var(--ink2)}
-.btg{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;font-size:14px;color:var(--ink2)}.btg i{width:4px;height:4px;border-radius:50%;background:var(--line2)}
-/* hover card plays a silent preview: slow push-in + the price line drawing itself */
-@media (prefers-reduced-motion:no-preference){html:not(.rm) #bob.nfb .bth svg.th{animation:kb 9s ease-in-out infinite alternate}html:not(.rm) #bob.nfb .drawline{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2.8s .15s ease-out forwards}}
-#bob.nfb .bmute{position:absolute;right:12px;bottom:14px;z-index:3;width:34px;height:34px}
-[data-theme=blush] #bob.nfb .bmute{background:rgba(251,247,248,.8)}
-.nfi .t10 b,#bob.nfb .t10 b{font-size:13px}
+.nfc:hover .nfi{transform:translateY(-4px);box-shadow:0 0 0 2px var(--acc,var(--gold)),0 12px 26px rgba(0,0,0,.16)}.nfc:focus-visible .nfi{box-shadow:0 0 0 3px var(--acc,var(--gold))}
+html.rm .nfc:hover .nfi{transform:none}@media (prefers-reduced-motion:reduce){.nfc:hover .nfi{transform:none}}
+.nfbd{position:absolute;right:4%;top:6%;z-index:2;display:flex;gap:5px}
+.nfbd em{display:inline-flex;align-items:center;gap:3px;height:clamp(20px,calc(var(--tw) * .085),26px);padding:0 .75em;border-radius:999px;background:rgba(8,12,22,.72);color:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);font-size:clamp(11px,calc(var(--tw) * .045),13.5px);font-style:normal;font-weight:800;letter-spacing:.01em;white-space:nowrap;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.nfbd em.ok{width:clamp(20px,calc(var(--tw) * .085),26px);padding:0;justify-content:center;background:var(--green);color:#fff}
+.nfbd em.nw{background:var(--acc,var(--gold));color:var(--accink,#1a1408)}
+[data-theme=blush] .nfbd em{background:rgba(255,255,255,.86);color:var(--gold);box-shadow:0 0 0 1px rgba(168,56,94,.14)}[data-theme=blush] .nfbd em.ok{background:#2f8a5c;color:#fff;box-shadow:none}[data-theme=blush] .nfbd em.nw{background:var(--acc);color:var(--accink)}
+.nfp{position:absolute;left:0;right:0;bottom:0;z-index:2;height:4px;background:rgba(255,255,255,.26)}.nfp i{display:block;height:100%;background:var(--acc,var(--gold))}
+[data-theme=blush] .nfp{background:rgba(168,56,94,.14)}
+/* video covers: real coach portrait on navy + gold (Advanced, LIVE Replay) · typographic cover with a big number (Basic lessons, live-class replays, Knowledge) */
+.cov{--cvbg:linear-gradient(125deg,#0a1633 0%,#13295a 100%);--cvink:#fff;--cvsub:rgba(255,255,255,.8);--cvk:#e3b857;--cvkink:#1a1408;--cvbigc:linear-gradient(180deg,#fff 0%,#f3d98f 55%,#c99a3c 100%);
+  position:absolute;inset:0;z-index:0;display:block;overflow:hidden;container-type:size;background:var(--cvbg);color:var(--cvink);text-align:left;line-height:1.2}
+[data-theme=blush] .cov.ty{--cvbg:linear-gradient(125deg,#fffafc 0%,#fbe4ed 55%,#f6cadb 100%);--cvink:#4a2536;--cvsub:#7a5a68;--cvk:#9c3f62;--cvkink:#fff;--cvbigc:linear-gradient(180deg,#a8466d 0%,#d06f94 55%,#eeaac3 100%)}
+.cov.ph{background:radial-gradient(70cqw 100cqh at 0% 100%,color-mix(in srgb,var(--hu,#e3b857) 20%,transparent),transparent 75%),var(--cvbg)}
+.cvtx{position:absolute;left:6cqw;top:0;bottom:0;width:47cqw;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:2.8cqh;padding:6cqh 0 13cqh}
+.cov.ty .cvtx{width:55cqw}
+.cvtx em{align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:.3em .75em;border-radius:99px;background:var(--cvk);color:var(--cvkink);font-style:normal;font-weight:800;font-size:max(9px,3.3cqw);letter-spacing:.05em;line-height:1.25}
+.cvtx b{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:max(11px,7.4cqw);font-weight:800;line-height:1.16;letter-spacing:-.005em;color:var(--cvink)}
+.cvtx small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:max(9px,3.6cqw);font-weight:600;color:var(--cvsub);line-height:1.3}
+.cvlg{position:absolute;left:6cqw;bottom:6cqh;z-index:2;width:18cqw;height:9cqh;background:var(--logo) left bottom/contain no-repeat}
+.cvph{position:absolute;top:0;right:0;bottom:0;width:46cqw;background:var(--cvk);clip-path:polygon(10cqw 0,100% 0,100% 100%,0 100%)}
+.cvpi{position:absolute;inset:0 0 0 1.6cqw;display:flex;background:#fff;clip-path:polygon(10cqw 0,100% 0,100% 100%,0 100%)}
+.cvpi i{flex:1;background-size:158% auto;background-position:54% 5%;background-repeat:no-repeat}
+.cov.duo .cvph{width:52cqw}.cov.duo .cvpi i{background-size:290% auto;background-position:52% 4%}.cov.duo .cvpi i:first-child{background-position:42% 4%}
+.cvnm{position:absolute;right:3.5cqw;bottom:8cqh;z-index:3;max-width:40cqw;overflow:hidden;text-overflow:ellipsis;padding:.3em .8em;border-radius:99px;background:rgba(10,22,51,.88);color:#fff;font-size:max(8px,3.2cqw);font-weight:700;white-space:nowrap;box-shadow:0 0 0 1px rgba(227,184,87,.5)}
+.cvart{position:absolute;right:0;bottom:0;width:56cqw;height:74cqh;z-index:0;opacity:.4}.cvart svg.th{position:absolute;inset:0;width:100%;height:100%}
+.cvbig{position:absolute;right:6cqw;top:50%;z-index:1;transform:translateY(-54%);display:flex;flex-direction:column;align-items:center;line-height:.95}
+.cvbig b{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:40cqh;letter-spacing:-.02em;background:var(--cvbigc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cvbig b svg{width:36cqh;height:36cqh;color:var(--cvk)}
+.cvbig small{margin-top:1cqh;font-size:max(9px,4.4cqw);font-weight:800;color:var(--cvsub)}
+@container (max-width:300px){.cvlg{display:none}.cvtx{padding-bottom:6cqh}}
+@container (max-width:230px){.cvtx em,.cvtx small,.cvnm{display:none}.cvtx b{-webkit-line-clamp:3}}
+.thumb .cvlg,.thumb .cvnm,.sth2 .cvlg,.sth2 .cvnm,.sth .cvnm,.lrth .cvnm{display:none}
+.tth:has(.cov):after,.sth:has(.cov):after{display:none}
+/* hover card: grows out of the tile (scale from the tile's box), the title fades, a silent preview runs */
+.nfb{position:absolute;z-index:80;background:var(--bg2);color:var(--ink);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--line2),0 24px 56px rgba(0,0,0,.3);transform-origin:var(--ox,50%) var(--oy,30%)}
+.nfb.out{pointer-events:none}
+.nfb .bth{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--artbg,#12151b)}.nfb .bth:after{display:none}
+.nfb .bth>svg.th{position:absolute;inset:0;width:100%;height:100%}
+.nfb .bov{position:absolute;inset:0;z-index:1}
+.bcam{position:absolute;right:4%;bottom:9%;z-index:1;display:flex;width:27%;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px var(--acc,var(--gold)),0 8px 20px rgba(0,0,0,.35)}.bcam.duo{width:40%;aspect-ratio:3/2}
+.bcam i{flex:1;background-size:190% auto;background-position:50% 8%;background-repeat:no-repeat}.bcam.duo i{background-size:260% auto}
+.bcam em{position:absolute;left:0;right:0;bottom:0;padding:3px 6px;background:linear-gradient(0deg,rgba(8,14,32,.85),rgba(8,14,32,0));color:#fff;font-size:11.5px;font-style:normal;font-weight:700;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bpvl{position:absolute;left:4.5%;top:7%;z-index:3;display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:999px;background:rgba(8,12,22,.6);color:#fff;font-size:12px;font-weight:800;opacity:0}
+.bpvl i{width:7px;height:7px;border-radius:50%;background:var(--acc,var(--gold))}
+.bpv{position:absolute;left:0;right:0;bottom:0;z-index:3;height:3px;background:rgba(255,255,255,.22)}.bpv i{display:block;width:0;height:100%;background:var(--acc,var(--gold))}
+[data-theme=blush] .bpvl{background:rgba(255,255,255,.88);color:var(--gold)}[data-theme=blush] .bpv{background:rgba(168,56,94,.14)}
+.nfb .bmute{position:absolute;right:12px;top:10px;z-index:3;width:34px;height:34px;opacity:0}
+[data-theme=blush] .nfb .bmute{background:rgba(251,247,248,.85);color:var(--ink);border-color:rgba(168,56,94,.35)}
+.nfb .bin{padding:14px 16px 16px}
+.bser{display:flex;align-items:center;min-width:0;font-size:12.5px;font-weight:700;color:var(--mut);letter-spacing:.02em;white-space:nowrap}.bser>span:last-child{overflow:hidden;text-overflow:ellipsis}
+.bser .nS{flex:none;font-size:12px;padding-right:8px;margin-right:8px;border-right-color:var(--line2)}
+.btt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:6px;font-size:17px;font-weight:800;line-height:1.35;color:var(--ink)}
+.nfb .brow{display:flex;gap:8px;align-items:center;margin-top:12px}
+.nfb .bpl{height:38px;padding:0 18px}
+.nfb .cbtn{color:var(--ink);border-color:color-mix(in srgb,var(--ink) 30%,transparent);background:transparent}.nfb .cbtn:hover{border-color:var(--ink)}
+.nfb .cbtn.on{border-color:var(--gold);color:var(--gold);background:var(--goldbg)}
+.bmore{display:inline-flex;align-items:center;gap:2px;font-size:14px;font-weight:700;color:var(--gold);white-space:nowrap}.bmore:hover{text-decoration:underline}
+.bm{display:flex;gap:6px 12px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--mut)}.bm .ok{display:inline-flex;align-items:center;gap:4px;color:var(--green);font-weight:700}.bm .pc{display:inline-flex;align-items:center;color:var(--gold);font-weight:700}.bm .dna{margin:0}
+.bmp{display:inline-block;width:44px;height:4px;margin-right:7px;border-radius:2px;background:var(--line2);overflow:hidden}.bmp i{display:block;height:100%;background:var(--acc,var(--gold))}
+.bwho{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:var(--ink2)}.bwho .av+.av{margin-left:-14px}
+.btg{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.btg span{padding:2px 10px;border-radius:999px;background:var(--bg3);border:1px solid var(--line);font-size:12.5px;color:var(--ink2)}
+html:not(.rm) .nfb .bin{animation:nfin .3s .12s both}
+html:not(.rm) .nfb .bov{animation:nfout .5s 1s forwards}
+html:not(.rm) .nfb .bpvl,html:not(.rm) .nfb .bmute{animation:nfshow .4s 1.2s forwards}
+html:not(.rm) .nfb .bpv i{animation:nfbar 12s 1.1s linear forwards}
+html:not(.rm) .nfb .drawline{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 3s 1.1s ease-out forwards}
+html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  html:not(.rm) .nfb{animation:nfgrow .32s cubic-bezier(.2,.8,.25,1) both}
+  html:not(.rm) .nfb.out{animation:nfshrink .18s ease-in both}
+  html:not(.rm) .nfb .bth>svg.th{animation:kb 10s 1s ease-in-out infinite alternate}
+  html:not(.rm) .nfb .bth>svg.th rect[rx]{transform-box:fill-box;transform-origin:center;animation:cwave 2.4s ease-in-out infinite}
+  html:not(.rm) .bpvl i{animation:pulse 1.4s ease-in-out infinite}
+}
+@media (prefers-reduced-motion:reduce){html:not(.rm) .nfb{animation:nffade .18s both}html:not(.rm) .nfb.out{animation:nfout .12s both}}
+@keyframes nfgrow{from{transform:scale(var(--s0,.67))}}
+@keyframes nfshrink{to{transform:scale(var(--s0,.67));opacity:0}}
+@keyframes nffade{from{opacity:0}}
+@keyframes nfin{from{opacity:0;transform:translateY(-6px)}}
+@keyframes nfout{to{opacity:0}}
+@keyframes nfshow{to{opacity:1}}
+@keyframes nfbar{to{width:100%}}
+@keyframes cwave{0%,28%,100%{transform:none}14%{transform:scaleY(1.3)}}
 [data-theme=blush] .tth:after{background:linear-gradient(0deg,rgba(69,48,59,.28),transparent)}
 @media (max-width:1100px){.nfx{--n:4}}
 @media (max-width:800px){.nfx{--n:3}}
@@ -1240,7 +1288,7 @@ body{overflow-x:clip}
   .desk{grid-template-columns:minmax(0,1fr)}.dkm{padding:18px 16px}.dkcta .btn.xl{flex:1;padding:11px 14px;font-size:16px}
   .dkn{grid-template-columns:108px minmax(0,1fr)}
   .ntrack.sc4{grid-auto-columns:70%}.ntrack.coachr{grid-auto-columns:40%}
-  .rgrid,.rpl,.board{grid-template-columns:minmax(0,1fr)}
+  .rpl,.board{grid-template-columns:minmax(0,1fr)}
   .catg{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ctile:first-child{grid-column:span 2}.ctile{min-height:0}
   .bdh,.bd{grid-template-columns:28px 56px minmax(0,1fr) 44px}.bdv{display:none}
   .wks{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:42%;overflow-x:auto;scrollbar-width:none}
@@ -1365,8 +1413,8 @@ function art(seed, hue, o = {}) {
   if (blush) hue = PINK_HUE[hue] || hue;
   const wash = blush ? '#ecb3c6' : hue, dnS = blush ? 'rgba(150,110,130,.55)' : 'rgba(255,255,255,.35)', dnF = blush ? 'rgba(150,110,130,.4)' : 'rgba(255,255,255,.28)';
   const r = rng(seed), W = 320, H = 180, n = o.n || 24, id = 'g' + (++gid);
-  let s = `<svg class="th" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--artbg,#12151b)"/><stop offset="1" stop-color="${wash}" stop-opacity=".34"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#${id})"/>`;
-  for (let i = 1; i < 4; i++) s += `<line x1="0" x2="${W}" y1="${H * i / 4}" y2="${H * i / 4}" stroke="${blush ? 'rgba(168,56,94,.07)' : 'rgba(255,255,255,.05)'}"/>`;
+  let s = `<svg class="th" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">` + (o.bare ? '' : `<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--artbg,#12151b)"/><stop offset="1" stop-color="${wash}" stop-opacity=".34"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#${id})"/>`);
+  for (let i = 1; i < 4 && !o.bare; i++) s += `<line x1="0" x2="${W}" y1="${H * i / 4}" y2="${H * i / 4}" stroke="${blush ? 'rgba(168,56,94,.07)' : 'rgba(255,255,255,.05)'}"/>`;
   let p = .3 + r() * .2; const trend = o.trend ?? .012, step = W / (n + 1), pts = [];
   for (let i = 0; i < n; i++) {
     const op = p, cl = Math.min(.9, Math.max(.1, p + (r() - .46) * .09 + trend)), hi = Math.max(op, cl) + r() * .035, lo = Math.min(op, cl) - r() * .035;
@@ -1627,11 +1675,10 @@ const durTxt = m => m >= 60 ? `${Math.floor(m / 60)}:${String(m % 60).padStart(2
 function thumb(c, extra = '') {
   const prog = c.prog != null && c.prog > 0 && c.prog < 1 ? `<div class="prog"><i style="width:${c.prog * 100}%"></i></div>` : '';
   const done = c.prog === 1 ? `<span class="done">${ic('check', 12)}ดูจบแล้ว</span>` : '';
-  const ep = c.ep ? `<div class="ep"><b>EP.${c.ep}</b><span>Basic Technical</span></div>` : c.cat === 'brec' ? `<div class="ep"><b>EP.${c.rep}</b><span>${c.day} ${fd(c.rdate)} · ${c.kind}</span></div>` : '';
   const nb = c.id === LATEST_REC && !(c.prog > 0) ? '<span class="newb">ใหม่</span>' : '';
   const on = S.saved.has(c.id);
   const sv = `<button class="sv ${on ? 'on' : ''}" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { on ? S.saved.delete(c.id) : S.saved.add(c.id); render(); toast(on ? 'นำออกจากรายการของฉันแล้ว' : 'เพิ่มในรายการของฉันแล้ว', () => { on ? S.saved.add(c.id) : S.saved.delete(c.id); }); })}">${ic('lib', 15)}</button>`;
-  return `<div class="thumb">${art(c.seed, c.hue)}${ep}${done}${nb}${sv}<span class="dur">${durTxt(c.dur)}</span>${prog}${extra}</div>`;
+  return `<div class="thumb">${cover(c)}${done}${nb}${sv}<span class="dur">${durTxt(c.dur)}</span>${prog}${extra}</div>`;
 }
 function clipCard(c, meta) {
   const left = c.prog > 0 && c.prog < 1 ? ` · เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที` : '';
@@ -1685,7 +1732,7 @@ const seedOf = str => [...str].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>>
 const reduceMotion = () => S.pref.rm || matchMedia('(prefers-reduced-motion: reduce)').matches;
 function toggleSave(id) { const had = S.saved.has(id); had ? S.saved.delete(id) : S.saved.add(id); toast(had ? 'นำออกจากรายการของฉันแล้ว' : 'เพิ่มในรายการของฉันแล้ว', () => { had ? S.saved.add(id) : S.saved.delete(id); }); return !had; }
 function openTitle(id) { if (S.tier !== 'adv' && lockedFor('watch', id)) { S.modal = 'locked'; render(); return; } S.tid = id; S.season = null; S.modal = 'title'; hideBob(); render(); }
-const playOrInfo = c => A(() => { if (matchMedia('(hover: none)').matches) openTitle(c.id); else go('watch', c.id); });
+const playOrInfo = c => A(() => { if (lastPT === 'touch') openTitle(c.id); else go('watch', c.id); });
 function nextOf(c) {
   const list = c.cat === 'basic' ? CLIPS.filter(x => x.cat === 'basic') : c.cat === 'brec' ? CLIPS.filter(x => x.cat === 'brec').sort((a, b) => a.rdate - b.rdate) : c.cat === 'adv' ? CLIPS.filter(x => x.cat === 'adv' && x.coach === c.coach).sort((a, b) => a.title.localeCompare(b.title)) : [];
   const i = list.indexOf(c); return i >= 0 && i < list.length - 1 ? list[i + 1] : null;
@@ -1695,11 +1742,10 @@ const lvlTag = c => `<span class="lvc" title="ระดับ${LVL[c.cat]}"><spa
 const dnaFit = c => c.cat === 'basic' || c.cat === 'brec' || !!(COACH_BY_NAME[c.coach] || {}).fit || ['s2','k1','k2'].includes(c.id);
 const dnaTag = c => dnaFit(c) ? `<span class="dna">${ic('check', 12)}เหมาะกับ DNA คุณ</span>` : '';
 const CDL = '<span class="cdl" aria-hidden="true"><i></i><i></i><i></i></span>';
-const epTagOf = c => c.ep ? `EP.${c.ep}` : c.cat === 'brec' ? `EP.${c.rep}` : '';
 function scard(c, o = {}) {
-  const pct = c.prog > 0 && c.prog < 1 ? Math.round(c.prog * 100) : 0, ep = epTagOf(c);
+  const pct = c.prog > 0 && c.prog < 1 ? Math.round(c.prog * 100) : 0;
   const who = c.cat === 'adv' ? `${av(c.coach, 22)}<span>โค้ช${esc(c.coach)}</span>` : `<span>${esc(serName(c))}</span>`;
-  return `<div class="sc" data-a="${playOrInfo(c)}" aria-label="${esc(c.title)} · ${c.dur} นาที${pct ? ` · ดูไป ${pct}%` : c.prog === 1 ? ' · ดูจบแล้ว' : ''}"><div class="sth2">${art(c.seed, c.hue)}${ep ? `<span class="nep">${ep}</span>` : ''}<span class="scd">${c.dur} นาที</span>${pct ? `<div class="scp"><i style="width:${pct}%"></i></div>` : ''}${c.prog === 1 ? `<span class="ndone" aria-hidden="true">${ic('check', 14)}</span>` : ''}${NEWSET.has(c.id) && !(c.prog > 0) ? '<span class="scn">ใหม่</span>' : ''}<span class="scplay" aria-hidden="true">${ic('play', 20)}</span></div>
+  return `<div class="sc" data-a="${playOrInfo(c)}" aria-label="${esc(c.title)} · ${c.dur} นาที${pct ? ` · ดูไป ${pct}%` : c.prog === 1 ? ' · ดูจบแล้ว' : ''}"><div class="sth2">${cover(c)}<span class="scd">${c.dur} นาที</span>${pct ? `<div class="scp"><i style="width:${pct}%"></i></div>` : ''}${c.prog === 1 ? `<span class="ndone" aria-hidden="true">${ic('check', 14)}</span>` : ''}${NEWSET.has(c.id) && !(c.prog > 0) ? '<span class="scn">ใหม่</span>' : ''}<span class="scplay" aria-hidden="true">${ic('play', 20)}</span></div>
     <div class="scb"><b>${esc(o.title || (c.cat === 'brec' ? `${c.day} ${fd(c.rdate)} · ${c.kind}` : c.title))}</b><div class="scm">${who}<span class="dotsep"></span>${lvlTag(c)}</div>${c.cat === 'basic' || c.cat === 'brec' ? '' : dnaTag(c)}</div></div>`;
 }
 const slide = d => e => { const t = e.target.closest('.nrw').querySelector('.ntrack'); t.scrollBy({left:d * t.clientWidth * .9, behavior:reduceMotion() ? 'auto' : 'smooth'}); };
@@ -1757,11 +1803,11 @@ function epRow(x, i, cur) {
   const num = isEp ? x.n : i + 1, nm = isEp ? x.t : x.cat === 'brec' ? `${x.day} ${fd(x.rdate)} · ${x.kind}` : (x.ep ? 'EP.' + x.ep + ' ' : '') + shortT(x);
   const desc = isEp ? x.d : x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
   const mins = isEp ? epMin(x) : x.dur, act = isEp ? A(() => playEp(x)) : A(() => { S.modal = null; go('watch', x.id); });
-  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${act}" aria-label="ตอน ${num} ${esc(nm)} · ${mins} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${art(isEp ? x.seed : x.seed, c.hue, {n:16})}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(nm)}</b><span>${mins} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
+  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${act}" aria-label="ตอน ${num} ${esc(nm)} · ${mins} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${cover(x)}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(nm)}</b><span>${mins} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
 }
 function simCard(x) {
   const on = S.saved.has(x.id);
-  return `<div class="simc" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${esc(x.title)}"><div class="sth">${art(x.seed, x.hue, {n:18})}<span class="dur2">${x.dur} นาที</span><span class="ntl">${esc(shortT(x))}</span></div><div class="sin2"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1">${dnaTag(x)}<div class="bmeta" style="margin-top:4px">${lvlTag(x)}<span class="hdb">${x.ch.length} บทย่อย</span></div></div><button class="cbtn sm" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(x.id); render(); })}">${ic(on ? 'check' : 'plus', 17)}</button></div><p>${esc(descOf(x))}</p></div></div>`;
+  return `<div class="simc" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${esc(x.title)}"><div class="sth">${cover(x)}<span class="dur2">${x.dur} นาที</span></div><div class="sin2"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1">${dnaTag(x)}<div class="bmeta" style="margin-top:4px">${lvlTag(x)}<span class="hdb">${x.ch.length} บทย่อย</span></div></div><button class="cbtn sm" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(x.id); render(); })}">${ic(on ? 'check' : 'plus', 17)}</button></div><p>${esc(descOf(x))}</p></div></div>`;
 }
 /* open the details modal on a lesson (season) of Basic Technical */
 function openSeason(n) { S.tid = EPI[n] ? epCur(n).clip : 'b2'; S.season = 'e' + n; S.modal = 'title'; hideBob(); render(); }
@@ -1924,10 +1970,6 @@ function missions() {
   }
   return `<div class="msnc"><div class="msh">${CDL}<b>ภารกิจสัปดาห์นี้</b></div>${S.tier === 'adv' ? streak : ''}${rows}</div>`;
 }
-function rcard(c) {
-  const pct = c.prog > 0 && c.prog < 1 ? c.prog : 0, pos = S.pos[c.id] ?? Math.round(pct * c.dur * 60), ep = epTagOf(c);
-  return `<div class="rc" data-go="watch:${c.id}" aria-label="เรียนต่อ ${esc(c.title)} จากนาที ${mmss(pos)}"><div class="rth">${art(c.seed, c.hue, {n:16})}${ep ? `<span class="nep" style="font-size:20px">${ep}</span>` : ''}<span class="scplay" aria-hidden="true">${ic('play', 16)}</span></div><div><span class="ck">${esc(serName(c))}</span><b class="rct">${esc(c.cat === 'brec' ? `${c.day} ${fd(c.rdate)} · ${c.kind}` : shortT(c))}</b><div class="rpb"><i style="width:${pct * 100}%"></i></div><span class="rleft">ต่อจากนาที ${mmss(pos)} · เหลือ ${Math.round(c.dur * (1 - pct))} นาที</span></div></div>`;
-}
 function catalog() {
   const n = k => CLIPS.filter(c => c.cat === k).length, L = k => () => { S.learn = k; if (k === 'basic') S.bview = 'ep'; go('learn'); };
   const T = [['Basic Technical','book','4 บท · คลาสสดพุธและเสาร์',S.tier === 'adv' ? 100 : 40,L('basic')],['Advanced','users',`${COACHES.filter(c => c.prod).length} โค้ช · Small Group`,null,L('adv')],['Knowledge','layers',`${n('kc') + n('sk')} คลิป · พื้นฐานและจิตวิทยา`,null,L('kc')],['Live Replay','live',`${n('brec') + n('replay')} คลิปย้อนหลัง`,null,L('replay')],['แนะนำสำหรับคุณ','spark','ตาม Trader DNA ของคุณ',null,L('foryou')],['อัปเดตประจำสัปดาห์','cal','ปฏิทิน · กระดานอันดับ · มาใหม่',null,() => { S.hot = 'soon'; go('hot'); }]];
@@ -1965,7 +2007,7 @@ function coachStrip() {
 function vHome() {
   return `<h1 class="vh">หน้าแรก Super Trader Republic</h1>${ticker()}${coachStrip()}${hero()}
     <div class="band">${pathCard()}${missions()}</div>
-    ${sect('เรียนต่อจากที่ค้างไว้', `<div class="rgrid">${['alek3','r1','apop1'].map(byClip).map(rcard).join('')}</div>`, {more:() => { S.lib = 'continue'; go('library'); }})}
+    ${vAllAdv()}
     ${sect('ห้องเรียนของ SPTR', catalog(), {sub:'เลือกหมวดเพื่อดูเนื้อหาทั้งหมด'})}`;
 }
 function strFoot() {
@@ -2110,34 +2152,62 @@ function bcal() {
         ${mine.slice(0, 2).map(bkItem).join('') || `<div class="mybz">ยังไม่มีการจอง · อยู่ กทม. กดวันที่มีจุดสีเขียว แล้วเลือก "จอง onsite" มาเรียนกับโค้ชที่ห้องเรียนได้</div>`}</div></div>
   </div>`;
 }
-/* all videos, streaming-style: "continue watching" + one row per lesson (its episodes N.1, N.2 …, then the live-class replays) · title on the thumbnail · hover preview card */
-const TART = {b11:['หุ้นเบื้องต้น', 'Streaming · EP.1.1'], b12:['TradingView', 'เครื่องมือดูกราฟ · EP.1.2'], b2:['DOW THEORY', 'แนวรับแนวต้าน · EP.2'], b3:['MONEY MANAGEMENT', 'บริหารเงินทุน · EP.3'], b4:['VOLUME', '& Indicators · EP.4']};
+/* all videos, streaming-style (both tiers): rows of 16:9 video covers · SPTR touches rather than a streaming-service copy: real covers, state pills, arrows + page counter in the row header · on a mouse, the cover grows out of the tile and turns into a short preview */
 const isEpi = x => !!(x && x.n && x.clip);
-const tartOf = x => isEpi(x) ? [x.t, `ตอน ${x.n} · ${epMin(x)} นาที`] : x.cat === 'basic' ? TART[x.id] || [shortT(x), 'EP.' + x.ep] : [x.kind === 'ตลาดจริง' ? 'ตลาดจริง' : 'CASE CLINIC', `คลาสสด EP.${x.rep} · ${x.day} ${fd(x.rdate)}`];
-const tartHTML = x => { const [b, s] = tartOf(x); return `<span class="nfl ${/^[A-Z &]+$/.test(b) ? 'lat' : ''}" aria-hidden="true"><b>${esc(b)}</b><small>${esc(s)}</small></span>`; };
+/* the pill for the episode number (ตอน 2.5 · EP.2 · Ep.3) — shown in the hover card */
+const badgeOf = x => { if (isEpi(x)) return `ตอน ${x.n}`; if (x.cat === 'basic') return `EP.${x.ep}`; const m = x.cat === 'adv' && x.title.match(/Ep\.(\d+)/); return m ? 'Ep.' + m[1] : ''; };
+const coachesOf = c => ['adv', 'replay'].includes(c.cat) ? c.coach.split(' · ').filter(n => COACH_BY_NAME[n]) : [];
+/* video covers: the coach's real studio portrait on a navy + gold split layout (Advanced, LIVE Replay);
+   Basic lessons, live-class replays and Knowledge get a typographic cover with a big number · [headline (| = line break), sub, kicker, big] */
+const COV = {b11:['หุ้นเบื้องต้น|+ Streaming'], b12:['TradingView|+ E Fin Stock Pickup'], b2:['Dow Theory|แนวรับแนวต้าน'], b3:['Money|Management'], b4:['Volume|& Indicators'],
+  alek3:['หุ้นพร้อมเล่น', 'Price pattern momentum', 'LEKCLUSIVE · EP.3'], alek2:['หาหุ้นเข้าโซน|ก่อนเบรก', '', 'LEKCLUSIVE · EP.2'], ajay1:['เทรดทอง|เริ่มจาก 0', 'รู้จักตลาดทองคำ', 'GOLD TRADING · EP.1'], apop1:['Swing|+ Options', 'ดูกราฟวันละ 15 นาที', 'US STOCKS'], akim1:['อ่านให้ขาด|ใน 3 แท่ง', 'Price action', 'PRICE ACTION'], akoy1:['คัดหุ้นขาขึ้น|ด้วยเส้น MA', '', 'TREND FOLLOW'], afilm1:['30 นาทีแรก|หลังตลาดเปิด', '', 'DAY TRADE'], aball1:['เข้าให้แม่น|ออกให้ไว', 'ตีความข่าวให้ทัน', 'SCALPING'], apoom1:['อ่านใจ|รายใหญ่', 'หุ้นไทยรอบใหญ่', 'BIG MONEY'], anof1:['วินัยการเทรด|ของคนเก่ง', '', 'MENTOR TALK'], aom1:['เลือกตลาด|เลือกเวลาเทรด', '', 'US STOCKS 101'], atop1:['Breakout|ที่ไม่หลอก', '', 'BREAKOUT'], a0:['เลือกโค้ช|ที่ใช่กับคุณ', 'แนะนำโค้ช Advanced', 'ADVANCED', 'users'],
+  k1:['คำศัพท์เทรด|ที่ต้องรู้', '', 'KNOWLEDGE CENTER', '50'], k2:['เปิดบัญชีหุ้น|พร้อมเทรด', 'ตั้งค่าแอปทีละขั้น', 'KNOWLEDGE CENTER', '฿'], k3:['ค่าธรรมเนียม|และภาษีหุ้น', '', 'KNOWLEDGE CENTER', '%'], s1:['จิตวิทยา|การเทรด', 'ทำไมเราทำผิดซ้ำ', 'SUPER KNOWLEDGE', '?'], s2:['แผนเทรด|รายสัปดาห์', 'เสร็จใน 20 นาที', 'SUPER KNOWLEDGE', '20'],
+  r1:['สรุปตลาด|กลางสัปดาห์', '', 'LIVE MENTOR · 23 ก.ย.'], r2:['ทองคำ|รายสัปดาห์', 'เทรดทองเริ่มต้นจาก 0', 'SMALL GROUP · 22 ก.ย.'], r4:['เตรียมพอร์ต|สัปดาห์ใหม่', '', 'LIVE MENTOR · 21 ก.ย.']};
+const camOf = c => coachesOf(c).map(n => COACH_BY_NAME[n].id).filter(id => POR[id]);
+function covOf(x) {
+  const c = isEpi(x) ? byClip(x.clip) : x, d = COV[c.id] || [];
+  if (isEpi(x)) return {k:'BASIC TECHNICAL', h:x.t, s:`เนื้อหาที่ ${x.ep} · ${epMin(x)} นาที`, big:x.n};
+  if (c.cat === 'basic') return {k:'BASIC TECHNICAL', h:d[0] || shortT(c), s:`${c.dur} นาที`, big:c.ep};
+  if (c.cat === 'brec') return {k:`คลาสสดย้อนหลัง · EP.${c.rep}`, h:c.kind === 'ตลาดจริง' ? 'ตลาดจริง' : 'Case Clinic', s:EPT[c.rep].replace(/^EP\.\d+ /, ''), big:String(c.rdate.getDate()), bs:TH_M[c.rdate.getMonth()]};
+  return {k:d[2] || serName(c).toUpperCase(), h:d[0] || c.title, s:d[1] || '', big:d[3], who:camOf(c), names:coachesOf(c)};
+}
+function cover(x) {
+  const c = isEpi(x) ? byClip(x.clip) : x, v = covOf(x), tx = `<span class="cvtx"><em>${esc(v.k)}</em><b>${esc(v.h).replace(/\|/g, '<br>')}</b>${v.s ? `<small>${esc(v.s)}</small>` : ''}</span><i class="cvlg"></i>`;
+  if (v.who && v.who.length) return `<span class="cov ph ${v.who.length > 1 ? 'duo' : ''}" style="--hu:${c.hue}" aria-hidden="true">${tx}<span class="cvph"><span class="cvpi">${v.who.map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}</span></span><span class="cvnm">โค้ช${v.names.map(esc).join(' · ')}</span></span>`;
+  return `<span class="cov ty" aria-hidden="true"><span class="cvart">${art(x.seed, c.hue, {n:12, bare:true})}</span>${tx}${v.big ? `<span class="cvbig"><b>${/^[a-z]+$/.test(v.big) ? ic(v.big, 48) : esc(v.big)}</b>${v.bs ? `<small>${esc(v.bs)}</small>` : ''}</span>` : ''}</span>`;
+}
 const itemOf = el => el.dataset.ep ? epById(el.dataset.ep) : byClip(el.dataset.id);
 const itemProg = x => isEpi(x) ? epProg(x) : x.prog > 0 ? Math.min(1, x.prog) : 0;
 const itemPlay = x => isEpi(x) ? () => playEp(x) : () => { S.modal = null; go('watch', x.id); };
 const itemInfo = x => isEpi(x) ? () => openSeason(x.ep) : () => openTitle(x.id);
+/* a tap opens the details (no hover on touch), a click plays */
+let lastPT = 'mouse';
+document.addEventListener('pointerdown', e => { lastPT = e.pointerType || 'mouse'; }, true);
 function nfTile(x) {
-  const ep = isEpi(x), c = ep ? byClip(x.clip) : x, p = itemProg(x), pct = Math.round(p * 100), nw = !ep && x.id === LATEST_REC;
-  const lab = `${ep ? `ตอน ${x.n} ${x.t}` : `คลาสสดย้อนหลัง EP.${x.rep} ${x.day} ${fd(x.rdate)} ${x.kind}`} · ${ep ? epMin(x) : x.dur} นาที${p >= 1 ? ' · ดูจบแล้ว' : pct ? ` · ดูไป ${pct}%` : ''}`;
-  const act = A(() => (matchMedia('(hover: none)').matches ? itemInfo(x) : itemPlay(x))());
-  return `<div class="nfc" ${ep ? `data-ep="${x.n}"` : `data-id="${x.id}"`} data-a="${act}" aria-label="${esc(lab)}"><div class="nfi ${nw ? 'nw' : ''}">${art(ep ? x.seed : x.seed, c.hue, {n:22})}<span class="nfg" aria-hidden="true"></span>${ep ? `<span class="t10" aria-hidden="true">ตอน<b>${x.n}</b></span>` : ''}${tartHTML(x)}${nw ? '<span class="nfnew" aria-hidden="true">คลาสล่าสุด</span>' : ''}</div>${pct ? `<span class="nfp" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ''}</div>`;
+  const ep = isEpi(x), c = ep ? byClip(x.clip) : x, p = itemProg(x), pct = Math.round(p * 100), who = coachesOf(c);
+  const nw = ep ? '' : x.id === LATEST_REC ? 'คลาสล่าสุด' : NEWSET.has(x.id) && !(p > 0) ? 'ใหม่' : '';
+  const lab = `${ep ? `ตอน ${x.n} ${x.t}` : x.cat === 'brec' ? `คลาสสดย้อนหลัง EP.${x.rep} ${x.day} ${fd(x.rdate)} ${x.kind}` : x.title}${who.length ? ' · โค้ช' + who.join(' โค้ช') : ''} · ${ep ? epMin(x) : x.dur} นาที${p >= 1 ? ' · ดูจบแล้ว' : pct ? ` · ดูไป ${pct}%` : ''}`;
+  return `<div class="nfc" ${ep ? `data-ep="${x.n}"` : `data-id="${x.id}"`} data-a="${A(() => (lastPT === 'touch' ? itemInfo(x) : itemPlay(x))())}" aria-label="${esc(lab)}"><div class="nfi">${cover(x)}${nfChips(p, nw)}${pct && p < 1 ? `<span class="nfp" aria-hidden="true"><i style="width:${pct}%"></i></span>` : ''}</div></div>`;
 }
+/* state chips over the cover: watched ✓ · ใหม่ / คลาสล่าสุด */
+const nfChips = (p, nw) => p >= 1 || nw ? `<span class="nfbd" aria-hidden="true">${p >= 1 ? `<em class="ok">${ic('check', 12)}</em>` : ''}${nw ? `<em class="nw">${nw}</em>` : ''}</span>` : '';
 const nfGeo = t => { const c = t.querySelector('.nfc'), cs = getComputedStyle(t), step = c ? c.offsetWidth + parseFloat(cs.columnGap) : t.clientWidth; return {step, n:Math.max(1, Math.floor((t.clientWidth - 2 * parseFloat(cs.paddingLeft)) / step + .02))}; };
-const nfSlide = d => e => { const t = e.target.closest('.nfw').querySelector('.nft'), g = nfGeo(t); hideBob(); t.scrollBy({left:d * g.n * g.step, behavior:reduceMotion() ? 'auto' : 'smooth'}); };
+const nfSlide = d => e => { const t = e.target.closest('.nfr').querySelector('.nft'), g = nfGeo(t); hideBob(); t.scrollBy({left:d * g.n * g.step, behavior:reduceMotion() ? 'auto' : 'smooth'}); };
 function nfRow(title, status, items, more) {
+  if (!items.length) return '';
   const plain = title.replace(/<[^>]+>/g, '');
-  return `<section class="nfr s0" aria-label="${esc(plain)}"><div class="nfrh"><h3>${title}</h3>${status}${more ? `<button class="nfall" data-a="${A(more)}">ดูทั้งหมด${ic('chev', 15)}</button>` : ''}<span class="nfpg" aria-hidden="true"></span></div>
-    <div class="nfw"><button class="nfa prev" aria-label="เลื่อน ${esc(plain)} ย้อนกลับ" data-a="${A(nfSlide(-1))}">${ic('back', 28)}</button><div class="nft">${items.map(nfTile).join('')}</div><button class="nfa next" aria-label="เลื่อน ${esc(plain)} ถัดไป" data-a="${A(nfSlide(1))}">${ic('chev', 28)}</button></div></section>`;
+  return `<section class="nfr s0" aria-label="${esc(plain)}"><div class="nfrh"><h3>${title}</h3>${status}<span class="hsp"></span>${more ? `<button class="nfall" data-a="${A(more)}">ดูทั้งหมด${ic('chev', 15)}</button>` : ''}<span class="nfnav"><span class="nfpg" aria-hidden="true"></span><button class="narr" aria-label="เลื่อน ${esc(plain)} ย้อนกลับ" disabled data-a="${A(nfSlide(-1))}">${ic('back', 18)}</button><button class="narr" aria-label="เลื่อน ${esc(plain)} ถัดไป" data-a="${A(nfSlide(1))}">${ic('chev', 18)}</button></span></div>
+    <div class="nfw"><div class="nft">${items.map(nfTile).join('')}</div></div></section>`;
 }
-/* arrows + page dashes follow the scroll position */
+/* header arrows + "1 / 3" follow the scroll position */
 function nfSync(t) {
   const r = t.closest('.nfr'); if (!r) return;
   const max = t.scrollWidth - t.clientWidth, x = t.scrollLeft, g = nfGeo(t), pages = max > 4 ? Math.ceil(t.children.length / g.n) : 1, cur = x >= max - 4 ? pages - 1 : Math.round(x / (g.n * g.step));
-  r.classList.toggle('s0', x <= 4); r.classList.toggle('s1', x >= max - 4);
-  r.querySelector('.nfpg').innerHTML = pages > 1 ? Array.from({length:pages}, (_, i) => `<i class="${i === cur ? 'on' : ''}"></i>`).join('') : '';
+  r.classList.toggle('s0', x <= 4); r.classList.toggle('s1', x >= max - 4); r.classList.toggle('one', pages < 2);
+  r.querySelector('.nfpg').textContent = pages > 1 ? `${cur + 1} / ${pages}` : '';
+  const [pv, nx] = r.querySelectorAll('.nfnav .narr'), f = document.activeElement;
+  pv.disabled = x <= 4; nx.disabled = x >= max - 4;
+  if (f === pv && pv.disabled) nx.focus(); else if (f === nx && nx.disabled) pv.focus();
 }
 document.addEventListener('scroll', e => { if (e.target.classList && e.target.classList.contains('nft')) nfSync(e.target); hideBob(); }, true);
 window.addEventListener('resize', () => { hideBob(); document.querySelectorAll('.nft').forEach(nfSync); });
@@ -2145,32 +2215,51 @@ window.addEventListener('resize', () => { hideBob(); document.querySelectorAll('
 let idleT = 0;
 function wakePlayer() { const t = document.querySelector('.theater'); if (!t) return; t.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { const x = document.querySelector('.theater'); if (x && !S.paused && !S.epsPanel && !x.contains(document.activeElement)) x.classList.add('idle'); }, 3000); }
 ['mousemove', 'touchstart', 'keydown'].forEach(ev => document.addEventListener(ev, wakePlayer, {passive:true}));
-/* hover preview: grows from the tile after a short pause and plays a silent preview (desktop pointer only) */
+/* hover card: with a mouse (any device — touch laptops too), after a short pause the card grows out of the tile,
+   the title fades and a silent preview runs: candles pulse left to right, the price line draws itself, the preview bar fills */
 let bobT = 0;
-function hideBob() { clearTimeout(bobT); const b = document.getElementById('bob'); if (b) b.remove(); }
+function hideBob(soft) {
+  clearTimeout(bobT);
+  document.querySelectorAll('.nfb').forEach(b => {
+    if (soft && b.id === 'bob' && !S.pref.rm) { b.id = ''; b.classList.add('out'); setTimeout(() => b.remove(), 200); } else b.remove();
+  });
+}
 function showBob(tile) {
-  const x = itemOf(tile); if (!x || !document.body.contains(tile)) return;
+  const x = itemOf(tile); if (!x || !document.body.contains(tile) || !tile.matches(':hover')) return;
   hideBob();
-  const ep = isEpi(x), c = ep ? byClip(x.clip) : x, p = itemProg(x), pct = Math.round(p * 100), sv = S.saved.has(c.id), lk = S.liked.has(c.id);
-  const r = tile.querySelector('.nfi').getBoundingClientRect(), W = Math.round(r.width * 1.5), pad = 16;
-  const left = Math.min(Math.max(r.left + r.width / 2 - W / 2, pad), document.documentElement.clientWidth - W - pad), top = r.top + r.height / 2 - W * 9 / 32;
-  const again = () => showBob(tile), mins = ep ? epMin(x) : x.dur, left2 = ep ? Math.round(epMin(x) * (1 - p)) : Math.round(x.dur * (1 - p));
-  const tags = ep ? [`เนื้อหาที่ ${x.ep}`, 'กราฟเทคนิค', 'พื้นฐาน'] : ['คลาสสด ' + x.kind, ...tagsOf(x).slice(0, 2)];
+  const ep = isEpi(x), c = ep ? byClip(x.clip) : x, p = itemProg(x), pct = Math.round(p * 100), sv = S.saved.has(c.id), lk = S.liked.has(c.id), who = coachesOf(c);
+  /* size + place: 1.5× the tile, centred on it, kept inside the window; the grow starts from the tile's exact box */
+  const r = tile.querySelector('.nfi').getBoundingClientRect(), vw = document.documentElement.clientWidth, pad = 16;
+  const W = Math.round(Math.min(Math.max(r.width * 1.5, 320), vw - 2 * pad)), H = W * 9 / 16, s0 = r.width / W;
+  const left = Math.min(Math.max(r.left + r.width / 2 - W / 2, pad), vw - W - pad), top = Math.max(r.top + r.height / 2 - H / 2, 8);
+  const org = (t, pc) => s0 < .97 ? (t - s0 * pc) / (1 - s0) : t;
+  const ox = org(r.left + r.width / 2, left + W / 2) - left, oy = org(r.top + r.height / 2, top + H / 2) - top;
+  const mins = ep ? epMin(x) : x.dur, left2 = Math.max(1, Math.round(mins * (1 - p)));
+  const ser = ep || c.cat === 'basic' ? 'Basic Technical' : c.cat === 'brec' ? 'คลาสสดย้อนหลัง' : serName(c);
+  const sub = ep ? `เนื้อหาที่ ${x.ep} · ตอน ${x.n}` : c.cat === 'brec' ? `EP.${x.rep} · ${x.day} ${fd(x.rdate)}` : badgeOf(x) || (c.cat === 'replay' ? c.date : '');
+  const ttl = ep ? x.t : c.cat === 'brec' ? `${x.kind} · ${EPT[x.rep].replace(/^EP\.\d+ /, '')}` : c.title.replace(/^Lekclusive Ep\.\d+\s*/, '').replace(/^EP\.[\d.]+\s*/, '');
+  const tags = (ep ? [`เนื้อหาที่ ${x.ep}`, 'กราฟเทคนิค', 'พื้นฐาน'] : tagsOf(c)).filter(t => !/^โค้ช/.test(t)).slice(0, 3);
+  const flip = (fn, on, off) => A(e => { const b = e.target.closest('button'), v = fn(); b.innerHTML = ic(v ? on[0] : off[0], on[2] || 17); b.setAttribute('aria-label', v ? on[1] : off[1]); b.setAttribute('aria-pressed', v); b.classList.toggle('on', v && !!on[3]); });
   const el = document.createElement('div'); el.id = 'bob'; el.className = 'nfb';
-  el.style.cssText = `left:${left + scrollX}px;top:${top + scrollY}px;width:${W}px`;
-  el.innerHTML = `<div class="bth" data-a="${A(itemPlay(x))}">${art(ep ? x.seed : x.seed, c.hue, {n:26, live:true})}<span class="nfg" aria-hidden="true"></span>${ep ? `<span class="t10" aria-hidden="true">ตอน<b>${x.n}</b></span>` : ''}${tartHTML(x)}<button class="cbtn sm bmute" aria-label="${S.muted ? 'เปิดเสียงตัวอย่าง' : 'ปิดเสียงตัวอย่าง'}" data-a="${A(() => { S.muted = !S.muted; again(); })}">${ic(S.muted ? 'mute' : 'vol', 16)}</button>${pct ? `<span class="bpb"><i style="width:${pct}%"></i></span>` : ''}</div>
-    <div class="bin"><div class="brow"><button class="cbtn pl" aria-label="เล่น" data-a="${A(itemPlay(x))}">${ic('play', 18)}</button><button class="cbtn" aria-label="${sv ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(c.id); again(); })}">${ic(sv ? 'check' : 'plus', 18)}</button><button class="cbtn ${lk ? 'on' : ''}" aria-label="${lk ? 'เลิกถูกใจ' : 'ถูกใจ'}" data-a="${A(() => { lk ? S.liked.delete(c.id) : S.liked.add(c.id); toast(lk ? 'เลิกถูกใจแล้ว' : 'ถูกใจแล้ว ระบบจะแนะนำคลิปแนวนี้ให้มากขึ้น'); again(); })}">${ic('thumb', 17)}</button><span class="hsp"></span><button class="cbtn" aria-label="ข้อมูลเพิ่มเติมและตอนทั้งหมด" data-a="${A(itemInfo(x))}">${ic('down', 18)}</button></div>
-      <div class="bm"><span class="${p >= 1 ? 'ok' : pct ? 'pc' : ''}">${p >= 1 ? 'ดูจบแล้ว' : pct ? `ดูไป ${pct}% · เหลือ ${left2} นาที` : 'ยังไม่ได้ดู'}</span><span class="bx">${ep ? 'ตอน ' + x.n : 'EP.' + x.rep}</span><span>${mins} นาที</span><span class="bx">HD</span></div>
-      <div class="btg">${tags.map(esc).join('<i></i>')}</div></div>`;
-  el.addEventListener('mouseleave', hideBob);
+  el.style.cssText = `left:${left + scrollX}px;top:${top + scrollY}px;width:${W}px;--tw:${W}px;--s0:${s0.toFixed(4)};--ox:${ox.toFixed(1)}px;--oy:${oy.toFixed(1)}px`;
+  el.innerHTML = `<div class="bth" data-a="${A(itemPlay(x))}" aria-label="เล่น ${esc(ttl)}">${art(x.seed + 5, c.hue, {n:26, live:true})}${camOf(c).length ? `<span class="bcam ${camOf(c).length > 1 ? 'duo' : ''}" aria-hidden="true">${camOf(c).map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}<em>โค้ช${who.map(esc).join(' · ')}</em></span>` : ''}<span class="bov">${cover(x)}${nfChips(p, '')}</span>
+      <span class="bpvl" aria-hidden="true"><i></i>ตัวอย่าง</span><button class="cbtn sm bmute" aria-pressed="${!S.muted}" aria-label="${S.muted ? 'เปิดเสียงตัวอย่าง' : 'ปิดเสียงตัวอย่าง'}" data-a="${flip(() => !(S.muted = !S.muted), ['vol', 'ปิดเสียงตัวอย่าง', 16], ['mute', 'เปิดเสียงตัวอย่าง'])}">${ic(S.muted ? 'mute' : 'vol', 16)}</button><span class="bpv" aria-hidden="true"><i></i></span></div>
+    <div class="bin"><div class="bser"><span class="nS">SPTR</span><span>${esc(ser)}${sub ? ` · ${esc(sub)}` : ''}</span></div><b class="btt">${esc(ttl)}</b>
+      <div class="brow"><button class="btn sm bpl" data-a="${A(itemPlay(x))}">${ic('play', 15)}${p > 0 && p < 1 ? 'เล่นต่อ' : p >= 1 ? 'ดูอีกครั้ง' : 'เล่น'}</button><button class="cbtn sm" aria-pressed="${sv}" aria-label="${sv ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${flip(() => toggleSave(c.id), ['check', 'นำออกจากรายการของฉัน'], ['plus', 'เพิ่มในรายการของฉัน'])}">${ic(sv ? 'check' : 'plus', 17)}</button><button class="cbtn sm ${lk ? 'on' : ''}" aria-pressed="${lk}" aria-label="${lk ? 'เลิกถูกใจ' : 'ถูกใจ'}" data-a="${flip(() => { const had = S.liked.has(c.id); had ? S.liked.delete(c.id) : S.liked.add(c.id); toast(had ? 'เลิกถูกใจแล้ว' : 'ถูกใจแล้ว ระบบจะแนะนำคลิปแนวนี้ให้มากขึ้น'); return !had; }, ['thumb', 'เลิกถูกใจ', 16, 1], ['thumb', 'ถูกใจ', 16])}">${ic('thumb', 16)}</button><span class="hsp"></span><button class="bmore" data-a="${A(itemInfo(x))}">${ep || seriesOf(c) ? 'ตอนทั้งหมด' : 'รายละเอียด'}${ic('chev', 14)}</button></div>
+      <div class="bm">${p >= 1 ? `<span class="ok">${ic('check', 13)}ดูจบแล้ว</span>` : pct ? `<span class="pc"><span class="bmp"><i style="width:${pct}%"></i></span>เหลือ ${left2} นาที</span>` : '<span>ยังไม่ได้ดู</span>'}<span>${mins} นาที</span>${lvlTag(c)}${['adv', 'kc', 'sk'].includes(c.cat) ? dnaTag(c) : ''}</div>
+      ${who.length ? `<div class="bwho">${who.map(n => av(n, 24)).join('')}<span>โค้ช${who.map(esc).join(' · โค้ช')}</span></div>` : ''}<div class="btg">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>`;
+  el.querySelectorAll('.bth>svg.th rect[rx]').forEach((b, i) => { b.style.animationDelay = (1.1 + i * .07).toFixed(2) + 's'; });
+  el.addEventListener('pointerleave', () => hideBob(true));
   document.body.appendChild(el);
 }
-document.addEventListener('mouseover', e => {
+document.addEventListener('pointerover', e => {
+  if (e.pointerType === 'touch') return;
   const t = e.target.closest && e.target.closest('.nfc');
-  if (!t || t.contains(e.relatedTarget) || !matchMedia('(hover: hover) and (pointer: fine)').matches || reduceMotion()) return;
-  clearTimeout(bobT); bobT = setTimeout(() => showBob(t), 450);
+  if (!t || t.contains(e.relatedTarget)) return;
+  clearTimeout(bobT); bobT = setTimeout(() => showBob(t), 400);
 });
-document.addEventListener('mouseout', e => { const t = e.target.closest && e.target.closest('.nfc'); if (t && !t.contains(e.relatedTarget)) clearTimeout(bobT); });
+document.addEventListener('pointermove', e => { const b = document.getElementById('bob'); if (b && e.pointerType !== 'touch' && !b.contains(e.target)) hideBob(true); }, {passive:true});
+document.addEventListener('pointerout', e => { const t = e.target.closest && e.target.closest('.nfc'); if (t && !t.contains(e.relatedTarget)) clearTimeout(bobT); });
 function vAll() {
   const cont = [epCur(ME.ep), ...CLIPS.filter(c => c.cat === 'brec' && c.prog > 0 && c.prog < 1).sort((a, b) => b.rdate - a.rdate)];
   return `<section class="nfx" aria-labelledby="nfxh"><div class="nfxh"><h2 id="nfxh">${CDL}วิดีโอทั้งหมด</h2><span>Basic Technical · 4 เนื้อหา · ${EPALL.length} ตอน · คลาสสดย้อนหลังทุกครั้ง</span></div>
@@ -2181,6 +2270,21 @@ function vAll() {
       const st = g.st === 'done' ? `<span class="nfs ok">${ic('check', 14)}ผ่านแล้ว</span>` : g.st === 'cur' ? `<span class="nfs cur">กำลังเรียน · ดูแล้ว ${done} จาก ${EPI[g.ep].length} ตอน</span>` : `<span class="nfs">${EPI[g.ep].length} ตอน · ยังไม่เริ่ม</span>`;
       return nfRow(`<span class="nfep">เนื้อหาที่ ${g.ep}</span>${esc(g.t)}`, st, items, () => openSeason(g.ep));
     }).join('')}</section>`;
+}
+/* Advance home: the same rows — continue, picks for the member's Trader DNA, every coach, LIVE Replay, Knowledge, and Basic to review */
+function vAllAdv() {
+  const pri = id => { const i = ['alek3', 'r1', 'apop1'].indexOf(id); return i < 0 ? 9 : i; };
+  const cont = CLIPS.filter(c => c.cat !== 'brec' && c.prog > 0 && c.prog < 1).sort((a, b) => pri(a.id) - pri(b.id));
+  const adv = CLIPS.filter(c => c.cat === 'adv' && c.id !== 'a0'), nCo = new Set(adv.map(c => c.coach)).size;
+  const fit = CLIPS.filter(c => ['adv', 'kc', 'sk'].includes(c.cat) && c.id !== 'a0' && dnaFit(c) && c.prog !== 1);
+  const L = k => () => { S.learn = k; go('learn'); };
+  return `<section class="nfx mid" aria-labelledby="nfxh"><div class="nfxh"><h2 id="nfxh">${CDL}วิดีโอทั้งหมด</h2><span>Advanced ${adv.length} คลิปจาก ${nCo} โค้ช · LIVE Replay · Knowledge · อัปเดตทุกสัปดาห์</span></div>
+    ${nfRow(`ดูต่อสำหรับคุณ${esc(ME.nick)}`, '', cont, () => { S.lib = 'continue'; go('library'); })}
+    ${nfRow('เหมาะกับ Trader DNA ของคุณ', `<span class="nfs cur">${ic('spark', 14)}${esc(ME.type)}</span>`, fit, L('foryou'))}
+    ${nfRow('Advanced จากโค้ชตัวจริง', `<span class="nfs">${nCo} โค้ช · ${adv.length} คลิป</span>`, adv, L('adv'))}
+    ${nfRow('LIVE Replay', '<span class="nfs">ไลฟ์จบแล้วเข้าที่นี่อัตโนมัติ</span>', CLIPS.filter(c => c.cat === 'replay'), L('replay'))}
+    ${nfRow('Knowledge Center · Super Knowledge', '<span class="nfs">พื้นฐาน · จิตวิทยา · วินัย</span>', CLIPS.filter(c => c.cat === 'kc' || c.cat === 'sk'), L('kc'))}
+    ${nfRow('ทบทวน Basic Technical', `<span class="nfs ok">${ic('check', 14)}จบคอร์สแล้ว</span>`, CLIPS.filter(c => c.cat === 'basic'), () => openTitle('b2'))}</section>`;
 }
 function vHomeBasic() {
   return `<h1 class="vh">หน้าแรกสมาชิก Basic</h1>${ticker()}${basicStage()}
@@ -2335,10 +2439,10 @@ function vWatch() {
   const head = cep ? `<b>Basic Technical</b><span class="pep">ตอน ${cep.n}</span>${esc(cep.t)}` : c.cat === 'brec' ? `<b>คลาสสดย้อนหลัง EP.${c.rep}</b>${esc(c.day + ' ' + fd(c.rdate) + ' · ' + c.kind)}` : `<b>${esc(serName(c))}</b>${esc(shortT(c))}`;
   const pn = S.epsSeason || (c.cat === 'basic' ? parseInt(c.ep) : c.cat === 'brec' ? c.rep : 0);
   const panel = S.epsPanel && pn ? `<div class="epp" role="dialog" aria-label="ตอนทั้งหมดในเนื้อหาที่ ${pn}"><div class="epph"><button class="pic sm" aria-label="เนื้อหาก่อนหน้า" ${pn > 1 ? `data-a="${A(() => { S.epsSeason = pn - 1; render(); })}"` : 'disabled'}>${ic('back', 20)}</button><div><b>เนื้อหาที่ ${pn}</b><span>${esc(GRAD[pn - 1].t)}</span></div><button class="pic sm" aria-label="เนื้อหาถัดไป" ${pn < 4 ? `data-a="${A(() => { S.epsSeason = pn + 1; render(); })}"` : 'disabled'}>${ic('chev', 20)}</button><span class="hsp"></span><button class="pic sm" aria-label="ปิดรายการตอน" data-a="${A(() => { S.epsPanel = false; render(); })}">${ic('x', 20)}</button></div>
-      <div class="eppl">${EPI[pn].map(x => { const on = x === cep, pr = epProg(x); return `<div class="eppi ${on ? 'on' : ''}" data-a="${A(() => { S.epsPanel = false; playEp(x); })}" aria-label="ตอน ${x.n} ${esc(x.t)}${on ? ' กำลังเล่น' : ''}"><span class="n">${x.n}</span><div class="eppb"><div class="eppt"><b>${esc(x.t)}</b><span>${epMin(x)} นาที</span></div>${on ? `<div class="eppx"><span class="tth">${art(x.seed, c.hue, {n:14})}<span class="pl">${ic('play', 16)}</span></span><p>${esc(x.d)}</p></div>` : ''}${pr > 0 ? `<span class="eppbar"><i style="width:${pr * 100}%"></i></span>` : ''}</div></div>`; }).join('')}</div></div>` : '';
+      <div class="eppl">${EPI[pn].map(x => { const on = x === cep, pr = epProg(x); return `<div class="eppi ${on ? 'on' : ''}" data-a="${A(() => { S.epsPanel = false; playEp(x); })}" aria-label="ตอน ${x.n} ${esc(x.t)}${on ? ' กำลังเล่น' : ''}"><span class="n">${x.n}</span><div class="eppb"><div class="eppt"><b>${esc(x.t)}</b><span>${epMin(x)} นาที</span></div>${on ? `<div class="eppx"><span class="tth">${cover(x)}<span class="pl">${ic('play', 16)}</span></span><p>${esc(x.d)}</p></div>` : ''}${pr > 0 ? `<span class="eppbar"><i style="width:${pr * 100}%"></i></span>` : ''}</div></div>`; }).join('')}</div></div>` : '';
   const togglePlay = A(() => { S.paused = !S.paused; render(); });
-  return `<div class="theater ${S.paused ? 'paused' : ''}"><div class="player" role="region" aria-label="เพลเยอร์ ${esc(c.title)}">${art(c.seed, c.hue, {n:40})}
-      <div class="ptop"><button class="pic" aria-label="กลับ" data-a="${A(() => { S.epsPanel = false; S.epsSeason = 0; go(S.back && S.back !== 'watch' ? S.back : 'home'); })}">${ic('arrowl', 32)}</button><span class="hsp"></span><button class="ptools" data-a="${A(() => { const t = $('#wtools'); if (t) t.scrollIntoView({behavior:reduceMotion() ? 'auto' : 'smooth'}); })}">${ic('down', 16)}บทย่อย · สรุป · โน้ต</button><button class="pic" aria-label="แจ้งปัญหาของคลิปนี้" data-a="${A(() => toast('ส่งเรื่องให้ทีมแล้ว ขอบคุณที่แจ้งปัญหา'))}">${ic('flag', 28)}</button></div>
+  return `<div class="theater ${S.paused ? 'paused' : ''}"><div class="player" role="region" aria-label="เพลเยอร์ ${esc(c.title)}">${art(c.seed, c.hue, {n:40})}${camOf(c).length ? `<span class="pcam ${camOf(c).length > 1 ? 'duo' : ''}" aria-hidden="true">${camOf(c).map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}<em>โค้ช${coachesOf(c).map(esc).join(' · ')}</em></span>` : ''}
+      <div class="ptop"><button class="pic" aria-label="กลับ" data-a="${A(() => { S.epsPanel = false; S.epsSeason = 0; go(S.back && S.back !== 'watch' ? S.back : 'home'); })}">${ic('arrowl', 32)}</button><span class="pmark" aria-hidden="true">SPTR</span><span class="hsp"></span><button class="ptools" data-a="${A(() => { const t = $('#wtools'); if (t) t.scrollIntoView({behavior:reduceMotion() ? 'auto' : 'smooth'}); })}">${ic('down', 16)}บทย่อย · สรุป · โน้ต</button><button class="pic" aria-label="แจ้งปัญหาของคลิปนี้" data-a="${A(() => toast('ส่งเรื่องให้ทีมแล้ว ขอบคุณที่แจ้งปัญหา'))}">${ic('flag', 28)}</button></div>
       ${S.paused ? `<button class="pbig" aria-label="เล่นต่อ" data-a="${togglePlay}">${ic('play', 34)}</button>` : ''}
       ${pos < 50 ? `<button class="skipi" data-a="${seek(50)}">ข้ามอินโทร</button>` : ''}${showNext ? nextUpHTML(c, nx) : ''}${panel}
       <div class="pctl"><div class="tline"><div class="track" role="slider" aria-label="ตำแหน่งในคลิป" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${pos}" aria-valuetext="${mmss(pos)} จาก ${mmss(total)}" data-a="${A(e => { const r = e.target.closest('.track').getBoundingClientRect(); S.pos[c.id] = Math.round(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * total); render(); })}">
@@ -2426,8 +2530,8 @@ function libSummary() {
   </section>`;
 }
 function libRow(c) {
-  const pct = c.prog > 0 && c.prog < 1 ? c.prog : 0, pos = S.pos[c.id] ?? Math.round(pct * c.dur * 60), ep = epTagOf(c);
-  return `<div class="lrow" data-go="watch:${c.id}" aria-label="เล่นต่อ ${esc(c.title)} จากนาที ${mmss(pos)}"><div class="lrth">${art(c.seed, c.hue, {n:16})}${ep ? `<span class="nep" style="font-size:20px">${ep}</span>` : ''}<span class="scplay" aria-hidden="true">${ic('play', 18)}</span></div>
+  const pct = c.prog > 0 && c.prog < 1 ? c.prog : 0, pos = S.pos[c.id] ?? Math.round(pct * c.dur * 60);
+  return `<div class="lrow" data-go="watch:${c.id}" aria-label="เล่นต่อ ${esc(c.title)} จากนาที ${mmss(pos)}"><div class="lrth">${cover(c)}<span class="scplay" aria-hidden="true">${ic('play', 18)}</span></div>
     <div class="lrb"><span class="ck">${esc(serName(c))}</span><b>${esc(c.cat === 'brec' ? `${c.day} ${fd(c.rdate)} · ${c.kind}` : shortT(c))}</b><div class="rpb"><i style="width:${pct * 100}%"></i></div><span class="rleft">ต่อจากนาที ${mmss(pos)} · เหลือ ${Math.round(c.dur * (1 - pct))} นาที</span></div>
     <span class="btn sm lplay" aria-hidden="true">${ic('play', 13)}เล่นต่อ</span></div>`;
 }
@@ -2624,7 +2728,7 @@ function changesHTML() {
     ['ปฏิทิน: ชื่อคลาสเหลือ "09:30 M…" สีไม่มีคำอธิบาย','ชื่อเต็ม สีมีป้ายกำกับ กดซ่อน/แสดงได้'],
     ['ต้องกด "เพิ่มเติม" ทีละวัน · ปุ่มเลื่อนเดือนไอคอนหาย','มุมมองสัปดาห์เห็นครบทุกคลาส + ปุ่มเลื่อนชัดเจน'],
   ];
-  const add = [['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
+  const add = [['award','ปกวิดีโอจริง: รูปโค้ชตัวจริง + ชื่อตอน สีกรมทอง SPTR · เอาเมาส์ชี้แล้วปกขยายออกมา เล่นตัวอย่างพร้อมกล้องโค้ช'],['tv','หน้าแรก Advance มีแถววิดีโอ: ดูต่อ · เหมาะกับ DNA · โค้ชตัวจริง · LIVE Replay · Knowledge'],['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
   return `<div class="ovl" style="padding:0;justify-content:flex-end"><aside class="drawer" role="dialog" aria-label="สิ่งที่เปลี่ยน"><div style="display:flex;align-items:center"><h3>เปลี่ยนอะไรจากของเดิม</h3><button class="ibtn" style="margin-left:auto" aria-label="ปิด" data-a="${A(() => { S.changes = false; render(); })}">${ic('x', 18)}</button></div>
     <div class="muted" style="font-size:14.5px;margin-bottom:10px">ตัดสิ่งที่ไม่จำเป็น รวมสิ่งที่ซ้ำ แล้วเพิ่มสิ่งที่ทำให้อยากกลับมาเรียน</div>
     <div style="font-weight:700;margin-top:14px">ตัด / รวม / ย้าย</div>${ch.map(([o, n]) => `<div class="chg"><span class="o">${o}</span><span class="gold">${ic('chev', 16)}</span><span>${n}</span></div>`).join('')}
