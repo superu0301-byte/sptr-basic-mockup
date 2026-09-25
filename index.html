@@ -1325,6 +1325,127 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   .nfi{aspect-ratio:5/7;border-radius:8px}.nfc:hover .nfi{transform:none}
   .nfbd{top:3%;right:4%}.nfbd em{height:18px;font-size:10.5px;padding:0 .6em}.nfbd em.ok{width:18px}
 }
+/* Basic: 4 lessons as collections — home cards + lesson page */
+.ek,.ephero{--ekbg:linear-gradient(135deg,#0b1631 0%,#152a5a 60%,#1d3a78 100%);--ekink:#fff;--eksub:rgba(255,255,255,.76);--ekk:#e3b857;--ekbig:linear-gradient(180deg,#fff 0%,#f3d98f 55%,#c99a3c 100%);--ekchip:rgba(255,255,255,.1);--ekline:rgba(255,255,255,.2)}
+[data-theme=blush] .ek,[data-theme=blush] .ephero{--ekbg:linear-gradient(135deg,#fffafc 0%,#fbe4ed 55%,#f5c6d7 100%);--ekink:#4a2536;--eksub:#7a5a68;--ekk:#9c3f62;--ekbig:linear-gradient(180deg,#a8466d 0%,#d06f94 55%,#eeaac3 100%);--ekchip:rgba(255,255,255,.72);--ekline:rgba(168,56,94,.18)}
+.ekart svg.th{position:absolute;inset:0;width:100%;height:100%}
+.eps4 .nfxh{align-items:center}
+.ekall{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink2)}.ekall i{width:110px;height:6px;border-radius:3px;background:var(--line2);overflow:hidden}.ekall b{display:block;height:100%;background:var(--acc,var(--gold))}
+.ekg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,1.5cqw,28px);padding:30px var(--nfs) 4px}
+.ek{position:relative;isolation:isolate;display:flex;flex-direction:column;cursor:pointer;border-radius:20px;background:var(--bg2);border:1px solid var(--line2);box-shadow:0 8px 24px rgba(0,0,0,.07);transition:transform .25s cubic-bezier(.2,.8,.25,1),box-shadow .25s}
+.ek:before,.ek:after{content:"";position:absolute;z-index:-1;height:40px;border-radius:18px 18px 0 0;background:var(--bg3);border:1px solid var(--line2);transition:top .25s cubic-bezier(.2,.8,.25,1)}
+.ek:before{left:14px;right:14px;top:-8px}.ek:after{left:30px;right:30px;top:-15px;opacity:.55}
+.ek:hover,.ek:focus-visible{transform:translateY(-5px);box-shadow:0 18px 36px rgba(0,0,0,.14);outline:none}.ek:focus-visible{box-shadow:0 0 0 3px var(--acc,var(--gold))}
+.ek:hover:before{top:-12px}.ek:hover:after{top:-23px}
+.ek.st-cur{border-color:var(--goldln);box-shadow:0 0 0 3px var(--goldbg),0 12px 30px rgba(0,0,0,.1)}
+.ekc{position:relative;aspect-ratio:4/3;border-radius:19px 19px 0 0;overflow:hidden;background:var(--ekbg);color:var(--ekink)}
+.ekart{position:absolute;left:0;right:0;bottom:0;height:64%;opacity:.4}
+.eks{position:absolute;left:7%;top:8%;z-index:1;display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:999px;background:var(--ekchip);border:1px solid var(--ekline);font-size:12.5px;font-weight:800;color:var(--eksub)}
+.eks.ok{background:var(--green);border-color:transparent;color:#fff}
+.eks.cur{background:var(--btn,var(--gold));border-color:transparent;color:var(--accink,#1a1408)}.eks.cur i{width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.4s ease-in-out infinite}
+.ekn{position:absolute;right:7%;top:5%;display:flex;flex-direction:column;align-items:center;line-height:.82}
+.ekn small{font-family:Georgia,"Times New Roman",serif;font-size:clamp(13px,1cqw,18px);font-weight:700;letter-spacing:.24em;color:var(--ekk);margin:0 0 4px .24em}
+.ekn b{font-family:Georgia,"Times New Roman",serif;font-size:clamp(80px,8.4cqw,150px);font-weight:700;background:var(--ekbig);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ekt{position:absolute;left:7%;right:7%;bottom:8%;z-index:1}
+.ekt small{display:block;font-size:12.5px;font-weight:700;color:var(--ekk);letter-spacing:.02em}
+.ekt b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;font-size:clamp(17px,1.35cqw,24px);font-weight:800;line-height:1.25}
+.eki{display:flex;flex-direction:column;flex:1;padding:16px 18px 18px}
+.ekd{display:flex;gap:4px}.ekd i{flex:1;height:6px;border-radius:3px;background:var(--line2);overflow:hidden}.ekd em{display:block;height:100%;background:var(--acc,var(--gold))}.ekd i.ok em{background:var(--green)}
+.ekm{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:14.5px;font-weight:700}.ekm span+span{color:var(--mut);font-weight:600}
+.ekx{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;font-size:13px;color:var(--mut)}.ekx span{display:inline-flex;align-items:center;gap:4px}
+.ekb{width:100%;margin-top:auto}.eki .ekb,.eki .ekgo{margin-top:14px}
+.ekgo{display:flex;align-items:center;justify-content:center;gap:4px;padding:9px;border-radius:999px;border:1px solid var(--line2);font-weight:700;font-size:14px;color:var(--ink2);transition:border-color .2s,color .2s}
+.ek:hover .ekgo{border-color:var(--goldln);color:var(--gold)}
+.epit .cvtx,.ercc .cvtx{display:none}.epit .cov.ty .cvbig,.ercc .cov.ty .cvbig{left:0;right:0}
+.ekhint{display:flex;align-items:center;justify-content:center;gap:6px;margin:22px var(--nfs) 0;font-size:14px;color:var(--mut);text-align:center}
+/* lesson page */
+.epnav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:2px 0 16px}
+.eback{display:inline-flex;align-items:center;gap:4px;padding:6px 12px 6px 6px;border-radius:999px;font-weight:700;color:var(--ink2)}.eback:hover{color:var(--gold);background:var(--bg3)}
+.epsw{display:flex;gap:6px;margin-left:auto}
+.epsw button{display:inline-flex;align-items:center;gap:5px;padding:7px 15px;border-radius:999px;border:1px solid var(--line2);background:var(--bg2);font-weight:700;font-size:14px;color:var(--ink2)}
+.epsw button.done svg{color:var(--green)}.epsw button.cur i{width:7px;height:7px;border-radius:50%;background:var(--acc,var(--gold))}
+.epsw button.on{background:var(--btn,var(--gold));border-color:transparent;color:var(--accink,#1a1408)}.epsw button.on svg{color:inherit}
+.ephero{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;padding:34px 40px;border-radius:26px;background:var(--ekbg);color:var(--ekink);border:1px solid var(--goldln)}
+.ephero .ekart{height:72%;opacity:.3;z-index:-1}
+.ephero .bblab{color:var(--ekk)}
+.ephero h1{margin:10px 0 14px;font-size:clamp(24px,2.3vw,36px);line-height:1.25;font-weight:800}
+.ephn{display:block;margin-bottom:6px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(46px,4.4vw,72px);font-weight:700;line-height:1;letter-spacing:.02em;background:var(--ekbig);-webkit-background-clip:text;background-clip:text;color:transparent}
+.epwl{font-size:13px;font-weight:700;color:var(--eksub)}
+.epwill{list-style:none;margin:8px 0 20px;padding:0;display:flex;gap:8px;flex-wrap:wrap}
+.epwill li{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;background:var(--ekchip);border:1px solid var(--ekline);font-size:14px;font-weight:600}.epwill svg{color:var(--ekk)}
+.ephero .btn.ghost{background:var(--ekchip);border-color:var(--ekline);color:var(--ekink)}
+.ephr{display:flex;flex-direction:column;align-items:center;gap:10px;min-width:230px;padding:20px;border-radius:22px;background:var(--ekchip);border:1px solid var(--ekline);text-align:center}
+.epring{position:relative;width:116px;height:116px}.epring svg{width:100%;height:100%}.epring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800}
+.epring .rbg{stroke:var(--ekline)}.epring .rfg{stroke:var(--acc,#e3b857)}
+.ephs b{display:block;font-size:16px}.ephs span{display:block;font-size:13.5px;color:var(--eksub)}
+.ephs .epplan{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 11px;border-radius:999px;background:var(--ekchip);color:var(--ekk);font-weight:700;font-size:12.5px;max-width:230px}
+.eroad{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.erd{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;padding:16px;border-radius:18px;background:var(--bg2);border:1px solid var(--line)}
+.erd:not(:last-child):after{content:"";position:absolute;right:-11px;top:34px;width:8px;height:8px;border-top:2px solid var(--line2);border-right:2px solid var(--line2);transform:rotate(45deg)}
+.erdi{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--ink2);font-weight:800}
+.erd small{display:block;font-size:12px;font-weight:700;color:var(--mut)}.erd b{display:block;font-size:15.5px;line-height:1.35}.erd span{display:block;margin-top:2px;font-size:13.5px;color:var(--ink2)}
+.erd.ok .erdi{background:var(--greenbg);color:var(--green)}.erd.ok span{color:var(--green);font-weight:700}
+.erd.cur{border-color:var(--goldln);box-shadow:0 0 0 3px var(--goldbg)}.erd.cur .erdi{background:var(--btn,var(--gold));color:var(--accink,#1a1408)}
+.erd.lock .erdi{color:var(--mut)}.erd.na{opacity:.75}
+.erd>div>.btn,.erda{margin-top:10px}.erda{display:flex;gap:6px;flex-wrap:wrap}
+.epmain{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start;margin-top:28px}
+.ttabs{display:flex;gap:6px;padding:4px;border-radius:999px;background:var(--bg3)}
+.ttabs button{flex:1;padding:9px 14px;border-radius:999px;font-weight:700;font-size:14.5px;color:var(--ink2)}
+.ttabs button.on{background:var(--btn,var(--gold));color:var(--accink,#1a1408);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.epcol .ttabs{max-width:480px;margin-bottom:16px}
+.epl2{position:relative;list-style:none;margin:0;padding:0}
+.epl2:before{content:"";position:absolute;left:16px;top:24px;bottom:24px;width:2px;background:var(--line2)}
+.epi2{position:relative;display:grid;grid-template-columns:34px 220px minmax(0,1fr);gap:16px;align-items:center;padding:12px 14px 12px 0;border-radius:18px;cursor:pointer;transition:background .15s}
+.epi2:hover{background:var(--bg2)}.epi2.here{background:var(--bg2);box-shadow:inset 0 0 0 1.5px var(--goldln)}
+.epim{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);border:2px solid var(--line2);font-weight:800;font-size:13.5px;color:var(--ink2)}
+.epi2.ok .epim{background:var(--green);border-color:var(--green);color:#fff}.epi2.cur .epim,.epi2.next .epim{border-color:var(--acc,var(--gold));color:var(--gold);background:var(--bg2)}
+.epit{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.epip{position:absolute;left:10px;bottom:10px;z-index:2;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(10,14,24,.55);color:#fff;opacity:0;transition:opacity .2s}
+.epi2:hover .epip,.epi2.here .epip{opacity:1}
+.epih{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13.5px;color:var(--mut)}.epih b{color:var(--gold);font-size:14px}.epih span{display:inline-flex;align-items:center;gap:4px}
+.epib h4{margin:4px 0;font-size:17px;line-height:1.35}
+.epib p{margin:0;font-size:14px;line-height:1.55;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.epihere{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;border-radius:999px;background:var(--btn,var(--gold));color:var(--accink,#1a1408);font-size:13px;font-weight:800}
+.ergrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.erc{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center;padding:10px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);cursor:pointer;transition:border-color .15s}.erc:hover{border-color:var(--goldln)}
+.ercc{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden}
+.ercn{position:absolute;right:6px;top:6px;z-index:2;padding:1px 8px;border-radius:999px;background:var(--acc,var(--gold));color:var(--accink,#1a1408);font-size:11px;font-weight:800}
+.erct b{display:block;font-size:15px}.erct span{display:block;font-size:13px;color:var(--ink2)}.erct .muted{display:flex;align-items:center;gap:4px;margin-top:3px;color:var(--mut)}
+.erct em.ok{display:inline-flex;align-items:center;gap:3px;font-style:normal;color:var(--green);font-weight:700}
+.epnext{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;width:100%;margin-top:24px;padding:18px 22px;border-radius:18px;background:var(--bg2);border:1.5px dashed var(--goldln);text-align:left}
+.epnext:hover{border-style:solid}.epnext small{font-size:12.5px;font-weight:700;color:var(--mut)}.epnext b{font-size:17px}.epnext span{font-size:13.5px;color:var(--ink2)}
+.epnext svg{grid-column:2;grid-row:1 / span 3;color:var(--gold)}
+.epside{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px}
+.eside{padding:18px;border-radius:18px;background:var(--bg2);border:1px solid var(--line)}
+.eside h3{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:16px}.eside h3 svg{color:var(--gold)}
+.eside>.muted{margin:-4px 0 6px;font-size:13px}
+.epsum2{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.55}.epsum2 li::marker{color:var(--gold);font-weight:800}
+.gls{border-top:1px solid var(--line)}
+.gls summary{display:flex;align-items:center;justify-content:space-between;padding:10px 0;font-weight:700;cursor:pointer;list-style:none}.gls summary::-webkit-details-marker{display:none}
+.gls summary svg{color:var(--mut);transition:transform .2s}.gls[open] summary svg{transform:rotate(180deg)}.gls[open] summary{color:var(--gold)}
+.gls p{margin:0 0 10px;font-size:14px;line-height:1.55;color:var(--ink2)}
+.ehr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line)}.ehr b{display:block;font-size:14px}.ehr span{display:block;font-size:12.5px;color:var(--mut)}.ehr .btn{flex:none}
+@media (max-width:1100px){
+  .ekg{grid-template-columns:repeat(2,minmax(0,1fr))}.ekn b{font-size:110px}
+  .epmain{grid-template-columns:minmax(0,1fr)}.epside{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .eroad{grid-template-columns:repeat(2,minmax(0,1fr))}.erd:after{display:none}
+}
+@media (max-width:600px){
+  .eps4 .nfxh{row-gap:8px}.ekall{flex-basis:100%}.ekall i{flex:1}
+  .ekg{gap:14px 12px;padding-top:22px}
+  .ekc{aspect-ratio:5/4}.ekn b{font-size:58px}.ekbt{display:none}.ekt{bottom:7%}.ekn small{font-size:11px}.ekt b{font-size:15px}.ekt small{font-size:11px}.eks{font-size:11px;padding:3px 8px}
+  .eki{padding:10px 12px 12px}.ekm{font-size:12.5px;flex-direction:column;gap:0}.ekx{display:none}.eki .ekb,.eki .ekgo{margin-top:10px;font-size:13px;padding:8px}
+  .ekb.btn{min-height:40px}
+  .epsw{margin-left:0;width:100%}.epsw button{flex:1;justify-content:center;padding:7px 6px}
+  .ephero{grid-template-columns:minmax(0,1fr);gap:18px;padding:22px 18px;border-radius:22px}
+  .ephero .bbbtn{flex-direction:column}.ephero .bbbtn .btn.xl{width:100%;font-size:16px;padding:12px}
+  .ephr{flex-direction:row;min-width:0;text-align:left;padding:12px 14px;gap:14px}.epring{width:84px;height:84px;flex:none}.epring b{font-size:21px}
+  .eroad{display:flex;align-items:flex-start;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin-right:-16px;padding-right:16px}.eroad::-webkit-scrollbar{display:none}.erd{flex:0 0 80%;scroll-snap-align:start}
+  .epi2{grid-template-columns:28px 124px minmax(0,1fr);gap:10px;padding:10px 8px 10px 0}.epim{width:28px;height:28px;font-size:12px}.epl2:before{left:13px}
+  .epib h4{font-size:15px}.epib p{display:none}.epih{font-size:12.5px;gap:6px}.epih .tag{display:none}
+  .ergrid{grid-template-columns:minmax(0,1fr)}.erc{grid-template-columns:128px minmax(0,1fr)}
+  .epside{grid-template-columns:minmax(0,1fr)}
+}
 /* details: phone-only parts hidden on larger screens */
 .tmb,.tmute,.tno{display:none}
 .tcam{position:absolute;right:16px;top:64px;z-index:1;display:flex;width:17%;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px var(--acc,#e3b857),0 10px 24px rgba(0,0,0,.4)}.tcam.duo{width:26%;aspect-ratio:3/2}
@@ -1735,7 +1856,7 @@ const rankChip = () => S.tier === 'adv' ? '<span class="rankc adv">ADVANCE</span
 let ACT = {}, seq = 0;
 const A = fn => { const k = 'a' + (++seq); ACT[k] = fn; return k; };
 function toast(msg, undo) { const t = $('#toast'); t.innerHTML = ic('check', 16) + esc(msg) + (undo ? '<button class="undo" id="undoBtn">เลิกทำ</button>' : ''); t.classList.add('show'); t.classList.toggle('act', !!undo); if (undo) $('#undoBtn').onclick = () => { undo(); t.classList.remove('show', 'act'); render(); }; clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('show', 'act'), undo ? 5000 : 2200); }
-function go(v, id) { if (v === 'watch' && S.view !== 'watch') S.back = S.view; if (v !== 'watch') { S.epsPanel = false; S.epsSeason = 0; } if (S.tier !== 'adv' && lockedFor(v, id)) { S.modal = 'locked'; S.search = false; S.notif = false; render(); return; } if (S.view === 'watch' && v !== 'watch') S.mini = S.clip; if (v === 'watch') { S.mini = null; if (!S.watchedToday) { S.watchedToday = true; ME.streak++; ME.goal[0] = Math.min(ME.goal[1], ME.goal[0] + 1); setTimeout(() => toast('เยี่ยม! เรียนต่อเนื่อง ' + ME.streak + ' วันแล้ว'), 400); } } S.view = v; if (v === 'watch' && id) { S.clip = id; S.wtab = 'chap'; } if (v === 'livewatch' && id) S.live = id; if (v === 'coach' && id) S.coach = id; S.search = false; S.notif = false; render(); window.scrollTo(0, 0); }
+function go(v, id) { if (v === 'watch' && S.view !== 'watch') S.back = S.view; if (v !== 'watch') { S.epsPanel = false; S.epsSeason = 0; } if (S.tier !== 'adv' && lockedFor(v, id)) { S.modal = 'locked'; S.search = false; S.notif = false; render(); return; } if (S.view === 'watch' && v !== 'watch') S.mini = S.clip; if (v === 'watch') { S.mini = null; if (!S.watchedToday) { S.watchedToday = true; ME.streak++; ME.goal[0] = Math.min(ME.goal[1], ME.goal[0] + 1); setTimeout(() => toast('เยี่ยม! เรียนต่อเนื่อง ' + ME.streak + ' วันแล้ว'), 400); } } S.view = v; if (v === 'watch' && id) { S.clip = id; S.wtab = 'chap'; } if (v === 'livewatch' && id) S.live = id; if (v === 'coach' && id) S.coach = id; if (v === 'ep' && id) { if (S.epn !== +id) { S.eptab = 'eps'; S.epk = 'all'; } S.epn = +id; } S.search = false; S.notif = false; render(); window.scrollTo(0, 0); }
 document.addEventListener('click', e => {
   const a = e.target.closest('[data-a]'); if (a && ACT[a.dataset.a]) { e.preventDefault(); e.stopPropagation(); ACT[a.dataset.a](e); return; }
   const g = e.target.closest('[data-go]'); if (g) { const [v, id] = g.dataset.go.split(':'); go(v, id); return; }
@@ -1958,7 +2079,7 @@ const NAV_ADV = [['home','หน้าแรก','home'],['learn','คอร์�
 const NAV_BASIC = [['home','หน้าแรก','home'],['learn','บทเรียน','book'],['live','ตารางคลาสสด','cal'],['library','คลังของฉัน','lib']];
 const navList = () => S.tier === 'adv' ? NAV_ADV : NAV_BASIC;
 function renderChrome() {
-  const cur = S.view === 'watch' || S.view === 'coach' ? 'learn' : S.view === 'livewatch' ? 'live' : S.view;
+  const cur = S.view === 'watch' || S.view === 'coach' || S.view === 'ep' ? 'learn' : S.view === 'livewatch' ? 'live' : S.view;
   $('#hdr').innerHTML = `<div class="logo" data-go="home" aria-label="Super Trader Republic · กลับหน้าแรก"><span class="limg" aria-hidden="true"></span></div>
     <nav class="nav" aria-label="เมนูหลัก">${navList().map(([v, l]) => `<button class="${cur === v ? 'on' : ''}" ${cur === v ? 'aria-current="page"' : ''} data-go="${v}">${v === 'live' && S.tier === 'adv' ? '<span class="dotlive"></span>' : ''}${l}</button>`).join('')}</nav>
     <span class="hsp"></span>
@@ -2138,7 +2259,7 @@ function basicStage() {
     <div class="bbart" aria-hidden="true">${art(4711, '#d890aa', {n:46, live:true, trend:.011})}</div><div class="bbv"></div>
     <div class="stc"><span class="bsnum" aria-hidden="true"><b>${epCur(ME.ep).n}</b><small>ตอนที่กำลังดู · ${esc(epCur(ME.ep).t)}</small></span><div class="bblab"><span class="nS">BASIC</span>บทที่ 2 จาก 4 · Master Clip</div><h2 class="bbt">EP.2<br>Dow Theory</h2>
       <div class="stmeta"><span>และแนวรับแนวต้าน</span><span class="dotsep"></span><span>${c.ch.length} บทย่อย</span><span class="dotsep"></span><span>เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที</span></div>
-      <div class="bbbtn" style="margin-top:20px"><button class="btn xl" data-go="watch:b2">${ic('play', 22)}เรียนต่อ · นาที ${mmss(pos)}</button><button class="btn xl ghost" data-a="${A(() => openSeason(ME.ep))}">${ic('stack', 20)}ตอนทั้งหมด</button></div>
+      <div class="bbbtn" style="margin-top:20px"><button class="btn xl" data-go="watch:b2">${ic('play', 22)}เรียนต่อ · นาที ${mmss(pos)}</button><button class="btn xl ghost" data-go="ep:${ME.ep}">${ic('stack', 20)}ตอนทั้งหมด</button></div>
       <div class="bbres"><div class="bbpb" aria-hidden="true"><i style="width:${c.prog * 100}%"></i></div>ดูไป ${Math.round(c.prog * 100)}% · ดูจบแล้วทำแบบทดสอบ 20 ข้อได้</div></div>
     <div class="stsel"><div class="bclh">คลาสสดถัดไป · อีก ${Math.ceil((dOnly(cls[0].at) - dOnly(NOW)) / 864e5)} วัน</div>${cls.map(e => `<div class="bcls"><span class="bcd"><span>${TH_D[e.at.getDay()]}</span><b>${e.at.getDate()}</b><span>${TH_M[e.at.getMonth()]}</span></span><span class="bct"><b>${e.kind === 'ตลาดจริง' ? 'พุธ · ตลาดจริง' : 'เสาร์ · Case Clinic'}</b><span>${hm(e.at)}–${e.end} น. · ${e.kind === 'ตลาดจริง' ? 'เปิด Streaming ดูหุ้นจริง' : 'เฉลยการบ้าน + ไล่เคส'}</span></span>${sessAction(e)}</div>`).join('')}<button class="plink" data-go="live">ดูตารางคลาสสดทั้งหมด${ic('chev', 14)}</button></div>
   </section>`;
@@ -2360,16 +2481,98 @@ document.addEventListener('pointerover', e => {
 });
 document.addEventListener('pointermove', e => { const b = document.getElementById('bob'); if (b && e.pointerType !== 'touch' && !b.contains(e.target)) hideBob(true); }, {passive:true});
 document.addEventListener('pointerout', e => { const t = e.target.closest && e.target.closest('.nfc'); if (t && !t.contains(e.relatedTarget)) clearTimeout(bobT); });
+/* ---------- Basic: 4 lessons (EP) as collections — home shows 4 big cards, each opens its own page with all of its clips ---------- */
+const EPGOAL = {1:['รู้จักหุ้นและการซื้อขาย', 'อ่าน Bid / Offer บน Streaming', 'ตั้งค่า TradingView + Watchlist'], 2:['อ่านเทรนด์ 3 ระดับ', 'หา HH-HL / LH-LL ให้เป็น', 'ตีแนวรับแนวต้านเป็นโซน'], 3:['ตั้ง Stop loss ก่อนเข้า', 'คุมความเสี่ยงต่อไม้', 'คำนวณขนาดไม้เองได้'], 4:['อ่าน Volume ยืนยันราคา', 'แยก Breakout จริงกับหลอก', 'ใช้ RSI + MACD เป็นตัวช่วย']};
+const EPSUM = {1:['หุ้นขึ้นลงตามแรงซื้อแรงขาย ดูได้จาก Bid / Offer และ Volume บน Streaming', 'กราฟแท่งเทียนรายวันบอกราคาเปิด ปิด สูงสุด ต่ำสุด ในแต่ละวัน', 'สร้าง Watchlist ของตัวเอง แล้วดูกราฟทุกวันให้เป็นนิสัย'],
+  2:['เทรนด์มี 3 ระดับ: ภาพใหญ่ กลาง เล็ก ต้องดูให้ครบก่อนตัดสินใจ', 'ขาขึ้น = ยอดใหม่สูงกว่ายอดเก่า และจุดต่ำใหม่สูงกว่าจุดต่ำเก่า (HH-HL)', 'แนวรับแนวต้านคือ "โซน" ที่ราคาเคยเคารพ เลือกเฉพาะที่มีนัยสำคัญ'],
+  3:['กำหนดจุด Stop loss ก่อนเข้าทุกครั้ง', 'ยอมเสียได้ไม่เกินกี่ % ของพอร์ตต่อไม้ ต้องชัดก่อนกดซื้อ', 'คำนวณขนาดไม้จากระยะห่างถึงจุด Stop loss'],
+  4:['Volume ที่มากขึ้นยืนยันว่าแรงซื้อหรือขายจริงจัง', 'Breakout ที่ไม่มี Volume หนุน ระวังเป็นกับดัก', 'RSI กับ MACD เป็นตัวช่วยยืนยัน ไม่ใช่สัญญาณเดี่ยว']};
+const GLOSS = {1:[['Bid / Offer', 'ราคาที่คนรอซื้อ (Bid) และราคาที่คนรอขาย (Offer) บนหน้าจอ Streaming'], ['Volume', 'จำนวนหุ้นที่ซื้อขายกันจริงในช่วงเวลานั้น'], ['แท่งเทียน', 'กราฟที่บอกราคาเปิด ปิด สูงสุด และต่ำสุด ของแต่ละช่วงเวลา'], ['Watchlist', 'รายชื่อหุ้นที่เราเลือกติดตามไว้ดูทุกวัน']],
+  2:[['Dow Theory', 'แนวคิดว่าราคาเคลื่อนเป็นเทรนด์ และเทรนด์มี 3 ระดับ ใหญ่ กลาง เล็ก'], ['HH-HL', 'Higher High · Higher Low ยอดใหม่สูงขึ้นและจุดต่ำใหม่สูงขึ้น แปลว่าขาขึ้น'], ['แนวรับ', 'โซนที่แรงซื้อเคยหยุดราคาไม่ให้ลงต่อ'], ['แนวต้าน', 'โซนที่แรงขายเคยหยุดราคาไม่ให้ขึ้นต่อ']],
+  3:[['Stop loss', 'จุดที่ยอมรับว่าผิดแล้วออกทันที เพื่อรักษาเงินต้น'], ['ความเสี่ยงต่อไม้', 'เงินที่ยอมเสียได้ในการเทรด 1 ครั้ง คิดเป็น % ของพอร์ต'], ['ขนาดไม้', 'จำนวนหุ้นที่ซื้อ คำนวณจากระยะห่างถึงจุด Stop loss'], ['Risk : Reward', 'เทียบระยะที่ยอมเสียกับระยะที่หวังได้ เช่น 1 : 2']],
+  4:[['Volume', 'ปริมาณซื้อขาย ยิ่งมากยิ่งยืนยันว่าแรงซื้อหรือแรงขายจริงจัง'], ['Breakout', 'ราคาทะลุแนวรับหรือแนวต้านออกไป'], ['RSI', 'ตัวชี้วัดแรงส่งของราคา ค่า 0–100'], ['MACD', 'ตัวชี้วัดจังหวะเปลี่ยนโมเมนตัมของราคา']]};
+const epRecs = n => CLIPS.filter(c => c.cat === 'brec' && c.rep === n).sort((a, b) => b.rdate - a.rdate);
+/* where the member is in one lesson: episodes watched, minutes left, quiz / homework / next class */
+function epState(n) {
+  const eps = EPI[n], g = GRAD[n - 1], adv = S.tier === 'adv', done = eps.filter(x => epProg(x) >= 1).length;
+  const mins = eps.reduce((a, x) => a + epMin(x), 0), left = Math.round(eps.reduce((a, x) => a + epMin(x) * (1 - epProg(x)), 0));
+  const st = done === eps.length ? 'done' : eps.some(x => epProg(x) > 0) ? 'cur' : '';
+  const quiz = adv ? {s:'ok', t:`ผ่าน ${[18, 17, 19, 16][n - 1]}/20`} : g.qs === 'ok' ? {s:'ok', t:g.q} : done === eps.length ? {s:'cur', t:'พร้อมทำแล้ว'} : {s:'lock', t:`ดูอีก ${left} นาทีเพื่อปลดล็อก`};
+  const hw = g.hs === 'na' ? {s:'na', t:'บทนี้ไม่มีการบ้าน'} : adv || g.hs === 'ok' ? {s:'ok', t:'ผ่าน 3/3'} : g.hs === 'cur' ? {s:'cur', t:g.hw} : {s:'', t:'3 ข้อ · ส่งให้โค้ชตรวจ'};
+  return {eps, done, mins, left, st, quiz, hw, cls:nextBasic(n), recs:epRecs(n), pct:Math.round(eps.reduce((a, x) => a + epProg(x) * epMin(x), 0) / mins * 100)};
+}
+const epStTag = st => st === 'done' ? `<span class="eks ok">${ic('check', 13)}ผ่านแล้ว</span>` : st === 'cur' ? '<span class="eks cur"><i></i>กำลังเรียน</span>' : '<span class="eks">ยังไม่เริ่ม</span>';
+/* one of the 4 home cards: a cover with a stack behind it (a collection of clips), progress by episode, and the next step */
+function epCard(n) {
+  const s = epState(n), g = GRAD[n - 1], cur = epCur(n), cp = epProg(cur);
+  return `<article class="ek st-${s.st || 'new'}" data-go="ep:${n}" aria-label="EP.${n} ${esc(g.t)} · ${s.eps.length} ตอน · ${s.st === 'done' ? 'ผ่านแล้ว' : s.st === 'cur' ? `กำลังเรียน ดูแล้ว ${s.done} จาก ${s.eps.length} ตอน` : 'ยังไม่เริ่ม'}">
+    <div class="ekc"><span class="ekart" aria-hidden="true">${art(900 + n * 37, HUES.gold, {n:18, bare:true, trend:.014})}</span>${epStTag(s.st)}
+      <span class="ekn" aria-hidden="true"><small>EP</small><b>${n}</b></span>
+      <span class="ekt"><small>บทที่ ${n} จาก 4<span class="ekbt"> · Basic Technical</span></small><b>${esc(g.t)}</b></span></div>
+    <div class="eki"><div class="ekd" aria-hidden="true">${s.eps.map(x => { const p = epProg(x); return `<i class="${p >= 1 ? 'ok' : p > 0 ? 'cur' : ''}"><em style="width:${Math.round(p * 100)}%"></em></i>`; }).join('')}</div>
+      <div class="ekm"><span>${s.st === 'done' ? `ดูครบ ${s.eps.length} ตอนแล้ว` : `ดูแล้ว ${s.done} จาก ${s.eps.length} ตอน`}</span><span>${s.st === 'done' ? `${s.mins} นาที` : `เหลือ ${s.left} นาที`}</span></div>
+      <div class="ekx"><span>${ic('play', 13)}${s.eps.length} ตอนสั้น</span><span>${ic('live', 13)}คลาสสดย้อนหลัง ${s.recs.length}</span></div>
+      ${s.st === 'cur' ? `<button class="btn ekb" data-a="${A(() => playEp(cur))}">${ic('play', 15)}${cp > 0 ? 'ดูต่อ' : 'ดู'}ตอน ${cur.n}</button>` : `<span class="ekgo">${s.st === 'done' ? 'ทบทวนบทนี้' : 'เปิดดูบทนี้'}${ic('chev', 15)}</span>`}</div></article>`;
+}
 function vAll() {
-  const cont = [epCur(ME.ep), ...CLIPS.filter(c => c.cat === 'brec' && c.prog > 0 && c.prog < 1).sort((a, b) => b.rdate - a.rdate)];
-  return `<section class="nfx" aria-labelledby="nfxh"><div class="nfxh"><h2 id="nfxh">${CDL}วิดีโอทั้งหมด</h2><span>Basic Technical · 4 เนื้อหา · ${EPALL.length} ตอน · คลาสสดย้อนหลังทุกครั้ง</span></div>
-    ${nfRow(`ดูต่อสำหรับคุณ${esc(ME.nick)}`, '', cont, () => { S.lib = 'continue'; go('library'); })}
-    ${GRAD.map(g => {
-      const items = [...EPI[g.ep], ...CLIPS.filter(c => c.cat === 'brec' && c.rep === g.ep).sort((a, b) => b.rdate - a.rdate)];
-      const done = EPI[g.ep].filter(x => epProg(x) >= 1).length;
-      const st = g.st === 'done' ? `<span class="nfs ok">${ic('check', 14)}ผ่านแล้ว</span>` : g.st === 'cur' ? `<span class="nfs cur">กำลังเรียน · ดูแล้ว ${done} จาก ${EPI[g.ep].length} ตอน</span>` : `<span class="nfs">${EPI[g.ep].length} ตอน · ยังไม่เริ่ม</span>`;
-      return nfRow(`<span class="nfep">เนื้อหาที่ ${g.ep}</span>${esc(g.t)}`, st, items, () => openSeason(g.ep));
-    }).join('')}</section>`;
+  const tot = [1, 2, 3, 4].map(epState), nd = tot.filter(s => s.st === 'done').length;
+  return `<section class="nfx eps4" aria-labelledby="nfxh"><div class="nfxh"><h2 id="nfxh">${CDL}วิดีโอทั้งหมด</h2><span>Basic Technical · 4 บท · ${EPALL.length} ตอนสั้น · คลาสสดย้อนหลังทุกครั้ง</span><span class="hsp"></span><span class="ekall">ผ่านแล้ว ${nd} จาก 4 บท<i><b style="width:${nd * 25}%"></b></i></span></div>
+    <div class="ekg">${[1, 2, 3, 4].map(epCard).join('')}</div>
+    <p class="ekhint">${ic('help', 15)}เรียนตามลำดับ EP.1 → EP.4 · แต่ละบทแบ่งเป็นตอนสั้น 7–12 นาที ดูจบทีละตอนได้สบายๆ</p></section>`;
+}
+/* the lesson page */
+function vEp() {
+  const n = Math.min(4, Math.max(1, +S.epn || ME.ep)), s = epState(n), g = GRAD[n - 1], cur = epCur(n), cp = epProg(cur), adv = S.tier === 'adv';
+  const tab = S.eptab || 'eps', rk = S.epk || 'all', curPos = Math.max(0, Math.round(clipPos(byClip(cur.clip)) - cur.s));
+  const perDay = 15, days = Math.max(1, Math.ceil(s.left / perDay)), R = 46, C = 2 * Math.PI * R;
+  const road = (i, icon, t, sub, st, act) => `<li class="erd ${st}"><span class="erdi" aria-hidden="true">${st === 'ok' ? ic('check', 18) : icon ? ic(icon, 17) : i}</span><div><small>ขั้นที่ ${i}</small><b>${t}</b><span>${sub}</span>${act || ''}</div></li>`;
+  const quizAct = s.quiz.s === 'cur' ? `<button class="btn sm" data-a="${A(() => { go('watch', cur.clip); S.wtab = 'sum'; render(); const t = $('#wtools'); if (t) t.scrollIntoView(); })}">ทำแบบทดสอบ</button>` : '';
+  const hwAct = s.hw.s === 'cur' && n === ME.ep && !adv ? `<button class="btn sm" data-a="${A(openHw)}">ส่งการบ้าน</button>` : '';
+  const clsAct = s.cls ? `<div class="erda">${adv ? remindBtn(s.cls) : bActs(s.cls)}</div>` : '';
+  const epItem = (x, i) => {
+    const p = epProg(x), st = p >= 1 ? 'ok' : p > 0 ? 'cur' : x === cur ? 'next' : '';
+    const tag = st === 'ok' ? `<span class="tag gr">${ic('check', 12)}ดูจบแล้ว</span>` : st === 'cur' ? `<span class="tag g">กำลังดู ${Math.round(p * 100)}%</span>` : st === 'next' ? '<span class="tag g">ตอนถัดไป</span>' : '';
+    return `<li class="epi2 ${st} ${x === cur && s.st !== 'done' ? 'here' : ''}" data-a="${A(() => playEp(x))}" aria-label="ตอน ${x.n} ${esc(x.t)} · ${epMin(x)} นาที${st === 'ok' ? ' · ดูจบแล้ว' : st === 'cur' ? ` · ดูไป ${Math.round(p * 100)}%` : ''}">
+      <span class="epim" aria-hidden="true">${st === 'ok' ? ic('check', 14) : i + 1}</span>
+      <div class="epit">${cover(x)}${p > 0 && p < 1 ? `<span class="nfp"><i style="width:${Math.round(p * 100)}%"></i></span>` : ''}<span class="epip" aria-hidden="true">${ic('play', 18)}</span></div>
+      <div class="epib"><div class="epih"><b>ตอน ${x.n}</b><span>${ic('clock', 13)}${epMin(x)} นาที</span>${tag}</div><h4>${esc(x.t)}</h4><p>${esc(x.d)}</p>
+        ${x === cur && s.st !== 'done' ? `<span class="epihere">${ic('play', 13)}${cp > 0 ? `ดูต่อจากนาที ${mmss(Math.round(cp * (x.e - x.s)))}` : 'เริ่มตอนนี้ได้เลย'}</span>` : ''}</div></li>`;
+  };
+  const recs = s.recs.filter(c => rk === 'all' || c.kind === rk);
+  const recItem = c => `<div class="erc" data-go="watch:${c.id}" aria-label="คลาสสดย้อนหลัง ${c.day} ${fd(c.rdate)} ${c.kind} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}${c.id === LATEST_REC ? '<span class="ercn">คลาสล่าสุด</span>' : ''}</div>
+    <div class="erct"><b>${TH_DL[c.rdate.getDay()]} ${fd(c.rdate)}</b><span>${c.kind === 'ตลาดจริง' ? 'ตลาดจริง · เปิด Streaming ดูหุ้นจริง' : 'Case Clinic · เฉลยการบ้าน + ไล่เคส'}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · โค้ชแนน${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
+  const care = CAL.find(e => e.type === 'care' && e.at > NOW);
+  return `<nav class="epnav" aria-label="บทเรียน Basic"><button class="eback" data-go="home">${ic('back', 18)}วิดีโอทั้งหมด</button><div class="epsw">${[1, 2, 3, 4].map(k => { const t = epState(k).st; return `<button class="${k === n ? 'on' : ''} ${t}" ${k === n ? 'aria-current="page"' : ''} data-go="ep:${k}">${t === 'done' ? ic('check', 13) : t === 'cur' ? '<i></i>' : ''}EP.${k}</button>`; }).join('')}</div></nav>
+  <section class="ephero st-${s.st || 'new'}" aria-labelledby="eph1"><span class="ekart" aria-hidden="true">${art(900 + n * 37, HUES.gold, {n:30, bare:true, trend:.012, live:true})}</span>
+    <div class="ephl"><div class="bblab"><span class="nS">BASIC</span>บทที่ ${n} จาก 4 · ${s.eps.length} ตอน · ${s.mins} นาที</div>
+      <h1 id="eph1"><span class="ephn">EP.${n}</span>${esc(g.t)}</h1>
+      <div class="epwl">จบบทนี้แล้วคุณจะ</div><ul class="epwill">${EPGOAL[n].map(t => `<li>${ic('check', 14)}${esc(t)}</li>`).join('')}</ul>
+      <div class="bbbtn">${s.st === 'done' ? `<button class="btn xl" data-a="${A(() => playEp(s.eps[0]))}">${ic('play', 20)}ทบทวนตั้งแต่ตอนแรก</button>` : `<button class="btn xl" data-a="${A(() => playEp(cur))}">${ic('play', 20)}${cp > 0 ? `ดูต่อ ตอน ${cur.n} · นาที ${mmss(curPos)}` : `เริ่มดู ตอน ${cur.n}`}</button>${s.done ? `<button class="btn xl ghost" data-a="${A(() => playEp(s.eps[0]))}">${ic('rw', 20)}เริ่มจากตอนแรก</button>` : ''}`}</div></div>
+    <div class="ephr" role="img" aria-label="ดูแล้ว ${s.pct} เปอร์เซ็นต์ของบทนี้"><div class="epring"><svg width="116" height="116" viewBox="0 0 116 116" aria-hidden="true"><circle cx="58" cy="58" r="${R}" fill="none" class="rbg" stroke-width="10"/><circle cx="58" cy="58" r="${R}" fill="none" class="rfg" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C * s.pct / 100} ${C}" transform="rotate(-90 58 58)"/></svg><b>${s.pct}%</b></div>
+      <div class="ephs"><b>${s.st === 'done' ? 'ดูครบทุกตอนแล้ว' : `ดูแล้ว ${s.done} จาก ${s.eps.length} ตอน`}</b><span>${s.st === 'done' ? `รวม ${s.mins} นาที` : `เหลืออีก ${s.left} นาที`}</span>
+        ${s.st !== 'done' && s.cls ? `<span class="epplan">${ic('spark', 13)}ดูวันละ ${perDay} นาที จบใน ${days} วัน ${Math.ceil((dOnly(s.cls.at) - dOnly(NOW)) / 864e5) >= days ? '· ทัน' : '· ก่อน'}คลาสสด ${TH_D[s.cls.at.getDay()]} ${fd(s.cls.at)}</span>` : ''}</div></div>
+  </section>
+  <ol class="eroad" aria-label="ขั้นตอนของบทนี้">
+    ${road(1, 'play', 'ดูคลิปให้ครบ', `${s.done}/${s.eps.length} ตอน`, s.st === 'done' ? 'ok' : s.st === 'cur' ? 'cur' : '')}
+    ${road(2, s.quiz.s === 'lock' ? 'lock' : 'layers', 'แบบทดสอบ 20 ข้อ', s.quiz.t, s.quiz.s, quizAct)}
+    ${road(3, s.hw.s === 'na' ? 'minus' : 'note', 'การบ้านกราฟ', s.hw.t, s.hw.s, hwAct)}
+    ${road(4, 'live', 'เข้าคลาสสดของบทนี้', s.cls ? `${TH_DL[s.cls.at.getDay()]} ${fd(s.cls.at)} · ${hm(s.cls.at)} น.` : 'ไม่มีรอบใหม่ในเดือนนี้', s.st === 'done' && !s.cls ? 'ok' : '', clsAct)}
+  </ol>
+  <div class="epmain"><div class="epcol">
+    <div class="ttabs" role="tablist" aria-label="คลิปในบทนี้"><button role="tab" aria-selected="${tab === 'eps'}" class="${tab === 'eps' ? 'on' : ''}" data-a="${A(() => { S.eptab = 'eps'; render(); })}">ตอนเรียน · ${s.eps.length}</button><button role="tab" aria-selected="${tab === 'rec'}" class="${tab === 'rec' ? 'on' : ''}" data-a="${A(() => { S.eptab = 'rec'; render(); })}">คลาสสดย้อนหลัง · ${s.recs.length}</button></div>
+    ${tab === 'eps' ? `<ol class="epl2">${s.eps.map(epItem).join('')}</ol>`
+      : `<div class="chips">${[['all', 'ทุกครั้ง'], ['ตลาดจริง', 'พุธ · ตลาดจริง'], ['Case Clinic', 'เสาร์ · Case Clinic']].map(([k, l]) => `<button class="fchip ${rk === k ? 'on' : ''}" data-a="${A(() => { S.epk = k; render(); })}">${l}</button>`).join('')}</div>
+        <div class="ergrid">${recs.map(recItem).join('') || '<p class="muted">ยังไม่มีคลาสแบบนี้ในบทนี้</p>'}</div><p class="ekhint">${ic('live', 15)}สอนสดทุกพุธและเสาร์ 09:50 น. จบคลาสแล้วคลิปเข้าที่นี่อัตโนมัติ</p>`}
+    ${n < 4 ? `<button class="epnext" data-go="ep:${n + 1}"><small>บทถัดไป</small><b>EP.${n + 1} ${esc(GRAD[n].t)}</b><span>${EPI[n + 1].length} ตอน · ${epState(n + 1).mins} นาที</span>${ic('chev', 22)}</button>`
+      : `<button class="epnext gold" data-a="${A(() => { S.modal = 'promote'; render(); })}"><small>บทสุดท้ายแล้ว</small><b>ผ่านครบ 4 บท = ขึ้นยศ Advance</b><span>ดูตัวอย่างตอนสอบผ่าน</span>${ic('chev', 22)}</button>`}</div>
+    <aside class="epside">
+      <div class="eside"><h3>${ic('spark', 17)}สรุปบทนี้ใน 1 นาที</h3><ol class="epsum2">${EPSUM[n].map(t => `<li>${esc(t)}</li>`).join('')}</ol></div>
+      <div class="eside"><h3>${ic('book', 17)}คำศัพท์ในบทนี้</h3><p class="muted">กดคำที่ไม่เข้าใจเพื่อดูความหมาย</p>${GLOSS[n].map(([k, d]) => `<details class="gls"><summary>${esc(k)}${ic('down', 15)}</summary><p>${esc(d)}</p></details>`).join('')}</div>
+      <div class="eside help"><h3>${ic('headset', 17)}ติดตรงไหน ถามได้เลย</h3>
+        ${care && !adv ? `<div class="ehr"><div><b>CARE DAY คุยกับโค้ช${ME.coach} 1:1</b><span>${TH_DL[care.at.getDay()]} ${fd(care.at)} · ครั้งละ 20 นาที</span></div>${bookBtn(care)}</div>` : ''}
+        <div class="ehr"><div><b>ถามทีมงานทาง LINE</b><span>ตอบภายในวันทำการ</span></div><button class="btn sm ghost" data-a="${A(() => toast('เปิด LINE Official ของทีม CS (ในระบบจริง)'))}">${ic('msg', 14)}LINE</button></div>
+        <div class="ehr"><div><b>เอกสารประกอบบทเรียน</b><span>PDF สรุป + แบบฝึกกราฟ</span></div><button class="btn sm ghost" data-a="${A(() => toast(`ดาวน์โหลดเอกสาร EP.${n} แล้ว (ในระบบจริง)`))}">${ic('down', 14)}PDF</button></div></div>
+    </aside></div>`;
 }
 /* Advance home: the same rows — continue, picks for the member's Trader DNA, every coach, LIVE Replay, Knowledge, and Basic to review */
 function vAllAdv() {
@@ -2439,7 +2642,7 @@ function vLearn() {
         <span class="epn" aria-hidden="true">${e.st === 'done' ? ic('check', 18) : e.ep}</span>
         <div class="epbody"><div class="ephd"><h3>EP.${e.ep} ${esc(e.title)}</h3>${e.st === 'done' ? `<span class="tag gr">${ic('check', 12)}ผ่านแล้ว</span>` : e.st === 'cur' ? '<span class="tag g">กำลังเรียน</span>' : ''}</div>
           ${e.st === 'cur' || adv ? `<div class="epsteps">${s1}${s2}${s3}</div>` : e.st === 'done' ? '' : `<div class="epsum">${ic('play', 13)}คลิป ${cs.reduce((a, x) => a + x.dur, 0)} นาที · แบบทดสอบ 20 ข้อ · ${e.hw ? 'การบ้านกราฟ ' + e.hw[1] + ' ข้อ' : 'ไม่มีการบ้าน'}</div>`}
-          <div class="epmeta">${nx && e.st !== 'done' ? `<span>${ic('live', 14)}คลาสสดครั้งถัดไป ${TH_D[nx.at.getDay()]} ${fd(nx.at)} ${hm(nx.at)} น.</span>` : ''}<button class="rlink" data-a="${A(() => { S.bview = 'rec'; S.rep = e.ep; render(); window.scrollTo(0, 0); })}">คลาสสดย้อนหลัง ${nrec} คลิป${ic('chev', 14)}</button></div></div>
+          <div class="epmeta">${nx && e.st !== 'done' ? `<span>${ic('live', 14)}คลาสสดครั้งถัดไป ${TH_D[nx.at.getDay()]} ${fd(nx.at)} ${hm(nx.at)} น.</span>` : ''}<button class="rlink" data-go="ep:${e.ep}">ดูทุกตอนในบทนี้${ic('chev', 14)}</button><button class="rlink" data-a="${A(() => { S.bview = 'rec'; S.rep = e.ep; render(); window.scrollTo(0, 0); })}">คลาสสดย้อนหลัง ${nrec} คลิป${ic('chev', 14)}</button></div></div>
         <div class="epa">${act}</div></article>`;
     };
     if (S.bview === 'rec') body = tog + recBar() + `<div id="recres">${recResults()}</div>`;
@@ -2828,7 +3031,7 @@ function changesHTML() {
     ['ปฏิทิน: ชื่อคลาสเหลือ "09:30 M…" สีไม่มีคำอธิบาย','ชื่อเต็ม สีมีป้ายกำกับ กดซ่อน/แสดงได้'],
     ['ต้องกด "เพิ่มเติม" ทีละวัน · ปุ่มเลื่อนเดือนไอคอนหาย','มุมมองสัปดาห์เห็นครบทุกคลาส + ปุ่มเลื่อนชัดเจน'],
   ];
-  const add = [['tv','มือถือ: ปกแนวตั้งเรียง 3 ใบต่อแถว · การ์ดไฮไลต์แบบโปสเตอร์พร้อมรูปโค้ช · หน้ารายละเอียดมีวิดีโอด้านบน ปุ่มเต็มความกว้าง และแท็บ ตอน / เนื้อหาที่คล้ายกัน · แถบเมนูลอย'],['award','ปกวิดีโอจริง: รูปโค้ชตัวจริง + ชื่อตอน สีกรมทอง SPTR · เอาเมาส์ชี้แล้วปกขยายออกมา เล่นตัวอย่างพร้อมกล้องโค้ช'],['tv','หน้าแรก Advance มีแถววิดีโอ: ดูต่อ · เหมาะกับ DNA · โค้ชตัวจริง · LIVE Replay · Knowledge'],['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
+  const add = [['book','วิดีโอ Basic รวมเป็น 4 บท (EP.1–EP.4) กดเข้าไปเจอทุกตอนของบทนั้น พร้อมเปอร์เซ็นต์ที่ดูไป ขั้นตอน 4 ขั้น สรุป 1 นาที คำศัพท์ และปุ่มจองคลาสสด'],['tv','มือถือ: ปกแนวตั้งเรียง 3 ใบต่อแถว · การ์ดไฮไลต์แบบโปสเตอร์พร้อมรูปโค้ช · หน้ารายละเอียดมีวิดีโอด้านบน ปุ่มเต็มความกว้าง และแท็บ ตอน / เนื้อหาที่คล้ายกัน · แถบเมนูลอย'],['award','ปกวิดีโอจริง: รูปโค้ชตัวจริง + ชื่อตอน สีกรมทอง SPTR · เอาเมาส์ชี้แล้วปกขยายออกมา เล่นตัวอย่างพร้อมกล้องโค้ช'],['tv','หน้าแรก Advance มีแถววิดีโอ: ดูต่อ · เหมาะกับ DNA · โค้ชตัวจริง · LIVE Replay · Knowledge'],['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
   return `<div class="ovl" style="padding:0;justify-content:flex-end"><aside class="drawer" role="dialog" aria-label="สิ่งที่เปลี่ยน"><div style="display:flex;align-items:center"><h3>เปลี่ยนอะไรจากของเดิม</h3><button class="ibtn" style="margin-left:auto" aria-label="ปิด" data-a="${A(() => { S.changes = false; render(); })}">${ic('x', 18)}</button></div>
     <div class="muted" style="font-size:14.5px;margin-bottom:10px">ตัดสิ่งที่ไม่จำเป็น รวมสิ่งที่ซ้ำ แล้วเพิ่มสิ่งที่ทำให้อยากกลับมาเรียน</div>
     <div style="font-weight:700;margin-top:14px">ตัด / รวม / ย้าย</div>${ch.map(([o, n]) => `<div class="chg"><span class="o">${o}</span><span class="gold">${ic('chev', 16)}</span><span>${n}</span></div>`).join('')}
@@ -2847,7 +3050,7 @@ function render() {
   const oEl = document.querySelector('#ovl .ovl'), oSc = oEl ? oEl.scrollTop : 0, oKey = render.k;
   ACT = {}; seq = 0; gid = 0;
   renderChrome();
-  const v = {home:S.tier === 'adv' ? vHome : vHomeBasic, learn:vLearn, coach:vCoach, watch:vWatch, livewatch:vLiveWatch, live:S.tier === 'adv' ? vLive : vLiveBasic, library:vLibrary, me:vMe, hot:vHot}[S.view] || vHome;
+  const v = {home:S.tier === 'adv' ? vHome : vHomeBasic, ep:vEp, learn:vLearn, coach:vCoach, watch:vWatch, livewatch:vLiveWatch, live:S.tier === 'adv' ? vLive : vLiveBasic, library:vLibrary, me:vMe, hot:vHot}[S.view] || vHome;
   $('#view').innerHTML = v() + `<button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}</span>`;
   document.querySelectorAll('.nft').forEach(nfSync);
   document.body.classList.toggle('watching', S.view === 'watch');
@@ -2866,7 +3069,7 @@ function render() {
 (() => {
   const h = new URLSearchParams(location.hash.slice(1));
   if (h.get('v')) S.view = h.get('v');
-  if (h.get('id')) { if (S.view === 'watch') S.clip = h.get('id'); if (S.view === 'livewatch') S.live = h.get('id'); if (S.view === 'coach') S.coach = h.get('id'); }
+  if (h.get('id')) { if (S.view === 'watch') S.clip = h.get('id'); if (S.view === 'livewatch') S.live = h.get('id'); if (S.view === 'coach') S.coach = h.get('id'); if (S.view === 'ep') S.epn = +h.get('id'); }
   if (h.get('tab')) { if (S.view === 'learn') S.learn = h.get('tab'); if (S.view === 'library') S.lib = h.get('tab'); if (S.view === 'watch') S.wtab = h.get('tab'); }
   if (h.get('theme')) S.theme = h.get('theme');
   if (h.get('warm')) S.pref.warm = true;
