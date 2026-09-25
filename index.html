@@ -1402,12 +1402,6 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
 .ttabs button{flex:1;padding:9px 14px;border-radius:999px;font-weight:700;font-size:14.5px;color:var(--ink2)}
 .ttabs button.on{background:var(--btn,var(--gold));color:var(--accink,#1a1408);box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .epcol .ttabs{max-width:600px;margin-bottom:16px}.epcol .ttabs button{white-space:nowrap}
-.epl2{position:relative;list-style:none;margin:0;padding:0}
-.epl2:before{content:"";position:absolute;left:16px;top:24px;bottom:24px;width:2px;background:var(--line2)}
-.epi2{position:relative;display:grid;grid-template-columns:34px 220px minmax(0,1fr);gap:16px;align-items:center;padding:12px 14px 12px 0;border-radius:18px;cursor:pointer;transition:background .15s}
-.epi2:hover{background:var(--bg2)}.epi2.here{background:var(--bg2);box-shadow:inset 0 0 0 1.5px var(--goldln)}
-.epim{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);border:2px solid var(--line2);font-weight:800;font-size:13.5px;color:var(--ink2)}
-.epi2.ok .epim{background:var(--green);border-color:var(--green);color:#fff}.epi2.cur .epim,.epi2.next .epim{border-color:var(--acc,var(--gold));color:var(--gold);background:var(--bg2)}
 .epip{position:absolute;left:50%;top:50%;z-index:2;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--btn,var(--gold));color:var(--accink,#1a1408);box-shadow:0 8px 20px rgba(0,0,0,.25);transition:transform .2s}
 .epfeat{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px;align-items:center;padding:16px;margin-bottom:24px;border-radius:22px;background:var(--bg2);border:1px solid var(--goldln);box-shadow:0 0 0 4px var(--goldbg)}
 .epft{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;cursor:pointer;box-shadow:0 0 0 1px var(--line)}.epft:hover .epip{transform:scale(1.08)}
@@ -1417,16 +1411,8 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
 .epfb h3{margin:8px 0 6px;font-size:20px;line-height:1.35}
 .epfm{display:flex;align-items:center;gap:5px;font-size:14px;color:var(--ink2)}
 .epfp{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:13.5px;font-weight:700;color:var(--ink2)}.epfp i{flex:1;height:6px;border-radius:3px;background:var(--line2);overflow:hidden}.epfp b{display:block;height:100%;background:var(--acc,var(--gold))}
-.eph3{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:17px}.eph3 svg{color:var(--gold)}.eph3 .muted{font-size:13px;font-weight:500}
-.epi2.ch{grid-template-columns:34px 66px minmax(0,1fr)}
-.echt{justify-self:start;padding:4px 9px;border-radius:8px;background:var(--goldbg);color:var(--gold);font-size:13.5px;font-weight:800;font-variant-numeric:tabular-nums}
-.epi2.ch .epih b{color:var(--ink);font-size:16px}
 .epnote{display:flex;align-items:flex-start;gap:8px;margin:0 0 4px;padding:12px 14px;border-radius:14px;background:var(--goldbg);font-size:14px;line-height:1.55;color:var(--ink2)}.epnote svg{flex:none;margin-top:2px;color:var(--gold)}
 .epupd{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--eksub)}.epupd svg{color:var(--ekk)}
-.epih{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13.5px;color:var(--mut)}.epih b{color:var(--gold);font-size:14px}.epih span{display:inline-flex;align-items:center;gap:4px}
-.epib h4{margin:4px 0;font-size:17px;line-height:1.35}
-.epib p{margin:0;font-size:14px;line-height:1.55;color:var(--ink2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.epihere{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 12px;border-radius:999px;background:var(--btn,var(--gold));color:var(--accink,#1a1408);font-size:13px;font-weight:800}
 .ergrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
 .erc{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center;padding:10px;border-radius:16px;background:var(--bg2);border:1px solid var(--line);cursor:pointer;transition:border-color .15s}.erc:hover{border-color:var(--goldln)}
 .ercc{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden}
@@ -1464,8 +1450,6 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   .eroad{display:flex;align-items:flex-start;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory;margin-right:-16px;padding-right:16px}.eroad::-webkit-scrollbar{display:none}.erd{flex:0 0 80%;scroll-snap-align:start}
   .epcol .ttabs{overflow-x:auto;scrollbar-width:none}.epcol .ttabs::-webkit-scrollbar{display:none}.epcol .ttabs button{flex:0 0 auto;padding:9px 13px;font-size:13.5px}
   .epfeat{grid-template-columns:minmax(0,1fr);gap:14px;padding:12px}.epfb h3{font-size:17px}
-  .epi2,.epi2.ch{grid-template-columns:28px 58px minmax(0,1fr);gap:10px;padding:10px 8px 10px 0}.echt{font-size:12.5px;padding:3px 7px}.epim{width:28px;height:28px;font-size:12px}.epl2:before{left:13px}
-  .epib h4{font-size:15px}.epib p{display:none}.epih{font-size:12.5px;gap:6px}.epih .tag{display:none}
   .ergrid{grid-template-columns:minmax(0,1fr)}.erc{grid-template-columns:128px minmax(0,1fr)}
   .epside{grid-template-columns:minmax(0,1fr)}
 }
@@ -1826,17 +1810,8 @@ const MONTHS_BACK = [['ส.ค. 2569', 7, 3], ['ก.ค. 2569', 6, -2], ['มิ
 [1, 2, 3, 4].forEach(n => { const m = CLIPS.find(c => c.id === MASTER[n]); MONTHS_BACK.forEach(([ver, mo, dd], i) => CLIPS.push({id:`v${n}m${mo + 1}`, cat:'bver', ep:String(n), ver, vdate:new Date(2026, mo, 1), title:`${m.title} · รอบ ${ver}`, coach:m.coach, dur:m.dur + dd, prog:null, hue:m.hue, views:Math.round(m.views * (.55 - i * .15)), date:ver, ch:m.ch})); });
 CLIPS.forEach((c, i) => { c.seed = 101 + i * 17; if (!c.ch) { const q = c.dur * 60 / 4; c.ch = CH([['0:00','เริ่มต้น + ภาพรวม'],[mmss(q),'หลักการสำคัญ'],[mmss(q * 2),'เคสตัวอย่างจากกราฟจริง'],[mmss(q * 3),'สรุป + สิ่งที่ต้องฝึกต่อ']]); } c.tx = c.tx || []; });
 const byClip = id => CLIPS.find(c => c.id === id);
-/* one clip per lesson: its chapters (บทย่อย) and how far the member got in each */
-const CHD = {
-  b11:['หุ้นคืออะไร ทำไมราคาขึ้นลง และใครเป็นคนซื้อขายในตลาด', 'ตลาดเปิดปิดกี่โมง ซื้อขายขั้นต่ำเท่าไหร่ และค่าธรรมเนียมเบื้องต้น', 'เปิดหน้าจอ Streaming ครั้งแรก รู้จักแต่ละส่วนของหน้าจอ', 'อ่าน Bid / Offer และปริมาณซื้อขาย เพื่อดูว่าแรงซื้อหรือแรงขายมากกว่า', 'ตั้งค่า TradingView ให้พร้อมดูกราฟแท่งเทียนรายวัน', 'ใช้ E Fin Stock Pickup คัดหุ้นที่วอลุ่มผิดปกติ', 'สรุปทั้งบท แล้วสร้าง Watchlist ของตัวเอง'],
-  b2:['ที่มาของ Dow Theory และเหตุผลที่นักเทรดทุกสไตล์ต้องอ่านเทรนด์ให้เป็นก่อนตัดสินใจ','แยกภาพใหญ่ ภาพกลาง ภาพเล็ก ให้ออก แล้วดูให้ครบทั้ง 3 ภาพก่อนเข้าเทรด','ยอดใหม่สูงกว่ายอดเก่า จุดต่ำใหม่สูงกว่าจุดต่ำเก่า คือขาขึ้น ฝึกนับยอดและจุดต่ำจากกราฟจริง','แนวรับแนวต้านคือโซนที่แรงซื้อแรงขายเคยหยุดราคา ไม่ใช่เส้นเป๊ะๆ เส้นเดียว','เลือกเฉพาะโซนที่ราคาเคารพหลายครั้ง ตีเส้นน้อยแต่อ่านกราฟง่ายขึ้น','ไล่เคสจริง 3 หุ้น ราคาทะลุแนวต้านแล้วกลับมาทดสอบเป็นแนวรับ','ทบทวนทั้งบทใน 3 นาที แล้วรับโจทย์การบ้านกราฟ 3 ข้อส่งให้โค้ชตรวจ'],
-  b3:['คนที่อยู่รอดในตลาดคือคนที่รักษาเงินต้นได้ ไม่ใช่คนที่หาจุดเข้าได้แม่นที่สุด','ก่อนเข้าทุกครั้งต้องรู้ว่าจุด Stop loss อยู่ตรงไหน และจะออกเมื่อไหร่','กำหนดว่ายอมเสียได้กี่เปอร์เซ็นต์ของพอร์ตต่อไม้ ก่อนกดซื้อ','คำนวณจำนวนหุ้นที่ควรซื้อจากระยะห่างถึงจุด Stop loss','รวมทุกอย่างเป็นแผนเทรดเดียว: จุดเข้า Stop loss เป้าหมาย และขนาดไม้'],
-  b4:['อ่านปริมาณการซื้อขายเพื่อดูว่าแรงซื้อหรือแรงขายกำลังจริงจัง','Breakout ที่มีวอลุ่มหนุนมีโอกาสไปต่อ ส่วนที่ไม่มีวอลุ่มระวังเป็นกับดัก','RSI บอกแรงส่งของราคา MACD บอกจังหวะเปลี่ยนโมเมนตัม ใช้เป็นตัวช่วยไม่ใช่สัญญาณเดี่ยว','ใช้ Indicator ร่วมกับ Dow Theory และแนวรับแนวต้าน เพื่อยืนยันแผนเทรด'],
-};
+/* one clip per lesson, re-recorded monthly — where the member is in it */
 const clipPos = c => S.pos[c.id] ?? Math.round((c.prog || 0) * c.dur * 60);
-const chOf = c => c.ch.map((h, i, a) => ({i, t:h.t, title:h.title, s:toSec(h.t), e:i < a.length - 1 ? toSec(a[i + 1].t) : c.dur * 60, d:(CHD[c.id] || CHD[MASTER[+c.ep]] || [])[i] || ''}));
-const chProg = (c, h) => { const pos = c.prog === 1 ? c.dur * 60 : clipPos(c); return Math.max(0, Math.min(1, (pos - h.s) / (h.e - h.s))); };
-const chAt = c => { const pos = clipPos(c), l = chOf(c); return l.find(h => pos >= h.s && pos < h.e) || l[l.length - 1]; };
 /* older monthly recordings of lesson n, newest first */
 const verOf = n => CLIPS.filter(x => x.cat === 'bver' && x.ep === String(n)).sort((a, b) => b.vdate - a.vdate);
 const LIVES = [
@@ -2025,7 +2000,7 @@ const simOf = c => { const tg = new Set(tagsOf(c)); return CLIPS.filter(x => x.i
 function epRow(x, i, cur) {
   const pct = x.prog > 0 ? Math.min(1, x.prog) : 0, num = i + 1;
   const nm = x.cat === 'basic' ? `คลิปหลักเดือน ${x.ver.replace(' 2569', '')} · ใช้สอบ` : x.cat === 'bver' ? `คลิปรอบ ${x.ver}` : x.cat === 'brec' ? `${x.day} ${fd(x.rdate)} · ${x.kind}` : (x.ep ? 'EP.' + x.ep + ' ' : '') + shortT(x);
-  const desc = x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
+  const desc = x.cat === 'basic' || x.cat === 'bver' ? 'ในคลิป: ' + EPGOAL[+x.ep].join(' · ') : x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
   return `<div class="tep ${cur ? 'cur' : ''}" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${num} ${esc(nm)} · ${x.dur} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${cover(x)}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b><em class="tno">${num}.</em>${esc(nm)}</b><span>${x.dur} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
 }
 function simCard(x) {
@@ -2269,8 +2244,8 @@ function basicStage() {
   const c = byClip('b2'), pos = S.pos.b2 ?? Math.round(c.prog * c.dur * 60), cls = CAL.filter(e => e.type === 'basic' && e.ep === ME.ep && e.at > NOW).slice(0, 1);
   return `<section class="stage bstage" aria-label="บทที่กำลังเรียน">
     <div class="bbart" aria-hidden="true">${art(4711, '#d890aa', {n:46, live:true, trend:.011})}</div><div class="bbv"></div>
-    <div class="stc"><span class="bsnum" aria-hidden="true"><b>${Math.round(c.prog * 100)}%</b><small>กำลังดู · ${esc(chAt(c).title)}</small></span><div class="bblab"><span class="nS">BASIC</span>บทที่ 2 จาก 4 · คลิปหลักเดือน ${c.ver.replace(' 2569', '')}</div><h2 class="bbt">EP.2<br>Dow Theory</h2>
-      <div class="stmeta"><span>และแนวรับแนวต้าน</span><span class="dotsep"></span><span>${c.ch.length} บทย่อย</span><span class="dotsep"></span><span>เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที</span></div>
+    <div class="stc"><span class="bsnum" aria-hidden="true"><b>${Math.round(c.prog * 100)}%</b><small>คลิปหลักเดือน ${c.ver.replace(' 2569', '')} · เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที</small></span><div class="bblab"><span class="nS">BASIC</span>บทที่ 2 จาก 4 · คลิปหลักเดือน ${c.ver.replace(' 2569', '')}</div><h2 class="bbt">EP.2<br>Dow Theory</h2>
+      <div class="stmeta"><span>และแนวรับแนวต้าน</span><span class="dotsep"></span><span>คลิปเดียว ${c.dur} นาที</span><span class="dotsep"></span><span>เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที</span></div>
       <div class="bbbtn" style="margin-top:20px"><button class="btn xl" data-go="watch:b2">${ic('play', 22)}เรียนต่อ · นาที ${mmss(pos)}</button><button class="btn xl ghost" data-go="ep:${ME.ep}">${ic('stack', 20)}ดูทุกคลิปของบทนี้</button></div>
       <div class="bbres"><div class="bbpb" aria-hidden="true"><i style="width:${c.prog * 100}%"></i></div>ดูไป ${Math.round(c.prog * 100)}% · ดูจบแล้วทำแบบทดสอบ 20 ข้อได้</div></div>
     <div class="stsel"><div class="bclh">คลาสสดถัดไป · อีก ${Math.ceil((dOnly(cls[0].at) - dOnly(NOW)) / 864e5)} วัน</div>${cls.map(e => `<div class="bcls"><span class="bcd"><span>${TH_D[e.at.getDay()]}</span><b>${e.at.getDate()}</b><span>${TH_M[e.at.getMonth()]}</span></span><span class="bct"><b>${e.kind === 'ตลาดจริง' ? 'พุธ · ตลาดจริง' : 'เสาร์ · Case Clinic'}</b><span>${hm(e.at)}–${e.end} น. · ${e.kind === 'ตลาดจริง' ? 'เปิด Streaming ดูหุ้นจริง' : 'เฉลยการบ้าน + ไล่เคส'}</span></span>${sessAction(e)}</div>`).join('')}<button class="plink" data-go="live">ดูตารางคลาสสดทั้งหมด${ic('chev', 14)}</button></div>
@@ -2508,21 +2483,21 @@ const NEXT_UPD = new Date(NOW.getFullYear(), NOW.getMonth() + 1, 1);
 function epState(n) {
   const m = byClip(MASTER[n]), g = GRAD[n - 1], adv = S.tier === 'adv';
   const p = m.prog >= 1 ? 1 : Math.max(0, Math.min(1, clipPos(m) / (m.dur * 60))), left = Math.max(0, Math.round(m.dur * (1 - p)));
-  const st = p >= 1 ? 'done' : p > 0 ? 'cur' : '', chs = chOf(m);
+  const st = p >= 1 ? 'done' : p > 0 ? 'cur' : '';
   const quiz = adv ? {s:'ok', t:`ผ่าน ${[18, 17, 19, 16][n - 1]}/20`} : g.qs === 'ok' ? {s:'ok', t:g.q} : p >= 1 ? {s:'cur', t:'พร้อมทำแล้ว'} : {s:'lock', t:`ดูคลิปหลักอีก ${left} นาทีเพื่อปลดล็อก`};
   const hw = g.hs === 'na' ? {s:'na', t:'บทนี้ไม่มีการบ้าน'} : adv || g.hs === 'ok' ? {s:'ok', t:'ผ่าน 3/3'} : g.hs === 'cur' ? {s:'cur', t:g.hw} : {s:'', t:'3 ข้อ · ส่งให้โค้ชตรวจ'};
-  return {m, p, pct:Math.round(p * 100), left, st, chs, vers:verOf(n), quiz, hw, cls:nextBasic(n), recs:epRecs(n)};
+  return {m, p, pct:Math.round(p * 100), left, st, vers:verOf(n), quiz, hw, cls:nextBasic(n), recs:epRecs(n)};
 }
 const epStTag = st => st === 'done' ? `<span class="eks ok">${ic('check', 13)}ผ่านแล้ว</span>` : st === 'cur' ? '<span class="eks cur"><i></i>กำลังเรียน</span>' : '<span class="eks">ยังไม่เริ่ม</span>';
 const monShort = v => v.replace(' 2569', '');
-/* one of the 4 home cards: a cover with a stack behind it (this month's clip + older months + live replays), progress through the clip's chapters, and the next step */
+/* one of the 4 home cards: a cover with a stack behind it (this month's clip + older months + live replays), progress through the clip, and the next step */
 function epCard(n) {
   const s = epState(n), g = GRAD[n - 1], m = s.m;
   return `<article class="ek st-${s.st || 'new'}" data-go="ep:${n}" aria-label="EP.${n} ${esc(g.t)} · คลิปหลักเดือน ${monShort(m.ver)} ${m.dur} นาที · ${s.st === 'done' ? 'ผ่านแล้ว' : s.st === 'cur' ? `กำลังเรียน ดูไป ${s.pct}%` : 'ยังไม่เริ่ม'}">
     <div class="ekc"><span class="ekart" aria-hidden="true">${art(900 + n * 37, HUES.gold, {n:18, bare:true, trend:.014})}</span>${epStTag(s.st)}
       <span class="ekn" aria-hidden="true"><small>EP</small><b>${n}</b></span>
       <span class="ekt"><small>บทที่ ${n} จาก 4<span class="ekbt"> · Basic Technical</span></small><b>${esc(g.t)}</b></span></div>
-    <div class="eki"><div class="ekd" aria-hidden="true">${s.chs.map(h => { const p = chProg(m, h); return `<i class="${p >= 1 ? 'ok' : p > 0 ? 'cur' : ''}"><em style="width:${Math.round(p * 100)}%"></em></i>`; }).join('')}</div>
+    <div class="eki"><div class="ekd" aria-hidden="true"><i class="${s.st === 'done' ? 'ok' : ''}"><em style="width:${s.pct}%"></em></i></div>
       <div class="ekm"><span>${s.st === 'done' ? 'ดูคลิปหลักจบแล้ว' : s.st === 'cur' ? `ดูไป ${s.pct}%` : 'ยังไม่เริ่มดู'}</span><span>${s.st === 'cur' ? `เหลือ ${s.left} นาที` : `${m.dur} นาที`}</span></div>
       <div class="ekx"><span>${ic('play', 13)}คลิปหลัก ${monShort(m.ver)}</span><span>${ic('stack', 13)}รอบเก่า ${s.vers.length}</span><span>${ic('live', 13)}คลาสสด ${s.recs.length}</span></div>
       ${s.st === 'cur' ? `<button class="btn ekb" data-go="watch:${m.id}">${ic('play', 15)}ดูต่อ · นาที ${mmss(clipPos(m))}</button>` : `<span class="ekgo">${s.st === 'done' ? 'ทบทวนบทนี้' : 'เปิดดูบทนี้'}${ic('chev', 15)}</span>`}</div></article>`;
@@ -2536,21 +2511,13 @@ function vAll() {
 /* the lesson page */
 function vEp() {
   const n = Math.min(4, Math.max(1, +S.epn || ME.ep)), s = epState(n), g = GRAD[n - 1], m = s.m, adv = S.tier === 'adv';
-  const tab = S.eptab || 'main', rk = S.epk || 'all', pos = clipPos(m), here = chAt(m);
+  const tab = S.eptab || 'main', rk = S.epk || 'all', pos = clipPos(m);
   const perDay = 15, days = Math.max(1, Math.ceil(s.left / perDay)), R = 46, C = 2 * Math.PI * R;
   const playFrom = t => A(() => { S.pos[m.id] = t; go('watch', m.id); });
   const road = (i, icon, t, sub, st, act) => `<li class="erd ${st}"><span class="erdi" aria-hidden="true">${st === 'ok' ? ic('check', 18) : icon ? ic(icon, 17) : i}</span><div><small>ขั้นที่ ${i}</small><b>${t}</b><span>${sub}</span>${act || ''}</div></li>`;
   const quizAct = s.quiz.s === 'cur' ? `<button class="btn sm" data-a="${A(() => { go('watch', m.id); S.wtab = 'sum'; render(); const t = $('#wtools'); if (t) t.scrollIntoView(); })}">ทำแบบทดสอบ</button>` : '';
   const hwAct = s.hw.s === 'cur' && n === ME.ep && !adv ? `<button class="btn sm" data-a="${A(openHw)}">ส่งการบ้าน</button>` : '';
   const clsAct = s.cls ? `<div class="erda">${adv ? remindBtn(s.cls) : bActs(s.cls)}</div>` : '';
-  /* a chapter of the main clip: tap to play from its start */
-  const chItem = h => {
-    const p = chProg(m, h), cur = s.st !== 'done' && h.i === here.i && p < 1, st = p >= 1 ? 'ok' : cur ? 'cur' : '';
-    return `<li class="epi2 ch ${st} ${cur ? 'here' : ''}" data-a="${playFrom(cur ? pos : h.s)}" aria-label="บทย่อย ${h.i + 1} ${esc(h.title)} เริ่มนาที ${h.t}${p >= 1 ? ' · ดูผ่านแล้ว' : cur ? ' · กำลังดู' : ''}">
-      <span class="epim" aria-hidden="true">${p >= 1 ? ic('check', 14) : h.i + 1}</span><span class="echt">${h.t}</span>
-      <div class="epib"><div class="epih"><b>${esc(h.title)}</b><span>${ic('clock', 13)}${Math.max(1, Math.round((h.e - h.s) / 60))} นาที</span>${p >= 1 ? `<span class="tag gr">${ic('check', 12)}ดูแล้ว</span>` : ''}</div><p>${esc(h.d)}</p>
-        ${cur ? `<span class="epihere">${ic('play', 13)}ดูต่อจากนาที ${mmss(pos)}</span>` : ''}</div></li>`;
-  };
   const verItem = c => `<div class="erc" data-go="watch:${c.id}" aria-label="คลิปรอบ ${c.ver} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}</div>
     <div class="erct"><b>คลิปรอบ ${c.ver}</b><span>EP.${n} ${esc(g.t)}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · ดูทบทวนได้ · ไม่นับสอบ${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
   const recs = s.recs.filter(c => rk === 'all' || c.kind === rk);
@@ -2563,9 +2530,8 @@ function vEp() {
         <div class="ergrid">${recs.map(recItem).join('') || '<p class="muted">ยังไม่มีคลาสแบบนี้ในบทนี้</p>'}</div><p class="ekhint">${ic('live', 15)}สอนสดทุกพุธและเสาร์ 09:50 น. จบคลาสแล้วคลิปเข้าที่นี่อัตโนมัติ</p>`
     : `<div class="epfeat"><div class="epft" data-a="${playFrom(s.st === 'cur' ? pos : 0)}" aria-label="${s.st === 'cur' ? 'ดูต่อ' : 'เล่น'} คลิปหลัก EP.${n}">${cover(m)}${s.p > 0 && s.p < 1 ? `<span class="nfp"><i style="width:${s.pct}%"></i></span>` : ''}<span class="epip" aria-hidden="true">${ic('play', 24)}</span></div>
         <div class="epfb"><div class="epfk"><span class="epfx">${ic('award', 13)}ใช้สอบ</span><span>คลิปหลักเดือน ${monShort(m.ver)} · อัปเดต 1 ${monShort(m.ver)}</span></div><h3>${esc(m.title)}</h3>
-          <div class="epfm">${ic('clock', 14)}${m.dur} นาที · ${s.chs.length} บทย่อย · โค้ชแนน</div>
-          <div class="epfp"><i><b style="width:${s.pct}%"></b></i><span>${s.st === 'done' ? 'ดูจบแล้ว' : s.st === 'cur' ? `ดูไป ${s.pct}% · เหลือ ${s.left} นาที` : 'ยังไม่เริ่มดู'}</span></div></div></div>
-      <h3 class="eph3">${ic('stack', 17)}บทย่อยในคลิป <span class="muted">กดเพื่อข้ามไปดูช่วงนั้น</span></h3><ol class="epl2">${s.chs.map(chItem).join('')}</ol>`;
+          <div class="epfm">${ic('clock', 14)}${m.dur} นาที · สอนโดยโค้ชแนน · ดูจบแล้วปลดล็อกแบบทดสอบ 20 ข้อ</div>
+          <div class="epfp"><i><b style="width:${s.pct}%"></b></i><span>${s.st === 'done' ? 'ดูจบแล้ว' : s.st === 'cur' ? `ดูไป ${s.pct}% · เหลือ ${s.left} นาที` : 'ยังไม่เริ่มดู'}</span></div></div></div>`;
   return `<nav class="epnav" aria-label="บทเรียน Basic"><button class="eback" data-go="home">${ic('back', 18)}วิดีโอทั้งหมด</button><div class="epsw">${[1, 2, 3, 4].map(k => { const t = epState(k).st; return `<button class="${k === n ? 'on' : ''} ${t}" ${k === n ? 'aria-current="page"' : ''} data-go="ep:${k}">${t === 'done' ? ic('check', 13) : t === 'cur' ? '<i></i>' : ''}EP.${k}</button>`; }).join('')}</div></nav>
   <section class="ephero st-${s.st || 'new'}" aria-labelledby="eph1"><span class="ekart" aria-hidden="true">${art(900 + n * 37, HUES.gold, {n:30, bare:true, trend:.012, live:true})}</span>
     <div class="ephl"><div class="bblab"><span class="nS">BASIC</span>บทที่ ${n} จาก 4 · คลิปหลักเดือน ${monShort(m.ver)} · ${m.dur} นาที</div>
@@ -2578,7 +2544,7 @@ function vEp() {
         ${s.st !== 'done' && s.cls ? `<span class="epplan">${ic('spark', 13)}ดูวันละ ${perDay} นาที จบใน ${days} วัน ${Math.ceil((dOnly(s.cls.at) - dOnly(NOW)) / 864e5) >= days ? '· ทัน' : '· ก่อน'}คลาสสด ${TH_D[s.cls.at.getDay()]} ${fd(s.cls.at)}</span>` : ''}</div></div>
   </section>
   <ol class="eroad" aria-label="ขั้นตอนของบทนี้">
-    ${road(1, 'play', 'ดูคลิปหลักให้จบ', s.st === 'done' ? 'ดูจบแล้ว' : s.st === 'cur' ? `ดูไป ${s.pct}% · เหลือ ${s.left} นาที` : `${m.dur} นาที · ${s.chs.length} บทย่อย`, s.st === 'done' ? 'ok' : s.st === 'cur' ? 'cur' : '')}
+    ${road(1, 'play', 'ดูคลิปหลักให้จบ', s.st === 'done' ? 'ดูจบแล้ว' : s.st === 'cur' ? `ดูไป ${s.pct}% · เหลือ ${s.left} นาที` : `คลิปเดียว ${m.dur} นาที`, s.st === 'done' ? 'ok' : s.st === 'cur' ? 'cur' : '')}
     ${road(2, s.quiz.s === 'lock' ? 'lock' : 'layers', 'แบบทดสอบ 20 ข้อ', s.quiz.t, s.quiz.s, quizAct)}
     ${road(3, s.hw.s === 'na' ? 'minus' : 'note', 'การบ้านกราฟ', s.hw.t, s.hw.s, hwAct)}
     ${road(4, 'live', 'เข้าคลาสสดของบทนี้', s.cls ? `${TH_DL[s.cls.at.getDay()]} ${fd(s.cls.at)} · ${hm(s.cls.at)} น.` : 'ไม่มีรอบใหม่ในเดือนนี้', s.st === 'done' && !s.cls ? 'ok' : '', clsAct)}
@@ -2753,40 +2719,41 @@ const SUMS = {
       qz:[{q:'สิ่งแรกที่ต้องรู้ก่อนเข้าซื้อคืออะไร', o:['เป้าหมายกำไร','จุด Stop loss','ข่าวของบริษัท'], a:1, x:'รู้ทางออกก่อนเข้าเสมอ', t:'8:15'}]},
 };
 function vWatch() {
-  const c = byClip(S.clip) || byClip('b2'), total = c.dur * 60;
+  const c = byClip(S.clip) || byClip('b2'), total = c.dur * 60, bas = c.cat === 'basic' || c.cat === 'bver';
+  if (bas && S.wtab === 'chap') S.wtab = 'sum';
   const pos = S.pos[c.id] ?? Math.round((c.prog && c.prog < 1 ? c.prog : 0) * total);
   const curCh = c.ch.reduce((a, ch, i) => toSec(ch.t) <= pos ? i : a, 0);
   const notes = S.notes.filter(n => n.clip === c.id);
-  const ccOn = S.cc ?? !!S.pref.ccAuto, capLine = c.tx.filter(([t]) => toSec(t) <= pos).pop(), capText = capLine ? capLine[1] : c.ch[curCh].title;
+  const ccOn = S.cc ?? !!S.pref.ccAuto, capLine = c.tx.filter(([t]) => toSec(t) <= pos).pop(), capText = capLine ? capLine[1] : bas ? GRAD[+c.ep - 1].t : c.ch[curCh].title;
   const seek = s => A(() => { S.pos[c.id] = s; render(); });
   const list = c.cat === 'basic' ? CLIPS.filter(x => x.cat === 'basic') : c.cat === 'bver' ? [byClip(MASTER[+c.ep]), ...verOf(+c.ep).filter(x => x.id !== c.id)] : c.cat === 'brec' ? [byClip(MASTER[c.rep]), ...CLIPS.filter(x => x.cat === 'brec' && x.rep === c.rep).sort((a, b) => b.rdate - a.rdate)] : CLIPS.filter(x => x.cat === c.cat && x.id !== c.id).slice(0, 6);
-  const tabs = [['chap',`บทย่อย (${c.ch.length})`],['sum','สรุป + ทดสอบ'],['notes',`โน้ตของฉัน (${notes.length})`],['tx','ถอดความ']];
+  const tabs = [...(bas ? [] : [['chap',`บทย่อย (${c.ch.length})`]]),['sum','สรุป + ทดสอบ'],['notes',`โน้ตของฉัน (${notes.length})`],['tx','ถอดความ']];
   let tb = '';
   if (S.wtab === 'chap') tb = c.ch.map((ch, i) => `<div class="chap ${i === curCh ? 'on' : ''}" data-a="${seek(toSec(ch.t))}"><span class="ts">${ch.t}</span><span>${esc(ch.title)}</span>${i === curCh ? `<span class="gold">${ic('play', 14)}</span>` : ''}</div>`).join('');
   if (S.wtab === 'notes') tb = `<div style="display:flex;gap:10px;align-items:flex-start"><span class="tag g" style="margin-top:10px">${mmss(pos)}</span><input id="noteIn" placeholder="จดโน้ตที่นาทีนี้…" style="flex:1"><button class="btn sm" data-a="${A(() => { const v = $('#noteIn').value.trim(); if (!v) { $('#noteErr').textContent = 'พิมพ์โน้ตก่อนบันทึก'; return; } S.notes.push({clip:c.id, t:mmss(pos), text:v}); render(); toast('บันทึกโน้ตแล้ว'); })}" style="margin-top:4px">บันทึก</button></div><div class="err" id="noteErr"></div>
       <div style="margin-top:8px">${notes.map(n => `<div class="nitem"><span class="ts gold" style="font-weight:700;cursor:pointer" data-a="${seek(toSec(n.t))}">${n.t}</span><span>${esc(n.text)}</span><span></span></div>`).join('') || '<div class="muted" style="padding:10px 0">ยังไม่มีโน้ตในคลิปนี้</div>'}</div>`;
   if (S.wtab === 'tx') tb = c.tx.length ? c.tx.map(([t, x]) => `<div class="txl" data-a="${seek(toSec(t))}"><span class="gold" style="font-weight:700">${t}</span><span>${esc(x)}</span></div>`).join('') + '<div class="muted" style="font-size:13.5px;padding:8px 12px">ตัวอย่างบางช่วง · ระบบจริงถอดความทั้งคลิปอัตโนมัติ และค้นหาได้จากช่องค้นหาด้านบน</div>' : '<div class="muted" style="padding:10px">คลิปนี้ยังไม่มีข้อความถอดความในตัวอย่าง</div>';
-  if (S.wtab === 'sum') { const sm = SUMS[c.id] || {pts:c.ch.map(x => x.title), qz:[]}, done = sm.qz.filter((q, i) => S.qa[c.id + i] != null), ok = done.filter(q => S.qa[c.id + sm.qz.indexOf(q)] === q.a).length;
+  if (S.wtab === 'sum') { const sm = SUMS[c.id] || (bas ? {pts:EPSUM[+c.ep], qz:[]} : {pts:c.ch.map(x => x.title), qz:[]}), done = sm.qz.filter((q, i) => S.qa[c.id + i] != null), ok = done.filter(q => S.qa[c.id + sm.qz.indexOf(q)] === q.a).length;
     tb = `<div class="muted" style="font-size:13.5px;padding:2px 4px 6px;display:flex;gap:6px;align-items:center">${ic('spark', 14)}สรุปจากเนื้อหาในคลิป · อ่านจบใน 30 วินาที</div>${sm.pts.map((x, i) => `<div class="kp"><i>${i + 1}</i><span>${esc(x)}</span></div>`).join('')}
     ${sm.qz.length ? `<div style="font-weight:700;margin:16px 4px 0">ทดสอบความเข้าใจ ${sm.qz.length} ข้อ <span class="muted" style="font-weight:400;font-size:14px">· ${done.length ? `ถูก ${ok} จาก ${done.length}` : 'ไม่นับคะแนน ลองได้เลย'}</span></div>` + sm.qz.map((q, qi) => { const k = c.id + qi, ans = S.qa[k]; return `<div class="qq" role="group" aria-label="คำถามข้อ ${qi + 1}"><b>${qi + 1}. ${esc(q.q)}</b>${q.o.map((o, oi) => `<button class="qo ${ans != null ? (oi === q.a ? 'ok' : oi === ans ? 'no' : '') : ''}" ${ans != null ? 'disabled' : ''} data-a="${A(() => { S.qa[k] = oi; render(); })}">${esc(o)}</button>`).join('')}${ans != null ? `<div class="qx" aria-live="polite"><span style="color:var(${ans === q.a ? '--green' : '--live'});display:inline-flex;gap:4px;align-items:center;font-weight:700">${ic(ans === q.a ? 'check' : 'x', 15)}${ans === q.a ? 'ถูกต้อง' : 'ยังไม่ถูก'}</span> · ${esc(q.x)}<button class="rlink" data-a="${seek(toSec(q.t))}">ดูช่วงนาที ${q.t} อีกครั้ง</button></div>` : ''}</div>`; }).join('') : `<div class="muted" style="font-size:14px;padding:10px 4px">แบบทดสอบสั้นมีในคลิป Master Clip ของแต่ละ EP</div>`}`; }
   const side = c.cat === 'bver' ? `<div class="card pad vernote" style="margin-bottom:14px"><div style="font-weight:700;margin-bottom:6px">คลิปรอบ ${c.ver}</div><div class="muted" style="font-size:14px;line-height:1.6">คลิปนี้เป็นรอบเก่า ดูทบทวนได้ แต่การสอบนับคลิปหลักเดือนนี้ (รอบ ${byClip(MASTER[+c.ep]).ver})</div><button class="btn sm" style="margin-top:10px" data-go="watch:${MASTER[+c.ep]}">${ic('play', 13)}ไปคลิปหลักเดือนนี้</button></div>` : c.cat === 'basic' ? `<div class="card pad" style="margin-bottom:14px"><div style="font-weight:700;margin-bottom:10px">หลังดูจบ</div>
       <div class="ji" style="margin-bottom:8px"><div class="ico" style="background:var(--purplebg);color:var(--purple)">${ic('layers', 18)}</div><div class="tx"><b>แบบทดสอบ EP.${c.ep.charAt(0)} · 20 ข้อ</b><span>${c.prog === 1 ? 'พร้อมทำ' : `ดูอีก ${Math.round(c.dur * (1 - (c.prog || 0)))} นาทีเพื่อปลดล็อก`}</span></div></div>
       ${c.ep === '2' || c.ep === '3' ? `<div class="ji"><div class="ico" style="background:var(--goldbg);color:var(--gold)">${ic('note', 18)}</div><div class="tx"><b>การบ้านกราฟ EP.${c.ep} · 3 ข้อ</b><span>${c.ep === '2' ? 'ผ่าน 1/3' : '0/3'}</span></div><button class="btn sm ghost" data-a="${A(openHw)}">ส่ง</button></div>` : ''}</div>` : '';
   /* Basic: the lesson's main clip (or an older monthly recording) — what comes next is the next lesson; the list panel shows the lesson's clips by month */
-  const bas = c.cat === 'basic' || c.cat === 'bver', nx = nextOf(c), remain = total - pos, showNext = nx && remain <= 90 && !nuSkip.has(c.id);
+  const nx = nextOf(c), remain = total - pos, showNext = nx && remain <= 90 && !nuSkip.has(c.id);
   const goNext = nx ? A(() => go('watch', nx.id)) : null, nextLab = nx ? nx.title : '';
-  const head = bas ? `<b>Basic Technical</b><span class="pep">EP.${c.ep}${c.cat === 'bver' ? ' · รอบ ' + esc(c.ver) : ''}</span>${esc(c.ch[curCh].title)}` : c.cat === 'brec' ? `<b>คลาสสดย้อนหลัง EP.${c.rep}</b>${esc(c.day + ' ' + fd(c.rdate) + ' · ' + c.kind)}` : `<b>${esc(serName(c))}</b>${esc(shortT(c))}`;
+  const head = bas ? `<b>Basic Technical</b><span class="pep">EP.${c.ep}${c.cat === 'bver' ? ' · รอบ ' + esc(c.ver) : ''}</span>${esc(GRAD[+c.ep - 1].t)}` : c.cat === 'brec' ? `<b>คลาสสดย้อนหลัง EP.${c.rep}</b>${esc(c.day + ' ' + fd(c.rdate) + ' · ' + c.kind)}` : `<b>${esc(serName(c))}</b>${esc(shortT(c))}`;
   const pn = S.epsSeason || (bas ? +c.ep : c.cat === 'brec' ? c.rep : 0);
   const pclips = pn ? [byClip(MASTER[pn]), ...verOf(pn)] : [];
   const panel = S.epsPanel && pn ? `<div class="epp" role="dialog" aria-label="คลิปทั้งหมดของ EP.${pn}"><div class="epph"><button class="pic sm" aria-label="บทก่อนหน้า" ${pn > 1 ? `data-a="${A(() => { S.epsSeason = pn - 1; render(); })}"` : 'disabled'}>${ic('back', 20)}</button><div><b>EP.${pn} ${esc(GRAD[pn - 1].t)}</b><span>คลิปหลักเดือนนี้ + คลิปรอบเก่า</span></div><button class="pic sm" aria-label="บทถัดไป" ${pn < 4 ? `data-a="${A(() => { S.epsSeason = pn + 1; render(); })}"` : 'disabled'}>${ic('chev', 20)}</button><span class="hsp"></span><button class="pic sm" aria-label="ปิดรายการคลิป" data-a="${A(() => { S.epsPanel = false; render(); })}">${ic('x', 20)}</button></div>
-      <div class="eppl">${pclips.map((x, i) => { const on = x.id === c.id, pr = x.prog > 0 ? Math.min(1, x.prog) : 0; return `<div class="eppi ${on ? 'on' : ''}" data-a="${A(() => { S.epsPanel = false; go('watch', x.id); })}" aria-label="${i ? 'คลิปรอบ ' + esc(x.ver) : 'คลิปหลักเดือนนี้ ใช้สอบ'}${on ? ' กำลังเล่น' : ''}"><span class="n">${esc(monShort(x.ver))}</span><div class="eppb"><div class="eppt"><b>${i ? 'คลิปรอบ ' + esc(x.ver) : 'คลิปหลักเดือนนี้ · ใช้สอบ'}</b><span>${x.dur} นาที</span></div>${on ? `<div class="eppx"><span class="tth">${cover(x)}<span class="pl">${ic('play', 16)}</span></span><p>${esc(x.ch.map(h => h.title).slice(0, 4).join(' · '))}</p></div>` : ''}${pr > 0 ? `<span class="eppbar"><i style="width:${pr * 100}%"></i></span>` : ''}</div></div>`; }).join('')}</div></div>` : '';
+      <div class="eppl">${pclips.map((x, i) => { const on = x.id === c.id, pr = x.prog > 0 ? Math.min(1, x.prog) : 0; return `<div class="eppi ${on ? 'on' : ''}" data-a="${A(() => { S.epsPanel = false; go('watch', x.id); })}" aria-label="${i ? 'คลิปรอบ ' + esc(x.ver) : 'คลิปหลักเดือนนี้ ใช้สอบ'}${on ? ' กำลังเล่น' : ''}"><span class="n">${esc(monShort(x.ver))}</span><div class="eppb"><div class="eppt"><b>${i ? 'คลิปรอบ ' + esc(x.ver) : 'คลิปหลักเดือนนี้ · ใช้สอบ'}</b><span>${x.dur} นาที</span></div>${on ? `<div class="eppx"><span class="tth">${cover(x)}<span class="pl">${ic('play', 16)}</span></span><p>${esc('ในคลิป: ' + EPGOAL[pn].join(' · '))}</p></div>` : ''}${pr > 0 ? `<span class="eppbar"><i style="width:${pr * 100}%"></i></span>` : ''}</div></div>`; }).join('')}</div></div>` : '';
   const togglePlay = A(() => { S.paused = !S.paused; render(); });
   return `<div class="theater ${S.paused ? 'paused' : ''}"><div class="player" role="region" aria-label="เพลเยอร์ ${esc(c.title)}">${art(c.seed, c.hue, {n:40})}${camOf(c).length ? `<span class="pcam ${camOf(c).length > 1 ? 'duo' : ''}" aria-hidden="true">${camOf(c).map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}<em>โค้ช${coachesOf(c).map(esc).join(' · ')}</em></span>` : ''}
-      <div class="ptop"><button class="pic" aria-label="กลับ" data-a="${A(() => { S.epsPanel = false; S.epsSeason = 0; go(S.back && S.back !== 'watch' ? S.back : 'home'); })}">${ic('arrowl', 32)}</button><span class="pmark" aria-hidden="true">SPTR</span><span class="hsp"></span><button class="ptools" data-a="${A(() => { const t = $('#wtools'); if (t) t.scrollIntoView({behavior:reduceMotion() ? 'auto' : 'smooth'}); })}">${ic('down', 16)}บทย่อย · สรุป · โน้ต</button><button class="pic" aria-label="แจ้งปัญหาของคลิปนี้" data-a="${A(() => toast('ส่งเรื่องให้ทีมแล้ว ขอบคุณที่แจ้งปัญหา'))}">${ic('flag', 28)}</button></div>
+      <div class="ptop"><button class="pic" aria-label="กลับ" data-a="${A(() => { S.epsPanel = false; S.epsSeason = 0; go(S.back && S.back !== 'watch' ? S.back : 'home'); })}">${ic('arrowl', 32)}</button><span class="pmark" aria-hidden="true">SPTR</span><span class="hsp"></span><button class="ptools" data-a="${A(() => { const t = $('#wtools'); if (t) t.scrollIntoView({behavior:reduceMotion() ? 'auto' : 'smooth'}); })}">${ic('down', 16)}${bas ? 'สรุป · โน้ต · ถอดความ' : 'บทย่อย · สรุป · โน้ต'}</button><button class="pic" aria-label="แจ้งปัญหาของคลิปนี้" data-a="${A(() => toast('ส่งเรื่องให้ทีมแล้ว ขอบคุณที่แจ้งปัญหา'))}">${ic('flag', 28)}</button></div>
       ${S.paused ? `<button class="pbig" aria-label="เล่นต่อ" data-a="${togglePlay}">${ic('play', 34)}</button>` : ''}
       ${pos < 50 ? `<button class="skipi" data-a="${seek(50)}">ข้ามอินโทร</button>` : ''}${showNext ? nextUpHTML(c, nx) : ''}${panel}
       <div class="pctl"><div class="tline"><div class="track" role="slider" aria-label="ตำแหน่งในคลิป" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${pos}" aria-valuetext="${mmss(pos)} จาก ${mmss(total)}" data-a="${A(e => { const r = e.target.closest('.track').getBoundingClientRect(); S.pos[c.id] = Math.round(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * total); render(); })}">
-        <div class="f" style="width:${pos / total * 100}%"></div>${c.ch.slice(1).map(ch => `<span class="k" style="left:${toSec(ch.t) / total * 100}%"></span>`).join('')}${notes.map(n => `<span class="nm" style="left:${toSec(n.t) / total * 100}%" title="${esc(n.text)}"></span>`).join('')}<span class="kn" style="left:${pos / total * 100}%"></span></div><span class="remain" aria-label="เหลือเวลา ${mmss(remain)}">${mmss(remain)}</span></div>
+        <div class="f" style="width:${pos / total * 100}%"></div>${(bas ? [] : c.ch.slice(1)).map(ch => `<span class="k" style="left:${toSec(ch.t) / total * 100}%"></span>`).join('')}${notes.map(n => `<span class="nm" style="left:${toSec(n.t) / total * 100}%" title="${esc(n.text)}"></span>`).join('')}<span class="kn" style="left:${pos / total * 100}%"></span></div><span class="remain" aria-label="เหลือเวลา ${mmss(remain)}">${mmss(remain)}</span></div>
         <div class="prow"><button class="pbtn" aria-label="${S.paused ? 'เล่น' : 'หยุดชั่วคราว'}" data-a="${togglePlay}">${ic(S.paused ? 'play' : 'pause', 34)}</button><button class="pbtn p10" aria-label="ย้อนกลับ 10 วินาที" data-a="${seek(Math.max(0, pos - 10))}">${ic('rw', 34)}<i>10</i></button><button class="pbtn p10" aria-label="ข้ามไป 10 วินาที" data-a="${seek(Math.min(total, pos + 10))}">${ic('fw', 34)}<i>10</i></button><button class="pbtn pv" aria-label="${S.pmuted ? 'เปิดเสียง' : 'ปิดเสียง'}" data-a="${A(() => { S.pmuted = !S.pmuted; render(); })}">${ic(S.pmuted ? 'mute' : 'vol', 32)}</button>
           <span class="sp"></span><span class="ptt">${head}</span><span class="sp"></span>
           ${goNext ? `<button class="pbtn" aria-label="ถัดไป: ${esc(nextLab)}" title="ถัดไป: ${esc(nextLab)}" data-a="${goNext}">${ic('next', 32)}</button>` : ''}<button class="pbtn ${S.epsPanel ? 'on' : ''}" aria-label="${pn ? 'คลิปทั้งหมดของบทนี้' : 'ข้อมูลและตอนทั้งหมด'}" aria-expanded="${!!S.epsPanel}" data-a="${A(() => { if (!pn) { openTitle(c.id); return; } S.epsPanel = !S.epsPanel; S.epsSeason = 0; render(); })}">${ic('stack', 32)}</button><button class="pbtn ${ccOn ? 'on' : ''}" aria-pressed="${ccOn}" aria-label="คำบรรยาย" data-a="${A(() => { S.cc = !ccOn; render(); })}">${ic('cc', 32)}</button><button class="pbtn spdb" aria-label="ความเร็ว ${S.speed} เท่า กดเพื่อเปลี่ยน" data-a="${A(() => { const sp = [1, 1.25, 1.5, 2, 0.75]; S.speed = sp[(sp.indexOf(S.speed) + 1) % sp.length]; render(); toast('ความเร็ว ' + S.speed + 'x'); })}">${ic('gauge', 32)}${S.speed !== 1 ? `<i>${S.speed}x</i>` : ''}</button><button class="pbtn pf" aria-label="เต็มจอ" data-a="${A(() => { try { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); } catch (e) { toast('เปิดเต็มจอ (ในระบบจริง)'); } })}">${ic('full', 30)}</button></div></div>${ccOn ? `<div class="ccap">${esc(capText)}</div>` : ''}</div></div>
