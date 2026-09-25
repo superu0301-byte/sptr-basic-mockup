@@ -1084,6 +1084,22 @@ html.rm .nfc:hover .nfi{transform:none}@media (prefers-reduced-motion:reduce){.n
 .cvbig b{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:40cqh;letter-spacing:-.02em;background:var(--cvbigc);-webkit-background-clip:text;background-clip:text;color:transparent}
 .cvbig b svg{width:36cqh;height:36cqh;color:var(--cvk)}
 .cvbig small{margin-top:1cqh;font-size:max(9px,4.4cqw);font-weight:800;color:var(--cvsub)}
+/* phones: small landscape thumbnails (episode lists) keep just the picture / big number */
+@container (max-width:180px) and (orientation:landscape){.cvtx{display:none}.cov.ty .cvbig{right:0;left:0}.cov.ph .cvph{width:66cqw}}
+@container (orientation:portrait){
+  .cvph,.cov.duo .cvph{top:0;left:0;right:0;bottom:auto;width:auto;height:58cqh;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)}
+  .cvpi{inset:0 0 1.8cqh 0;clip-path:polygon(0 0,100% 0,100% 86%,0 100%)}
+  .cvpi i{background-size:122% auto;background-position:50% 0}
+  .cov.duo .cvpi i,.cov.duo .cvpi i:first-child{background-size:210% auto;background-position:50% 0}
+  .cvtx,.cov.ty .cvtx{left:8cqw;right:8cqw;top:auto;bottom:6cqh;width:auto;padding:0;justify-content:flex-end;gap:1.4cqh}
+  .cvtx b{font-size:clamp(12px,11cqw,30px)}
+  .cvtx em{font-size:max(8px,4.6cqw)}.cvtx small{font-size:max(9px,4.8cqw)}
+  .cvnm{top:4cqh;left:5cqw;right:auto;bottom:auto;font-size:max(8px,4.4cqw)}
+  .cvlg{left:auto;right:5cqw;top:4cqh;bottom:auto;width:26cqw;height:7cqh;background-position:right top}
+  .cov.ph .cvlg{display:none}
+  .cvbig{top:19cqh;left:0;right:0;transform:none}.cvbig b{font-size:23cqh}.cvbig b svg{width:20cqh;height:20cqh}
+  .cvart{top:32cqh;bottom:auto;width:100%;height:34cqh}
+}
 @container (max-width:300px){.cvlg{display:none}.cvtx{padding-bottom:6cqh}}
 @container (max-width:230px){.cvtx em,.cvtx small,.cvnm{display:none}.cvtx b{-webkit-line-clamp:3}}
 .thumb .cvlg,.thumb .cvnm,.sth2 .cvlg,.sth2 .cvnm,.sth .cvnm,.lrth .cvnm{display:none}
@@ -1141,7 +1157,6 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
 [data-theme=blush] .tth:after{background:linear-gradient(0deg,rgba(69,48,59,.28),transparent)}
 @media (max-width:1100px){.nfx{--n:4}}
 @media (max-width:800px){.nfx{--n:3}}
-@media (max-width:560px){.nfx{--n:2.2}}
 /* real coaches row + brand footer */
 .ntrack.coachr{grid-auto-columns:calc((100% - 80px)/9);gap:10px;padding:4px 2px 6px}
 .coachr .ccd{border-radius:12px}.coachr .ccp{aspect-ratio:1}
@@ -1276,7 +1291,7 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   .agni{grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}.agni b{grid-row:1;grid-column:1}.agni .agnd{grid-row:2;grid-column:1}.agni span:last-of-type{grid-column:1 / -1}.agni em{grid-row:1;grid-column:2}
   .slots{grid-template-columns:repeat(4,minmax(0,1fr))}.bkmode{grid-template-columns:minmax(0,1fr)}
   .tkc{grid-template-columns:minmax(0,1fr)}.tkc:before,.tkc:after{display:none}.tkq{border-left:none;border-top:2px dashed var(--goldln);flex-direction:row;flex-wrap:wrap;gap:10px 14px}
-  .nfx{--nfs:16px;--g:6px;margin-bottom:-110px;padding:30px 0 120px}.nfrh{flex-wrap:wrap;row-gap:0}.nfrh h3{flex-basis:100%}.nfpg{display:none}
+  .nfx{--nfs:16px;--g:6px;margin-bottom:-110px;padding:30px 0 120px}.nfrh{gap:8px}.nfrh h3{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.nfrh .nfs,.nfrh .hsp,.nfpg{display:none}
   .cstrip{grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:10px 12px}.csl{grid-column:1 / -1;order:3}.csnav .narr{display:none}
   .bstage .stsel{padding:0 12px 14px}.bstage .bbbtn .btn.xl{flex:1 1 100%}
   .cyr{grid-template-columns:minmax(0,1fr);gap:4px}.cyh{display:none}
@@ -1300,6 +1315,81 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   .sfoot{padding:20px 18px;gap:18px}.sfs{gap:18px;justify-content:space-between}.sfs b{font-size:20px}.sfoot .btn.line{width:100%}
   .eyer{top:auto;bottom:calc(84px + env(safe-area-inset-bottom))}
   .row.wr .seg{width:100%;justify-content:space-between}.row.wr .seg button{flex:1;padding:8px 6px}
+}
+/* phones: tall posters, three across with the fourth peeking in */
+@media (max-width:600px){
+  .nfx{--n:3.3;--g:8px;--nfs:12px;margin-top:30px;padding-top:24px}.nfx.mid{padding-bottom:28px}
+  .nfxh span{display:none}.nfxh h2{font-size:21px}
+  .nfr{margin-top:22px}.nfrh{margin-bottom:8px;min-height:0}.nfrh h3{font-size:18px;font-weight:800}.nfall{font-size:13px}
+  .nft{padding-top:2px;padding-bottom:2px}
+  .nfi{aspect-ratio:5/7;border-radius:8px}.nfc:hover .nfi{transform:none}
+  .nfbd{top:3%;right:4%}.nfbd em{height:18px;font-size:10.5px;padding:0 .6em}.nfbd em.ok{width:18px}
+}
+/* details: phone-only parts hidden on larger screens */
+.tmb,.tmute,.tno{display:none}
+.tcam{position:absolute;right:16px;top:64px;z-index:1;display:flex;width:17%;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 0 0 2px var(--acc,#e3b857),0 10px 24px rgba(0,0,0,.4)}.tcam.duo{width:26%;aspect-ratio:3/2}
+.tcam i{flex:1;background-size:190% auto;background-position:50% 8%;background-repeat:no-repeat}.tcam.duo i{background-size:260% auto}
+@media (max-width:600px){
+  .tmod .thero{aspect-ratio:16/9}.tmod .thero:after{background:linear-gradient(0deg,rgba(0,0,0,.35),transparent 40%)}
+  .tmod .thc,.tmod .tinfo,.tsec[data-sec=about],.tmod[data-tab=eps] .tsec[data-sec=sim],.tmod[data-tab=sim] .tsec[data-sec=eps],.tsec[data-sec=sim] .teh,.tsec[data-sec=eps] .teh h3{display:none}
+  .tcam{top:auto;bottom:12px;right:auto;left:12px;width:22%;border-radius:10px}.tcam.duo{width:32%}
+  .tmute{display:inline-flex;position:absolute;right:12px;bottom:12px;z-index:2;background:rgba(8,14,32,.6);border-color:rgba(255,255,255,.5);color:#fff}
+  .tclose{width:36px;height:36px;top:10px;right:10px}
+  .tmod .tbody{padding:14px 16px 100px}
+  .tmb{display:block}.tmb h2{margin:0;font-size:24px;line-height:1.3}
+  .tmb .tmeta{margin-top:6px;font-size:14px;gap:8px}
+  .tmb .btn.xl{width:100%;margin-top:12px;padding:12px;font-size:16px}.tmb .btn.xl+.btn.xl{margin-top:10px}
+  .tmb p{margin:14px 0 6px;font-size:14.5px;line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+  .tmc{font-size:13.5px;color:var(--ink2)}.tmc span{color:var(--mut)}
+  .tact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:18px 0 6px}
+  .tact button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 0;font-size:12.5px;font-weight:700;color:var(--ink)}.tact button.on,.tact button[aria-pressed=true]{color:var(--gold)}
+  .ttabs{display:flex;gap:8px;margin:14px 0 4px;padding:4px;border-radius:999px;background:var(--bg3)}
+  .ttabs button{flex:1;padding:9px 10px;border-radius:999px;font-weight:700;font-size:14.5px;color:var(--ink2)}
+  .ttabs button.on{background:var(--btn,var(--gold));color:var(--accink,#1a1408);box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .tsec[data-sec=eps] .teh{margin:14px 0 8px}.tsec[data-sec=eps] .tsea{flex:1;max-width:none}
+  .tsec[data-sec=sim]{padding-top:14px}
+  .tmod .tep{grid-template-columns:42% minmax(0,1fr);grid-auto-flow:row dense;gap:4px 12px;padding:12px 0;border-radius:0;align-items:center}
+  .tmod .tep .tth{grid-row:span 2}.tmod .tsl{display:none}
+  .tmod .tep .n{display:none}.tmod .tep>div:last-child{display:contents}
+  .tmod .tep .tet{flex-direction:column;gap:2px}.tmod .tep .tet b{font-size:15px;line-height:1.35}.tmod .tep .tet span{font-size:13px;color:var(--mut)}
+  .tno{display:inline;margin-right:6px;font-style:normal;color:var(--mut)}
+  .tmod .tep p{grid-column:1 / -1;margin:6px 0 0;font-size:13.5px;-webkit-line-clamp:3}
+  .tmod .tep .tag{grid-column:2;justify-self:start;align-self:start;margin-top:2px!important}
+  .tmod .tep.cur{background:none;box-shadow:none}
+  .tmod .tep .tth .pl{opacity:1;inset:0 auto 0 10%;width:34px;height:34px}
+  /* floating tab bar */
+  .tabbar{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));padding:6px;border:1px solid var(--line2);border-radius:28px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+  .tabbar button{border-radius:22px;padding:7px 0}.tabbar button.on{background:var(--goldbg)}
+  .chgbtn{bottom:calc(96px + env(safe-area-inset-bottom))}#mini{bottom:calc(92px + env(safe-area-inset-bottom))}
+}
+/* phones: hero as a poster card (photo on top, title + stacked full-width buttons at the bottom) */
+.stph,.bsnum{display:none}
+@media (max-width:600px){
+  .stph{display:block;position:absolute;top:0;left:0;right:0;height:42%;z-index:-1;background:#e3b857;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+  .stpi{position:absolute;inset:0 0 6px 0;display:flex;background:#fff;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+  .stpi i{flex:1;background-size:auto 150%;background-position:50% 14%;background-repeat:no-repeat}.stph.duo .stpi i{background-size:auto 150%}
+  .stage:has(.stph) .bbv{background:linear-gradient(0deg,rgba(8,14,32,.98) 0%,rgba(8,14,32,.9) 44%,rgba(8,14,32,0) 60%)}
+  .stage .stc{min-height:calc((100vw - 32px) * 1.42);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:0 16px 18px}
+  .bstage .stc{min-height:calc((100vw - 32px) * 1.42)}
+  .bsnum{display:flex;flex-direction:column;align-items:center;margin:28px 0 auto;line-height:1}
+  .bsnum b{font-family:Georgia,"Times New Roman",serif;font-size:96px;font-weight:700;letter-spacing:-.02em;background:linear-gradient(180deg,#a8466d 0%,#d06f94 55%,#eeaac3 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme=str] .bsnum b,[data-theme=dark] .bsnum b{background-image:linear-gradient(180deg,#fff 0%,#f3d98f 55%,#c99a3c 100%)}
+  .bsnum small{margin-top:10px;padding:4px 12px;border-radius:99px;background:rgba(255,255,255,.7);color:#9c3f62;font-size:13px;font-weight:700}
+
+  .stage .stc .bblab{justify-content:center;font-size:12px}
+  .stage .stc .bbt{font-size:34px;margin:6px 0 8px}
+  .stage .stmeta{justify-content:center;font-size:13.5px}.stage .stco{display:none}
+  .stage .bbbtn{flex-direction:column;width:100%;gap:10px;margin-top:16px!important}
+  .stage .bbbtn .btn.xl{width:100%;flex:none;padding:12px;font-size:16px}
+  .stage .bbres{display:none}
+  .stage:not(.bstage) .stsel{position:absolute;top:10px;left:14px;right:14px;padding:0;z-index:3}
+  .stage:not(.bstage) .stlist{gap:5px;overflow:visible}
+  .stage:not(.bstage) .hsel{flex:1;min-width:0;height:24px;padding:0;border:none;border-radius:0;background:none;display:block;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .stage:not(.bstage) .hsel>span:not(.hsbar){display:none}
+  .stage:not(.bstage) .hsel:before{content:"";position:absolute;left:0;right:0;top:10px;height:3px;border-radius:2px;background:rgba(10,22,51,.28)}
+  .stage:not(.bstage) .hsel.on:before{background:rgba(10,22,51,.4)}
+  .stage:not(.bstage) .hsbar{top:10px;bottom:auto;height:3px;border-radius:2px}
+  .stage:not(.bstage) .hsel:not(.on) .hsbar{display:none}
 }
 </style>
 </head>
@@ -1731,7 +1821,7 @@ const descOf = c => (c.cat === 'adv' ? 'โค้ช' + c.coach + ' · ' : '') +
 const seedOf = str => [...str].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7);
 const reduceMotion = () => S.pref.rm || matchMedia('(prefers-reduced-motion: reduce)').matches;
 function toggleSave(id) { const had = S.saved.has(id); had ? S.saved.delete(id) : S.saved.add(id); toast(had ? 'นำออกจากรายการของฉันแล้ว' : 'เพิ่มในรายการของฉันแล้ว', () => { had ? S.saved.add(id) : S.saved.delete(id); }); return !had; }
-function openTitle(id) { if (S.tier !== 'adv' && lockedFor('watch', id)) { S.modal = 'locked'; render(); return; } S.tid = id; S.season = null; S.modal = 'title'; hideBob(); render(); }
+function openTitle(id) { if (S.tier !== 'adv' && lockedFor('watch', id)) { S.modal = 'locked'; render(); return; } S.tid = id; S.season = null; S.ttab = 'eps'; S.modal = 'title'; hideBob(); render(); }
 const playOrInfo = c => A(() => { if (lastPT === 'touch') openTitle(c.id); else go('watch', c.id); });
 function nextOf(c) {
   const list = c.cat === 'basic' ? CLIPS.filter(x => x.cat === 'basic') : c.cat === 'brec' ? CLIPS.filter(x => x.cat === 'brec').sort((a, b) => a.rdate - b.rdate) : c.cat === 'adv' ? CLIPS.filter(x => x.cat === 'adv' && x.coach === c.coach).sort((a, b) => a.title.localeCompare(b.title)) : [];
@@ -1803,14 +1893,14 @@ function epRow(x, i, cur) {
   const num = isEp ? x.n : i + 1, nm = isEp ? x.t : x.cat === 'brec' ? `${x.day} ${fd(x.rdate)} · ${x.kind}` : (x.ep ? 'EP.' + x.ep + ' ' : '') + shortT(x);
   const desc = isEp ? x.d : x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
   const mins = isEp ? epMin(x) : x.dur, act = isEp ? A(() => playEp(x)) : A(() => { S.modal = null; go('watch', x.id); });
-  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${act}" aria-label="ตอน ${num} ${esc(nm)} · ${mins} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${cover(x)}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(nm)}</b><span>${mins} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
+  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${act}" aria-label="ตอน ${num} ${esc(nm)} · ${mins} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${cover(x)}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b><em class="tno">${num}${isEp ? '' : '.'}</em>${esc(nm)}</b><span>${mins} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
 }
 function simCard(x) {
   const on = S.saved.has(x.id);
   return `<div class="simc" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${esc(x.title)}"><div class="sth">${cover(x)}<span class="dur2">${x.dur} นาที</span></div><div class="sin2"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1">${dnaTag(x)}<div class="bmeta" style="margin-top:4px">${lvlTag(x)}<span class="hdb">${x.ch.length} บทย่อย</span></div></div><button class="cbtn sm" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(x.id); render(); })}">${ic(on ? 'check' : 'plus', 17)}</button></div><p>${esc(descOf(x))}</p></div></div>`;
 }
 /* open the details modal on a lesson (season) of Basic Technical */
-function openSeason(n) { S.tid = EPI[n] ? epCur(n).clip : 'b2'; S.season = 'e' + n; S.modal = 'title'; hideBob(); render(); }
+function openSeason(n) { S.tid = EPI[n] ? epCur(n).clip : 'b2'; S.season = 'e' + n; S.ttab = 'eps'; S.modal = 'title'; hideBob(); render(); }
 function titleHTML() {
   const c = byClip(S.tid) || byClip('b2'), sr = seriesOf(c);
   const sea = sr ? (sr.seasons.find(x => x.k === S.season) || (c.cat === 'basic' ? sr.seasons.find(x => x.k === 'e' + parseInt(c.ep)) : null) || sr.seasons.find(x => x.eps.includes(c)) || sr.seasons[0]) : null;
@@ -1819,25 +1909,33 @@ function titleHTML() {
   const cur = sea && sea.epi ? epCur(+sea.k.slice(1)) : null, cp = cur ? epProg(cur) : 0;
   const pl = cur ? `${cp > 0 && cp < 1 ? 'เล่นต่อ' : cp >= 1 ? 'ดูอีกครั้ง' : 'เล่น'} ตอน ${cur.n}` : c.prog > 0 && c.prog < 1 ? 'เล่นต่อ' : c.prog === 1 ? 'ดูอีกครั้ง' : 'เล่น';
   const play = cur ? A(() => playEp(cur)) : A(() => { S.modal = null; go('watch', c.id); });
-  const close = A(() => { S.modal = null; render(); });
-  return `<div class="ovl tovl"><div class="tmod" role="dialog" aria-label="ข้อมูล ${esc(sr ? sr.name : c.title)}">
-    <div class="thero">${art(c.seed + 3, c.hue, {n:44, live:true})}<button class="tclose" aria-label="ปิด" data-a="${close}">${ic('x', 22)}</button>
+  const close = A(() => { S.modal = null; render(); }), tab = S.ttab || 'eps', cams = camOf(c);
+  const save = A(() => { toggleSave(c.id); render(); }), like = A(() => { liked ? S.liked.delete(c.id) : S.liked.add(c.id); render(); });
+  const bell = S.remind['t:' + c.id], tabBtn = (k, l) => `<button role="tab" aria-selected="${tab === k}" class="${tab === k ? 'on' : ''}" data-a="${A(() => { S.ttab = k; render(); })}">${l}</button>`;
+  return `<div class="ovl tovl"><div class="tmod" data-tab="${tab}" role="dialog" aria-label="ข้อมูล ${esc(sr ? sr.name : c.title)}">
+    <div class="thero">${art(c.seed + 3, c.hue, {n:44, live:true})}${cams.length ? `<span class="tcam ${cams.length > 1 ? 'duo' : ''}" aria-hidden="true">${cams.map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}</span>` : ''}<button class="tclose" aria-label="ปิด" data-a="${close}">${ic('x', 22)}</button><button class="cbtn sm tmute" aria-label="${S.muted ? 'เปิดเสียงตัวอย่าง' : 'ปิดเสียงตัวอย่าง'}" data-a="${A(() => { S.muted = !S.muted; render(); })}">${ic(S.muted ? 'mute' : 'vol', 17)}</button>
       <div class="thc"><div class="bblab"><span class="nS">SPTR</span>${esc(lab)}</div><h2 class="ttl ${sr ? '' : 'th'}">${sr ? sr.big : esc(c.title)}</h2>
         <div class="tbtns"><button class="btn xl" data-a="${play}">${ic('play', 22)}${pl}</button>
           <button class="cbtn" aria-pressed="${on}" aria-label="${on ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${A(() => { toggleSave(c.id); render(); })}">${ic(on ? 'check' : 'plus', 20)}</button>
           <button class="cbtn ${liked ? 'on' : ''}" aria-pressed="${liked}" aria-label="${liked ? 'เลิกชอบ' : 'ชอบ'}" data-a="${A(() => { liked ? S.liked.delete(c.id) : S.liked.add(c.id); render(); })}">${ic('thumb', 19)}</button>
           <span class="hsp"></span><button class="cbtn" aria-label="${S.muted ? 'เปิดเสียงตัวอย่าง' : 'ปิดเสียงตัวอย่าง'}" data-a="${A(() => { S.muted = !S.muted; render(); })}">${ic(S.muted ? 'mute' : 'vol', 19)}</button></div></div></div>
-    <div class="tbody"><div class="tinfo"><div>
+    <div class="tbody"><div class="tmb"><h2>${esc(sr ? sr.name : shortT(c))}</h2>
+      <div class="tmeta"><span>${sr ? sr.year : esc(c.date)}</span><span>${sr ? sr.count : `${c.dur} นาที`}</span><span class="hdb">HD</span>${lvlTag(c)}</div>
+      <button class="btn xl" data-a="${play}">${ic('play', 20)}${pl}</button><button class="btn xl ghost" aria-pressed="${on}" data-a="${save}">${ic(on ? 'check' : 'plus', 20)}${on ? 'อยู่ในรายการของฉัน' : 'รายการของฉัน'}</button>
+      <p>${esc(sr ? sr.desc : c.title + ' · ในคลิป: ' + c.ch.map(h => h.title).join(' → '))}</p><div class="tmc"><span>สอนโดย:</span> ${esc(sr ? sr.cast : (c.cat === 'adv' ? 'โค้ช' : '') + c.coach)}</div>
+      <div class="tact"><button aria-pressed="${!!bell}" data-a="${A(() => { S.remind['t:' + c.id] = !bell; render(); toast(bell ? 'ปิดการแจ้งเตือนแล้ว' : 'จะแจ้งทาง LINE เมื่อมีตอนใหม่'); })}">${ic(bell ? 'check' : 'bell', 22)}<span>${bell ? 'เตือนแล้ว' : 'เตือนตอนใหม่'}</span></button><button class="${liked ? 'on' : ''}" aria-pressed="${liked}" data-a="${like}">${ic('thumb', 22)}<span>${liked ? 'ถูกใจแล้ว' : 'ถูกใจ'}</span></button><button data-a="${A(() => toast('คัดลอกลิงก์แล้ว ส่งให้เพื่อนได้เลย'))}">${ic('share', 22)}<span>แชร์</span></button></div>
+      <div class="ttabs" role="tablist" aria-label="ตอนหรือเนื้อหาที่คล้ายกัน">${tabBtn('eps', sr ? 'ตอน' : 'บทย่อย')}${tabBtn('sim', 'เนื้อหาที่คล้ายกัน')}</div></div>
+      <div class="tinfo"><div>
       <div class="tmeta"><span>${sr ? sr.year : esc(c.date)}</span><span>${sr ? sr.count : `${c.dur} นาที`}</span><span class="hdb">HD</span><span class="hdb">ถอดความ</span>${SUMS[c.id] || sr ? '<span class="hdb">สรุป + แบบทดสอบ</span>' : ''}</div>
       <div class="tmeta" style="margin-top:8px">${lvlTag(c)}${dnaTag(c).replace('class="dna"', 'class="dna" style="margin:0"')}</div>
       ${t10 >= 0 ? `<div class="rankl">${ic('trend', 16)}อันดับ ${t10 + 1} บนกระดานสัปดาห์นี้</div>` : ''}
       <p class="tdesc">${esc(sr ? sr.desc : c.title + ' · ในคลิป: ' + c.ch.map(h => h.title).join(' → '))}</p></div>
       <div class="tcast"><div><span>สอนโดย:</span> ${esc(sr ? sr.cast : (c.cat === 'adv' ? 'โค้ช' : '') + c.coach)}</div><div><span>หมวด:</span> ${esc(sr ? sr.genre : tagsOf(c).join(' · '))}</div><div><span>รายการนี้:</span> ${esc(sr ? sr.vibe : 'ดูจบในครั้งเดียว · มีบทย่อย')}</div></div></div>
-    ${sr ? `<div class="teh"><h3>ตอน</h3>${sr.seasons.length > 1 ? `<select class="tsea" aria-label="เลือกเนื้อหา" data-in="${A(e => { S.season = e.target.value; render(); const t = $('.tsea'); if (t) t.focus(); })}">${sr.seasons.map(x => `<option value="${x.k}" ${x === sea ? 'selected' : ''}>${x.l}</option>`).join('')}</select>` : `<span class="muted">${sea.l}</span>`}</div>
+    <div class="tsec" data-sec="eps">${sr ? `<div class="teh"><h3>ตอน</h3>${sr.seasons.length > 1 ? `<select class="tsea" aria-label="เลือกเนื้อหา" data-in="${A(e => { S.season = e.target.value; render(); const t = $('.tsea'); if (t) t.focus(); })}">${sr.seasons.map(x => `<option value="${x.k}" ${x === sea ? 'selected' : ''}>${x.l}</option>`).join('')}</select>` : `<span class="muted">${sea.l}</span>`}</div>
       ${sea.epi ? `<div class="tsl">${esc(sea.l)} · ${sea.eps.length} ตอน · ${sea.eps.reduce((a, x) => a + epMin(x), 0)} นาที</div>` : ''}${sea.eps.map((x, i) => epRow(x, i, sea.epi ? x === cur : x.id === c.id)).join('')}`
-      : `<div class="teh"><h3>บทย่อยในคลิปนี้</h3><span class="muted">${c.ch.length} ช่วง</span></div>${c.ch.map((h, i) => `<div class="tep" data-a="${A(() => { S.modal = null; S.pos[c.id] = toSec(h.t); go('watch', c.id); })}" aria-label="บทย่อย ${i + 1} ${esc(h.title)} เริ่มนาที ${h.t}"><span class="n">${i + 1}</span><div class="tth">${art(c.seed + i * 13, c.hue, {n:16})}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b>${esc(h.title)}</b><span>${h.t}</span></div></div></div>`).join('')}`}
-    <div class="teh"><h3>เนื้อหาที่คล้ายกัน</h3></div><div class="tsim">${simOf(c).slice(0, 6).map(simCard).join('')}</div>
-    <div class="teh"><h3>เกี่ยวกับ ${esc(sr ? sr.name : shortT(c))}</h3></div><div class="tabout"><div><span class="k">สอนโดย:</span> ${esc(sr ? sr.cast : (c.cat === 'adv' ? 'โค้ช' : '') + c.coach)}</div><div><span class="k">หมวด:</span> ${esc(sr ? sr.genre : tagsOf(c).join(' · '))}</div><div><span class="k">ระดับ:</span> ${lvlTag(c)} ${c.cat === 'adv' ? 'เหมาะกับคนที่จบ Basic แล้ว' : 'เริ่มเรียนได้เลย ไม่ต้องมีพื้นฐาน'}</div></div>
+      : `<div class="teh"><h3>บทย่อยในคลิปนี้</h3><span class="muted">${c.ch.length} ช่วง</span></div>${c.ch.map((h, i) => `<div class="tep" data-a="${A(() => { S.modal = null; S.pos[c.id] = toSec(h.t); go('watch', c.id); })}" aria-label="บทย่อย ${i + 1} ${esc(h.title)} เริ่มนาที ${h.t}"><span class="n">${i + 1}</span><div class="tth">${art(c.seed + i * 13, c.hue, {n:16})}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b><em class="tno">${i + 1}.</em>${esc(h.title)}</b><span>${h.t}</span></div></div></div>`).join('')}`}</div>
+    <div class="tsec" data-sec="sim"><div class="teh"><h3>เนื้อหาที่คล้ายกัน</h3></div><div class="tsim">${simOf(c).slice(0, 6).map(simCard).join('')}</div></div>
+    <div class="tsec" data-sec="about"><div class="teh"><h3>เกี่ยวกับ ${esc(sr ? sr.name : shortT(c))}</h3></div><div class="tabout"><div><span class="k">สอนโดย:</span> ${esc(sr ? sr.cast : (c.cat === 'adv' ? 'โค้ช' : '') + c.coach)}</div><div><span class="k">หมวด:</span> ${esc(sr ? sr.genre : tagsOf(c).join(' · '))}</div><div><span class="k">ระดับ:</span> ${lvlTag(c)} ${c.cat === 'adv' ? 'เหมาะกับคนที่จบ Basic แล้ว' : 'เริ่มเรียนได้เลย ไม่ต้องมีพื้นฐาน'}</div></div></div>
   </div></div></div>`;
 }
 
@@ -1920,10 +2018,12 @@ function heroSlides() {
      art:[n.seed + 9, n.hue, {n:46, live:true, trend:.012}], coaches:[n.coach], go:'watch:ajay1', cta:'เริ่มดู Ep.1', info:'ajay1'},
   ];
 }
+/* phones: the hero is a poster card — the coach's studio photo on top with a slanted gold edge */
+const stPhoto = names => { const ids = (names || []).map(n => (COACH_BY_NAME[n] || {}).id).filter(id => POR[id]); return ids.length ? `<span class="stph ${ids.length > 1 ? 'duo' : ''}" aria-hidden="true"><span class="stpi">${ids.map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}</span></span>` : ''; };
 function hero() {
   const H = heroSlides(), k = S.hero % H.length, h = H[k];
   return `<section class="stage" id="stage" aria-roledescription="carousel" aria-label="ไฮไลต์สำหรับคุณ">
-    <div class="bbart" aria-hidden="true">${art(...h.art)}</div><div class="bbv"></div>
+    <div class="bbart" aria-hidden="true">${art(...h.art)}</div>${stPhoto(h.coaches)}<div class="bbv"></div>
     <div class="stc" aria-live="${S.heroPause ? 'polite' : 'off'}"><div class="bblab">${h.kick}</div><h2 class="bbt">${h.title}</h2><div class="stmeta">${h.meta}</div>
       ${h.coaches ? `<div class="stco">${h.coaches.map(x => av(x, 38)).join('')}<span>โค้ช${h.coaches.join(' · โค้ช')}</span></div>` : ''}
       <p>${esc(h.desc)}</p>
@@ -2036,9 +2136,9 @@ function basicStage() {
   const c = byClip('b2'), pos = S.pos.b2 ?? Math.round(c.prog * c.dur * 60), cls = CAL.filter(e => e.type === 'basic' && e.ep === ME.ep && e.at > NOW).slice(0, 1);
   return `<section class="stage bstage" aria-label="บทที่กำลังเรียน">
     <div class="bbart" aria-hidden="true">${art(4711, '#d890aa', {n:46, live:true, trend:.011})}</div><div class="bbv"></div>
-    <div class="stc"><div class="bblab"><span class="nS">BASIC</span>บทที่ 2 จาก 4 · Master Clip</div><h2 class="bbt">EP.2<br>Dow Theory</h2>
+    <div class="stc"><span class="bsnum" aria-hidden="true"><b>${epCur(ME.ep).n}</b><small>ตอนที่กำลังดู · ${esc(epCur(ME.ep).t)}</small></span><div class="bblab"><span class="nS">BASIC</span>บทที่ 2 จาก 4 · Master Clip</div><h2 class="bbt">EP.2<br>Dow Theory</h2>
       <div class="stmeta"><span>และแนวรับแนวต้าน</span><span class="dotsep"></span><span>${c.ch.length} บทย่อย</span><span class="dotsep"></span><span>เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที</span></div>
-      <div class="bbbtn" style="margin-top:20px"><button class="btn xl" data-go="watch:b2">${ic('play', 22)}เรียนต่อ · นาที ${mmss(pos)}</button></div>
+      <div class="bbbtn" style="margin-top:20px"><button class="btn xl" data-go="watch:b2">${ic('play', 22)}เรียนต่อ · นาที ${mmss(pos)}</button><button class="btn xl ghost" data-a="${A(() => openSeason(ME.ep))}">${ic('stack', 20)}ตอนทั้งหมด</button></div>
       <div class="bbres"><div class="bbpb" aria-hidden="true"><i style="width:${c.prog * 100}%"></i></div>ดูไป ${Math.round(c.prog * 100)}% · ดูจบแล้วทำแบบทดสอบ 20 ข้อได้</div></div>
     <div class="stsel"><div class="bclh">คลาสสดถัดไป · อีก ${Math.ceil((dOnly(cls[0].at) - dOnly(NOW)) / 864e5)} วัน</div>${cls.map(e => `<div class="bcls"><span class="bcd"><span>${TH_D[e.at.getDay()]}</span><b>${e.at.getDate()}</b><span>${TH_M[e.at.getMonth()]}</span></span><span class="bct"><b>${e.kind === 'ตลาดจริง' ? 'พุธ · ตลาดจริง' : 'เสาร์ · Case Clinic'}</b><span>${hm(e.at)}–${e.end} น. · ${e.kind === 'ตลาดจริง' ? 'เปิด Streaming ดูหุ้นจริง' : 'เฉลยการบ้าน + ไล่เคส'}</span></span>${sessAction(e)}</div>`).join('')}<button class="plink" data-go="live">ดูตารางคลาสสดทั้งหมด${ic('chev', 14)}</button></div>
   </section>`;
@@ -2728,7 +2828,7 @@ function changesHTML() {
     ['ปฏิทิน: ชื่อคลาสเหลือ "09:30 M…" สีไม่มีคำอธิบาย','ชื่อเต็ม สีมีป้ายกำกับ กดซ่อน/แสดงได้'],
     ['ต้องกด "เพิ่มเติม" ทีละวัน · ปุ่มเลื่อนเดือนไอคอนหาย','มุมมองสัปดาห์เห็นครบทุกคลาส + ปุ่มเลื่อนชัดเจน'],
   ];
-  const add = [['award','ปกวิดีโอจริง: รูปโค้ชตัวจริง + ชื่อตอน สีกรมทอง SPTR · เอาเมาส์ชี้แล้วปกขยายออกมา เล่นตัวอย่างพร้อมกล้องโค้ช'],['tv','หน้าแรก Advance มีแถววิดีโอ: ดูต่อ · เหมาะกับ DNA · โค้ชตัวจริง · LIVE Replay · Knowledge'],['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
+  const add = [['tv','มือถือ: ปกแนวตั้งเรียง 3 ใบต่อแถว · การ์ดไฮไลต์แบบโปสเตอร์พร้อมรูปโค้ช · หน้ารายละเอียดมีวิดีโอด้านบน ปุ่มเต็มความกว้าง และแท็บ ตอน / เนื้อหาที่คล้ายกัน · แถบเมนูลอย'],['award','ปกวิดีโอจริง: รูปโค้ชตัวจริง + ชื่อตอน สีกรมทอง SPTR · เอาเมาส์ชี้แล้วปกขยายออกมา เล่นตัวอย่างพร้อมกล้องโค้ช'],['tv','หน้าแรก Advance มีแถววิดีโอ: ดูต่อ · เหมาะกับ DNA · โค้ชตัวจริง · LIVE Replay · Knowledge'],['stack','แบ่งแต่ละเนื้อหาเป็นตอนสั้น 1.1, 1.2 … เลือกเนื้อหาและตอนได้ในหน้า "ข้อมูลเพิ่มเติม"'],['play','เพลเยอร์เต็มจอแบบสตรีมมิ่ง: ตอนถัดไป · รายการตอน · คำบรรยาย · ความเร็ว · ซ่อนปุ่มเมื่อไม่ขยับเมาส์'],['cal','ปฏิทินเรียนบนหน้าแรก เห็นทันทีว่าวันไหนมีเรียน + คลาสบทของคุณ'],['pin','จองที่นั่งเรียน onsite · นัด CARE DAY เลือกเวลาเอง · บัตรเช็กอิน + ต่อคิวเมื่อเต็ม'],['tv','วิดีโอทั้งหมดแบบสตรีมมิ่ง: แถว "ดูต่อ" + แถวละ EP · ชื่อบนภาพปก · ชี้แล้วการ์ดขยาย เล่น/บันทึก/ถูกใจได้ทันที'],['trend','เส้นทาง Basic ของฉัน (เชื่อมกับระบบหลังบ้าน)'],['play','เรียนต่อจากที่ค้าง + แถบความคืบหน้า'],['search','ค้นหาถึงระดับนาทีที่โค้ชพูดในคลิป'],['layers','บทย่อยในคลิป + จดโน้ตตามนาที'],['bell','"เตือนฉัน" ก่อนคลาสสดทาง LINE'],['target','Chart Challenge ประจำสัปดาห์'],['flame','Streak + เป้าหมายรายสัปดาห์'],['spark','แนะนำคลิปตาม Trader Type'],['msg','แชทสดระหว่างไลฟ์ + ถามโค้ชจากคลิป'],['cal','ซิงก์คลาสที่จองกับปฏิทินมือถือ · กด "ดูย้อนหลัง" จากปฏิทินได้เลย'],['lib','บันทึก "ดูภายหลัง" จากปกคลิปได้ทันที'],['moon','ธีมมืด / กระดาษ / สว่าง · ใช้บนมือถือได้เต็มรูปแบบ'],['award','ธีม SPTR สีน้ำเงิน-ทองประจำแบรนด์ · โลโก้จริง (ตัดขอบ ใช้เฉพาะหัวเว็บ หน้าเปิด ท้ายหน้า และไอคอนแท็บ) · แถวโค้ชตัวจริง · Trader DNA'],['users','รูปโค้ชจริง 26 คน + โปรไฟล์การเทรดจากการ์ดโค้ช 11 คน (สินทรัพย์ สไตล์ จุดแข็ง เครื่องมือ ไลฟ์สไตล์) · บอกว่าโค้ชคนไหนเหมาะกับ Trader DNA ของคุณ'],['check','บทเรียน Basic เป็นเช็กลิสต์ 3 ขั้นต่อบท (ดูคลิป → แบบทดสอบ → การบ้าน) · ปุ่มเดียวต่อบท · ตารางคลาสสดมีการ์ดคลาสถัดไป + ตัวกรอง'],['award','Basic: ชมพู · ขาว · ทอง (ชมพู = ปุ่มและสิ่งที่กดได้ · ทอง = รายละเอียดแบรนด์) · Advance: ทองบนกรมท่า · Advance ธีมน้ำเงิน-ทอง · 2 ระดับสมาชิก: Basic เห็นแค่สิ่งที่ต้องใช้ (4 บท · แบบทดสอบ 20 ข้อ · การบ้านกราฟ · คลาสสดพุธ/เสาร์ · โค้ชประจำตัว · เส้นทางสู่ Advance) ส่วน Advance เปิดเมื่อสอบผ่าน · สลับดูได้ที่มุมขวาล่าง'],['users','แถบโค้ชตัวจริงเล็กๆ ใต้แถบราคา: โค้ชที่กำลังไลฟ์ขึ้นก่อน (กดแล้วเข้าไลฟ์ทันที) วงทอง = เหมาะกับ DNA'],['trend','หน้าแรกสั้นลง เหลือเฉพาะส่วนสำคัญ: เวทีวิดีโอใหญ่ 3 ไฮไลต์ (เรียนต่อ · LIVE · ตอนใหม่) เลื่อนเองและหยุดได้ + เส้นทางเรียน + ภารกิจ · ส่วนอื่นย้ายไปหมวด แนะนำสำหรับคุณ และ อัปเดต'],['trend','องค์ประกอบของ SPTR เอง: แถบราคาตลาด · เส้นทาง Basic เป็นกราฟขาขึ้น · กระดานอันดับแบบกระดานหุ้น · ตาราง 7 วันแบบปฏิทินเศรษฐกิจ · ระดับความยากเป็นแท่งเทียน'],['tv','หยิบแนวคิดดีๆ จากสตรีมมิง: ดูต่อจากที่ค้าง · รายการตอน · ข้ามอินโทร · ตอนถัดไปอัตโนมัติ'],['eye','ถนอมสายตา: สีนุ่มลดแสงจ้า · ตัวอักษรใหญ่ขึ้น บรรทัดโปร่งขึ้น · แสงอุ่นตอนกลางคืน · เตือนพักสายตาทุก 20 นาที']];
   return `<div class="ovl" style="padding:0;justify-content:flex-end"><aside class="drawer" role="dialog" aria-label="สิ่งที่เปลี่ยน"><div style="display:flex;align-items:center"><h3>เปลี่ยนอะไรจากของเดิม</h3><button class="ibtn" style="margin-left:auto" aria-label="ปิด" data-a="${A(() => { S.changes = false; render(); })}">${ic('x', 18)}</button></div>
     <div class="muted" style="font-size:14.5px;margin-bottom:10px">ตัดสิ่งที่ไม่จำเป็น รวมสิ่งที่ซ้ำ แล้วเพิ่มสิ่งที่ทำให้อยากกลับมาเรียน</div>
     <div style="font-weight:700;margin-top:14px">ตัด / รวม / ย้าย</div>${ch.map(([o, n]) => `<div class="chg"><span class="o">${o}</span><span class="gold">${ic('chev', 16)}</span><span>${n}</span></div>`).join('')}
