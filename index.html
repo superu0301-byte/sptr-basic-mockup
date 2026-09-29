@@ -1942,7 +1942,7 @@ function lkApply(o, keepCoaches) {
   const L3 = [1, 2, 3].map(lkHwN), pass = L3.filter(x => x && x.rev && x.pass).length, wait = L3.filter(x => x && !x.rev).length, fix = L3.filter(x => x && x.rev && !x.pass).length;
   GRAD[1].hw = `ผ่าน ${pass}/3${wait ? ` · รอตรวจ ${wait}` : ''}${fix ? ` · ให้แก้ ${fix}` : ''}`; GRAD[1].hs = pass >= 3 ? 'ok' : 'cur';
   if (o && o.chall) S.challSent = true;
-  lkBk(o); lkTaken(o);
+  lkBk(o); lkTaken(o); lkCoach(o);
   if (!lkGrad(o) || keepCoaches) return;
   const a = o.adv || {};
   S.myCoaches = a.setAt ? [a.coach, ...(a.extra || []).map(x => x.id)].filter((x, i, arr) => x && COACHES.some(c => c.id === x) && arr.indexOf(x) === i) : [];
@@ -1956,6 +1956,17 @@ function lkBk(o) {
   const want = o.bk;
   Object.keys(S.bk).forEach(id => { if (want[id]) return; const e = CAL.find(x => x.id === id), b = S.bk[id]; if (e) { const st = seatsOf(e); if (st) st.left++; const sl = b.slot && e.slots && e.slots.find(x => x.t === b.slot); if (sl) sl.free = true; } delete S.bk[id]; });
   Object.entries(want).forEach(([id, b]) => { if (S.bk[id]) return; const e = CAL.find(x => x.id === id); if (!e) return; const st = seatsOf(e); if (st) st.left--; const sl = b.slot && e.slots && e.slots.find(x => x.t === b.slot); if (sl) sl.free = false; S.bk[id] = {mode:b.mode, slot:b.slot || null, topic:b.topic || '', code:b.code || '', rem:true}; S.remind[id] = true; });
+}
+/* entered in the back office, shown here: coach profile text, new Small Group sessions, new course episodes */
+const CE0 = Object.fromEntries(COACHES.map(c => [c.id, JSON.parse(JSON.stringify({fit:c.fit, strengths:c.strengths, style:c.style, tools:c.tools, life:c.life, focus:c.focus}))]));
+function lkCoach(o) {
+  COACHES.forEach(c => { if (c.prod) Object.assign(c, JSON.parse(JSON.stringify(CE0[c.id]))); });
+  if (o && o.ce) Object.entries(o.ce).forEach(([id, f]) => { const c = COACHES.find(x => x.id === id); if (c) Object.assign(c, f); });
+  COACHES.forEach(c => { if (c.prod && c.style && c.style[0] && c.tags) c.tags[2] = c.style[0].split(/ · | \(/)[0]; });
+  if (o && o.sg) o.sg.forEach(x => { if (CAL.some(e => e.id === x.id)) return; CAL.push({id:x.id, type:'small', at:new Date(x.at), end:x.end, title:x.title, short:'SG · โค้ช' + x.coach, sub:x.sub, coaches:[x.coach], seats:x.seats, left:x.left}); CAL.sort((a, b) => a.at - b.at); });
+  if (o && o.eps) o.eps.forEach(x => { if (CLIPS.some(c => c.id === x.id)) return; const q = x.dur * 60 / 4, n = (x.title.match(/Ep\.(\d+)/) || [])[1];
+    CLIPS.push({id:x.id, cat:'adv', coach:x.coach, title:x.title, dur:x.dur, prog:null, hue:HUES.gold, views:0, date:x.date || 'ใหม่', seed:3100 + CLIPS.length * 7, ch:CH([['0:00', 'เริ่มต้น + ภาพรวมตอนนี้'], [mmss(q), 'หลักการสำคัญ'], [mmss(q * 2), 'เคสจากกราฟจริง'], [mmss(q * 3), 'สรุป + การบ้านจากโค้ช' + x.coach]]), tx:[]});
+    PROG0[x.id] = null; COV[x.id] = [x.title.replace(/^.*?Ep\.\d+\s*/, ''), 'ตอนใหม่', ((SER[x.coach] || {}).name || 'COURSE').toUpperCase() + (n ? ' · EP.' + n : '')]; });
 }
 /* CARE DAY slots the team booked for other members in the back office: taken here too */
 const LKT = new Set();
@@ -1982,6 +1993,10 @@ function lkNews(a, b) {
   a = a || LK0; const out = [], A0 = a.adv || {}, B0 = b.adv || {}, fa = a.ft || {}, fb = b.ft || {};
   (b.hw || []).filter(h => h.rev && !(a.hw || []).some(x => x.ep === h.ep && x.n === h.n && x.sub === h.sub && x.rev)).forEach(h => out.push(h.pass ? `โค้ช${ME.coach}ตรวจการบ้าน EP.${h.ep} ข้อ ${h.n} แล้ว: ผ่าน` : `โค้ช${ME.coach}ส่งการบ้าน EP.${h.ep} ข้อ ${h.n} กลับให้แก้: "${h.note || ''}"`));
   if (b.chall && b.chall.pick && !(a.chall && a.chall.pick)) out.push('คำตอบ Chart Challenge ของคุณถูกเลือกเป็นเคสในคลาสเสาร์นี้!');
+  (b.qa || []).filter(q => q.ans && !(a.qa || []).some(x => x.id === q.id && x.ans)).forEach(q => out.push(`${q.by || 'โค้ช'}ตอบคำถามของคุณแล้ว: "${q.ans}"`));
+  (b.eps || []).filter(x => !(a.eps || []).some(y => y.id === x.id)).forEach(x => out.push(`โค้ช${x.coach}อัปโหลดตอนใหม่: ${x.title}`));
+  (b.sg || []).filter(x => !(a.sg || []).some(y => y.id === x.id)).forEach(x => out.push(`โค้ช${x.coach}เปิดรอบ Small Group ใหม่ ${lkWhen(x.at)}`));
+  if (JSON.stringify(b.ce || {}) !== JSON.stringify(a.ce || {})) out.push('โปรไฟล์โค้ชอัปเดตแล้ว');
   if (fb.status && fb.status !== fa.status) out.push({scheduled:`โค้ช${ME.coach}นัดคุย Fast Track ${fb.screenAt ? lkWhen(fb.screenAt) : ''}`, hw:'ผ่าน Screening Fast Track · ส่งการบ้าน 3 ส่วนต่อได้เลย', clip:'Fast Track: ดูคลิป Basic Express แล้วทำการบ้าน 1 ข้อ', adv:'ผ่าน Fast Track แล้ว!'}[fb.status] || '');
   if (!lkGrad(a) && lkGrad(b)) out.push('ยินดีด้วย คุณจบ Basic แล้ว · ทีม CS จะติดต่อเรื่องโค้ชประจำตัว');
   if (B0.setAt && B0.setAt !== A0.setAt) out.push(`ทีม CS ตั้งโค้ช${lkNm(B0.coach)}เป็นโค้ชประจำตัวของคุณแล้ว`);
@@ -3247,8 +3262,9 @@ function modalHTML() {
   if (S.modal === 'hw' && !hwNext()) return wrap('การบ้านกราฟ EP.2 · ส่งครบ 3 ข้อแล้ว', `${GRAD[1].hw} · โค้ช${ME.coach}ตรวจภายใน 48 ชม. ผลแจ้งทาง LINE`, '', () => { S.modal = null; render(); }, 'ปิด');
   if (S.modal === 'hw') return wrap(`ส่งการบ้านกราฟ EP.2 · ข้อ ${hwNext()}`, `${HWT2[hwNext() - 1]} · แนบภาพกราฟพร้อมคำอธิบาย`, `${(h => h ? `<div class="fld"><label>โค้ช${ME.coach}ให้แก้ข้อนี้</label><div class="hrow" style="color:var(--rose)">"${esc(h.note || '')}"</div></div>` : '')((x => x && x.rev && !x.pass ? x : null)(lkHwN(hwNext())))}<div class="fld"><label>ภาพกราฟ</label><button class="btn ghost" style="width:100%;border-style:dashed;padding:22px">${ic('plus', 18)}เลือกภาพ (ตัวอย่าง)</button></div><div class="fld"><label>อธิบายว่าทำไมตีเส้นตรงนี้</label><textarea id="h1" placeholder="เช่น ราคาเคยกลับตัวที่โซนนี้ 3 ครั้ง"></textarea></div>`,
     () => { if (!need(['h1'], 'เขียนคำอธิบายก่อนส่ง')) return; const n = hwNext(), tx = val('h1'); lkWrite(o => o.hw.push({ep:2, n, sub:+NOW - 60000 + o.hw.length * 1000, rev:null, pass:false, text:tx})); S.modal = null; render(); toast(`ส่งการบ้านข้อ ${n} แล้ว โค้ช${ME.coach}จะตรวจภายใน 48 ชม.`); }, 'ส่งการบ้าน');
-  if (S.modal === 'ask') return wrap('ถามโค้ช', `จากคลิป "${esc(byClip(S.clip).title)}" · แนบนาทีที่ดูอยู่ให้อัตโนมัติ`, `<div class="fld"><textarea id="q1" placeholder="พิมพ์คำถาม…"></textarea></div>`,
-    () => { if (!need(['q1'], 'พิมพ์คำถามก่อนส่ง')) return; S.modal = null; render(); toast('ส่งคำถามแล้ว โค้ชจะตอบทาง LINE'); }, 'ส่งคำถาม');
+  if (S.modal === 'ask') { const ck = byClip(S.clip), asked = ((LK || {}).qa || []).filter(q => q.clipId === S.clip);
+    return wrap('ถามโค้ช', `จากคลิป "${esc(ck.title)}" · แนบนาทีที่ดูอยู่ให้อัตโนมัติ`, `${asked.length ? `<div class="fld"><label>คำถามของคุณในคลิปนี้</label>${asked.map(q => `<div class="hrow" style="display:block"><b>"${esc(q.text)}"</b> <span class="muted">· นาที ${q.t}</span>${q.ans ? `<div style="color:var(--green);margin-top:4px">${esc(q.by || 'โค้ช')}: ${esc(q.ans)}</div>` : '<div class="muted" style="font-size:13.5px">รอโค้ชตอบ</div>'}</div>`).join('')}</div>` : ''}<div class="fld"><textarea id="q1" placeholder="พิมพ์คำถาม…"></textarea></div>`,
+    () => { if (!need(['q1'], 'พิมพ์คำถามก่อนส่ง')) return; const tx = val('q1'), pos = S.pos[ck.id] ?? Math.round((ck.prog || 0) * ck.dur * 60); lkWrite(o => { o.qa = o.qa || []; o.qa.push({id:'wq' + Date.now().toString(36), clip:ck.title, clipId:ck.id, coach:ck.coach, t:mmss(pos), text:tx, at:+NOW, ans:null, ansAt:null, by:null}); }); S.modal = null; render(); toast('ส่งคำถามแล้ว โค้ชจะตอบใต้คลิปและทาง LINE'); }, 'ส่งคำถาม'); }
   if (S.modal === 'swap') return wrap('ขอเปลี่ยนโค้ช', 'ทีมจะติดต่อกลับภายใน 2 วันทำการ', `<div class="fld"><label>อยากเปลี่ยนเป็น</label><select id="sw1" style="width:100%"><option value="">เลือกโค้ช</option>${COACHES.map(c => `<option>โค้ช${c.name}</option>`).join('')}</select></div><div class="fld"><label>เหตุผล</label><textarea id="sw2" placeholder="เช่น อยากเรียนเรื่องทองคำโดยเฉพาะ"></textarea></div>`,
     () => { if (!need(['sw1','sw2'], 'เลือกโค้ชและใส่เหตุผลก่อนส่ง')) return; S.modal = null; render(); toast('ส่งคำขอแล้ว ทีมจะติดต่อกลับ'); }, 'ส่งคำขอ');
   if (S.modal === 'fb') return wrap('ส่งความคิดเห็น', 'ความเห็นของคุณเข้าสู่รายงาน "Voice of Members" ทุกสัปดาห์', `<div class="fld"><label>ความพึงพอใจ</label><div class="stars">${[1,2,3,4,5].map(n => `<button aria-label="${n} ดาว" class="${S.form.stars >= n ? 'on' : ''}" data-a="${A(() => { S.form.stars = n; S.err = ''; render(); })}"><svg width="28" height="28" viewBox="0 0 24 24" fill="${S.form.stars >= n ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.6"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></button>`).join('')}</div></div><div class="fld"><label>อยากบอกอะไรทีม</label><textarea id="fb1" placeholder="เช่น อยากให้มีเคสหุ้นจริงเยอะขึ้น"></textarea></div>`,
