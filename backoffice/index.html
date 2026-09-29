@@ -329,6 +329,7 @@ button .ic{margin-right:2px;vertical-align:-3px}
 .mst b{display:block;font-size:18px}
 .mst span{font-size:12px;color:var(--mut)}
 .tplk{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+#rq .tk{grid-template-columns:4px auto 1fr}#rq .tk .acts{grid-column:3;justify-content:flex-start}
 /* ===== coach portal ===== */
 .chx .hin{padding-right:250px}
 .chpor{position:absolute;right:22px;top:22px;bottom:22px;width:200px;border-radius:18px;background-color:#fff;background-repeat:no-repeat;background-position:center 12%;background-size:cover;z-index:1;box-shadow:0 14px 34px rgba(0,0,0,.45);border:3px solid rgba(227,184,87,.55)}
@@ -619,6 +620,10 @@ const SEED = [
  {id:'m27', name:'ชนิดา ร.', nick:'ชนิดา', coach:'ต้น', join:[-70,10,0], contact:[-70,12,0], reply:[-70,13,0], lastReply:[-2,19,0], tags:{job:'พนักงานบริษัท', screen:1, level:1, asset:'ทอง', bkk:true}, lessons:[[1,-68],[2,-48],[3,-28],[4,-12]], follows:[-56,-42,-28,-14], exams:{1:18,2:17,3:19,4:18}, hw:[{ep:2,n:1,sub:-44,rev:-43,pass:true},{ep:2,n:2,sub:-40,rev:-39,pass:true},{ep:2,n:3,sub:-36,rev:-35,pass:true},{ep:3,n:1,sub:-24,rev:-23,pass:true},{ep:3,n:2,sub:-20,rev:-19,pass:true},{ep:3,n:3,sub:-16,rev:-15,pass:true}], grad:0},
  {id:'m28', name:'ไพโรจน์ ก.', nick:'ไพโรจน์', coach:'บีม', join:[-85,10,0], contact:[-85,12,0], reply:[-85,14,0], lastReply:[-3,20,0], tags:{job:'เจ้าของกิจการ', screen:2, level:1, asset:'หุ้นต่างประเทศ', bkk:false}, lessons:[[1,-83],[2,-60],[3,-38],[4,-18]], follows:[-70,-56,-42,-28,-14], exams:{1:17,2:16,3:18,4:17}, hw:[{ep:2,n:1,sub:-55,rev:-54,pass:true},{ep:2,n:2,sub:-52,rev:-51,pass:true},{ep:2,n:3,sub:-48,rev:-47,pass:true},{ep:3,n:1,sub:-34,rev:-33,pass:true},{ep:3,n:2,sub:-30,rev:-29,pass:true},{ep:3,n:3,sub:-26,rev:-25,pass:true}], grad:-2, adv:{calls:[['โทร',-1,10]]}},
  {id:'m29', name:'วิภาวี ส.', nick:'วิภาวี', coach:'แนน', join:[-130,10,0], contact:[-130,12,0], reply:[-130,13,0], lastReply:[-6,19,0], tags:{job:'พนักงานบัญชี', screen:0, level:2, asset:'ทอง', bkk:true}, lessons:[[1,-128],[2,-105],[3,-80],[4,-55]], follows:[-115,-101,-87,-73,-59], exams:{1:19,2:18,3:18,4:19}, hw:[{ep:2,n:1,sub:-100,rev:-99,pass:true},{ep:2,n:2,sub:-96,rev:-95,pass:true},{ep:2,n:3,sub:-92,rev:-91,pass:true},{ep:3,n:1,sub:-75,rev:-74,pass:true},{ep:3,n:2,sub:-70,rev:-69,pass:true},{ep:3,n:3,sub:-65,rev:-64,pass:true}], grad:-40, adv:{talk:[-39,10,0], pick:'jay', ch:'LINE', memo:'สนใจทองคำเป็นหลัก เทรดระหว่างวันได้', set:[-39,15,0], coach:'jay', extra:[['lek',-12,15]]}},
+ {id:'m30', name:'ศศิธร พ.', nick:'ศศิธร', coach:'แนน', join:[-60,10,0], contact:[-60,12,0], reply:[-60,14,0], lastReply:[-1,20,0], tags:{job:'เภสัชกร', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-58],[2,-44],[3,-28],[4,-10]], follows:[-46,-32,-18,-4], exams:{1:18,2:17,3:18,4:17}, hw:[{ep:2,n:1,sub:-40,rev:-39,pass:true},{ep:2,n:2,sub:-38,rev:-37,pass:true},{ep:2,n:3,sub:-36,rev:-35,pass:true},{ep:3,n:1,sub:-24,rev:-23,pass:true},{ep:3,n:2,sub:-20,rev:-19,pass:true},{ep:3,n:3,sub:-16,rev:-15,pass:true}]},
+ {id:'m31', name:'ปรียานุช ส.', nick:'ปรียานุช', coach:null, join:[0,19,10]},
+ {id:'m32', name:'ศรัณย์ ต.', nick:'ศรัณย์', coach:null, join:[0,21,40]},
+ {id:'m33', name:'กนกพร ม.', nick:'กนกพร', coach:null, join:[1,8,20]},
 ];
 const P = a => a ? at(a[0], a[1] ?? 10, a[2] ?? 0) : null;
 const M = SEED.map(s => ({
@@ -649,6 +654,7 @@ function lastReplyAt(m, t) { let r = null; for (const x of [m.reply, m.lastReply
 function attemptsAfter(m, since, t) { const a = m.attempts.filter(x => x.at > since && x.at <= t); return {line:a.filter(x => x.ch === 'LINE').length, call:a.filter(x => x.ch === 'โทร').length}; }
 const ftTotal = sc => sc.t.reduce((a, b) => a + b, 0) + sc.sr + sc.plan.reduce((a, b) => a + b, 0);
 const typeOf = m => m.tags ? TYPES[m.tags.screen] : null;
+const coachTxt = m => m.coach ? 'โค้ช' + m.coach : 'ยังไม่มีโค้ช';
 
 function statusOf(m, t) {
   if (m.join > t) return null;
@@ -671,8 +677,15 @@ function nextFollow(m, t) {
   for (const f of m.follows) if (f <= t && f > last) last = f;
   return addDays(last, 14);
 }
+/* จบ Basic (บรีฟ: จบ 4 EP · ผ่านข้อสอบ 16/20 ทุกบท + การบ้านกราฟ 6 ข้อ · โค้ชตรวจครบ ส่งต่อ Advance) */
+function gradProg(m, t) {
+  const ex = [1, 2, 3, 4].filter(ep => m.exams[ep] >= 16).length;
+  const hw = [2, 3].flatMap(ep => [1, 2, 3].map(n => { const hs = m.hw.filter(h => h.ep === ep && h.n === n && h.sub <= t); return hs[hs.length - 1]; })).filter(h => h && h.pass && h.rev && h.rev <= t).length;
+  return {ex, hw, ready:ex === 4 && hw === 6};
+}
 function alertsOf(m, t) {
   const st = statusOf(m, t); if (!st) return [];
+  if (!m.coach) return st === 'ipo' ? [{k:'assign', pri:hrs(m.join, t) >= 12 ? 0 : 1, title:'สมช ใหม่ยังไม่มีโค้ช', sub:`สมัคร ${fd(m.join)} ${ftm(m.join)} น. · หัวหน้าแจกให้โค้ช แล้วโค้ชทักภายใน 24 ชม. นับจากเวลาสมัคร`}] : [];
   const A = [];
   if (st === 'ipo') {
     const h = hrs(m.join, t), dl = new Date(m.join.getTime() + DAY);
@@ -696,6 +709,7 @@ function alertsOf(m, t) {
     }
   }
   QA.filter(q => q.sid === m.id && q.cid === 'basic' && !q.ans && q.at <= t).forEach(q => A.push({k:'qa', q, pri: hrs(q.at, t) >= 24 ? 0 : 1, title:'คำถามจากคลิป (หน้าเว็บ)', sub:`"${esc(q.text)}" · ${esc(q.clip)} นาที ${q.t}`}));
+  if (['up', 'side', 'down'].includes(st) && gradProg(m, t).ready) A.push({k:'grad', pri:1, title:'พร้อมจบ Basic · ผ่านข้อสอบ 4 บท + การบ้าน 6 ข้อ', sub:'ตรวจครบแล้วกดส่งต่อ Advance · ระบบส่งรายชื่อให้ทีม CS คุยเรื่องโค้ชประจำตัว'});
   m.hw.forEach(h => { if (h.sub <= t && !(h.rev && h.rev <= t)) { const hh = hrs(h.sub, t); A.push({k:'hw', hw:h, pri: hh >= 48 ? 0 : 2, title: hh >= 48 ? 'การบ้านค้างตรวจเกิน 48 ชม.' : 'การบ้านรอตรวจ', sub:`${EPN[h.ep]} ข้อ ${h.n} · ส่งมา ${Math.floor(hh)} ชม.`}); } });
   if (st === 'sp' && t.getDate() === 8 && !sameDay(m.pause.comeback, t)) A.push({k:'comeback', pri:1, title:'วันคืนสนาม (วันที่ 8)', sub:`พักอยู่ที่ ${EPN[m.pause.ep]} มา ${daysSince(m.pause.start, t)} วัน · ส่ง Comeback pack`});
   if (st === 'gap') {
@@ -778,7 +792,7 @@ document.addEventListener('mouseout', e => { if (e.target.closest('[data-tip]'))
 
 /* ============ LINE templates ============ */
 const TPL = {
-  welcome:(m, t) => `สวัสดี คุณ${m.nick}! ยินดีต้อนรับสู่คอร์ส Basic<br>โค้ช${m.coach}จะดูแลคุณ${m.nick}ตลอดคอร์สเลยนะ<br><br>ก่อนเริ่ม ขอรู้จักกันนิดนึง 4 ข้อ ไม่ถึง 1 นาที ตอบเสร็จได้การ์ดสไตล์นักเทรดของตัวเองด้วย<span class="lbtn">เริ่ม Trader Type Quiz</span>คลาสสดครั้งถัดไป: ${nextC(null, t)}`,
+  welcome:(m, t) => `สวัสดี คุณ${m.nick}! ยินดีต้อนรับสู่คอร์ส Basic<br>${coachTxt(m)}จะดูแลคุณ${m.nick}ตลอดคอร์สเลยนะ<br><br>ก่อนเริ่ม ขอรู้จักกันนิดนึง 4 ข้อ ไม่ถึง 1 นาที ตอบเสร็จได้การ์ดสไตล์นักเทรดของตัวเองด้วย<span class="lbtn">เริ่ม Trader Type Quiz</span>คลาสสดครั้งถัดไป: ${nextC(null, t)}`,
   follow:(m, t) => { const c = lessonAt(m, t); return `คุณ${m.nick} ตอนนี้อยู่ ${c ? EPN[c.ep] : 'บทแรก'} แล้ว เป็นยังไงบ้าง มีตรงไหนติดไหม ส่งกราฟมาให้โค้ชดูได้เลยนะ`; },
   nudge:(m, t) => `คุณ${m.nick} ครบ 1 เดือนแล้ว โค้ชทำทางลัดมาให้: คลิปสั้น 3 นาทีจาก EP.1<span class="lbtn">ดูคลิป 3 นาที</span>แล้ว EP.1 จะสอนสด${nextC(1, t)} มาเรียนพร้อมกันไหม`,
   ftInvite:(m) => `เห็นว่าคุณ${m.nick}มีพื้นฐานมาแล้ว โค้ชขอชวนคุยสั้นๆ 20 นาที (onsite / online)<br>ถ้าผ่าน Checklist ไปต่อ Advance ได้เลย ไม่ต้องเรียน Basic ซ้ำ สะดวกวันไหนดี`,
@@ -825,27 +839,34 @@ function actionsFor(m, a) {
     case 'ftInvite': return B('นัด Screening พรุ่งนี้', () => { const d = addDays(dOnly(now()), 1); d.setHours(14); m.ft.status = 'scheduled'; m.ft.screenAt = d; m.ft.channel = m.tags && m.tags.bkk ? 'onsite' : 'online'; log(m, `นัด Screening ${fd(d)} 14:00`); done('นัด Screening แล้ว'); });
     case 'ftScreen': return B('เปิดฟอร์ม Screening', () => go('ft', m.id), 'pri');
     case 'qa': return B('ตอบคำถาม', () => qaModal(a.q), 'pri');
+    case 'assign': return B('แจกโค้ช', () => go('assign'), 'pri');
+    case 'grad': return B('ตรวจครบ · ส่งต่อ Advance', () => gradModal(m), 'pri');
     case 'ftHw': return B('ตรวจผ่าน → ไป Advance', () => { m.ft.status = 'adv'; m.ft.advAt = now(); log(m, 'ตรวจการบ้าน Fast Track ผ่าน · ส่งต่อ Advance'); done(`คุณ${m.nick}ไป Advance แล้ว`); }, 'pri');
   }
   return '';
 }
 
 /* ============ layout ============ */
-const NAVS = [
-  ['งานโค้ช', [['today', 'home', 'งานวันนี้'], ['screener', 'target', 'Member Screener'], ['hw', 'note', 'ตรวจการบ้าน'], ['ft', 'flame', 'Fast Track'], ['sched', 'cal', 'ตารางคลาส + การจอง']]],
-  ['ทีม CS + หลังบ้าน', [['cs', 'headset', 'ส่งต่อ CS'], ['adv', 'users', 'ตั้งโค้ช Advance'], ['coaches', 'award', 'ทีมโค้ช Advance'], ['content', 'play', 'คลิปบทเรียน']]],
-  ['รายงาน', [['report', 'trend', 'Report วันศุกร์']]],
-  ['มุมมอง สมช', [['member', 'tv', 'LINE + หน้าเว็บ สมช']]],
-];
+const NAVR = {
+  basic:[['งานโค้ช Basic', [['today', 'home', 'งานวันนี้'], ['screener', 'target', 'สมช ของฉัน'], ['hw', 'note', 'ตรวจการบ้าน'], ['ft', 'flame', 'Fast Track'], ['sched', 'cal', 'ตารางคลาส + การจอง']]], ['ส่งต่อ', [['cs', 'headset', 'ส่งต่อ CS']]], ['มุมมอง สมช', [['member', 'tv', 'LINE + หน้าเว็บ สมช']]]],
+  head:[['หัวหน้าทีม Basic', [['today', 'home', 'งานวันนี้ (ทุกโค้ช)'], ['assign', 'user', 'แจก สมช ใหม่'], ['screener', 'target', 'Member Screener'], ['hw', 'note', 'ตรวจการบ้าน'], ['ft', 'flame', 'Fast Track'], ['sched', 'cal', 'ตารางคลาส + การจอง']]], ['รายงาน', [['report', 'trend', 'Report วันศุกร์']]], ['ติดตาม', [['cs', 'headset', 'ส่งต่อ CS']]], ['มุมมอง สมช', [['member', 'tv', 'LINE + หน้าเว็บ สมช']]]],
+  cs:[['ทีม CS', [['cshome', 'home', 'งานวันนี้ CS'], ['cs', 'headset', 'ส่งต่อ CS · 3 จุด'], ['adv', 'users', 'ตั้งโค้ช Advance']]], ['มุมมอง สมช', [['member', 'tv', 'LINE + หน้าเว็บ สมช']]]],
+  admin:[['แอดมินหลังบ้าน', [['assign', 'user', 'แจก สมช ใหม่'], ['content', 'play', 'คลิปบทเรียน'], ['sched', 'cal', 'ตารางคลาส + การจอง'], ['coaches', 'award', 'ทีมโค้ช Advance']]], ['รายงาน', [['report', 'trend', 'Report วันศุกร์']]], ['มุมมอง สมช', [['member', 'tv', 'LINE + หน้าเว็บ สมช']]]],
+};
+const RDEF = {basic:'today', head:'today', cs:'cshome', admin:'assign', coach:'ch'};
+const RLAB = {basic:'COACH BASIC', head:'หัวหน้าทีม BASIC', cs:'ทีม CS', admin:'แอดมิน', coach:'COACH ADVANCE'};
 const NAVC = [['โค้ช Advance', [['ch', 'home', 'หน้าหลักโค้ช'], ['cst', 'users', 'ลูกศิษย์ของฉัน'], ['cqa', 'msg', 'คำถามจากลูกศิษย์'], ['csg', 'live', 'Small Group'], ['ccourse', 'play', 'คอร์สของฉัน'], ['cprof', 'user', 'โปรไฟล์บนหน้าเว็บ']]]];
 const CVIEWS = ['ch', 'cst', 'cqa', 'csg', 'ccourse', 'cprof'];
+const navOf = () => S.role === 'coach' ? NAVC : NAVR[S.role] || NAVR.basic;
 function setRole(v) {
   const [k, x] = v.split(':');
-  if (k === 'c') { S.role = 'coach'; S.ac = x; S.view = 'ch'; S.sgSel = null; S.cstF = 'all'; }
-  else { S.role = 'basic'; S.coach = x; if (CVIEWS.includes(S.view)) S.view = 'today'; }
+  if (k === 'c') { S.role = 'coach'; S.ac = x; S.sgSel = null; S.cstF = 'all'; }
+  else if (k === 'b' && x !== 'all') { S.role = 'basic'; S.coach = x; }
+  else { S.role = k === 's' ? 'cs' : k === 'a' ? 'admin' : 'head'; S.coach = 'all'; }
+  if (!navOf().flatMap(([, it]) => it.map(i => i[0])).includes(S.view)) S.view = RDEF[S.role];
   render(); window.scrollTo(0, 0);
 }
-const roleSel = () => `<select aria-label="ดูในนาม" data-ch="${A(e => setRole(e.target.value))}"><optgroup label="ทีม Basic">${COACHES.map(c => `<option value="b:${c}" ${S.role === 'basic' && S.coach === c ? 'selected' : ''}>โค้ช${c}</option>`).join('')}<option value="b:all" ${S.role === 'basic' && S.coach === 'all' ? 'selected' : ''}>หัวหน้าทีม (ทุกโค้ช)</option></optgroup><optgroup label="โค้ช Advance · โค้ชจริง 11 ท่าน">${CO.map(c => `<option value="c:${c.id}" ${S.role === 'coach' && S.ac === c.id ? 'selected' : ''}>โค้ช${c.name}</option>`).join('')}</optgroup></select>`;
+const roleSel = () => `<select aria-label="ดูในนาม" data-ch="${A(e => setRole(e.target.value))}"><optgroup label="โค้ช Basic (ชื่อสมมติ)">${COACHES.map(c => `<option value="b:${c}" ${S.role === 'basic' && S.coach === c ? 'selected' : ''}>โค้ช${c}</option>`).join('')}</optgroup><optgroup label="หัวหน้า + ทีมงาน">${[['h:all', 'head', 'หัวหน้าทีม Basic'], ['s:cs', 'cs', 'ทีม CS'], ['a:admin', 'admin', 'แอดมินหลังบ้าน']].map(([v, r, l]) => `<option value="${v}" ${S.role === r ? 'selected' : ''}>${l}</option>`).join('')}</optgroup><optgroup label="โค้ช Advance · โค้ชจริง 11 ท่าน">${CO.map(c => `<option value="c:${c.id}" ${S.role === 'coach' && S.ac === c.id ? 'selected' : ''}>โค้ช${c.name}</option>`).join('')}</optgroup></select>`;
 function renderSide() {
   if (S.role === 'coach') {
     const t = now(), c = COB[S.ac], cnt = {cqa:qPending(c, t).length, cst:studentsOf(c, t).filter(x => stSt(x, t) === 'new').length, csg:sgOf(c).filter(e => e.at <= t && evEnd(e) >= t).length};
@@ -858,14 +879,14 @@ function renderSide() {
       <div class="sfoot">ต้นแบบ · ลูกศิษย์เป็นข้อมูลสมมติ</div>`;
     return;
   }
-  const t = now(), list = mine();
-  const cnt = {today:list.reduce((a, m) => a + alertsOf(m, t).filter(x => x.pri < 2).length, 0), hw:hwQueue(t).length, ft:visible().filter(m => m.ft && m.ft.since <= t && m.ft.status !== 'adv').length,
-    cs:visible().filter(m => { const st = statusOf(m, t); return (st === 'cs' && !m.cs1At) || (st === 'stop' && !m.cs2At); }).length, adv:advTodo(t)};
+  const t = now(), list = mine(), ff = S.role === 'basic' ? list : visible();
+  const cnt = {today:list.reduce((a, m) => a + alertsOf(m, t).filter(x => x.pri < 2).length, 0), hw:hwQueue(t).length, ft:ff.filter(m => m.ft && m.ft.since <= t && m.ft.status !== 'adv').length,
+    cs:S.role === 'cs' ? csTodo(t) : ff.filter(m => { const st = statusOf(m, t); return (st === 'cs' && !m.cs1At) || (st === 'stop' && !m.cs2At); }).length, adv:advTodo(t), cshome:csTodo(t), assign:visible().filter(m => !m.coach).length};
   const nav = ([v, i, label]) => `<button class="nav ${S.view === v || (v === 'screener' && S.view === 'profile') ? 'on' : ''}" data-go="${v}"><span class="nl">${ic(i, 18)}${label}</span>${cnt[v] ? `<span class="cnt">${cnt[v]}</span>` : ''}</button>`;
-  $('#side').innerHTML = `<div class="logo"><i role="img" aria-label="Super Trader Republic"></i><small>หลังบ้าน · MEMBER SYSTEM</small></div>
-    ${NAVS.map(([sec, items]) => `<div class="sec">${sec}</div>${items.map(nav).join('')}`).join('')}
+  $('#side').innerHTML = `<div class="logo"><i role="img" aria-label="Super Trader Republic"></i><small>หลังบ้าน · ${RLAB[S.role]}</small></div>
+    ${navOf().map(([sec, items]) => `<div class="sec">${sec}</div>${items.map(nav).join('')}`).join('')}
     <div class="lkbox"><span class="linkdot" data-tip="ข้อมูลของคุณมณีรัตน์ใช้ร่วมกับหน้าเว็บสมาชิก เปิดคู่กันในเบราว์เซอร์เดียวกัน กดฝั่งไหนก็ขึ้นอีกฝั่งทันที"><i></i>เชื่อมหน้าเว็บสมาชิกอยู่</span><div class="lkact"><a class="abtn" href="${FRONT_URL}" target="_blank" rel="noopener">หน้าเว็บสมาชิก ↗</a>${B('รีเซ็ตข้อมูล', linkResetAsk, 'jump')}</div></div>
-    <div class="ucard">${S.coach === 'all' ? cav('หัวหน้า', 34) : cav(S.coach, 34)}${roleSel()}</div>
+    <div class="ucard">${S.role === 'basic' ? cav(S.coach, 34) : `<span class="mav" aria-hidden="true" style="--c:${S.role === 'cs' ? '#7aa2ff' : S.role === 'admin' ? '#b69cff' : '#e3b857'};width:34px;height:34px;font-size:12px">${S.role === 'cs' ? 'CS' : S.role === 'admin' ? 'AD' : 'ห'}</span>`}${roleSel()}</div>
     <div class="sfoot">ต้นแบบ · รายชื่อและตัวเลขเป็นข้อมูลสมมติ</div>`;
 }
 /* activity feed for the bell: what happened in the last 3 days (member side + team side) */
@@ -874,7 +895,7 @@ function feed(t) {
   const from = addDays(t, -3), L = S.coach === 'all' ? visible() : mine(), out = [];
   const add = (at, icon, cls, text, go) => { if (at && at <= t && at > from) out.push({at, icon, cls, text, go}); };
   L.forEach(m => {
-    add(m.join, 'user', 'i-bl', `สมช ใหม่: คุณ${m.name} สมัครเข้า Basic`, ['profile', m.id]);
+    add(m.join, 'user', 'i-bl', `สมช ใหม่: คุณ${m.name} สมัครเข้า Basic${m.coach ? '' : ' · รอแจกโค้ช'}`, m.coach ? ['profile', m.id] : ['assign']);
     if (m.reply) add(m.reply, 'msg', 'i-gr', `คุณ${m.nick}ตอบกลับ LINE แล้ว`, ['profile', m.id]);
     m.hw.forEach(h => add(h.sub, 'note', 'i-g', `คุณ${m.nick}ส่งการบ้าน ${EPN[h.ep]} ข้อ ${h.n}`, ['hw', m.id]));
     if (m.ft) { add(m.ft.since, 'flame', 'i-pu', `คุณ${m.nick}เข้า Fast Track`, ['ft', m.id]); add(m.ft.hwSub, 'note', 'i-pu', `คุณ${m.nick}ส่งการบ้าน Fast Track`, ['hw', m.id]); }
@@ -890,7 +911,7 @@ function searchShow(q) {
   if (!q) { box.hidden = true; return; }
   if (S.role === 'coach') { const res = studentsOf(COB[S.ac], t).filter(x => (x.name + ' ' + x.nick).includes(q)).slice(0, 7); box.innerHTML = res.map(x => `<button class="it" data-a="${A(() => { box.hidden = true; stuModal(x.id); })}">${sav(x, 30)}<span class="who"><span class="wn"><b>คุณ${esc(x.name)}</b><span>${SST[stSt(x, t)].n} · ดูคลิปแล้ว ${x.watched}/${COB[S.ac].clips}</span></span></span></button>`).join('') || '<div class="empty" style="padding:8px 10px">ไม่พบลูกศิษย์ชื่อนี้</div>'; box.hidden = false; return; }
   const res = visible().filter(m => (m.name + ' ' + m.nick).includes(q)).slice(0, 7);
-  box.innerHTML = res.map(m => `<button class="it" data-go="profile:${m.id}">${mav(m, 30)}<span class="who"><span class="wn"><b>คุณ${esc(m.name)}</b><span>${ST[statusOf(m, t)].name} · โค้ช${m.coach}</span></span></span></button>`).join('') || '<div class="empty" style="padding:8px 10px">ไม่พบ สมช ชื่อนี้</div>';
+  box.innerHTML = res.map(m => `<button class="it" data-go="profile:${m.id}">${mav(m, 30)}<span class="who"><span class="wn"><b>คุณ${esc(m.name)}</b><span>${ST[statusOf(m, t)].name} · ${coachTxt(m)}</span></span></span></button>`).join('') || '<div class="empty" style="padding:8px 10px">ไม่พบ สมช ชื่อนี้</div>';
   box.hidden = false;
 }
 function renderTop() {
@@ -908,10 +929,10 @@ function renderTop() {
 }
 
 /* ============ view: today ============ */
-const AIC = {qa:'msg', ipo:'user', pend:'clock', cs1:'headset', cs2:'headset', unreach:'x', down:'trend', side:'trend', m3:'clock', follow:'msg', hw:'note', comeback:'rw', ftInvite:'flame', ftScreen:'flame', ftHw:'note'};
+const AIC = {assign:'user', grad:'award', qa:'msg', ipo:'user', pend:'clock', cs1:'headset', cs2:'headset', unreach:'x', down:'trend', side:'trend', m3:'clock', follow:'msg', hw:'note', comeback:'rw', ftInvite:'flame', ftScreen:'flame', ftHw:'note'};
 function taskRow(m, as) {
   const pc = as.some(a => a.pri === 0) ? '#ff6b7d' : as.some(a => a.pri === 1) ? '#f0b44c' : '#7aa2ff';
-  return `<div class="tk"><span class="pb" style="background:${pc}"></span>${mav(m, 40)}<div class="tl2"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> ${chip(statusOf(m, now()))}${S.coach === 'all' ? ` <span class="muted" style="font-size:12px">· โค้ช${m.coach}</span>` : ''}</div>
+  return `<div class="tk"><span class="pb" style="background:${pc}"></span>${mav(m, 40)}<div class="tl2"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> ${chip(statusOf(m, now()))}${S.coach === 'all' ? ` <span class="muted" style="font-size:12px">· ${coachTxt(m)}</span>` : ''}</div>
     ${as.map(a => `<div class="ti">${ic(AIC[a.k] || 'info', 16)}<div>${a.title}<small>${a.sub}</small></div></div>`).join('')}</div><div class="acts">${as.map(a => actionsFor(m, a)).join('')}</div></div>`;
 }
 function agRow(e, t) {
@@ -928,7 +949,9 @@ function vToday() {
   const c = classOn(t), nc = nextClass(null, addDays(t, c ? 1 : 0)), hh = t.getHours();
   const who = S.coach === 'all' ? 'หัวหน้าทีม Basic' : 'โค้ช' + S.coach;
   let banners = '';
-  if (t.getDay() === 5) banners += `<div class="banner rep">${ic('trend', 18)}<b>วันศุกร์: ส่ง Report ก่อนประชุมหัวหน้าวันจันทร์</b><span class="sp">${B('เปิด Report', () => go('report'), 'pri')}</span></div>`;
+  const unN = visible().filter(m => !m.coach).length;
+  if (S.role !== 'basic' && unN) banners += `<div class="banner cb">${ic('user', 18)}<b>มี สมช ใหม่รอแจกโค้ช ${unN} คน</b> · โค้ชต้องทักภายใน 24 ชม. นับจากเวลาสมัคร<span class="sp">${B('แจกโค้ช', () => go('assign'), 'pri')}</span></div>`;
+  if (t.getDay() === 5 && S.role !== 'basic') banners += `<div class="banner rep">${ic('trend', 18)}<b>วันศุกร์: ส่ง Report ก่อนประชุมหัวหน้าวันจันทร์</b><span class="sp">${B('เปิด Report', () => go('report'), 'pri')}</span></div>`;
   if (t.getDate() === 8) banners += `<div class="banner cb">${ic('rw', 18)}<b>วันที่ 8 วันคืนสนาม</b> มี สมช พักการเรียน ${list.filter(m => statusOf(m, t) === 'sp').length} คน รอส่ง Comeback pack</div>`;
   const group = (id, title, color, arr, emptyTxt) => `<div class="card" id="${id}" style="margin-bottom:12px"><div class="sh"><span class="dotl" style="background:${color};width:10px;height:10px"></span><h3>${title}</h3><span class="n">${arr.reduce((n, x) => n + x.as.length, 0)} งาน</span></div>
     ${arr.length ? arr.map(x => taskRow(x.m, x.as)).join('') : `<div class="empty">${ic('check', 16)} ${emptyTxt}</div>`}</div>`;
@@ -950,7 +973,8 @@ function vToday() {
         <div class="hint"><b>ลองเลื่อนเวลาดู (แถบด้านบน · ข้ามไปวันสำคัญ)</b><ul>
           <li><b>เปิดหน้าเว็บสมาชิกคู่กัน</b> คุณมณีรัตน์ส่งการบ้าน / ขอ Fast Track / จองคลาสในเว็บ งานเด้งขึ้นที่นี่ทันที ตรวจแล้วเว็บของเธอก็อัปเดต</li>
           <li><b>+1 วัน</b> ถ้ายังไม่ทักคุณธนกร จะเลย 24 ชม. เหมือนคุณภัทรา และคนที่ทักแล้วไม่ตอบจะเด้งให้ส่ง CS</li>
-          <li><b>ศ. 25 ก.ย.</b> มีปุ่มเปิด Report และคุณรัชนีถึงวันนัด Screening (ดูในนามโค้ชบีม)</li>
+          <li><b>ศ. 25 ก.ย.</b> คุณรัชนีถึงวันนัด Screening (ดูในนามโค้ชบีม) · หัวหน้าทีมเห็นปุ่มทำ Report</li>
+          <li><b>คุณศศิธร</b> ผ่านข้อสอบ 4 บท + การบ้าน 6 ข้อแล้ว กด "ตรวจครบ · ส่งต่อ Advance" แล้วชื่อไปอยู่ในคิวทีม CS</li>
           <li><b>พฤ. 8 ต.ค.</b> วันคืนสนาม รายชื่อคนพักการเรียนขึ้นมาให้ส่ง Comeback pack</li>
           <li><b>จ. 12 ต.ค.</b> คุณมณีรัตน์ (สมัคร 12/08) ขึ้น Sideway ตามตัวอย่างในข้อ 6</li>
           <li>ค้นหาชื่อ สมช ได้จากช่องค้นหาด้านบน · กระดิ่งรวมความเคลื่อนไหว 3 วันล่าสุด</li></ul></div>
@@ -969,11 +993,11 @@ function vScreener() {
   let body = '';
   if (S.smode === 'heat') {
     body = ST_ORDER.filter(k => shown.some(x => x.st === k)).map(k => `<div class="grp" style="margin:6px 0 8px"><span class="dotl" style="background:${ST[k].c}"></span>${ST[k].name} <span class="n">· ${ST[k].th} · ${shown.filter(x => x.st === k).length} คน</span></div>
-      <div class="tiles">${shown.filter(x => x.st === k).map(({m}) => `<div class="tile" data-go="profile:${m.id}" data-nm="${esc(m.name + m.nick)}" style="--c:${ST[k].c}"><div class="who">${mav(m, 32)}<div class="wn"><b>${esc(m.name)}</b><span>${infoOf(m, t, k)}</span></div></div><span style="margin-top:6px">โค้ช${m.coach}${alertsOf(m, t).some(a => a.pri < 2) ? ' · <b style="color:var(--gold2);display:inline">มีแจ้งเตือน</b>' : ''}</span></div>`).join('')}</div>`).join('');
+      <div class="tiles">${shown.filter(x => x.st === k).map(({m}) => `<div class="tile" data-go="profile:${m.id}" data-nm="${esc(m.name + m.nick)}" style="--c:${ST[k].c}"><div class="who">${mav(m, 32)}<div class="wn"><b>${esc(m.name)}</b><span>${infoOf(m, t, k)}</span></div></div><span style="margin-top:6px">${coachTxt(m)}${alertsOf(m, t).some(a => a.pri < 2) ? ' · <b style="color:var(--gold2);display:inline">มีแจ้งเตือน</b>' : ''}</span></div>`).join('')}</div>`).join('');
   } else {
     const rows = shown.sort((a, b) => ST_ORDER.indexOf(a.st) - ST_ORDER.indexOf(b.st)).map(({m, st}) => {
       const cur = lessonAt(m, t), nf = nextFollow(m, t), al = alertsOf(m, t).filter(a => a.pri < 2);
-      return `<tr class="click" data-go="profile:${m.id}" data-nm="${esc(m.name + m.nick)}"><td><div class="who">${mav(m, 30)}<b>${esc(m.name)}</b></div></td><td>${m.coach}</td><td>${daysSince(m.join, t)} วัน</td><td>${cur ? EPN[cur.ep] : '—'}</td><td>${cur ? daysSince(cur.at, t) + ' วัน' : '—'}</td><td>${chip(st)}</td><td>${al.map(a => esc(a.title)).join('<br>') || '<span class="muted">—</span>'}</td><td>${nf && ['up','side','down'].includes(st) ? fd(nf) : '—'}</td></tr>`;
+      return `<tr class="click" data-go="profile:${m.id}" data-nm="${esc(m.name + m.nick)}"><td><div class="who">${mav(m, 30)}<b>${esc(m.name)}</b></div></td><td>${m.coach || '—'}</td><td>${daysSince(m.join, t)} วัน</td><td>${cur ? EPN[cur.ep] : '—'}</td><td>${cur ? daysSince(cur.at, t) + ' วัน' : '—'}</td><td>${chip(st)}</td><td>${al.map(a => esc(a.title)).join('<br>') || '<span class="muted">—</span>'}</td><td>${nf && ['up','side','down'].includes(st) ? fd(nf) : '—'}</td></tr>`;
     }).join('');
     body = `<div class="card" style="padding:6px 8px"><table><tr><th>ชื่อ</th><th>โค้ช</th><th>อายุ สมช</th><th>บทปัจจุบัน</th><th>อยู่บทนี้มา</th><th>สถานะ</th><th>แจ้งเตือน</th><th>Follow ถัดไป</th></tr>${rows}</table></div>`;
   }
@@ -1054,13 +1078,13 @@ function vProfile() {
   const bkBox = bks.length ? `<div class="card">${sh('ticket', 'i-bl', 'การจองคลาส', m.id === ME_ID ? 'จองผ่านหน้าเว็บ' : '')}${bks.map(e => agRow(e, t)).join('')}</div>` : '';
   const notes = m.notes.length ? `<div class="card">${sh('note', 'i-mu', 'โน้ตทีม', `${m.notes.length} รายการ`)}${m.notes.slice().reverse().map(x => `<div class="quote">${esc(x.text)}<div class="note">${x.by} · ${fd(x.at)} ${ftm(x.at)} น.</div></div>`).join('')}</div>` : '';
   return `<div style="margin-bottom:10px">${B(ic('back', 15) + 'กลับไป Member Screener', () => go('screener'), 'ghost')}</div>
-    <section class="card phc">${mav(m, 68)}<div style="flex:1;min-width:0"><div class="hk"><span class="nS">SPTR</span>สมช · BASIC · โค้ช${m.coach}</div><h1 style="margin:0">คุณ${esc(m.name)} ${chip(st)}</h1><div class="note" style="font-size:13.5px;margin-top:2px">สมัคร ${fdy(m.join)} · อายุสมาชิก ${daysSince(m.join, t)} วัน · ${ST[st].th}${cur ? ` · อยู่ ${EPN[cur.ep]} มา ${daysSince(cur.at, t)} วัน` : ''}</div></div>
+    <section class="card phc">${mav(m, 68)}<div style="flex:1;min-width:0"><div class="hk"><span class="nS">SPTR</span>สมช · BASIC · ${coachTxt(m)}</div><h1 style="margin:0">คุณ${esc(m.name)} ${chip(st)}</h1><div class="note" style="font-size:13.5px;margin-top:2px">สมัคร ${fdy(m.join)} · อายุสมาชิก ${daysSince(m.join, t)} วัน · ${ST[st].th}${cur ? ` · อยู่ ${EPN[cur.ep]} มา ${daysSince(cur.at, t)} วัน` : ''}</div></div>
       <div class="acts">${m.contact && m.contact <= t ? B(ic('msg', 15) + 'ส่ง LINE', () => linePick(m), 'pri') : ''}${B(ic('note', 15) + 'บันทึกโน้ต', () => noteModal(m))}${B(ic('tv', 15) + 'ดูมุมมอง สมช', () => go('member', m.id))}</div></section>
     <div class="grid" style="grid-template-columns:1.75fr 1fr;align-items:start">
       <div class="grid">
         <div class="card">${sh('trend', 'i-g', 'กราฟความคืบหน้า')}<div class="note" style="margin:-6px 0 6px">เส้นแนวนอนยาว = ไม่ขยับบท · เส้นประ = วันครบรอบเดือนที่ระบบเช็ค Sideway · ชี้ที่จุดเพื่อดูรายละเอียด</div>${chart(m, t)}</div>
         <div class="card">${sh('book', 'i-bl', 'บทเรียน')}<div class="steps">${steps}</div></div>
-        <div class="card">${sh('note', 'i-pu', 'ข้อสอบ + การบ้าน', 'ผ่านข้อสอบ = 16/20 ขึ้นไป', B('เปิดหน้าตรวจการบ้าน', () => go('hw', m.id), 'jump'))}${exams}</div>
+        <div class="card">${sh('note', 'i-pu', 'ข้อสอบ + การบ้าน', `จบ Basic: ข้อสอบผ่าน ${gradProg(m, t).ex}/4 · การบ้านผ่าน ${gradProg(m, t).hw}/6`, B('เปิดหน้าตรวจการบ้าน', () => go('hw', m.id), 'jump'))}${exams}</div>
       </div>
       <div class="grid">
         <div class="card">${sh('bell', 'i-ro', 'แจ้งเตือนตอนนี้', al.length ? `${al.length} รายการ` : '')}${al.length ? al.map(a => `<div class="task" style="grid-template-columns:1fr"><div><div class="tt"><b>${a.title}</b></div><div class="ss">${a.sub}</div></div><div class="acts" style="justify-content:flex-start">${actionsFor(m, a)}</div></div>`).join('') : `<div class="empty">${ic('check', 16)} ไม่มีแจ้งเตือน</div>`}</div>
@@ -1077,9 +1101,9 @@ function vFT() {
   const cand = list.filter(m => { const st = statusOf(m, t); if (m.ft || !['up','side','down'].includes(st)) return false; const unreach = alertsOf(m, t).some(a => a.k === 'unreach'); if (unreach) return false; return (st === 'down' && m.tags && m.tags.level >= 2) || (monthsSince(anchorOf(m, t), t) >= 3); });
   const inFT = list.filter(m => m.ft && m.ft.since <= t);
   const col = (title, arr, fn, ci = ['flame', 'i-pu']) => `<div class="kcol"><h4><span style="display:flex;gap:8px;align-items:center">${ico(ci[0], ci[1] + ' sm', 15)}${title}</span><span class="muted">${arr.length}</span></h4>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
-  const card = (m, extra) => `<div class="kcard ${S.ftSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.ftSel = m.id; S.form = null; render(); })}"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>โค้ช${m.coach}</span></div></div>${extra}</div>`;
+  const card = (m, extra) => `<div class="kcard ${S.ftSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.ftSel = m.id; S.form = null; render(); })}"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>${coachTxt(m)}</span></div></div>${extra}</div>`;
   const kan = `<div class="kan">
-    ${col('เข้าข่าย Fast Track', cand, m => { const gB = monthsSince(anchorOf(m, t), t) >= 3; return `<div class="kcard"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>โค้ช${m.coach}</span></div></div>${gB ? 'ประตู B · ครบ 3 เดือน' : 'ประตู A · มีพื้นฐาน ไม่ active'}<div style="margin-top:6px">${gB ? B('เสนอ 2 ทาง', () => lineModal(m, 'm3', null, [{label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'}])) : B('ชวน Fast Track', () => lineModal(m, 'ftInvite', () => { m.ft = {gate:'A', status:'invited', since:now()}; log(m, 'ชวนเข้า Fast Track (ประตู A)'); }), 'pri')}</div></div>`; })}
+    ${col('เข้าข่าย Fast Track', cand, m => { const gB = monthsSince(anchorOf(m, t), t) >= 3; return `<div class="kcard"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>${coachTxt(m)}</span></div></div>${gB ? 'ประตู B · ครบ 3 เดือน' : 'ประตู A · มีพื้นฐาน ไม่ active'}<div style="margin-top:6px">${gB ? B('เสนอ 2 ทาง', () => lineModal(m, 'm3', null, [{label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'}])) : B('ชวน Fast Track', () => lineModal(m, 'ftInvite', () => { m.ft = {gate:'A', status:'invited', since:now()}; log(m, 'ชวนเข้า Fast Track (ประตู A)'); }), 'pri')}</div></div>`; })}
     ${col('รอนัด / นัด Screening', inFT.filter(m => ['invited','scheduled'].includes(m.ft.status)), m => card(m, `${gateTxt(m.ft.gate)} · ${m.ft.status === 'invited' ? 'รอนัดวัน' : `นัด ${fd(m.ft.screenAt)} ${ftm(m.ft.screenAt)} · ${m.ft.channel}`}`), ['cal', 'i-bl'])}
     ${col('การบ้าน / รอโค้ชตรวจ', inFT.filter(m => ['hw','clip'].includes(m.ft.status)), m => card(m, `${m.ft.status === 'hw' ? 'ผ่าน Screening · การบ้าน 3 ส่วน' : 'ไม่ผ่าน · คลิป 30 นาที + การบ้าน 1 ข้อ'}<br>${m.ft.hwSub && m.ft.hwSub <= t ? `<span style="color:${hrs(m.ft.hwSub, t) >= 48 ? 'var(--rose)' : 'var(--gold)'};font-weight:700">ส่งแล้ว รอตรวจ ${Math.floor(hrs(m.ft.hwSub, t))} ชม.</span>` : 'ยังไม่ส่งการบ้าน'}`), ['note', 'i-g'])}
     ${col('ไป Advance แล้ว', inFT.filter(m => m.ft.status === 'adv' && m.ft.advAt <= t), m => card(m, `ไป Advance ${fd(m.ft.advAt)}`), ['award', 'i-gr'])}
@@ -1131,20 +1155,68 @@ function ftSummary(m, t) {
 
 /* ============ view: CS ============ */
 function vCS() {
-  const t = now(), list = visible();
+  const t = now(), mineV = S.role === 'basic', list = mineV ? mine() : visible(), isCS = S.role === 'cs';
   const cs1 = list.filter(m => statusOf(m, t) === 'cs');
   const cs2 = list.filter(m => statusOf(m, t) === 'stop' || alertsOf(m, t).some(a => a.k === 'unreach'));
   const nm = m => `<div class="who">${mav(m, 30)}<span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></div>`;
-  const r1 = cs1.map(m => `<tr><td>${nm(m)}</td><td>${m.coach}</td><td>${fd(m.contact)} ${ftm(m.contact)}</td><td>${Math.floor(hrs(m.contact, t))} ชม.</td><td>${m.cs1At ? `<span class="chip"><i style="background:#7aa2ff"></i>CS กำลังติดต่อ</span>` : `<span class="chip"><i style="background:#ff6b7d"></i>โค้ชยังไม่ส่ง</span>`}</td><td>${m.cs1At ? B('CS ติดต่อได้แล้ว', () => { m.reply = now(); log(m, 'CS ติดต่อได้ · สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว`); }) : B('ส่งให้ CS', () => { m.cs1At = now(); log(m, 'ส่งต่อ CS-1'); done('ส่งให้ CS แล้ว'); }, 'pri')}</td></tr>`).join('');
+  const chipC = (c, l) => `<span class="chip"><i style="background:${c}"></i>${l}</span>`;
+  const a1 = m => m.cs1At ? (isCS ? B('ติดต่อได้แล้ว', () => { m.reply = now(); log(m, 'CS ติดต่อได้ · สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว · กลับไปให้${coachTxt(m)}ดูแลต่อ`); }, 'pri') : chipC('#7aa2ff', 'CS กำลังติดต่อ')) : mineV || S.role === 'head' ? B('ส่งให้ CS', () => { m.cs1At = now(); log(m, 'ส่งต่อ CS-1'); done('ส่งให้ CS แล้ว · ติดตามสถานะได้ที่หน้านี้'); }, 'pri') : chipC('#ff6b7d', 'รอโค้ชส่ง');
+  const r1 = cs1.map(m => `<tr><td>${nm(m)}</td><td>${m.coach || '—'}</td><td>${fd(m.contact)} ${ftm(m.contact)}</td><td>${Math.floor(hrs(m.contact, t))} ชม.</td><td>${m.cs1At ? chipC('#7aa2ff', 'ส่งแล้ว ' + fd(m.cs1At)) : chipC('#ff6b7d', 'ยังไม่ส่ง')}</td><td>${a1(m)}</td></tr>`).join('');
   const r2 = cs2.map(m => { const lr = lastReplyAt(m, t), a = attemptsAfter(m, lr, t), st = statusOf(m, t);
     const hist = m.attempts.filter(x => x.at > lr && x.at <= t).map(x => `${fd(x.at)} ${x.ch}`).join(' · ');
-    return `<tr><td>${nm(m)}</td><td>${m.coach}</td><td>${daysSince(lr, t)} วัน</td><td>ไลน์ ${a.line}/3 · โทร ${a.call}/3<div class="note">${hist}</div></td><td>${st === 'stop' ? (m.cs2At ? `<span class="chip"><i style="background:#7aa2ff"></i>CS รับเรื่องแล้ว</span>` : `<span class="chip"><i style="background:#8b95a8"></i>ครบ รอส่ง CS</span>`) : `<span class="chip"><i style="background:#f0b44c"></i>ยังติดต่อไม่ครบ</span>`}</td><td>${st === 'stop' && !m.cs2At ? B('ส่งให้ CS', () => { m.cs2At = now(); log(m, 'ส่งต่อ CS-2 (No Active)'); done('ส่งให้ CS แล้ว'); }, 'pri') : ''}</td></tr>`; }).join('');
-  const w3 = visible().filter(m => advStage(m, t) === 'wait').length;
-  return `${ph('ทีม CS', 'ส่งต่อ CS', '3 จุดส่งต่อ · CS เห็นรายชื่อพร้อมข้อมูลที่ต้องใช้ ไม่ต้องถามโค้ชซ้ำ')}
-    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">${kc('headset', 'i-ro', 'CS-1 · ไม่ตอบ 24 ชม.', cs1.length, `ส่งแล้ว ${cs1.filter(m => m.cs1At).length}`)}${kc('x', 'i-mu', 'CS-2 · No Active', cs2.filter(m => statusOf(m, t) === 'stop').length, `กำลังติดต่อให้ครบ ${cs2.filter(m => statusOf(m, t) !== 'stop').length}`)}${kc('award', 'i-g', 'CS-3 · จบ Basic รอคุยเรื่องโค้ช', w3, 'เป้า: ติดต่อภายใน 1 วันทำการ')}</div>
-    <div class="card" style="margin-bottom:14px">${sh('headset', 'i-ro', 'CS-1 · ทักแล้ว 24 ชม. ยังไม่ตอบ')}${cs1.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ทักเมื่อ</th><th>ผ่านมา</th><th>สถานะ</th><th></th></tr>${r1}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
-    <div class="card">${sh('x', 'i-mu', 'CS-2 · No Active (ติดต่อไม่ได้ 3 เดือน)', 'เกณฑ์ (ข้อเสนอ): ไลน์ 3 ครั้ง + โทร 3 ครั้ง คนละวัน คนละช่วงเวลา')}${cs2.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ไม่ตอบมา</th><th>ประวัติการติดต่อ</th><th>สถานะ</th><th></th></tr>${r2}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
-    ${csAdvCard(t)}`;
+    const act = st !== 'stop' ? '' : m.cs2At ? (isCS ? B('ติดต่อได้แล้ว', () => { m.lastReply = now(); log(m, 'CS ติดต่อได้ · กลับมาเรียน'); done(`คุณ${m.nick}กลับมาแล้ว · ส่งคืน${coachTxt(m)}`); }, 'pri') : chipC('#7aa2ff', 'CS รับเรื่องแล้ว')) : mineV || S.role === 'head' ? B('ส่งให้ CS', () => { m.cs2At = now(); log(m, 'ส่งต่อ CS-2 (No Active)'); done('ส่งให้ CS พร้อมประวัติแล้ว'); }, 'pri') : chipC('#8b95a8', 'รอโค้ชส่ง');
+    return `<tr><td>${nm(m)}</td><td>${m.coach || '—'}</td><td>${daysSince(lr, t)} วัน</td><td>ไลน์ ${a.line}/3 · โทร ${a.call}/3<div class="note">${hist}</div></td><td>${st === 'stop' ? (m.cs2At ? chipC('#7aa2ff', 'ส่งแล้ว') : chipC('#8b95a8', 'ครบเกณฑ์ · ยังไม่ส่ง')) : chipC('#f0b44c', 'ยังติดต่อไม่ครบ')}</td><td>${act}</td></tr>`; }).join('');
+  const w3 = list.filter(m => advStage(m, t) === 'wait').length;
+  const head = mineV ? ph('ส่งต่อ', 'ส่งต่อ CS', `สมช ของโค้ช${S.coach}ที่ต้องให้ CS ช่วย · กดส่งแล้วติดตามสถานะได้ที่นี่ · CS เห็นข้อมูลครบ ไม่ต้องถามซ้ำ`) : ph('ทีม CS', 'ส่งต่อ CS · 3 จุด', isCS ? 'รายชื่อที่โค้ชส่งมา + สมช ที่จบ Basic · CS ติดต่อแล้วบันทึกผลที่นี่' : 'ภาพรวมการส่งต่อของทุกโค้ช');
+  return `${head}
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">${kc('headset', 'i-ro', 'CS-1 · ไม่ตอบ 24 ชม.', cs1.length, `ส่งแล้ว ${cs1.filter(m => m.cs1At).length}`)}${kc('x', 'i-mu', 'CS-2 · No Active', cs2.filter(m => statusOf(m, t) === 'stop').length, `กำลังติดต่อให้ครบ ${cs2.filter(m => statusOf(m, t) !== 'stop').length}`)}${kc('award', 'i-g', 'CS-3 · จบ Basic รอคุยเรื่องโค้ช', w3, 'CS ติดต่อภายใน 1 วันทำการ')}</div>
+    <div class="card" style="margin-bottom:14px">${sh('headset', 'i-ro', 'CS-1 · ทักแล้ว 24 ชม. ยังไม่ตอบ')}${cs1.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ทักเมื่อ</th><th>ผ่านมา</th><th>ส่ง CS</th><th></th></tr>${r1}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
+    <div class="card">${sh('x', 'i-mu', 'CS-2 · No Active (ติดต่อไม่ได้ 3 เดือน)', 'เกณฑ์ (ข้อเสนอ): ไลน์ 3 ครั้ง + โทร 3 ครั้ง คนละวัน คนละช่วงเวลา')}${cs2.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ไม่ตอบมา</th><th>ประวัติการติดต่อ</th><th>ส่ง CS</th><th></th></tr>${r2}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
+    ${csAdvCard(t, mineV)}`;
+}
+const csTodo = t => visible().filter(m => { const st = statusOf(m, t); return (st === 'cs' && m.cs1At) || (st === 'stop' && m.cs2At) || ['wait', 'talked'].includes(advStage(m, t)); }).length + REQ.filter(r => r.at <= t && reqSt(r, t) === 'paid').length;
+/* ทีม CS: today's work in one place */
+function vCSHome() {
+  const t = now(), V = visible();
+  const c1 = V.filter(m => statusOf(m, t) === 'cs' && m.cs1At).sort((a, b) => a.cs1At - b.cs1At), c1w = V.filter(m => statusOf(m, t) === 'cs' && !m.cs1At);
+  const c2 = V.filter(m => statusOf(m, t) === 'stop' && m.cs2At);
+  const a3 = V.filter(m => ['wait', 'talked'].includes(advStage(m, t))).sort((a, b) => advDue(a, t) - advDue(b, t));
+  const paid = REQ.filter(r => r.at <= t && reqSt(r, t) === 'paid'), webReq = REQ.filter(r => r.at <= t && reqSt(r, t) === 'unpaid' && r.web && !r.sales);
+  const row = (m, pc, lines, acts) => `<div class="tk"><span class="pb" style="background:${pc}"></span>${mav(m, 40)}<div class="tl2"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> ${chip(statusOf(m, t))} <span class="muted" style="font-size:12px">· ${coachTxt(m)}</span></div>${lines}</div><div class="acts">${acts}</div></div>`;
+  const ti = (icon, a, b) => `<div class="ti">${ic(icon, 16)}<div>${a}<small>${b}</small></div></div>`;
+  const card = (id, icon, cls, title, n, body, emptyTxt) => `<div class="card" id="${id}" style="margin-bottom:12px">${sh(icon, cls, title, n + ' รายการ')}${body || `<div class="empty">${ic('check', 16)} ${emptyTxt}</div>`}</div>`;
+  const late3 = a3.filter(m => t > advDue(m, t)).length;
+  return `${ph('ทีม CS', 'งานวันนี้ CS', 'รวมทุกอย่างที่ CS ต้องทำวันนี้ · รายชื่อที่โค้ชส่งมา · สมช ที่จบ Basic รอคุยเรื่องโค้ช · คำขอเพิ่มโค้ชจากเซล')}
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">${kc('headset', 'i-ro', 'CS-1 · รอ CS ติดต่อ', c1.length, `โค้ชยังไม่ส่ง ${c1w.length}`)}${kc('x', 'i-mu', 'CS-2 · No Active', c2.length, 'รับเรื่องจากโค้ชแล้ว')}${kc('award', late3 ? 'i-ro' : 'i-g', 'CS-3 · คุยเรื่องโค้ช Advance', a3.length, late3 ? `เกิน 1 วันทำการ ${late3} คน` : 'อยู่ในกำหนด')}${kc('users', 'i-pu', 'เพิ่มโค้ช · ชำระแล้ว', paid.length, `สมช ขอผ่านเว็บ รอเซล ${webReq.length}`)}</div>
+    <div class="grid" style="grid-template-columns:1.6fr 1fr;align-items:start"><div>
+    ${card('c3', 'award', 'i-g', 'CS-3 · จบ Basic รอคุยเรื่องโค้ช Advance', a3.length, a3.map(m => row(m, t > advDue(m, t) ? '#ff6b7d' : '#f0b44c', ti('award', advStage(m, t) === 'wait' ? `${m.grad && m.grad <= t ? 'จบ Basic' : 'ผ่าน Fast Track'} ${fd(tpAt(m))} · รอ CS โทรคุย` : `เลือกโค้ช${cn(m.adv.pick)}แล้ว · รอตั้งในระบบ`, `${sla(advDue(m, t), t, advStage(m, t) === 'wait' ? 'ติดต่อ' : 'ตั้งโค้ช')}${m.adv.csReq ? ' <span class="tag web">กด "ให้ CS ติดต่อกลับ" จากเว็บ</span>' : ''}`), B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id), 'pri'))).join(''), 'ไม่มีรายชื่อรอคุย')}
+    ${card('c1', 'headset', 'i-ro', 'CS-1 · สมช ไม่ตอบโค้ชเกิน 24 ชม.', c1.length, c1.map(m => row(m, '#ff6b7d', ti('msg', `${coachTxt(m)}ทักไป ${fd(m.contact)} ${ftm(m.contact)} น. · ไม่ตอบ ${Math.floor(hrs(m.contact, t))} ชม.`, `โค้ชส่งมา ${fd(m.cs1At)} ${ftm(m.cs1At)} น. · ${m.tags ? SCREEN[m.tags.screen] : 'ยังไม่ได้ทำควิซ'}`), B('ติดต่อได้แล้ว', () => { m.reply = now(); log(m, 'CS ติดต่อได้ · สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว · ส่งคืน${coachTxt(m)}`); }, 'pri') + B('บันทึก: โทรไม่รับ', () => { m.attempts.push({ch:'โทร', at:now()}); log(m, 'CS โทร · ไม่รับสาย'); done('บันทึกแล้ว'); }))).join(''), 'ไม่มีรายชื่อจากโค้ช')}
+    ${card('c2', 'x', 'i-mu', 'CS-2 · No Active', c2.length, c2.map(m => { const lr = lastReplyAt(m, t), a = attemptsAfter(m, lr, t); return row(m, '#8b95a8', ti('clock', `ไม่ตอบมา ${daysSince(lr, t)} วัน · ไลน์ ${a.line}/3 · โทร ${a.call}/3`, `โค้ชส่งพร้อมประวัติ ${fd(m.cs2At)}`), B('ติดต่อได้แล้ว', () => { m.lastReply = now(); log(m, 'CS ติดต่อได้ · กลับมาเรียน'); done(`คุณ${m.nick}กลับมาแล้ว · ส่งคืน${coachTxt(m)}`); }, 'pri')); }).join(''), 'ไม่มีรายชื่อ')}
+    </div><div>
+    ${card('rq', 'users', 'i-pu', 'คำขอเพิ่มโค้ช', paid.length + webReq.length, [...paid.map(r => { const m = byId(r.m); return row(m, '#b69cff', ti('check', `ชำระค่าโค้ช${cn(r.coach)}แล้ว`, `${r.sales} · ${esc(r.receipt)} · ${sla(addWorkDays(r.paidAt, 1), t, 'เพิ่ม')}`), B('เพิ่มโค้ชในระบบ', () => advAddModal(r), 'pri')); }), ...webReq.map(r => { const m = byId(r.m); return row(m, '#7aa2ff', ti('msg', `ขอเพิ่มโค้ช${cn(r.coach)}ผ่านหน้าเว็บ`, 'ส่งต่อให้เซลติดต่อเรื่องราคาและการชำระเงิน'), B('ส่งให้เซล', () => { r.sales = SALES[0]; done(`ส่งคำขอของคุณ${m.nick}ให้${SALES[0]}แล้ว`); })); })].join(''), 'ไม่มีคำขอค้าง')}
+    <div class="hint"><b>ทีม CS ทำอะไรบ้าง</b><ul><li><b>CS-1</b> โค้ชทักแล้ว 24 ชม. ไม่ตอบ → CS ช่วยติดต่อ ได้แล้วส่งคืนโค้ช</li><li><b>CS-2</b> ติดต่อไม่ได้ 3 เดือน → CS ติดตามต่อพร้อมประวัติจากโค้ช</li><li><b>CS-3</b> จบ Basic → CS โทรคุยเลือกโค้ช Advance แล้วตั้งในระบบ</li><li>เซลรับชำระค่าโค้ชเพิ่ม → CS / หลังบ้านเพิ่มโค้ชในระบบ</li></ul></div>
+    </div></div>`;
+}
+/* หัวหน้าทีม Basic / แอดมิน: new sign-ups every evening → give each to a coach (บรีฟ: Refresh สมช ใหม่ → แจกโค้ช) */
+function vAssign() {
+  const t = now(), un = visible().filter(m => !m.coach).sort((a, b) => a.join - b.join);
+  const load = c => visible().filter(m => m.coach === c && !['tp', 'stop', 'sp'].includes(statusOf(m, t))).length;
+  const least = (extra = {}) => COACHES.slice().sort((a, b) => (load(a) + (extra[a] || 0)) - (load(b) + (extra[b] || 0)))[0];
+  S.asg = S.asg || {};
+  const give = (m, c) => { m.coach = c; m.assignedAt = now(); log(m, `หัวหน้าแจกให้โค้ช${c}`); };
+  const recent = visible().filter(m => m.assignedAt && m.assignedAt > addDays(t, -3)).sort((a, b) => b.assignedAt - a.assignedAt);
+  const rows = un.map(m => { const sel = S.asg[m.id] || least(); return `<tr><td><div class="who">${mav(m, 30)}<b>คุณ${esc(m.name)}</b></div></td><td>${fd(m.join)} ${ftm(m.join)} น.</td><td>${sla(new Date(+m.join + DAY), t, 'ทัก')}</td><td><select aria-label="เลือกโค้ชให้คุณ${esc(m.nick)}" data-ch="${A(e => { S.asg[m.id] = e.target.value; })}">${COACHES.map(c => `<option value="${c}" ${c === sel ? 'selected' : ''}>โค้ช${c} · ดูแล ${load(c)} คน</option>`).join('')}</select></td><td>${B('แจก', () => { const c = S.asg[m.id] || least(); give(m, c); done(`แจกคุณ${m.nick}ให้โค้ช${c}แล้ว · ขึ้นในงานวันนี้ของโค้ชทันที`); }, 'pri')}</td></tr>`; }).join('');
+  return `${ph(S.role === 'admin' ? 'แอดมินหลังบ้าน' : 'หัวหน้าทีม Basic', 'แจกรายชื่อ สมช ใหม่', 'ทุกเย็นดึงรายชื่อที่สมัครใหม่ แล้วแจกให้โค้ช · ระบบแนะนำโค้ชที่ดูแลน้อยที่สุด · โค้ชต้องทักภายใน 24 ชม. นับจากเวลาสมัคร', un.length ? B(ic('users', 15) + 'แจกอัตโนมัติทั้งหมด', () => { const ex = {}; un.forEach(m => { const c = least(ex); give(m, c); ex[c] = (ex[c] || 0) + 1; }); done(`แจกแล้ว ${un.length} คน · เกลี่ยตามจำนวนที่แต่ละโค้ชดูแล`); }, 'pri') : '')}
+    <div class="grid" style="grid-template-columns:repeat(${COACHES.length + 1},1fr);margin-bottom:14px">${kc('user', un.length ? 'i-ro' : 'i-gr', 'รอแจกโค้ช', un.length, un.length ? 'แจกก่อนโค้ชเลย 24 ชม.' : 'แจกครบแล้ว')}${COACHES.map(c => kc('users', 'i-g', 'โค้ช' + c + ' ดูแล', load(c), `รอทัก / รอตอบ ${visible().filter(m => m.coach === c && ['ipo', 'pend'].includes(statusOf(m, t))).length}`)).join('')}</div>
+    <div class="card" style="margin-bottom:14px">${sh('user', 'i-bl', 'สมัครใหม่ รอแจกโค้ช', `${un.length} คน`)}${un.length ? `<table><tr><th>ชื่อ</th><th>สมัคร</th><th>ต้องทักภายใน</th><th>แจกให้</th><th></th></tr>${rows}</table>` : `<div class="empty">${ic('check', 16)} แจกครบแล้ว</div>`}</div>
+    <div class="card">${sh('clock', 'i-mu', 'แจกล่าสุด 3 วัน', `${recent.length} คน`)}${recent.map(m => `<div class="tk" style="grid-template-columns:auto 1fr auto">${mav(m, 32)}<div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> <span class="muted" style="font-size:12px">· ${coachTxt(m)} · แจก ${fd(m.assignedAt)} ${ftm(m.assignedAt)} น.</span></div>${chip(statusOf(m, t))}</div>`).join('') || '<div class="empty">ยังไม่มี</div>'}</div>`;
+}
+function gradModal(m) {
+  const t = now(), g = gradProg(m, t);
+  advModal(`ส่งต่อ Advance · คุณ${esc(m.name)}`, `<table><tr><th>บท</th><th>ข้อสอบ (ผ่าน 16/20)</th><th>การบ้านกราฟ</th></tr>${[1, 2, 3, 4].map(ep => `<tr><td>${EPN[ep]}</td><td><b style="color:var(--green)">${m.exams[ep]}/20</b></td><td>${ep === 2 || ep === 3 ? '<b style="color:var(--green)">ผ่าน 3/3</b>' : '<span class="muted">ไม่มี</span>'}</td></tr>`).join('')}</table>
+    <div class="res ok" style="margin-top:10px">ข้อสอบผ่าน ${g.ex}/4 · การบ้านผ่าน ${g.hw}/6 · ครบเงื่อนไขจบ Basic</div>
+    <div class="note" style="margin-top:8px">สมช ได้การ์ด Take Profit + ใบประกาศทาง LINE · ชื่อเข้าคิวทีม CS (CS-3) เพื่อคุยเลือกโค้ชประจำตัวภายใน 1 วันทำการ</div>`, 'ยืนยันจบ Basic',
+    () => { m.grad = now(); log(m, 'โค้ชตรวจครบ · จบ Basic → ส่งต่อ Advance'); done(`คุณ${m.nick}จบ Basic แล้ว · ส่งเข้าคิวทีม CS แล้ว`); });
 }
 
 /* ============ view: report ============ */
@@ -1177,7 +1249,7 @@ function vReport() {
   const ft = all.filter(m => m.ft && m.ft.since <= t);
   const hist = [7, 6, 5, 4, 3, 2, 1, 0].map(k => { const d = addDays(t, -7 * k); return {d, v:teamStats(d, M.filter(m => m.join <= d)).idx}; });
   const weekly = f => [7, 6, 5, 4, 3, 2, 1, 0].map(k => f(addDays(t, -7 * k)));
-  const coachRows = COACHES.map(c => { const l = all.filter(m => m.coach === c), cs = teamStats(t, l), al = l.flatMap(m => alertsOf(m, t)); return `<tr><td><div class="who">${cav(c, 28)}<b>โค้ช${c}</b></div></td><td>${cs.act}</td><td style="min-width:120px"><div style="display:flex;gap:8px;align-items:center"><div class="bar" style="flex:1"><i style="width:${cs.idx}%"></i></div><b>${cs.idx}%</b></div></td><td>${al.filter(a => a.pri === 0).length}</td><td>${al.filter(a => a.k === 'hw' || a.k === 'ftHw').length}</td></tr>`; }).join('');
+  const coachRows = COACHES.map(c => { const l = all.filter(m => m.coach === c), cs = teamStats(t, l), al = l.flatMap(m => alertsOf(m, t)), nw = l.filter(m => m.join > addDays(t, -30) && ((m.contact && m.contact <= t) || hrs(m.join, t) >= 24)), okc = nw.filter(m => m.contact && m.contact <= t && hrs(m.join, m.contact) <= 24).length; return `<tr><td><div class="who">${cav(c, 28)}<b>โค้ช${c}</b></div></td><td>${cs.act}</td><td>${nw.length ? Math.round(okc / nw.length * 100) + '%' : '—'}</td><td style="min-width:120px"><div style="display:flex;gap:8px;align-items:center"><div class="bar" style="flex:1"><i style="width:${cs.idx}%"></i></div><b>${cs.idx}%</b></div></td><td>${al.filter(a => a.pri === 0).length}</td><td>${al.filter(a => a.k === 'hw' || a.k === 'ftHw').length}</td></tr>`; }).join('');
   const text = [`Basic Market Report · ${fdy(t)}`, `Basic Index ${s.idx}% (${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta)} จุด)`, `สมช ใหม่ ${newM.length} คน · ทักภายใน 24 ชม. ${pct}%`, `EP.1 ${pipe[0]} · EP.2 ${pipe[1]} · EP.3 ${pipe[2]} · EP.4 ${pipe[3]} · จบ/ไป Advance ${s.cnt('tp')}`, `Downtrend ${s.cnt('down')} · Sideway ${s.cnt('side')} · พัก ${s.cnt('sp')} · Stop loss ${s.cnt('stop')}`, `Fast Track ${ft.filter(m => m.ft.status !== 'adv').length} คน · การบ้านรอตรวจ ${hwOpen.length}`].join('\n');
   const copy = () => { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('คัดลอกสรุปแล้ว วางใน LINE ได้เลย'); } catch (e) { toast('คัดลอกไม่สำเร็จ'); } ta.remove(); };
   const stages = [['ยังไม่เริ่ม', notStarted, '#7aa2ff'], ...pipe.map((n, i) => [EPN[i + 1], n, '#e3b857']), ['จบ / Advance', s.cnt('tp'), '#56d68a']], mx = Math.max(1, ...stages.map(x => x[1]));
@@ -1195,7 +1267,7 @@ function vReport() {
       </div>
     </div>
     <div class="grid" style="grid-template-columns:1fr 1fr">
-      <div class="card">${sh('users', 'i-g', 'รายโค้ช')}<table><tr><th>โค้ช</th><th>กำลังเรียน</th><th>Index</th><th>งานด่วน</th><th>การบ้าน</th></tr>${coachRows}</table></div>
+      <div class="card">${sh('users', 'i-g', 'รายโค้ช', 'SLA: ทักภายใน 24 ชม. (30 วัน) · งานด่วน · การบ้านค้าง')}<table><tr><th>โค้ช</th><th>กำลังเรียน</th><th>ทัก 24 ชม.</th><th>Index</th><th>งานด่วน</th><th>การบ้าน</th></tr>${coachRows}</table></div>
       <div class="card">${sh('heart', 'i-ro', 'Voice of Members', 'ตัวอย่างคอมเม้นท์ สมช')}${WEBFB.slice().reverse().map(f => `<div class="voice"><span class="tag web">จากหน้าเว็บ</span> ${'★'.repeat(f.stars)}${f.text ? ` "${esc(f.text)}"` : ''}<div class="note">คุณมณีรัตน์ · ${fd(new Date(f.at))} · รอทีมพิจารณา</div></div>`).join('')}${VOICE.map(v => `<div class="voice"><span class="tag">${v.tag}</span> "${v.text}"<div class="note">ทีมทำแล้ว: ${v.act}</div></div>`).join('')}</div>
     </div>`;
 }
@@ -1295,7 +1367,7 @@ function hwCard(x, t) {
   const acts = ft ? B(ic('check', 15) + 'ผ่าน → ไป Advance', () => { m.ft.status = 'adv'; m.ft.advAt = now(); log(m, 'ตรวจการบ้าน Fast Track ผ่าน · ส่งต่อ Advance'); done(`คุณ${m.nick}ไป Advance แล้ว`); }, 'pri') + B('ส่งกลับให้แก้', () => { m.ft.hwSub = null; log(m, 'ส่งการบ้าน FT กลับให้แก้'); done('ส่งกลับให้แก้แล้ว'); })
     : B(ic('check', 15) + 'ผ่าน', () => { h.rev = now(); h.pass = true; h.note = ''; done(`การบ้าน ${EPN[h.ep]} ข้อ ${h.n} ของคุณ${m.nick}: ผ่าน · แจ้ง สมช แล้ว`); }, 'pri') + B('ส่งกลับให้แก้', () => hwFixModal(m, h));
   return `<div class="hwi ${hh >= 48 ? 'late' : ''} ${S.hwFocus === m.id ? 'focus' : ''}"><div class="hwt">${art(500 + (+m.id.slice(1)) * 13 + (h ? h.ep * 7 + h.n : 99), ft ? '#b69cff' : '#e3b857', {n:26, trend:.006})}<b>${ft ? 'FT' : EPN[h.ep]}</b><span>${ft ? 'Fast Track' : 'ข้อ ' + h.n}</span></div>
-    <div style="min-width:0"><div class="who">${mav(m, 34)}<div class="wn"><b><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></b><span>โค้ช${m.coach} · ส่งมา ${fd(x.at)} ${ftm(x.at)} น. · ${Math.floor(hh)} ชม.ที่แล้ว</span></div></div>
+    <div style="min-width:0"><div class="who">${mav(m, 34)}<div class="wn"><b><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></b><span>${coachTxt(m)} · ส่งมา ${fd(x.at)} ${ftm(x.at)} น. · ${Math.floor(hh)} ชม.ที่แล้ว</span></div></div>
       <div style="margin-top:8px;font-weight:700">${title} <span class="muted" style="font-weight:400">· ${topic}</span></div>
       ${prev ? `<div class="note" style="margin-top:4px">ส่งใหม่หลังโค้ชให้แก้: "${esc(prev.note)}"</div>` : ''}
       ${text ? `<div class="quote">${esc(text)}</div>` : ''}
@@ -1571,7 +1643,7 @@ function advInfo(m, t) {
   const st = advStage(m, t), ty = typeOf(m), ex = [1, 2, 3, 4].map(ep => m.exams[ep]).filter(x => x != null);
   return `<div class="grid">
     <div class="card"><div class="who" style="margin-bottom:8px">${mav(m, 44)}<div class="wn"><b style="font-size:17px">คุณ${esc(m.name)} ${chip('tp')}</b></div></div>
-      <div class="note" style="font-size:13.5px;margin-bottom:8px">${m.grad && m.grad <= t ? `จบ Basic ${fdy(m.grad)}` : `ผ่าน Fast Track ${fdy(m.ft.advAt)}`} · Basic โค้ช${m.coach}${ex.length ? ` · ข้อสอบเฉลี่ย ${(ex.reduce((x, y) => x + y, 0) / ex.length).toFixed(1)}/20` : ''}</div>
+      <div class="note" style="font-size:13.5px;margin-bottom:8px">${m.grad && m.grad <= t ? `จบ Basic ${fdy(m.grad)}` : `ผ่าน Fast Track ${fdy(m.ft.advAt)}`} · Basic ${coachTxt(m)}${ex.length ? ` · ข้อสอบเฉลี่ย ${(ex.reduce((x, y) => x + y, 0) / ex.length).toFixed(1)}/20` : ''}</div>
       ${m.tags ? `<span class="tag" style="background:${ty.c};color:#fff;font-weight:700">${ty.name}</span><span class="tag">${SCREEN[m.tags.screen]}</span><span class="tag">สนใจ: ${esc(m.tags.asset)}</span><span class="tag">ความรู้: ${LEVEL[m.tags.level]}</span><span class="tag">${m.tags.bkk ? 'อยู่ กทม.' : 'ต่างจังหวัด'}</span>` : '<div class="empty">ยังไม่มีข้อมูลควิซ</div>'}
       ${m.ft && m.ft.memo ? `<div class="note" style="margin-top:6px">Memo Fast Track: ${esc(m.ft.memo)}</div>` : ''}
       <div class="acts" style="justify-content:flex-start;margin-top:10px">${B('โปรไฟล์ Basic', () => go('profile', m.id))}${B('ดูมุมมอง สมช', () => go('member', m.id))}</div></div>
@@ -1616,7 +1688,7 @@ function vAdv() {
   const reqs = REQ.filter(r => r.at <= t), rq = k => reqs.filter(r => reqSt(r, t) === k);
   if (!grads.some(m => m.id === S.advSel)) S.advSel = (W[0] || T[0] || D[0] || {}).id || null;
   const col = (title, sub, arr, fn) => `<div class="kcol"><h4>${title}<span class="muted">${arr.length}</span></h4><div class="note" style="margin:-4px 4px 8px">${sub}</div>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
-  const card = (m, body) => `<div class="kcard ${S.advSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.advSel = m.id; S.advForm = null; render(); })}"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>Basic โค้ช${m.coach}</span></div></div>${body}</div>`;
+  const card = (m, body) => `<div class="kcard ${S.advSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.advSel = m.id; S.advForm = null; render(); })}"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>Basic ${coachTxt(m)}</span></div></div>${body}</div>`;
   const fin = m => `${m.grad && m.grad <= t ? 'จบ Basic' : 'ผ่าน Fast Track'} ${fd(tpAt(m))}`;
   const kan = `<div class="kan" style="grid-template-columns:repeat(3,1fr)">
     ${col('1 · รอ CS ติดต่อ', 'ระบบส่งรายชื่อให้เมื่อจบ Basic / ผ่าน Fast Track', W, m => { const n = m.adv.calls.filter(c => c.at <= t).length; const cr = m.adv.csReq && m.adv.csReq.at <= t ? m.adv.csReq : null; return card(m, `${fin(m)}${n ? ` · ติดต่อแล้ว ${n} ครั้ง` : ''}${cr ? `<br><span class="tag web">กด "ให้ CS ติดต่อกลับ"${cr.coach ? ' · สนใจโค้ช' + cn(cr.coach) : ''}</span>` : ''}<br>${sla(advDue(m, t), t, 'ติดต่อ')}`); })}
@@ -1661,10 +1733,12 @@ function vAdv() {
         <li><b>+1 วัน</b> ดูว่าใครเกินกำหนด 1 วันทำการ</li></ul></div>
     </div>`;
 }
-function csAdvCard(t) {
+function csAdvCard(t, own) {
+  if (own) { const G = mine().filter(m => advStage(m, t) && tpAt(m) > addDays(t, -30)).sort((a, b) => tpAt(b) - tpAt(a)), lab = {wait:['#f0b44c', 'รอ CS ติดต่อ'], talked:['#7aa2ff', 'CS คุยแล้ว · รอตั้งโค้ช'], set:['#56d68a', 'ตั้งโค้ชแล้ว']};
+    return `<div class="card" style="margin-top:14px">${sh('award', 'i-g', 'CS-3 · สมช ของฉันที่จบ Basic', 'ระบบส่งให้ทีม CS อัตโนมัติ · ดูสถานะได้อย่างเดียว')}${G.length ? `<table><tr><th>ชื่อ</th><th>จบเมื่อ</th><th>สถานะ</th></tr>${G.map(m => { const st = advStage(m, t); return `<tr><td><div class="who">${mav(m, 30)}<span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></div></td><td>${fd(tpAt(m))}</td><td><span class="chip"><i style="background:${lab[st][0]}"></i>${lab[st][1]}${st === 'set' ? ' · ' + coachNames(m, t).join(' + ') : ''}</span></td></tr>`; }).join('')}</table>` : '<div class="empty">ยังไม่มี สมช ที่จบ Basic ใน 30 วัน</div>'}</div>`; }
   const W = visible().filter(m => advStage(m, t) === 'wait').sort((a, b) => advDue(a, t) - advDue(b, t));
   return `<div class="card" style="margin-top:14px">${sh('award', 'i-g', 'CS-3 · จบ Basic → คุยเรื่องโค้ช Advance')}<div class="note" style="margin:-4px 0 8px">ระบบส่งรายชื่อให้อัตโนมัติเมื่อ สมช จบ Basic หรือผ่าน Fast Track · CS ติดต่อภายใน 1 วันทำการ แล้วทีมตั้งโค้ชประจำตัวให้ในระบบ</div>
-    ${W.length ? `<table><tr><th>ชื่อ</th><th>โค้ช Basic</th><th>จบเมื่อ</th><th>กำหนดติดต่อ</th><th></th></tr>${W.map(m => `<tr><td><div class="who">${mav(m, 30)}<span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></div></td><td>${m.coach}</td><td>${fd(tpAt(m))} ${ftm(tpAt(m))}</td><td>${sla(advDue(m, t), t, 'ติดต่อ')}</td><td>${B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id), 'pri')}</td></tr>`).join('')}</table>` : '<div class="empty">ไม่มีรายชื่อรอติดต่อ</div>'}</div>`;
+    ${W.length ? `<table><tr><th>ชื่อ</th><th>โค้ช Basic</th><th>จบเมื่อ</th><th>กำหนดติดต่อ</th><th></th></tr>${W.map(m => `<tr><td><div class="who">${mav(m, 30)}<span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></div></td><td>${m.coach || '—'}</td><td>${fd(tpAt(m))} ${ftm(tpAt(m))}</td><td>${sla(advDue(m, t), t, 'ติดต่อ')}</td><td>${B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id), 'pri')}</td></tr>`).join('')}</table>` : '<div class="empty">ไม่มีรายชื่อรอติดต่อ</div>'}</div>`;
 }
 function advProfileBox(m, t) {
   const st = advStage(m, t); if (!st) return '';
@@ -2033,7 +2107,7 @@ function countUp(root) {
 function render() {
   ACT = {}; seq = 0;
   renderSide(); renderTop();
-  const v = {today:vToday, screener:vScreener, profile:vProfile, ft:vFT, cs:vCS, report:vReport, member:vMember, adv:vAdv, hw:vHw, sched:vSched, content:vContent, coaches:vCoaches, ch:vCH, cst:vCST, cqa:vCQA, csg:vCSG, ccourse:vCCourse, cprof:vCProf}[S.view] || (S.role === 'coach' ? vCH : vToday);
+  const v = {today:vToday, screener:vScreener, profile:vProfile, ft:vFT, cs:vCS, report:vReport, member:vMember, adv:vAdv, hw:vHw, sched:vSched, content:vContent, coaches:vCoaches, cshome:vCSHome, assign:vAssign, ch:vCH, cst:vCST, cqa:vCQA, csg:vCSG, ccourse:vCCourse, cprof:vCProf}[S.view] || (S.role === 'coach' ? vCH : S.role === 'cs' ? vCSHome : vToday);
   const vw = $('#view'); vw.innerHTML = v();
   const key = S.role + '|' + S.ac + '|' + S.view + '|' + (S.view === 'profile' ? S.sel : '');
   if (key !== render.key) { render.key = key; vw.classList.remove('enter'); void vw.offsetWidth; vw.classList.add('enter'); countUp(vw); clearTimeout(render.t); render.t = setTimeout(() => vw.classList.remove('enter'), 1400); }
