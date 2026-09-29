@@ -2123,6 +2123,8 @@ linkApply(LINK.get()); linkLast = JSON.stringify(meSnap());
   if (h.get('mode')) S.smode = h.get('mode');
   const v = h.get('v'), id = h.get('id');
   if (v) { S.view = v; if (id) { if (v === 'profile') S.sel = id; if (v === 'member') S.mv = id; if (v === 'ft') S.ftSel = id; if (v === 'adv') S.advSel = id; } }
+  /* a direct link to a page opens it as the role that owns that page (e.g. #v=assign → หัวหน้าทีม, #v=cshome → ทีม CS) */
+  if (v && v !== 'profile') { const has = r => (r === 'coach' ? NAVC : NAVR[r]).some(([, it]) => it.some(i => i[0] === v)); if (!has(S.role)) { const r = ['head', 'cs', 'admin', 'coach'].find(has); if (r) { S.role = r; if (r !== 'coach') S.coach = 'all'; } } }
   if (h.get('quiz') != null) { const ans = (h.get('ans') || '').split(',').map(x => x === '' || x === '-' ? null : +x); while (ans.length < 4) ans.push(null); S.quiz = {id:S.mv, step:+h.get('quiz'), ans, err:''}; }
   if (h.get('pre')) S.form = {id:S.ftSel, t:[1,1,1], sr:2, plan:[1,1,1,0], stock:'AOT', memo:'อ่านเทรนด์ครบ 3 ภาพ แผนเทรดยังไม่คำนวณขนาดไม้', err:'', touched:true};
 })();
