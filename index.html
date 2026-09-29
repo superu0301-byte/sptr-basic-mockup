@@ -2056,7 +2056,7 @@ function thumb(c, extra = '') {
 }
 function clipCard(c, meta) {
   const left = c.prog > 0 && c.prog < 1 ? ` · เหลือ ${Math.round(c.dur * (1 - c.prog))} นาที` : '';
-  return `<div class="clip" data-go="watch:${c.id}">${thumb(c)}<div class="t">${esc(c.title)}</div><div class="m">${meta || `${c.cat === 'adv' || c.cat === 'replay' ? 'โค้ช' : ''}${esc(c.coach)} · ${fmtN(c.views)} ครั้ง${left}`}</div></div>`;
+  return `<div class="clip" data-bob="${c.id}" data-go="watch:${c.id}">${thumb(c)}<div class="t">${esc(c.title)}</div><div class="m">${meta || `${c.cat === 'adv' || c.cat === 'replay' ? 'โค้ช' : ''}${esc(c.coach)} · ${fmtN(c.views)} ครั้ง${left}`}</div></div>`;
 }
 const since = d => { const m = Math.round((NOW - d) / 60000); return m < 60 ? `${m} นาที` : `${Math.floor(m / 60)} ชม. ${m % 60} นาที`; };
 function liveBig(l) {
@@ -2120,7 +2120,7 @@ const CDL = '<span class="cdl" aria-hidden="true"><i></i><i></i><i></i></span>';
 function scard(c, o = {}) {
   const pct = c.prog > 0 && c.prog < 1 ? Math.round(c.prog * 100) : 0;
   const who = c.cat === 'adv' ? `${av(c.coach, 22)}<span>โค้ช${esc(c.coach)}</span>` : `<span>${esc(serName(c))}</span>`;
-  return `<div class="sc" data-a="${playOrInfo(c)}" aria-label="${esc(c.title)} · ${c.dur} นาที${pct ? ` · ดูไป ${pct}%` : c.prog === 1 ? ' · ดูจบแล้ว' : ''}"><div class="sth2">${cover(c)}<span class="scd">${c.dur} นาที</span>${pct ? `<div class="scp"><i style="width:${pct}%"></i></div>` : ''}${c.prog === 1 ? `<span class="ndone" aria-hidden="true">${ic('check', 14)}</span>` : ''}${NEWSET.has(c.id) && !(c.prog > 0) ? '<span class="scn">ใหม่</span>' : ''}<span class="scplay" aria-hidden="true">${ic('play', 20)}</span></div>
+  return `<div class="sc" data-bob="${c.id}" data-a="${playOrInfo(c)}" aria-label="${esc(c.title)} · ${c.dur} นาที${pct ? ` · ดูไป ${pct}%` : c.prog === 1 ? ' · ดูจบแล้ว' : ''}"><div class="sth2">${cover(c)}<span class="scd">${c.dur} นาที</span>${pct ? `<div class="scp"><i style="width:${pct}%"></i></div>` : ''}${c.prog === 1 ? `<span class="ndone" aria-hidden="true">${ic('check', 14)}</span>` : ''}${NEWSET.has(c.id) && !(c.prog > 0) ? '<span class="scn">ใหม่</span>' : ''}<span class="scplay" aria-hidden="true">${ic('play', 20)}</span></div>
     <div class="scb"><b>${esc(o.title || (c.cat === 'brec' ? `${c.day} ${fd(c.rdate)} · ${c.kind}` : c.title))}</b><div class="scm">${who}<span class="dotsep"></span>${lvlTag(c)}</div>${c.cat === 'basic' || c.cat === 'brec' ? '' : dnaTag(c)}</div></div>`;
 }
 const slide = d => e => { const t = e.target.closest('.nrw').querySelector('.ntrack'); t.scrollBy({left:d * t.clientWidth * .9, behavior:reduceMotion() ? 'auto' : 'smooth'}); };
@@ -2177,7 +2177,7 @@ function epRow(x, i, cur) {
   const pct = x.prog > 0 ? Math.min(1, x.prog) : 0, num = i + 1;
   const nm = x.cat === 'basic' ? `คลิปหลักเดือน ${x.ver.replace(' 2569', '')} · ใช้สอบ` : x.cat === 'bver' ? `คลิปรอบ ${x.ver}` : x.cat === 'brec' ? `${x.day} ${fd(x.rdate)} · ${x.kind}` : (x.ep ? 'EP.' + x.ep + ' ' : '') + shortT(x);
   const desc = x.cat === 'basic' || x.cat === 'bver' ? 'ในคลิป: ' + EPGOAL[+x.ep].join(' · ') : x.cat === 'brec' ? `${EPT[x.rep]} · ${x.ch.slice(1, 3).map(h => h.title).join(' · ')}` : x.ch.map(h => h.title).slice(0, 4).join(' · ');
-  return `<div class="tep ${cur ? 'cur' : ''}" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${num} ${esc(nm)} · ${x.dur} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${cover(x)}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b><em class="tno">${num}.</em>${esc(nm)}</b><span>${x.dur} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
+  return `<div class="tep ${cur ? 'cur' : ''}" data-bob="${x.id}" data-a="${A(() => { S.modal = null; go('watch', x.id); })}" aria-label="${num} ${esc(nm)} · ${x.dur} นาที${pct >= 1 ? ' · ดูจบแล้ว' : pct > 0 ? ` · ดูไป ${Math.round(pct * 100)}%` : ''}"><span class="n">${num}</span><div class="tth">${cover(x)}${pct > 0 ? `<div class="tpb"><i style="width:${pct * 100}%"></i></div>` : ''}<span class="pl">${ic('play', 18)}</span></div><div><div class="tet"><b><em class="tno">${num}.</em>${esc(nm)}</b><span>${x.dur} นาที</span></div><p>${esc(desc)}</p>${pct >= 1 ? `<span class="tag gr" style="margin-top:8px">${ic('check', 12)}ดูจบแล้ว</span>` : ''}</div></div>`;
 }
 function simCard(x) {
   const on = S.saved.has(x.id);
@@ -2580,7 +2580,9 @@ function cover(x) {
   if (v.who && v.who.length) return `<span class="cov ph ${v.who.length > 1 ? 'duo' : ''}" style="--hu:${c.hue}" aria-hidden="true">${tx}<span class="cvph"><span class="cvpi">${v.who.map(id => `<i style="background-image:var(--p-${id})"></i>`).join('')}</span></span><span class="cvnm">โค้ช${v.names.map(esc).join(' · ')}</span></span>`;
   return `<span class="cov ty" aria-hidden="true"><span class="cvart">${art(x.seed, c.hue, {n:12, bare:true})}</span>${tx}${v.big ? `<span class="cvbig"><b>${/^[a-z]+$/.test(v.big) ? ic(v.big, 48) : esc(v.big)}</b>${v.bs ? `<small>${esc(v.bs)}</small>` : ''}</span>` : ''}</span>`;
 }
-const itemOf = el => byClip(el.dataset.id);
+const itemOf = el => byClip(el.dataset.id || el.dataset.bob);
+/* the cover area the hover card grows out of, for every kind of video card */
+const bobBox = el => el.querySelector('.nfi, .thumb, .sth2, .lrth, .tth, .ercc') || el;
 const itemProg = x => x.prog > 0 ? Math.min(1, x.prog) : 0;
 const itemPlay = x => () => { S.modal = null; go('watch', x.id); };
 const itemInfo = x => () => openTitle(x.id);
@@ -2633,7 +2635,7 @@ function showBob(tile) {
   hideBob();
   const c = x, p = itemProg(x), pct = Math.round(p * 100), sv = S.saved.has(c.id), lk = S.liked.has(c.id), who = coachesOf(c);
   /* size + place: 1.5× the tile, centred on it, kept inside the window; the grow starts from the tile's exact box */
-  const r = tile.querySelector('.nfi').getBoundingClientRect(), vw = document.documentElement.clientWidth, pad = 16;
+  const r = bobBox(tile).getBoundingClientRect(), vw = document.documentElement.clientWidth, pad = 16;
   const W = Math.round(Math.min(Math.max(r.width * 1.5, 320), vw - 2 * pad)), H = W * 9 / 16, s0 = r.width / W;
   const left = Math.min(Math.max(r.left + r.width / 2 - W / 2, pad), vw - W - pad), top = Math.max(r.top + r.height / 2 - H / 2, 8);
   const org = (t, pc) => s0 < .97 ? (t - s0 * pc) / (1 - s0) : t;
@@ -2658,12 +2660,12 @@ function showBob(tile) {
 }
 document.addEventListener('pointerover', e => {
   if (e.pointerType === 'touch') return;
-  const t = e.target.closest && e.target.closest('.nfc');
-  if (!t || t.contains(e.relatedTarget)) return;
+  const t = e.target.closest && e.target.closest('.nfc, [data-bob]');
+  if (!t || t.contains(e.relatedTarget) || t.closest('.ovl, .sres')) return;
   clearTimeout(bobT); bobT = setTimeout(() => showBob(t), 400);
 });
 document.addEventListener('pointermove', e => { const b = document.getElementById('bob'); if (b && e.pointerType !== 'touch' && !b.contains(e.target)) hideBob(true); }, {passive:true});
-document.addEventListener('pointerout', e => { const t = e.target.closest && e.target.closest('.nfc'); if (t && !t.contains(e.relatedTarget)) clearTimeout(bobT); });
+document.addEventListener('pointerout', e => { const t = e.target.closest && e.target.closest('.nfc, [data-bob]'); if (t && !t.contains(e.relatedTarget)) clearTimeout(bobT); });
 /* ---------- Basic: 4 lessons (EP) as collections — home shows 4 big cards, each opens its own page with all of its clips ---------- */
 const EPGOAL = {1:['รู้จักหุ้นและการซื้อขาย', 'อ่าน Bid / Offer บน Streaming', 'ตั้งค่า TradingView + Watchlist'], 2:['อ่านเทรนด์ 3 ระดับ', 'หา HH-HL / LH-LL ให้เป็น', 'ตีแนวรับแนวต้านเป็นโซน'], 3:['ตั้ง Stop loss ก่อนเข้า', 'คุมความเสี่ยงต่อไม้', 'คำนวณขนาดไม้เองได้'], 4:['อ่าน Volume ยืนยันราคา', 'แยก Breakout จริงกับหลอก', 'ใช้ RSI + MACD เป็นตัวช่วย']};
 const EPSUM = {1:['หุ้นขึ้นลงตามแรงซื้อแรงขาย ดูได้จาก Bid / Offer และ Volume บน Streaming', 'กราฟแท่งเทียนรายวันบอกราคาเปิด ปิด สูงสุด ต่ำสุด ในแต่ละวัน', 'สร้าง Watchlist ของตัวเอง แล้วดูกราฟทุกวันให้เป็นนิสัย'],
@@ -2715,10 +2717,10 @@ function vEp() {
   const quizAct = s.quiz.s === 'cur' ? `<button class="btn sm" data-a="${A(() => { go('watch', m.id); S.wtab = 'sum'; render(); const t = $('#wtools'); if (t) t.scrollIntoView(); })}">ทำแบบทดสอบ</button>` : '';
   const hwAct = s.hw.s === 'cur' && n === ME.ep && !adv ? `<button class="btn sm" data-a="${A(openHw)}">ส่งการบ้าน</button>` : '';
   const clsAct = s.cls ? `<div class="erda">${adv ? remindBtn(s.cls) : bActs(s.cls)}</div>` : '';
-  const verItem = c => `<div class="erc" data-go="watch:${c.id}" aria-label="คลิปรอบ ${c.ver} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}</div>
+  const verItem = c => `<div class="erc" data-bob="${c.id}" data-go="watch:${c.id}" aria-label="คลิปรอบ ${c.ver} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}</div>
     <div class="erct"><b>คลิปรอบ ${c.ver}</b><span>EP.${n} ${esc(g.t)}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · ดูทบทวนได้ · ไม่นับสอบ${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
   const recs = s.recs.filter(c => rk === 'all' || c.kind === rk);
-  const recItem = c => `<div class="erc" data-go="watch:${c.id}" aria-label="คลาสสดย้อนหลัง ${c.day} ${fd(c.rdate)} ${c.kind} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}${c.id === LATEST_REC ? '<span class="ercn">คลาสล่าสุด</span>' : ''}</div>
+  const recItem = c => `<div class="erc" data-bob="${c.id}" data-go="watch:${c.id}" aria-label="คลาสสดย้อนหลัง ${c.day} ${fd(c.rdate)} ${c.kind} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}${c.id === LATEST_REC ? '<span class="ercn">คลาสล่าสุด</span>' : ''}</div>
     <div class="erct"><b>${TH_DL[c.rdate.getDay()]} ${fd(c.rdate)}</b><span>${c.kind === 'ตลาดจริง' ? 'ตลาดจริง · เปิด Streaming ดูหุ้นจริง' : 'Case Clinic · เฉลยการบ้าน + ไล่เคส'}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · โค้ชแนน${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
   const tabBtn = (k, l) => `<button role="tab" aria-selected="${tab === k}" class="${tab === k ? 'on' : ''}" data-a="${A(() => { S.eptab = k; render(); })}">${l}</button>`;
   const care = CAL.find(e => e.type === 'care' && e.at > NOW);
@@ -3076,7 +3078,7 @@ function libSummary() {
 }
 function libRow(c) {
   const pct = c.prog > 0 && c.prog < 1 ? c.prog : 0, pos = S.pos[c.id] ?? Math.round(pct * c.dur * 60);
-  return `<div class="lrow" data-go="watch:${c.id}" aria-label="เล่นต่อ ${esc(c.title)} จากนาที ${mmss(pos)}"><div class="lrth">${cover(c)}<span class="scplay" aria-hidden="true">${ic('play', 18)}</span></div>
+  return `<div class="lrow" data-bob="${c.id}" data-go="watch:${c.id}" aria-label="เล่นต่อ ${esc(c.title)} จากนาที ${mmss(pos)}"><div class="lrth">${cover(c)}<span class="scplay" aria-hidden="true">${ic('play', 18)}</span></div>
     <div class="lrb"><span class="ck">${esc(serName(c))}</span><b>${esc(c.cat === 'brec' ? `${c.day} ${fd(c.rdate)} · ${c.kind}` : shortT(c))}</b><div class="rpb"><i style="width:${pct * 100}%"></i></div><span class="rleft">ต่อจากนาที ${mmss(pos)} · เหลือ ${Math.round(c.dur * (1 - pct))} นาที</span></div>
     <span class="btn sm lplay" aria-hidden="true">${ic('play', 13)}เล่นต่อ</span></div>`;
 }
