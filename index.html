@@ -1568,6 +1568,8 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   .stage:not(.bstage) .hsbar{top:10px;bottom:auto;height:3px;border-radius:2px}
   .stage:not(.bstage) .hsel:not(.on) .hsbar{display:none}
 }
+.bolink{margin-left:6px;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--gold);text-decoration:none;border:1px solid var(--goldln)}.bolink:hover{background:var(--goldbg)}
+.simh a{color:var(--gold);letter-spacing:0}
 </style>
 </head>
 <body>
@@ -1913,11 +1915,71 @@ const epNo = (c, crs) => (c.title.match(/Ep\.(\d+)/) || [])[1] || (crs.indexOf(c
 const epTitle = c => c.title.replace(/^.*?Ep\.\d+\s*/, '');
 const lineTo = who => A(() => toast('เปิด LINE Official ของทีม' + who + ' (ในระบบจริง)'));
 function openReq(id, from) { if (!COACHES.some(c => c.id === id)) return; S.buy = id; S.buyFrom = from || ''; S.modal = 'coachreq'; S.search = false; S.notif = false; render(); }
-function startWait() { S.myCoaches = []; S.fcoach = null; S.salesReq = {}; S.csReq = null; S.pkTopic = 'ทั้งหมด'; setTier('adv'); }
+function startWait() { lkWrite(o => { o.grad = +NOW; o.adv = {calls:[]}; o.reqs = []; }); S.myCoaches = []; S.fcoach = null; S.salesReq = {}; S.csReq = null; S.pkTopic = 'ทั้งหมด'; setTier('adv'); }
 /* team-only simulation of the back office (not part of the member's screen) */
-function simAssign(id) { const c = COACHES.find(x => x.id === id); if (!c) return; S.myCoaches = [id]; S.fcoach = id; S.csReq = null; S.modal = null; S.hero = 0; heroEl = 0; go('home'); toast('ทีม CS ตั้งโค้ช' + c.name + 'เป็นโค้ชประจำตัวของคุณแล้ว'); }
-function simAdd(id) { const c = COACHES.find(x => x.id === id); if (!c) return; if (!S.myCoaches.includes(id)) S.myCoaches.push(id); delete S.salesReq[id]; S.modal = null; S.fcoach = id; S.hero = 0; heroEl = 0; go('home'); toast('หลังบ้านเพิ่มโค้ช' + c.name + 'ให้คุณแล้ว · คลิปและคลาสขึ้นแล้ว'); }
-const simBox = inner => `<div class="simbox" role="group" aria-label="จำลองฝั่งหลังบ้าน"><span class="simh">MOCKUP · จำลองฝั่งหลังบ้าน · สมาชิกไม่เห็นส่วนนี้</span>${inner}</div>`;
+function simAssign(id) { const c = COACHES.find(x => x.id === id); if (!c) return; lkWrite(o => { lkAdvBase(o); o.adv.calls = o.adv.calls || []; Object.assign(o.adv, {talkAt:o.adv.talkAt || +NOW, pick:id, ch:o.adv.ch || 'โทร', setAt:+NOW, coach:id, by:'ทีม CS (กล่องจำลองในหน้าเว็บ)', csReq:null, extra:(o.adv.extra || []).filter(x => x.id !== id)}); }); S.fcoach = id; S.modal = null; S.hero = 0; heroEl = 0; go('home'); toast('ทีม CS ตั้งโค้ช' + c.name + 'เป็นโค้ชประจำตัวของคุณแล้ว'); }
+function simAdd(id) { const c = COACHES.find(x => x.id === id); if (!c) return; lkWrite(o => { lkAdvBase(o); o.adv.extra = (o.adv.extra || []).filter(x => x.id !== id).concat({id, at:+NOW, by:'หลังบ้าน (กล่องจำลองในหน้าเว็บ)'}); o.reqs.forEach(r => { if (r.coach === id && !r.doneAt) { r.sales = r.sales || 'เซลพลอย'; r.paidAt = r.paidAt || +NOW; r.receipt = r.receipt || 'INV-690924-050'; r.doneAt = +NOW; } }); }); S.modal = null; S.fcoach = id; S.hero = 0; heroEl = 0; go('home'); toast('หลังบ้านเพิ่มโค้ช' + c.name + 'ให้คุณแล้ว · คลิปและคลาสขึ้นแล้ว'); }
+const simBox = inner => `<div class="simbox" role="group" aria-label="จำลองฝั่งหลังบ้าน"><span class="simh">MOCKUP · จำลองฝั่งหลังบ้าน · สมาชิกไม่เห็นส่วนนี้${IN_BO ? '' : ` · <a href="${BO_URL}" target="_blank" rel="noopener">เปิดหลังบ้านจริง ↗</a>`}</span>${inner}</div>`;
+/* ---------- live link with the back office: คุณมณีรัตน์'s data is shared through this browser's localStorage ----------
+   Open the member site and the back office from the same link (or the same computer): a change on one side shows up on the other.
+   Shared: homework EP.2, Fast Track request, feedback, finishing Basic, "ให้ CS ติดต่อกลับ", coach requests to Sales, coaches set by the team. */
+const LINK = {key:'sptr-mockup-link-v1',
+  get() { try { return JSON.parse(localStorage.getItem(this.key) || 'null'); } catch (e) { return null; } },
+  set(o) { try { localStorage.setItem(this.key, JSON.stringify(o)); } catch (e) {} }};
+const BO_URL = location.protocol === 'file:' ? '../mockup/Basic-Member-System-Mockup.html' : 'backoffice/';
+const IN_BO = window.top !== window;   // shown inside the back office's member view
+const LK0 = {hw:[{ep:2, n:1, sub:+D(9, 18, 10), rev:+D(9, 19, 16), pass:true}], ft:null, fb:[], grad:null, adv:{}, reqs:[]};
+let LK = null;   // last shared state (null = not linked yet: the demo defaults)
+const lkGrad = o => !!o && !!(o.grad || (o.ft && o.ft.status === 'adv' && o.ft.advAt));
+const lkHw = () => ((LK || LK0).hw || []).filter(h => h.ep === 2);
+const hwNext = () => [1, 2, 3].find(n => !lkHw().some(h => h.n === n));
+const lkWhen = x => { const d = new Date(x); return `${TH_DL[d.getDay()]} ${d.getDate()}/${d.getMonth() + 1} ${hm(d)} น.`; };
+function lkApply(o, keepCoaches) {
+  LK = o;
+  const h = lkHw(), pass = h.filter(x => x.pass && x.rev).length, wait = h.filter(x => !x.rev).length;
+  GRAD[1].hw = `ผ่าน ${pass}/3${wait ? ` · รอตรวจ ${wait}` : ''}`; GRAD[1].hs = pass >= 3 ? 'ok' : 'cur';
+  if (!lkGrad(o) || keepCoaches) return;
+  const a = o.adv || {};
+  S.myCoaches = a.setAt ? [a.coach, ...(a.extra || []).map(x => x.id)].filter((x, i, arr) => x && COACHES.some(c => c.id === x) && arr.indexOf(x) === i) : [];
+  if (!S.myCoaches.includes(S.fcoach)) S.fcoach = S.myCoaches[0] || null;
+  S.csReq = !a.setAt && a.csReq ? {coach:a.csReq.coach || null} : null;
+  S.salesReq = Object.fromEntries((o.reqs || []).filter(r => !r.doneAt).map(r => [r.coach, true]));
+}
+function lkWrite(fn) {
+  const o = JSON.parse(JSON.stringify(LINK.get() || LK || LK0));
+  ['hw', 'fb', 'reqs'].forEach(k => { o[k] = o[k] || []; }); o.adv = o.adv || {};
+  fn(o); o.from = 'web'; o.at = Date.now();
+  LINK.set(o); lkApply(o);
+}
+/* first Advance action while still on the demo (not linked yet): record the demo as real data (graduated, coaches from the demo) */
+function lkAdvBase(o) {
+  if (lkGrad(o)) return;
+  const [c0, ...more] = S.myCoaches, by = 'ฝน · ทีม CS';
+  o.grad = +D(9, 10, 15);
+  o.adv = c0 ? {calls:[], talkAt:+D(9, 11, 11), pick:c0, ch:'โทร', talkBy:by, setAt:+D(9, 11, 14), coach:c0, by, extra:more.map(id => ({id, at:+D(9, 15, 15), by}))} : {calls:[]};
+}
+const lkNm = id => (COACHES.find(c => c.id === id) || {name:id}).name;
+function lkNews(a, b) {
+  a = a || LK0; const out = [], A0 = a.adv || {}, B0 = b.adv || {}, fa = a.ft || {}, fb = b.ft || {};
+  (b.hw || []).filter(h => h.rev && !(a.hw || []).some(x => x.ep === h.ep && x.n === h.n && x.rev)).forEach(h => out.push(`โค้ช${ME.coach}ตรวจการบ้าน EP.${h.ep} ข้อ ${h.n} แล้ว: ${h.pass ? 'ผ่าน' : 'ให้แก้'}`));
+  if (fb.status && fb.status !== fa.status) out.push({scheduled:`โค้ช${ME.coach}นัดคุย Fast Track ${fb.screenAt ? lkWhen(fb.screenAt) : ''}`, hw:'ผ่าน Screening Fast Track · ส่งการบ้าน 3 ส่วนต่อได้เลย', clip:'Fast Track: ดูคลิป Basic Express แล้วทำการบ้าน 1 ข้อ', adv:'ผ่าน Fast Track แล้ว!'}[fb.status] || '');
+  if (!lkGrad(a) && lkGrad(b)) out.push('ยินดีด้วย คุณจบ Basic แล้ว · ทีม CS จะติดต่อเรื่องโค้ชประจำตัว');
+  if (B0.setAt && B0.setAt !== A0.setAt) out.push(`ทีม CS ตั้งโค้ช${lkNm(B0.coach)}เป็นโค้ชประจำตัวของคุณแล้ว`);
+  (B0.extra || []).filter(x => !(A0.extra || []).some(y => y.id === x.id)).forEach(x => out.push(`หลังบ้านเพิ่มโค้ช${lkNm(x.id)}ให้คุณแล้ว`));
+  if ((B0.calls || []).length > (A0.calls || []).length && B0.calls[B0.calls.length - 1].ch === 'LINE') out.push('CS ส่ง LINE ถึงคุณ เรื่องโค้ชประจำตัว');
+  return out.filter(Boolean).join(' · ');
+}
+const ftSt = () => { const f = (LK || {}).ft; if (!f) return ''; return {invited:'ส่งคำขอแล้ว · รอโค้ชนัด', scheduled:`นัดคุยแล้ว ${f.screenAt ? lkWhen(f.screenAt) : ''}`, hw:'ผ่าน Screening · ทำการบ้าน 3 ส่วน', clip:'ดูคลิป Basic Express + การบ้าน 1 ข้อ', adv:'ผ่าน Fast Track แล้ว'}[f.status] || 'ส่งคำขอแล้ว'; };
+function lkInit() { const h = new URLSearchParams(location.hash.slice(1)), o = LINK.get(); lkApply(o, h.has('coaches') || h.has('pick')); if (lkGrad(o) && !h.get('tier') && !h.has('coaches') && !h.has('pick')) S.tier = 'adv'; }
+window.addEventListener('storage', e => {
+  if (e.key !== LINK.key && e.key !== null) return;
+  const o = LINK.get(); if (!o) { location.reload(); return; }
+  const prev = LK, was = lkGrad(prev); lkApply(o);
+  if (!was && lkGrad(o) && S.tier !== 'adv') { S.tier = 'adv'; applyTier(); S.view = 'home'; }
+  const msg = lkNews(prev, o);
+  if (!S.modal) render();
+  if (msg) toast(msg);
+});
 const rankChip = () => S.tier === 'adv' ? '<span class="rankc adv">ADVANCE</span>' : '<span class="rankc basic">BASIC</span>';
 let ACT = {}, seq = 0;
 const A = fn => { const k = 'a' + (++seq); ACT[k] = fn; return k; };
@@ -2261,7 +2323,7 @@ function missions() {
       + row(ic('target', 19), 'var(--goldbg)', 'var(--gold)', `Chart Challenge · ปิดใน ${dd} วัน ${hh} ชม.`, `ส่งแล้ว ${fmtN(312 + (S.challSent ? 1 : 0))} คน`, S.challSent ? `<span class="btn sm on">${ic('check', 14)}ส่งแล้ว</span>` : `<button class="btn sm" data-a="${A(openChall)}">ส่งคำตอบ</button>`);
   } else {
     const care = CAL.find(e => e.type === 'care' && e.at > NOW);
-    rows = row(ic('note', 19), 'var(--goldbg)', 'var(--gold)', 'การบ้านกราฟ EP.2 · ผ่าน 1/3', 'ข้อ 2–3 ยังไม่ส่ง · โค้ชตรวจใน 48 ชม.', `<button class="btn sm" data-a="${A(openHw)}">ส่ง</button>`)
+    rows = row(ic('note', 19), 'var(--goldbg)', 'var(--gold)', `การบ้านกราฟ EP.2 · ${GRAD[1].hw}`, hwNext() ? `ข้อ ${hwNext()}${hwNext() < 3 ? '–3' : ''} ยังไม่ส่ง · โค้ชตรวจใน 48 ชม.` : 'ส่งครบแล้ว · โค้ชตรวจใน 48 ชม.', `<button class="btn sm" data-a="${A(openHw)}">ส่ง</button>`)
       + row(ic('layers', 19), 'var(--purplebg)', 'var(--purple)', 'แบบทดสอบ EP.2 · 20 ข้อ', `ดูคลิปอีก ${Math.round(byClip('b2').dur * (1 - byClip('b2').prog))} นาทีเพื่อปลดล็อก · ผ่าน 16/20 ขึ้นไป`, `<span class="qlock" role="img" aria-label="ปลดล็อกแล้ว ${Math.round(byClip('b2').prog * 100)} เปอร์เซ็นต์"><i style="width:${byClip('b2').prog * 100}%"></i>${ic('lock', 13)}</span>`)
       + row(ic('users', 19), 'var(--bluebg)', 'var(--blue)', `CARE DAY คุยกับโค้ช${ME.coach} 1:1`, S.bk[care.id] ? `${TH_DL[care.at.getDay()]} ${fd(care.at)} · นัดแล้ว ${S.bk[care.id].slot}–${slotEnd(S.bk[care.id].slot)} น. · ${S.bk[care.id].mode}` : `${TH_DL[care.at.getDay()]} ${fd(care.at)} · ${hm(care.at)}–${care.end} น. · onsite / online`, sessAction(care));
   }
@@ -2703,7 +2765,7 @@ function vPick() {
   const head = first ? `${stp}<div class="bblab"><span class="nS">SPTR</span>ADVANCE · ขั้นถัดไปหลังจบ Basic</div><h1>ยินดีด้วย! ต่อไปคือโค้ชประจำตัวของคุณ</h1>
       <p>แพ็กเกจ Advance รวมโค้ชประจำตัว <b>1 ท่าน</b> · ทีม CS จะติดต่อคุณภายใน 1 วันทำการ เพื่อคุยว่าอยากเรียนกับโค้ชท่านไหน แล้วทีมจะตั้งโค้ชให้ในระบบ · จากนั้นคลิป คลาส Small Group และไลฟ์ของโค้ชจะขึ้นให้อัตโนมัติ</p>
       <div class="csw"><span class="bcs" aria-hidden="true">${ic('headset', 22)}</span><div class="cswb"><b>${S.csReq ? 'ส่งคำขอถึงทีม CS แล้ว' : 'รอทีม CS ติดต่อ'}</b><span>${S.csReq ? `CS จะติดต่อกลับภายในวันทำการ${csName ? ' · คุณบอกว่าสนใจโค้ช' + esc(csName) : ''}` : 'ทาง LINE หรือโทรศัพท์ · อยากคุยก่อนก็ทักมาได้เลย'}</span></div>
-        <div class="cswa"><button class="btn line" data-a="${lineTo(' CS')}">${ic('msg', 15)}ทัก CS ทาง LINE</button>${S.csReq ? '' : `<button class="btn ghost" data-a="${A(() => { S.csReq = {coach:null}; render(); toast('ส่งคำขอแล้ว · CS จะติดต่อกลับภายในวันทำการ'); })}">ให้ CS ติดต่อกลับ</button>`}</div></div>
+        <div class="cswa"><button class="btn line" data-a="${lineTo(' CS')}">${ic('msg', 15)}ทัก CS ทาง LINE</button>${S.csReq ? '' : `<button class="btn ghost" data-a="${A(() => { lkWrite(o => { lkAdvBase(o); o.adv.csReq = {at:+NOW, coach:null}; }); render(); toast('ส่งคำขอแล้ว · CS จะติดต่อกลับภายในวันทำการ'); })}">ให้ CS ติดต่อกลับ</button>`}</div></div>
       <div class="pkwait">${ic('play', 15)}<b>ระหว่างรอ เรียนได้เลย:</b><button class="rlink" data-go="livewatch:L1">LIVE MENTOR ช่องหลัก</button><button class="rlink" data-a="${A(() => { S.learn = 'kc'; go('learn'); })}">Knowledge Center</button><button class="rlink" data-a="${A(() => openTitle('b2'))}">ทบทวน Basic</button></div>
       ${simBox(`<div class="simrow"><span>ทีม CS ตั้งโค้ชให้สมาชิก:</span><select aria-label="โค้ชที่จะตั้งให้" data-in="${A(e => { S.simCo = e.target.value; })}">${pool.map(c => `<option value="${c.id}" ${S.simCo === c.id ? 'selected' : ''}>โค้ช${esc(c.name)}</option>`).join('')}</select><button class="btn sm" data-a="${A(() => simAssign(S.simCo))}">จำลอง: ตั้งโค้ชให้</button></div>`)}`
     : `<button class="btn ghost sm" data-go="home">${ic('back', 16)}หน้าแรก</button><h1 style="margin-top:14px">โค้ชท่านอื่น</h1><p>โค้ชของคุณตอนนี้: ${myCo().map(c => 'โค้ช' + esc(c.name)).join(' · ')} · อยากเรียนกับโค้ชเพิ่ม ติดต่อเซลเพื่อสอบถามราคาและชำระเงิน แล้วทีมหลังบ้านจะเพิ่มโค้ชในบัญชีของคุณ คลิปและคลาสจะขึ้นให้อัตโนมัติ</p>
@@ -2877,7 +2939,7 @@ function vWatch() {
     ${sm.qz.length ? `<div style="font-weight:700;margin:16px 4px 0">ทดสอบความเข้าใจ ${sm.qz.length} ข้อ <span class="muted" style="font-weight:400;font-size:14px">· ${done.length ? `ถูก ${ok} จาก ${done.length}` : 'ไม่นับคะแนน ลองได้เลย'}</span></div>` + sm.qz.map((q, qi) => { const k = c.id + qi, ans = S.qa[k]; return `<div class="qq" role="group" aria-label="คำถามข้อ ${qi + 1}"><b>${qi + 1}. ${esc(q.q)}</b>${q.o.map((o, oi) => `<button class="qo ${ans != null ? (oi === q.a ? 'ok' : oi === ans ? 'no' : '') : ''}" ${ans != null ? 'disabled' : ''} data-a="${A(() => { S.qa[k] = oi; render(); })}">${esc(o)}</button>`).join('')}${ans != null ? `<div class="qx" aria-live="polite"><span style="color:var(${ans === q.a ? '--green' : '--live'});display:inline-flex;gap:4px;align-items:center;font-weight:700">${ic(ans === q.a ? 'check' : 'x', 15)}${ans === q.a ? 'ถูกต้อง' : 'ยังไม่ถูก'}</span> · ${esc(q.x)}<button class="rlink" data-a="${seek(toSec(q.t))}">ดูช่วงนาที ${q.t} อีกครั้ง</button></div>` : ''}</div>`; }).join('') : `<div class="muted" style="font-size:14px;padding:10px 4px">แบบทดสอบสั้นมีในคลิป Master Clip ของแต่ละ EP</div>`}`; }
   const side = c.cat === 'bver' ? `<div class="card pad vernote" style="margin-bottom:14px"><div style="font-weight:700;margin-bottom:6px">คลิปรอบ ${c.ver}</div><div class="muted" style="font-size:14px;line-height:1.6">คลิปนี้เป็นรอบเก่า ดูทบทวนได้ แต่การสอบนับคลิปหลักเดือนนี้ (รอบ ${byClip(MASTER[+c.ep]).ver})</div><button class="btn sm" style="margin-top:10px" data-go="watch:${MASTER[+c.ep]}">${ic('play', 13)}ไปคลิปหลักเดือนนี้</button></div>` : c.cat === 'basic' ? `<div class="card pad" style="margin-bottom:14px"><div style="font-weight:700;margin-bottom:10px">หลังดูจบ</div>
       <div class="ji" style="margin-bottom:8px"><div class="ico" style="background:var(--purplebg);color:var(--purple)">${ic('layers', 18)}</div><div class="tx"><b>แบบทดสอบ EP.${c.ep.charAt(0)} · 20 ข้อ</b><span>${c.prog === 1 ? 'พร้อมทำ' : `ดูอีก ${Math.round(c.dur * (1 - (c.prog || 0)))} นาทีเพื่อปลดล็อก`}</span></div></div>
-      ${c.ep === '2' || c.ep === '3' ? `<div class="ji"><div class="ico" style="background:var(--goldbg);color:var(--gold)">${ic('note', 18)}</div><div class="tx"><b>การบ้านกราฟ EP.${c.ep} · 3 ข้อ</b><span>${c.ep === '2' ? 'ผ่าน 1/3' : '0/3'}</span></div><button class="btn sm ghost" data-a="${A(openHw)}">ส่ง</button></div>` : ''}</div>` : '';
+      ${c.ep === '2' || c.ep === '3' ? `<div class="ji"><div class="ico" style="background:var(--goldbg);color:var(--gold)">${ic('note', 18)}</div><div class="tx"><b>การบ้านกราฟ EP.${c.ep} · 3 ข้อ</b><span>${c.ep === '2' ? GRAD[1].hw : '0/3'}</span></div><button class="btn sm ghost" data-a="${A(openHw)}">ส่ง</button></div>` : ''}</div>` : '';
   /* Basic: the lesson's main clip (or an older monthly recording) — what comes next is the next lesson; the list panel shows the lesson's clips by month */
   const nx = nextOf(c), remain = total - pos, showNext = nx && remain <= 90 && !nuSkip.has(c.id);
   const goNext = nx ? A(() => go('watch', nx.id)) : null, nextLab = nx ? nx.title : '';
@@ -3096,7 +3158,7 @@ function modalHTML() {
     <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ไว้ก่อน</button><button class="btn" data-a="${A(startWait)}">เข้าสู่หน้า Advance</button></div></div></div>`;
   if (S.modal === 'ft') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="Fast Track"><h3>Fast Track</h3><div class="muted" style="font-size:15px">สำหรับคนที่มีพื้นฐานแล้ว ไม่ต้องเรียน Basic ซ้ำ</div>
     <div class="fld"><label>ขั้นตอน</label><div class="hrow"><span>1. นัดคุยกับโค้ช 20–30 นาที (onsite หรือ online)</span></div><div class="hrow"><span>2. วิเคราะห์หุ้น 1 ตัว: เทรนด์ 3 ภาพ · แนวรับแนวต้าน · แผนเทรด</span></div><div class="hrow"><span>3. ผ่าน 7/10 ขึ้นไป และต้องมี Stop Loss</span></div><div class="hrow"><span>4. ส่งการบ้านกราฟ โค้ชตรวจผ่าน ขึ้นยศ Advance</span></div></div>
-    <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ยกเลิก</button><button class="btn" data-a="${A(() => { S.modal = null; render(); toast('ส่งคำขอถึงโค้ช' + ME.coach + 'แล้ว โค้ชจะนัดทาง LINE'); })}">ขอนัดคุยกับโค้ช</button></div></div></div>`;
+    <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ยกเลิก</button>${ftSt() ? `<span class="btn on">${ic('check', 15)}${ftSt()}</span>` : `<button class="btn" data-a="${A(() => { lkWrite(o => { if (!o.ft) o.ft = {gate:'web', status:'invited', since:+NOW}; }); S.modal = null; render(); toast('ส่งคำขอถึงโค้ช' + ME.coach + 'แล้ว โค้ชจะนัดทาง LINE'); })}">ขอนัดคุยกับโค้ช</button>`}</div></div></div>`;
   if (S.modal === 'guide') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="วิธีดู Mockup หน้าบ้านใหม่"><h3>หน้าบ้านใหม่ Super Trader Republic</h3><div class="muted" style="font-size:15px">Mockup สำหรับดูหน้าตาและการใช้งาน · ข้อมูลทั้งหมดเป็นตัวอย่าง</div>
     <div class="fld"><label>วิธีดู</label>
       <div class="hrow"><span>1. สมาชิกมี 2 ระดับ: <b>Basic</b> (สมาชิกใหม่ · ธีมชมพู-ทอง) และ <b>Advance</b> (สอบผ่าน Basic แล้ว · ธีมน้ำเงิน-ทอง) · Advance มีโค้ชประจำตัว 1 ท่านที่ทีม CS ตั้งให้ และเห็นเฉพาะคลิปของโค้ชท่านนั้น (ตัวอย่างนี้คือโค้ชเจ) · อยากเพิ่มโค้ชติดต่อเซล แล้วหลังบ้านจะเพิ่มให้</span></div>
@@ -3114,7 +3176,7 @@ function modalHTML() {
       <div class="fld"><label>ขั้นตอน</label>${steps.map((t, i) => `<div class="hrow"><span>${i + 1}. ${t}</span></div>`).join('')}</div>
       ${first ? '' : `<div class="fld"><label>โค้ชของคุณหลังเพิ่ม</label><div class="buyco">${[...myCo(), c].map(x => `<span>${av(x.name, 28)}โค้ช${esc(x.name)}${x.id === c.id ? '<em>ใหม่</em>' : ''}</span>`).join('')}</div></div>`}
       ${req ? `<div class="reqst">${ic('check', 15)}ส่งคำขอแล้ว · ${first ? 'CS ' : 'เซล'}จะติดต่อกลับภายในวันทำการ</div>` : ''}
-      <div class="mfoot"><button class="btn ghost" data-a="${close}">ปิด</button><button class="btn line" data-a="${lineTo(W.trim() === 'CS' ? ' CS' : 'เซล')}">${ic('msg', 15)}ทัก${W}ทาง LINE</button>${req ? '' : `<button class="btn" data-a="${A(() => { if (first) S.csReq = {coach:c.id}; else S.salesReq[c.id] = true; render(); toast('ส่งคำขอถึง' + (first ? ' CS ' : 'เซล') + 'แล้ว · จะติดต่อกลับภายในวันทำการ'); })}">ให้${W}ติดต่อกลับ</button>`}</div>
+      <div class="mfoot"><button class="btn ghost" data-a="${close}">ปิด</button><button class="btn line" data-a="${lineTo(W.trim() === 'CS' ? ' CS' : 'เซล')}">${ic('msg', 15)}ทัก${W}ทาง LINE</button>${req ? '' : `<button class="btn" data-a="${A(() => { lkWrite(o => { lkAdvBase(o); if (first) o.adv.csReq = {at:+NOW, coach:c.id}; else o.reqs.push({id:'w' + Date.now().toString(36), coach:c.id, sales:null, at:+NOW, paidAt:null, receipt:'', doneAt:null, by:null, web:true}); }); render(); toast('ส่งคำขอถึง' + (first ? ' CS ' : 'เซล') + 'แล้ว · จะติดต่อกลับภายในวันทำการ'); })}">ให้${W}ติดต่อกลับ</button>`}</div>
       ${simBox(`<div class="simrow"><button class="btn sm" data-a="${A(() => first ? simAssign(c.id) : simAdd(c.id))}">จำลอง: ${first ? 'ทีม CS ตั้งโค้ช' + esc(c.name) + 'ให้สมาชิก' : 'หลังบ้านเพิ่มโค้ช' + esc(c.name) + 'ให้สมาชิก'}</button></div>`)}
     </div></div>`; }
   if (S.modal === 'keys') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="คีย์ลัด"><h3>คีย์ลัด</h3><div class="muted" style="font-size:15px;margin-bottom:6px">ใช้ได้ทุกหน้า ไม่ต้องจับเมาส์</div>${[['ค้นหาคลิป คำในคลิป และคำสั่ง',['Ctrl K','/']],['เปิดหน้านี้',['?']],['เปลี่ยนธีม SPTR / มืด / กระดาษ / สว่าง',['T']],['เลื่อนไปทีละปุ่ม',['Tab','Shift Tab']],['เปิดสิ่งที่เลือก',['Enter']],['ปิดหน้าต่าง',['Esc']]].map(([d, ks]) => `<div class="hrow"><span>${d}</span><span>${ks.map(k => `<span class="kbd">${k}</span>`).join(' ')}</span></div>`).join('')}<div class="mfoot"><button class="btn" data-a="${A(() => { S.modal = null; render(); })}">เข้าใจแล้ว</button></div></div></div>`;
@@ -3160,14 +3222,15 @@ function modalHTML() {
       <div class="mfoot" style="justify-content:flex-start;align-items:center">${evAction(e)}${fut ? `<button class="btn sm ghost" data-a="${A(() => toast('เพิ่มลงปฏิทินของคุณแล้ว'))}">${ic('cal', 14)}เพิ่มลงปฏิทิน</button>` : ''}<span style="flex:1"></span><button class="btn sm ghost" data-a="${A(() => { S.modal = null; render(); })}">ปิด</button></div></div></div>`; }
   if (S.modal === 'chall') return wrap('ส่งคำตอบ Chart Challenge', 'ตอบสั้นๆ ได้ โค้ชจะเฉลยในคลาสเสาร์', `<div class="fld"><label>1. เทรนด์ภาพใหญ่ / กลาง / เล็ก</label><input id="c1" style="width:100%" placeholder="เช่น ขาขึ้น / Sideway / ขาขึ้น"></div><div class="fld"><label>2. แนวรับ / แนวต้าน</label><input id="c2" style="width:100%" placeholder="เช่น รับ 58.50 · ต้าน 63.00"></div><div class="fld"><label>3. แผนเทรด ณ ราคาปัจจุบัน</label><textarea id="c3" placeholder="จุดเข้า · Stop loss · เป้าหมาย · ขนาดไม้"></textarea></div>`,
     () => { if (!need(['c1','c2','c3'], 'กรอกให้ครบทั้ง 3 ข้อก่อนส่ง')) return; S.challSent = true; S.modal = null; render(); toast('ส่งคำตอบแล้ว เฉลยเสาร์นี้ในคลาส Case Clinic'); }, 'ส่งคำตอบ');
-  if (S.modal === 'hw') return wrap('ส่งการบ้านกราฟ EP.2 · ข้อ 2', 'แนวรับแนวต้าน · แนบภาพกราฟพร้อมคำอธิบาย', `<div class="fld"><label>ภาพกราฟ</label><button class="btn ghost" style="width:100%;border-style:dashed;padding:22px">${ic('plus', 18)}เลือกภาพ (ตัวอย่าง)</button></div><div class="fld"><label>อธิบายว่าทำไมตีเส้นตรงนี้</label><textarea id="h1" placeholder="เช่น ราคาเคยกลับตัวที่โซนนี้ 3 ครั้ง"></textarea></div>`,
-    () => { if (!need(['h1'], 'เขียนคำอธิบายก่อนส่ง')) return; S.modal = null; render(); toast('ส่งการบ้านแล้ว โค้ชแนนจะตรวจภายใน 48 ชม.'); }, 'ส่งการบ้าน');
+  if (S.modal === 'hw' && !hwNext()) return wrap('การบ้านกราฟ EP.2 · ส่งครบ 3 ข้อแล้ว', `${GRAD[1].hw} · โค้ช${ME.coach}ตรวจภายใน 48 ชม. ผลแจ้งทาง LINE`, '', () => { S.modal = null; render(); }, 'ปิด');
+  if (S.modal === 'hw') return wrap(`ส่งการบ้านกราฟ EP.2 · ข้อ ${hwNext()}`, 'แนวรับแนวต้าน · แนบภาพกราฟพร้อมคำอธิบาย', `<div class="fld"><label>ภาพกราฟ</label><button class="btn ghost" style="width:100%;border-style:dashed;padding:22px">${ic('plus', 18)}เลือกภาพ (ตัวอย่าง)</button></div><div class="fld"><label>อธิบายว่าทำไมตีเส้นตรงนี้</label><textarea id="h1" placeholder="เช่น ราคาเคยกลับตัวที่โซนนี้ 3 ครั้ง"></textarea></div>`,
+    () => { if (!need(['h1'], 'เขียนคำอธิบายก่อนส่ง')) return; const n = hwNext(); lkWrite(o => o.hw.push({ep:2, n, sub:+NOW, rev:null, pass:false})); S.modal = null; render(); toast(`ส่งการบ้านข้อ ${n} แล้ว โค้ช${ME.coach}จะตรวจภายใน 48 ชม.`); }, 'ส่งการบ้าน');
   if (S.modal === 'ask') return wrap('ถามโค้ช', `จากคลิป "${esc(byClip(S.clip).title)}" · แนบนาทีที่ดูอยู่ให้อัตโนมัติ`, `<div class="fld"><textarea id="q1" placeholder="พิมพ์คำถาม…"></textarea></div>`,
     () => { if (!need(['q1'], 'พิมพ์คำถามก่อนส่ง')) return; S.modal = null; render(); toast('ส่งคำถามแล้ว โค้ชจะตอบทาง LINE'); }, 'ส่งคำถาม');
   if (S.modal === 'swap') return wrap('ขอเปลี่ยนโค้ช', 'ทีมจะติดต่อกลับภายใน 2 วันทำการ', `<div class="fld"><label>อยากเปลี่ยนเป็น</label><select id="sw1" style="width:100%"><option value="">เลือกโค้ช</option>${COACHES.map(c => `<option>โค้ช${c.name}</option>`).join('')}</select></div><div class="fld"><label>เหตุผล</label><textarea id="sw2" placeholder="เช่น อยากเรียนเรื่องทองคำโดยเฉพาะ"></textarea></div>`,
     () => { if (!need(['sw1','sw2'], 'เลือกโค้ชและใส่เหตุผลก่อนส่ง')) return; S.modal = null; render(); toast('ส่งคำขอแล้ว ทีมจะติดต่อกลับ'); }, 'ส่งคำขอ');
   if (S.modal === 'fb') return wrap('ส่งความคิดเห็น', 'ความเห็นของคุณเข้าสู่รายงาน "Voice of Members" ทุกสัปดาห์', `<div class="fld"><label>ความพึงพอใจ</label><div class="stars">${[1,2,3,4,5].map(n => `<button aria-label="${n} ดาว" class="${S.form.stars >= n ? 'on' : ''}" data-a="${A(() => { S.form.stars = n; S.err = ''; render(); })}"><svg width="28" height="28" viewBox="0 0 24 24" fill="${S.form.stars >= n ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.6"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></button>`).join('')}</div></div><div class="fld"><label>อยากบอกอะไรทีม</label><textarea id="fb1" placeholder="เช่น อยากให้มีเคสหุ้นจริงเยอะขึ้น"></textarea></div>`,
-    () => { if (!S.form.stars) { $('#merr').textContent = 'ให้คะแนนดาวก่อนส่ง'; return; } S.modal = null; render(); toast('ขอบคุณ ทีมได้รับความเห็นแล้ว'); }, 'ส่งความเห็น');
+    () => { if (!S.form.stars) { $('#merr').textContent = 'ให้คะแนนดาวก่อนส่ง'; return; } const tx = val('fb1'), st = S.form.stars; lkWrite(o => o.fb.push({at:+NOW, stars:st, text:tx})); S.modal = null; render(); toast('ขอบคุณ ทีมได้รับความเห็นแล้ว'); }, 'ส่งความเห็น');
   return '';
 }
 function changesHTML() {
@@ -3207,7 +3270,7 @@ function render() {
   ACT = {}; seq = 0; gid = 0;
   renderChrome();
   const v = {home:S.tier === 'adv' ? (S.myCoaches.length ? vHome : vPick) : vHomeBasic, pick:vPick, ep:vEp, learn:vLearn, coach:vCoach, watch:vWatch, livewatch:vLiveWatch, live:S.tier === 'adv' ? vLive : vLiveBasic, library:vLibrary, me:vMe, hot:vHot}[S.view] || vHome;
-  $('#view').innerHTML = v() + `<button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}</span>`;
+  $('#view').innerHTML = v() + `<button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}${IN_BO ? '' : `<a class="bolink" href="${BO_URL}" target="_blank" rel="noopener">หลังบ้าน ↗</a>`}</span>`;
   document.querySelectorAll('.nft').forEach(nfSync);
   document.body.classList.toggle('watching', S.view === 'watch');
   $('#ovl').innerHTML = (S.search ? searchHTML() : '') + (S.notif ? notifHTML() : '') + (S.modal ? modalHTML() : '') + (S.changes ? changesHTML() : '');
@@ -3254,6 +3317,7 @@ function render() {
   if (h.get('tk')) { S.modal = 'ticket'; S.evId = h.get('tk'); S.tkNew = h.get('new') === '1'; }
   if (h.get('lvf')) S.lvf = h.get('lvf');
 })();
+lkInit();
 applyTier();
 render();
 if (!S.noIntro) intro();
