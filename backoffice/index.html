@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Basic Member System — Mockup</title>
+<style>
+:root{--ink:#1d2433;--ink2:#5b6475;--mut:#8a92a3;--line:#e3e7ee;--bg:#f4f6f9;--navy:#14213d;--acc:#0f7a55}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Leelawadee UI","Leelawadee","Thonburi","Sukhumvit Set",Tahoma,sans-serif;color:var(--ink);background:var(--bg);font-size:14.5px;min-width:1180px}
+button{font-family:inherit;font-size:13.5px;cursor:pointer;border-radius:8px;border:1px solid #cfd6e0;background:#fff;color:var(--ink);padding:6px 12px;line-height:1.35}
+button:hover{border-color:#9aa6b8;background:#f8fafc}
+button.pri{background:var(--navy);border-color:var(--navy);color:#fff}
+button.pri:hover{background:#22335a}
+button.ghost{border-color:transparent;background:transparent;color:var(--ink2)}
+button.jump{font-size:12.5px;padding:4px 10px;border-radius:999px;background:#f1f4f8;border-color:#e0e5ec}
+input[type=text],textarea,select{font-family:inherit;font-size:14px;border:1px solid #cfd6e0;border-radius:8px;padding:7px 10px;color:var(--ink);background:#fff}
+textarea{width:100%;resize:vertical;min-height:64px}
+.app{display:grid;grid-template-columns:228px 1fr;min-height:100vh}
+#side{background:var(--navy);color:#dfe6f3;padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.logo{font-size:18px;font-weight:700;color:#fff;padding:0 8px 6px;line-height:1.3}
+.logo small{display:block;font-size:12px;font-weight:400;color:#9fb0cc}
+.nav{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;background:transparent;border:none;color:#c9d3e6;padding:9px 10px;border-radius:8px;font-size:14.5px}
+.nav:hover{background:#1f2f52;color:#fff}
+.nav.on{background:#2a3d66;color:#fff;font-weight:700}
+.nav .cnt{font-size:11.5px;background:#fab219;color:#3d2a00;border-radius:999px;padding:1px 8px;font-weight:700}
+.sec{font-size:11.5px;color:#7f90ad;margin:14px 10px 4px}
+#side select{width:100%;border-color:#33466e;background:#1b2b4d;color:#fff}
+.sfoot{margin-top:auto;font-size:11.5px;color:#7f90ad;line-height:1.55;padding:0 8px}
+main{min-width:0}
+#top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--line);padding:10px 24px;display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}
+.simlbl{font-size:12px;color:var(--ink2)}
+.simdate{font-weight:700;font-size:15.5px;color:var(--navy);margin-right:6px}
+.mockflag{margin-left:auto;font-size:12px;font-weight:700;color:#7a5200;background:#fff4d6;border:1px solid #f0d58f;border-radius:999px;padding:4px 10px}
+#view{padding:22px 24px 48px}
+h1{font-size:24px;margin:0 0 2px;color:var(--navy)}
+.sub{color:var(--ink2);margin:0 0 16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.card h3{margin:0 0 10px;font-size:16px;color:var(--navy)}
+.grid{display:grid;gap:14px}
+.muted{color:var(--mut)}
+.note{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.kpi .lb{font-size:12.5px;color:var(--ink2)}
+.kpi .vl{font-size:26px;font-weight:700;color:var(--navy);line-height:1.25}
+.kpi .dl{font-size:12.5px;font-weight:700}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid #dde2ea;background:#fff;white-space:nowrap;color:var(--ink);vertical-align:1px}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:6px;background:#f1f4f8;color:var(--ink2);margin:0 4px 4px 0}
+.tag.ft{background:#efeafd;color:#4a2fa8;font-weight:700}
+.grp{font-size:13.5px;font-weight:700;margin:4px 0 2px;display:flex;align-items:center;gap:8px;color:var(--navy)}
+.grp .n{font-weight:400;color:var(--ink2)}
+.task{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #eef1f5}
+.task:last-child{border-bottom:none}
+.nm{font-weight:700;color:var(--navy);cursor:pointer}
+.nm:hover{text-decoration:underline}
+.task .tt{font-size:14px;margin-top:2px}
+.task .ss{font-size:12.5px;color:var(--ink2)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.banner{border-radius:12px;padding:10px 14px;font-size:14px;display:flex;gap:10px;align-items:center;margin-bottom:10px;border:1px solid}
+.banner.cls{background:#e8f0fd;border-color:#c5d7f7;color:#173f86}
+.banner.rep{background:#e8f5ee;border-color:#a9dcc0;color:#0b5c40}
+.banner.cb{background:#fff4d6;border-color:#f0d58f;color:#7a5200}
+.banner .sp{margin-left:auto}
+.hint{background:#efeafd;border:1px solid #d9d2f6;border-radius:14px;padding:14px 16px;color:#2e1f73}
+.hint b{color:#2e1f73}
+.hint ul{margin:6px 0 0;padding-left:18px}
+.hint li{margin-bottom:6px;font-size:13.5px;line-height:1.5}
+.empty{color:var(--mut);font-size:13.5px;padding:8px 0}
+.fchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.fchip{border-radius:999px;font-size:12.5px;padding:4px 11px}
+.fchip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:8px;margin-bottom:16px}
+.tile{border-radius:10px;padding:9px 11px;border:1px solid;cursor:pointer;min-height:70px}
+.tile:hover{filter:brightness(.97)}
+.tile b{display:block;font-size:14px}
+.tile span{display:block;font-size:12px;line-height:1.45}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #eef1f5;font-size:13.5px;vertical-align:top}
+th{font-size:12px;color:var(--ink2);font-weight:700;background:#f6f8fb}
+tr.click{cursor:pointer}
+tr.click:hover td{background:#f8fafc}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.step{border-radius:10px;padding:8px 10px;font-size:12.5px;border:1px solid var(--line);background:#f6f8fb;color:var(--ink2)}
+.step b{display:block;font-size:13.5px;color:var(--ink)}
+.step.done{background:#e8f5ee;border-color:#a9dcc0;color:#237a55}
+.step.cur{background:#fff;border-color:var(--navy);border-width:2px;color:var(--navy)}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:6px 0;border-bottom:1px dashed #eef1f5;font-size:13px}
+.tl li:last-child{border-bottom:none}
+.tl .d{color:var(--mut)}
+.kan{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.kcol{background:#eef1f6;border-radius:14px;padding:10px;min-height:150px}
+.kcol h4{margin:2px 4px 8px;font-size:13.5px;color:var(--navy);display:flex;justify-content:space-between}
+.kcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px;cursor:pointer;font-size:12.5px;line-height:1.5}
+.kcard.sel{border-color:#6f4bd8;border-width:2px}
+.kcard b{font-size:13.5px;color:var(--navy)}
+.ck{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:14px;cursor:pointer}
+.ck input{width:16px;height:16px}
+.fsec{border-top:1px solid #eef1f5;padding:10px 0}
+.fsec h4{margin:0 0 4px;font-size:14px;color:var(--navy);display:flex;justify-content:space-between}
+.res{border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.5}
+.res.ok{background:#e8f5ee;color:#0b5c40;border:1px solid #a9dcc0}
+.res.no{background:#fbe9e9;color:#8f1f1f;border:1px solid #f1bcbc}
+.res.wait{background:#f6f8fb;color:var(--ink2);border:1px solid var(--line)}
+.err{color:#b42318;font-size:13px;margin-top:4px}
+.stage{display:flex;align-items:center;gap:6px}
+.stg{flex:1;text-align:center;background:#f6f8fb;border:1px solid var(--line);border-radius:10px;padding:6px 4px}
+.stg .n{font-size:21px;font-weight:700;color:var(--navy)}
+.stg .t{font-size:12px;color:var(--ink2)}
+.stage .a{color:#a0a8b6;font-size:12px}
+.voice{border-bottom:1px solid #eef1f5;padding:9px 0;font-size:13.5px}
+.voice:last-child{border-bottom:none}
+.phone{width:352px;height:690px;border-radius:38px;background:#161a22;padding:12px;flex:none}
+.pscreen{background:#fff;border-radius:28px;height:100%;overflow:hidden;display:flex;flex-direction:column}
+.phead{background:#1f2f52;color:#fff;padding:16px 16px 10px;font-weight:700;font-size:14.5px}
+.phead small{display:block;font-weight:400;font-size:11.5px;color:#b8c4db}
+.lchat{background:#8fb0dc;flex:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:8px}
+.lchat>*{flex-shrink:0}
+.bub{max-width:84%;padding:9px 12px;border-radius:16px;font-size:13.5px;line-height:1.55;background:#fff;color:#111;align-self:flex-start}
+.bub.me{background:#c8f5b0;align-self:flex-end}
+.lday{align-self:center;font-size:11px;background:rgba(0,0,0,.2);color:#fff;border-radius:999px;padding:2px 10px}
+.lbtn{display:block;margin:8px 0 4px;text-align:center;background:#06c755;color:#fff;border-radius:8px;padding:7px;font-weight:700;border:none;width:100%;font-size:13px}
+.lbtn:hover{background:#05b34c}
+.lcard{align-self:flex-start;width:84%;background:#fff;border-radius:16px;overflow:hidden;font-size:13px}
+.lcard .hd{padding:12px 14px;color:#fff}
+.lcard .bd{padding:10px 14px;line-height:1.55}
+.pinput{background:#fff;border-top:1px solid #e6e9ef;padding:11px 14px;font-size:12.5px;color:#9aa1ab}
+.qz{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;overflow-y:auto}
+.qopt{text-align:left;padding:10px 12px;border-radius:10px;font-size:13.5px}
+.qopt.on{border-color:#06c755;background:#e9faf0;color:#05652d;font-weight:700}
+.qbar{height:5px;background:#eef1f5;border-radius:3px;overflow:hidden}
+.qbar i{display:block;height:100%;background:#06c755}
+.web{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.wbar{background:#eef1f6;padding:8px 12px;font-size:12px;color:var(--ink2);display:flex;gap:8px;align-items:center}
+.wbar .u{background:#fff;border-radius:6px;padding:3px 10px;flex:1}
+.wbody{padding:18px 20px}
+.modal{position:fixed;inset:0;background:rgba(20,33,61,.45);display:flex;align-items:center;justify-content:center;z-index:50}
+.modal.hidden{display:none}
+.mbox{background:#fff;border-radius:16px;width:500px;max-width:92vw;padding:18px 20px}
+.mhead{font-weight:700;font-size:16px;color:var(--navy);margin-bottom:10px}
+.mchat{background:#8fb0dc;border-radius:12px;padding:12px;margin-bottom:8px}
+.mfoot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
+#toast.show{opacity:1}
+#tip{position:fixed;display:none;background:var(--navy);color:#fff;font-size:12.5px;padding:5px 9px;border-radius:6px;pointer-events:none;z-index:70}
+.sla{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 8px;margin-top:4px;border:1px solid}
+.sla.ok{background:#f6f8fb;border-color:var(--line);color:var(--ink2)}
+.sla.due{background:#fff4d6;border-color:#f0d58f;color:#7a5200}
+.sla.late{background:#fbe9e9;border-color:#f1bcbc;color:#8f1f1f}
+.rec{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #eef1f5}
+.rec:last-child{border-bottom:none}
+.rec .why{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;color:var(--mut);margin:-6px 0 14px}
+.flow b{background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--navy);font-weight:700}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside id="side"></aside>
+  <main>
+    <header id="top"></header>
+    <div id="view"></div>
+  </main>
+</div>
+<div id="modal" class="modal hidden"></div>
+<div id="toast"></div>
+<div id="tip"></div>
+
+<script>
+/* ============ helpers ============ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const TH_M = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+const TH_D = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
+const TH_DS = ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'];
+const HOUR = 3600e3, DAY = 24 * HOUR;
+const BASE = new Date(2026, 8, 23, 18, 0);
+const at = (off, h = 10, mi = 0) => new Date(2026, 8, 23 + off, h, mi);
+const dOnly = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+function addMonths(d, n) { const y = d.getFullYear(), m = d.getMonth() + n, last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(d.getDate(), last), d.getHours(), d.getMinutes()); }
+function monthsSince(a, t) { a = dOnly(a); t = dOnly(t); let n = (t.getFullYear() - a.getFullYear()) * 12 + (t.getMonth() - a.getMonth()); if (addMonths(a, n) > t) n--; return Math.max(0, n); }
+const daysSince = (a, t) => Math.round((dOnly(t) - dOnly(a)) / DAY);
+const hrs = (a, t) => (t - a) / HOUR;
+const fd = d => `${d.getDate()} ${TH_M[d.getMonth()]}`;
+const fdy = d => `${d.getDate()} ${TH_M[d.getMonth()]} ${d.getFullYear() + 543}`;
+const fdl = d => `${TH_D[d.getDay()]} ${fdy(d)}`;
+const ftm = d => `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+const fnum = d => `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
+const sameDay = (a, b) => a && b && dOnly(a).getTime() === dOnly(b).getTime();
+
+/* ============ meta ============ */
+const EPN = {1:'EP.1', 2:'EP.2', 3:'EP.3', 4:'EP.4'};
+const EPF = {1:'EP.1 หุ้นเบื้องต้น + เครื่องมือ', 2:'EP.2 Dow Theory + แนวรับแนวต้าน', 3:'EP.3 Money Management', 4:'EP.4 Volume + Indicators'};
+const TYPES = [
+  {name:'สายเฝ้าจอ', en:'Day trader', tip:'จับจังหวะระหว่างวันด้วยแนวรับแนวต้าน (EP.2) และ Volume (EP.4)', c:'#d85a30'},
+  {name:'สายหลังเลิกงาน', en:'Swing trader', tip:'ดูกราฟรายวันตอนเย็น วางแผนล่วงหน้า EP.3 คือหัวใจ', c:'#185fa5'},
+  {name:'สายถือยาว', en:'Position trader', tip:'อ่านภาพใหญ่ด้วย Dow Theory (EP.2) คุมความเสี่ยงด้วย EP.3', c:'#0f6e56'},
+];
+const SCREEN = ['เฝ้าจอได้ทั้งวัน','ดูได้ช่วงพัก / หลังเลิกงาน','แทบไม่มีเวลาดูจอ'];
+const LEVEL = ['ไม่เคยเรียนเทรด','รู้จักชื่อ Indicator','ใช้ Indicator จริง','เรียนมาหลายคอร์ส'];
+const ASSETS = ['หุ้นไทย','หุ้นต่างประเทศ','TFEX','ทอง','คริปโต'];
+const ST = {
+  down:{name:'Downtrend', th:'ยังไม่เริ่มเรียน', c:'#d03b3b', bg:'#fbe9e9', tx:'#8f1f1f'},
+  side:{name:'Sideway', th:'ค้างบทเดิม', c:'#fab219', bg:'#fff4d6', tx:'#7a5200'},
+  cs:{name:'ส่ง CS', th:'ไม่ตอบเกิน 24 ชม.', c:'#ec835a', bg:'#fdeee6', tx:'#8a3a17'},
+  stop:{name:'Stop loss', th:'ติดต่อไม่ได้ 3 เดือน', c:'#3a3f47', bg:'#e4e6ea', tx:'#1d2433'},
+  ipo:{name:'IPO', th:'สมัครใหม่ ยังไม่ทัก', c:'#2f6fdb', bg:'#e7effc', tx:'#173f86'},
+  pend:{name:'Pending order', th:'ทักแล้ว รอตอบ', c:'#7a8699', bg:'#eef0f3', tx:'#3b4556'},
+  gap:{name:'Gap up', th:'อยู่ใน Fast Track', c:'#6f4bd8', bg:'#efeafd', tx:'#3a2690'},
+  up:{name:'Uptrend', th:'กำลังเรียน', c:'#0ca30c', bg:'#e6f5e6', tx:'#0b5c0b'},
+  sp:{name:'SP', th:'พักการเรียน', c:'#9aa1ab', bg:'#f1f2f4', tx:'#4b525c'},
+  tp:{name:'Take profit', th:'จบ / ไป Advance', c:'#c99400', bg:'#fbf3d9', tx:'#6b4f00'},
+};
+const ST_ORDER = ['down','side','cs','stop','ipo','pend','gap','up','sp','tp'];
+const COACHES = ['แนน','บีม','ต้น'];
+const QUIZ = [
+  {q:'ปกติดูกราฟได้ช่วงไหน', o:SCREEN},
+  {q:'รู้จัก Indicator แค่ไหน', o:LEVEL},
+  {q:'สนใจสินทรัพย์อะไรที่สุด', o:ASSETS},
+  {q:'สะดวกมาเรียน onsite ที่ กทม. ไหม', o:['สะดวก','ไม่สะดวก']},
+];
+const VOICE = [
+  {tag:'เนื้อหา', text:'อยากให้มีตัวอย่างหุ้นจริงเยอะๆ ในคลาสวันเสาร์', act:'เพิ่มช่วง Case Clinic 30 นาที'},
+  {tag:'ตารางเรียน', text:'คลาสวันพุธเลิกดึกไปนิด ถ้าเริ่มเร็วขึ้นได้จะดีมาก', act:'เสนอหัวหน้าพิจารณาเวลาเริ่มคลาส'},
+  {tag:'โค้ช', text:'ชอบที่โค้ชตรวจการบ้านละเอียด อธิบายเข้าใจง่าย', act:'แชร์ในทีมโค้ช'},
+];
+
+/* ============ class cycle (4 weeks, Wed + Sat) ============ */
+const CYCLE0 = new Date(2026, 8, 7);
+function cycleEP(d) { const w = Math.floor(Math.round((dOnly(d) - CYCLE0) / DAY) / 7); return ((w % 4) + 4) % 4 + 1; }
+function classOn(d) {
+  const wd = d.getDay(); if (wd !== 3 && wd !== 6) return null;
+  const ep = cycleEP(d);
+  const label = ep === 1 ? (wd === 3 ? 'EP.1.1 หุ้นเบื้องต้น + Streaming' : 'EP.1.2 TradingView + E Fin Stock Pickup') : EPF[ep];
+  return {ep, label, day: wd === 3 ? 'พุธ' : 'เสาร์', kind: wd === 3 ? 'ตลาดจริง' : 'Case Clinic'};
+}
+function nextClass(ep, t) { let d = dOnly(t); for (let i = 0; i < 40; i++) { const c = classOn(d); if (c && (!ep || c.ep === ep)) return {date: new Date(d), ...c}; d = addDays(d, 1); } return null; }
+const nextC = (ep, t) => { const c = nextClass(ep, t); return c ? `วัน${c.day} ${fd(c.date)}` : '—'; };
+
+/* ============ mock data (fictional) ============ */
+const SEED = [
+ {id:'m01', name:'ภัทรา ว.', nick:'ภัทรา', coach:'แนน', join:[-1,19,40]},
+ {id:'m02', name:'ธนกร ส.', nick:'ธนกร', coach:'แนน', join:[0,9,15]},
+ {id:'m03', name:'ศิริพร ม.', nick:'ศิริพร', coach:'แนน', join:[-1,10,5], contact:[-1,15,30]},
+ {id:'m04', name:'กิตติ พ.', nick:'กิตติ', coach:'บีม', join:[0,8,0], contact:[0,11,0]},
+ {id:'m05', name:'อรุณี ท.', nick:'อรุณี', coach:'แนน', join:[-6,13,0], contact:[-6,16,20], reply:[-5,9,10], lastReply:[-2,20,0], tags:{job:'ค้าขายออนไลน์', screen:0, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-4]]},
+ {id:'m06', name:'วีระ จ.', nick:'วีระ', coach:'แนน', join:[-40,11,0], contact:[-40,14,0], reply:[-40,20,5], lastReply:[-14,21,0], tags:{job:'วิศวกร', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-38],[2,-12]], follows:[-28,-14], exams:{1:17}},
+ {id:'m07', name:'มณีรัตน์ ก.', nick:'มณีรัตน์', coach:'แนน', join:[-42,10,0], contact:[-42,15,0], reply:[-42,19,30], lastReply:[-6,20,0], tags:{job:'พนักงานบริษัท', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-40],[2,-22]], follows:[-28,-12], exams:{1:18}, hw:[{ep:2,n:1,sub:-5,rev:-4,pass:true}]},
+ {id:'m08', name:'สุรเชษฐ์ น.', nick:'สุรเชษฐ์', coach:'แนน', join:[-75,9,0], contact:[-75,13,0], reply:[-74,8,0], lastReply:[-16,19,0], tags:{job:'ข้าราชการ', screen:1, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-70],[2,-50]], follows:[-44,-30,-16], exams:{1:16}, hw:[{ep:2,n:1,sub:-45,rev:-44,pass:true}]},
+ {id:'m09', name:'ปวีณา ร.', nick:'ปวีณา', coach:'แนน', join:[-35,20,0], contact:[-34,10,0], reply:[-34,12,0], lastReply:[-10,18,0], tags:{job:'นักลงทุนอิสระ', screen:0, level:3, asset:'TFEX', bkk:true}, follows:[-20,-10]},
+ {id:'m10', name:'ชยพล อ.', nick:'ชยพล', coach:'บีม', join:[-33,12,0], contact:[-33,15,0], reply:[-32,9,0], lastReply:[-12,20,0], tags:{job:'นักศึกษา', screen:1, level:0, asset:'คริปโต', bkk:true}, follows:[-18]},
+ {id:'m11', name:'นภัสสร ด.', nick:'นภัสสร', coach:'แนน', join:[-95,10,0], contact:[-95,14,0], reply:[-95,18,0], lastReply:[-9,19,0], tags:{job:'แม่บ้าน', screen:1, level:1, asset:'ทอง', bkk:false}, lessons:[[1,-90],[2,-60],[3,-40]], follows:[-37,-23,-9], exams:{1:17,2:16}, hw:[{ep:2,n:1,sub:-55,rev:-54,pass:true},{ep:2,n:2,sub:-50,rev:-49,pass:true},{ep:2,n:3,sub:-45,rev:-44,pass:true}]},
+ {id:'m12', name:'ธีรวัฒน์ ข.', nick:'ธีรวัฒน์', coach:'บีม', join:[-130,10,0], contact:[-130,12,0], reply:[-130,15,0], lastReply:[-100,20,0], tags:{job:'ธุรกิจส่วนตัว', screen:1, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-125]], follows:[-116,-102], attempts:[['LINE',-95],['โทร',-85],['LINE',-80],['โทร',-70],['LINE',-60],['โทร',-50]]},
+ {id:'m13', name:'จิราพร ล.', nick:'จิราพร', coach:'แนน', join:[-150,10,0], contact:[-150,13,0], reply:[-150,16,0], lastReply:[-92,19,0], tags:{job:'พยาบาล', screen:2, level:0, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-120]], follows:[-106,-92], attempts:[['LINE',-80],['LINE',-60],['โทร',-45],['LINE',-30]]},
+ {id:'m14', name:'อนุชา บ.', nick:'อนุชา', coach:'ต้น', join:[-70,10,0], contact:[-70,12,0], reply:[-70,15,0], lastReply:[-21,19,0], tags:{job:'นักบัญชี', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-65],[2,-35]], follows:[-56,-42,-28], exams:{1:18}, pause:{start:-20, ep:2, reason:'งานยุ่งช่วงปิดงบ', expect:'ต.ค. 2569'}},
+ {id:'m15', name:'พิมพ์ชนก ศ.', nick:'พิมพ์ชนก', coach:'แนน', join:[-100,10,0], contact:[-100,14,0], reply:[-100,18,0], lastReply:[-51,19,0], tags:{job:'ครู', screen:2, level:0, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-95]], follows:[-86,-72,-58], pause:{start:-50, ep:1, reason:'ย้ายงาน', expect:'พ.ย. 2569'}},
+ {id:'m16', name:'ณัฐวุฒิ ป.', nick:'ณัฐวุฒิ', coach:'แนน', join:[-38,10,0], contact:[-38,13,0], reply:[-38,15,0], lastReply:[-2,11,0], tags:{job:'เทรดเดอร์อิสระ', screen:0, level:3, asset:'หุ้นไทย', bkk:true}, follows:[-24], ft:{gate:'A', since:-6, status:'hw', screenAt:-3, channel:'onsite', score:{t:[1,1,1], sr:2, plan:[1,1,1,0]}, stock:'CPALL', memo:'อ่านเทรนด์ได้แม่น แผนเทรดยังไม่คำนวณขนาดไม้', hwSub:-2}},
+ {id:'m17', name:'รัชนี ห.', nick:'รัชนี', coach:'บีม', join:[-92,10,0], contact:[-92,13,0], reply:[-92,17,0], lastReply:[-6,19,0], tags:{job:'เจ้าของร้านอาหาร', screen:1, level:2, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-88],[2,-55]], follows:[-34,-20,-6], exams:{1:15}, offer3:-6, ft:{gate:'B', since:-6, status:'scheduled', screenAt:2, channel:'onsite'}},
+ {id:'m18', name:'ปกรณ์ จ.', nick:'ปกรณ์', coach:'ต้น', join:[-36,10,0], contact:[-36,12,0], reply:[-36,14,0], lastReply:[-1,19,0], tags:{job:'โปรแกรมเมอร์', screen:1, level:2, asset:'หุ้นต่างประเทศ', bkk:false}, ft:{gate:'A', since:-12, status:'clip', screenAt:-10, channel:'online', score:{t:[1,1,0], sr:1, plan:[1,0,1,0]}, stock:'PTT', memo:'ยังไม่วาง Stop loss ให้ดูคลิป Basic Express ก่อน', hwSub:-1}},
+ {id:'m19', name:'สุนิสา ย.', nick:'สุนิสา', coach:'แนน', join:[-70,10,0], contact:[-70,11,0], reply:[-70,12,0], lastReply:[-5,19,0], tags:{job:'นักการตลาด', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-68],[2,-50],[3,-30],[4,-15]], follows:[-56,-42,-28,-14], exams:{1:19,2:18,3:17,4:18}, hw:[{ep:2,n:1,sub:-45,rev:-44,pass:true},{ep:2,n:2,sub:-42,rev:-41,pass:true},{ep:2,n:3,sub:-38,rev:-37,pass:true},{ep:3,n:1,sub:-25,rev:-24,pass:true},{ep:3,n:2,sub:-22,rev:-21,pass:true},{ep:3,n:3,sub:-18,rev:-17,pass:true}], grad:-5, adv:{calls:[['โทร',-4,11]], talk:[0,11,0], pick:'lek', ch:'โทร', memo:'ดูกราฟได้หลังเลิกงาน อยากวางแผนสัปดาห์ละครั้ง'}},
+ {id:'m20', name:'เอกชัย ม.', nick:'เอกชัย', coach:'บีม', join:[-80,10,0], contact:[-80,12,0], reply:[-80,13,0], lastReply:[-20,19,0], tags:{job:'วิศวกร', screen:0, level:2, asset:'TFEX', bkk:false}, lessons:[[1,-78],[2,-60],[3,-45],[4,-32]], exams:{1:18,2:17,3:18,4:17}, grad:-20, adv:{talk:[-19,11,0], pick:'nof', ch:'โทร', memo:'เทรด TFEX อยู่แล้ว อยากได้ระบบที่ไม่ต้องเฝ้าจอ', set:[-19,14,0], coach:'nof'}},
+ {id:'m21', name:'กัญญา ต.', nick:'กัญญา', coach:'ต้น', join:[-20,10,0], contact:[-20,15,0], reply:[-19,9,0], lastReply:[-3,19,0], tags:{job:'ฟรีแลนซ์', screen:0, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-18],[2,-8]], follows:[-5], exams:{1:17}, hw:[{ep:2,n:1,sub:-3}]},
+ {id:'m22', name:'ภาณุ ส.', nick:'ภาณุ', coach:'ต้น', join:[-60,10,0], contact:[-60,13,0], reply:[-60,16,0], lastReply:[-10,19,0], tags:{job:'แพทย์', screen:2, level:1, asset:'หุ้นต่างประเทศ', bkk:true}, lessons:[[1,-58],[2,-40],[3,-15]], follows:[-24,-10], exams:{1:18,2:17}, hw:[{ep:2,n:1,sub:-30,rev:-29,pass:true},{ep:2,n:2,sub:-25,rev:-24,pass:true},{ep:2,n:3,sub:-20,rev:-19,pass:true}]},
+ {id:'m23', name:'ดารุณี แ.', nick:'ดารุณี', coach:'บีม', join:[-10,10,0], contact:[-10,12,0], reply:[-10,13,0], lastReply:[-4,19,0], tags:{job:'พนักงานธนาคาร', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-8]]},
+ {id:'m24', name:'วรพล ค.', nick:'วรพล', coach:'แนน', join:[-25,10,0], contact:[-25,12,0], reply:[-25,14,0], lastReply:[-1,19,0], tags:{job:'พนักงานขาย', screen:0, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-24],[2,-3]], follows:[-11], exams:{1:16}, hw:[{ep:2,n:1,sub:-1}]},
+ {id:'m25', name:'ศุภชัย อ.', nick:'ศุภชัย', coach:'บีม', join:[-50,10,0], contact:[-50,12,0], reply:[-50,14,0], lastReply:[-8,19,0], tags:{job:'ช่างภาพ', screen:1, level:0, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-48]], follows:[-36,-22,-8]},
+ {id:'m26', name:'ลลิตา ฟ.', nick:'ลลิตา', coach:'ต้น', join:[-3,10,0], contact:[-3,12,0], reply:[-2,9,0], lastReply:[-2,9,0], tags:{job:'นักวิเคราะห์ข้อมูล', screen:1, level:2, asset:'หุ้นไทย', bkk:true}},
+ {id:'m27', name:'ชนิดา ร.', nick:'ชนิดา', coach:'ต้น', join:[-70,10,0], contact:[-70,12,0], reply:[-70,13,0], lastReply:[-2,19,0], tags:{job:'พนักงานบริษัท', screen:1, level:1, asset:'ทอง', bkk:true}, lessons:[[1,-68],[2,-48],[3,-28],[4,-12]], follows:[-56,-42,-28,-14], exams:{1:18,2:17,3:19,4:18}, hw:[{ep:2,n:1,sub:-44,rev:-43,pass:true},{ep:2,n:2,sub:-40,rev:-39,pass:true},{ep:2,n:3,sub:-36,rev:-35,pass:true},{ep:3,n:1,sub:-24,rev:-23,pass:true},{ep:3,n:2,sub:-20,rev:-19,pass:true},{ep:3,n:3,sub:-16,rev:-15,pass:true}], grad:0},
+ {id:'m28', name:'ไพโรจน์ ก.', nick:'ไพโรจน์', coach:'บีม', join:[-85,10,0], contact:[-85,12,0], reply:[-85,14,0], lastReply:[-3,20,0], tags:{job:'เจ้าของกิจการ', screen:2, level:1, asset:'หุ้นต่างประเทศ', bkk:false}, lessons:[[1,-83],[2,-60],[3,-38],[4,-18]], follows:[-70,-56,-42,-28,-14], exams:{1:17,2:16,3:18,4:17}, hw:[{ep:2,n:1,sub:-55,rev:-54,pass:true},{ep:2,n:2,sub:-52,rev:-51,pass:true},{ep:2,n:3,sub:-48,rev:-47,pass:true},{ep:3,n:1,sub:-34,rev:-33,pass:true},{ep:3,n:2,sub:-30,rev:-29,pass:true},{ep:3,n:3,sub:-26,rev:-25,pass:true}], grad:-2, adv:{calls:[['โทร',-1,10]]}},
+ {id:'m29', name:'วิภาวี ส.', nick:'วิภาวี', coach:'แนน', join:[-130,10,0], contact:[-130,12,0], reply:[-130,13,0], lastReply:[-6,19,0], tags:{job:'พนักงานบัญชี', screen:0, level:2, asset:'ทอง', bkk:true}, lessons:[[1,-128],[2,-105],[3,-80],[4,-55]], follows:[-115,-101,-87,-73,-59], exams:{1:19,2:18,3:18,4:19}, hw:[{ep:2,n:1,sub:-100,rev:-99,pass:true},{ep:2,n:2,sub:-96,rev:-95,pass:true},{ep:2,n:3,sub:-92,rev:-91,pass:true},{ep:3,n:1,sub:-75,rev:-74,pass:true},{ep:3,n:2,sub:-70,rev:-69,pass:true},{ep:3,n:3,sub:-65,rev:-64,pass:true}], grad:-40, adv:{talk:[-39,10,0], pick:'jay', ch:'LINE', memo:'สนใจทองคำเป็นหลัก เทรดระหว่างวันได้', set:[-39,15,0], coach:'jay', extra:[['lek',-12,15]]}},
+];
+const P = a => a ? at(a[0], a[1] ?? 10, a[2] ?? 0) : null;
+const M = SEED.map(s => ({
+  ...s,
+  join:P(s.join), contact:P(s.contact), reply:P(s.reply), lastReply:P(s.lastReply),
+  grad: s.grad != null ? at(s.grad, 15) : null,
+  offer3At: s.offer3 != null ? at(s.offer3, 15) : null,
+  lessons:(s.lessons || []).map(([ep, o]) => ({ep, at:at(o, 9)})),
+  follows:(s.follows || []).map(o => at(o, 11)),
+  attempts:(s.attempts || []).map(([ch, o]) => ({ch, at:at(o, 14)})),
+  hw:(s.hw || []).map(h => ({ep:h.ep, n:h.n, sub:at(h.sub, 10), rev:h.rev != null ? at(h.rev, 16) : null, pass:!!h.pass})),
+  exams:{...(s.exams || {})},
+  pause: s.pause ? {...s.pause, start:at(s.pause.start, 10), ret:null, comeback:null} : null,
+  ft: s.ft ? {...s.ft, since:at(s.ft.since, 11), screenAt: s.ft.screenAt != null ? at(s.ft.screenAt, 14) : null, hwSub: s.ft.hwSub != null ? at(s.ft.hwSub, 10) : null, advAt:null} : null,
+  tags: s.tags ? {...s.tags} : null,
+  adv:(a => ({calls:(a.calls || []).map(([ch, o, h]) => ({ch, at:at(o, h ?? 14)})), talkAt:P(a.talk), pick:a.pick || null, ch:a.ch || 'โทร', memo:a.memo || '', talkBy:'ฝน · ทีม CS',
+    setAt:P(a.set), coach:a.coach || null, by:'ฝน · ทีม CS', extra:(a.extra || []).map(([id, o, h]) => ({id, at:at(o, h ?? 15), by:'ฝน · ทีม CS'}))}))(s.adv || {}),
+  cs1At:null, cs2At:null, log:[]
+}));
+const byId = id => M.find(m => m.id === id);
+
+/* ============ rules ============ */
+const lessonAt = (m, t) => { let cur = null; for (const l of m.lessons) if (l.at <= t) cur = l; return cur; };
+const pausedAt = (m, t) => !!(m.pause && m.pause.start <= t && !(m.pause.ret && m.pause.ret <= t));
+const anchorOf = (m, t) => (m.pause && m.pause.ret && m.pause.ret <= t) ? m.pause.ret : m.join;
+function lastReplyAt(m, t) { let r = null; for (const x of [m.reply, m.lastReply]) if (x && x <= t && (!r || x > r)) r = x; return r; }
+function attemptsAfter(m, since, t) { const a = m.attempts.filter(x => x.at > since && x.at <= t); return {line:a.filter(x => x.ch === 'LINE').length, call:a.filter(x => x.ch === 'โทร').length}; }
+const ftTotal = sc => sc.t.reduce((a, b) => a + b, 0) + sc.sr + sc.plan.reduce((a, b) => a + b, 0);
+const typeOf = m => m.tags ? TYPES[m.tags.screen] : null;
+
+function statusOf(m, t) {
+  if (m.join > t) return null;
+  if (m.grad && m.grad <= t) return 'tp';
+  if (m.ft && m.ft.status === 'adv' && m.ft.advAt <= t) return 'tp';
+  if (pausedAt(m, t)) return 'sp';
+  if (m.ft && m.ft.since <= t) return 'gap';
+  if (!m.contact || m.contact > t) return 'ipo';
+  const lr = lastReplyAt(m, t);
+  if (!lr) return hrs(m.contact, t) >= 24 ? 'cs' : 'pend';
+  if (daysSince(lr, t) >= 90) { const a = attemptsAfter(m, lr, t); if (a.line >= 3 && a.call >= 3) return 'stop'; }
+  const anc = anchorOf(m, t), mo = monthsSince(anc, t), cur = lessonAt(m, t);
+  if (!cur) return mo >= 1 ? 'down' : 'up';
+  // กติกาข้อ 6: ณ รอบเดือนที่ n เตือนถ้าวันที่เข้าบทปัจจุบัน <= วันครบรอบเดือนที่ n-1
+  if (mo >= 1 && dOnly(cur.at) <= dOnly(addMonths(anc, mo - 1))) return 'side';
+  return 'up';
+}
+function nextFollow(m, t) {
+  let last = m.reply && m.reply <= t ? m.reply : null; if (!last) return null;
+  for (const f of m.follows) if (f <= t && f > last) last = f;
+  return addDays(last, 14);
+}
+function alertsOf(m, t) {
+  const st = statusOf(m, t); if (!st) return [];
+  const A = [];
+  if (st === 'ipo') {
+    const h = hrs(m.join, t), dl = new Date(m.join.getTime() + DAY);
+    A.push({k:'ipo', pri: h >= 20 ? 0 : 1, title: h >= 24 ? 'เลย 24 ชม. แล้ว ยังไม่ได้ทัก' : 'สมช ใหม่ ต้องทักภายใน 24 ชม.',
+      sub: h >= 24 ? `ครบกำหนดไปเมื่อ ${fd(dl)} ${ftm(dl)} น.` : `ทักภายใน ${fd(dl)} ${ftm(dl)} น. (เหลือ ${Math.max(1, Math.ceil(24 - h))} ชม.)`});
+  }
+  if (st === 'pend') A.push({k:'pend', pri:2, title:'รอ สมช ตอบกลับ', sub:`ถ้าไม่ตอบใน ${Math.max(1, Math.ceil(24 - hrs(m.contact, t)))} ชม. ระบบจะให้ส่งต่อ CS`});
+  if (st === 'cs' && !(m.cs1At && m.cs1At <= t)) A.push({k:'cs1', pri:0, title:'ทักไปแล้วเกิน 24 ชม. ยังไม่ตอบ', sub:`ทักไปเมื่อ ${fd(m.contact)} ${ftm(m.contact)} น. · ส่งให้ CS ช่วยติดต่อ`});
+  if (st === 'stop' && !(m.cs2At && m.cs2At <= t)) A.push({k:'cs2', pri:0, title:'Stop loss: ติดต่อไม่ได้ 3 เดือน', sub:'ไลน์ 3 + โทร 3 ครบแล้ว · ส่งให้ CS พร้อมประวัติการติดต่อ'});
+  if (['up','side','down'].includes(st)) {
+    const lr = lastReplyAt(m, t);
+    if (lr && daysSince(lr, t) >= 90) {
+      const a = attemptsAfter(m, lr, t);
+      A.push({k:'unreach', pri:1, title:`ติดต่อไม่ได้ ${daysSince(lr, t)} วัน`, sub:`ไลน์ ${a.line}/3 · โทร ${a.call}/3 · ติดต่อให้ครบก่อนส่ง CS`});
+    } else {
+      if (st === 'down') A.push({k:'down', pri:1, title:'Downtrend: ครบ 1 เดือน ยังไม่เริ่มเรียน', sub: m.tags && m.tags.level >= 2 ? 'มีพื้นฐาน · แนะนำนัด Screening Fast Track (ประตู A)' : 'ยังไม่มีพื้นฐาน · ส่งคลิปสั้นตามมาเรียน'});
+      if (st === 'side') { const cur = lessonAt(m, t); A.push({k:'side', pri:1, title:`Sideway: ${EPN[cur.ep]} ไม่ขยับทั้งเดือน`, sub:`อยู่บทนี้มา ${daysSince(cur.at, t)} วัน · ${EPN[cur.ep]} สอนสด${nextC(cur.ep, t)}`}); }
+      if (monthsSince(anchorOf(m, t), t) >= 3 && !(m.offer3At && m.offer3At <= t)) A.push({k:'m3', pri:1, title:'ครบ 3 เดือน ยังไม่จบ Basic', sub:'เสนอ 2 ทาง: พักการเรียน หรือ Fast Track'});
+      const nf = nextFollow(m, t);
+      if (nf && dOnly(nf) <= dOnly(t)) { const late = daysSince(nf, t); A.push({k:'follow', pri:2, title:'ถึงรอบ Follow 14 วัน', sub: late > 0 ? `เลยกำหนดมา ${late} วัน` : 'ครบกำหนดวันนี้'}); }
+    }
+  }
+  m.hw.forEach(h => { if (h.sub <= t && !(h.rev && h.rev <= t)) { const hh = hrs(h.sub, t); A.push({k:'hw', hw:h, pri: hh >= 48 ? 0 : 2, title: hh >= 48 ? 'การบ้านค้างตรวจเกิน 48 ชม.' : 'การบ้านรอตรวจ', sub:`${EPN[h.ep]} ข้อ ${h.n} · ส่งมา ${Math.floor(hh)} ชม.`}); } });
+  if (st === 'sp' && t.getDate() === 8 && !sameDay(m.pause.comeback, t)) A.push({k:'comeback', pri:1, title:'วันคืนสนาม (วันที่ 8)', sub:`พักอยู่ที่ ${EPN[m.pause.ep]} มา ${daysSince(m.pause.start, t)} วัน · ส่ง Comeback pack`});
+  if (st === 'gap') {
+    const f = m.ft;
+    if (f.status === 'invited') A.push({k:'ftInvite', pri:2, title:'Fast Track: รอนัด Screening', sub:`ประตู ${f.gate}`});
+    if (f.status === 'scheduled' && f.screenAt && dOnly(f.screenAt) <= dOnly(t)) A.push({k:'ftScreen', pri:0, title:'ถึงวันนัด Screening Fast Track', sub:`${f.channel || 'online'} · ${fd(f.screenAt)} ${ftm(f.screenAt)} น.`});
+    if ((f.status === 'hw' || f.status === 'clip') && f.hwSub && f.hwSub <= t) { const hh = hrs(f.hwSub, t); A.push({k:'ftHw', pri: hh >= 48 ? 0 : 2, title: hh >= 48 ? 'การบ้าน Fast Track ค้างตรวจเกิน 48 ชม.' : 'การบ้าน Fast Track รอตรวจ', sub:`ส่งมา ${Math.floor(hh)} ชม. · หุ้น ${esc(f.stock || '-')}`}); }
+  }
+  return A;
+}
+function infoOf(m, t, st) {
+  const cur = lessonAt(m, t);
+  switch (st) {
+    case 'ipo': return `สมัครมา ${Math.floor(hrs(m.join, t))} ชม.`;
+    case 'pend': return `ทักแล้ว ${Math.floor(hrs(m.contact, t))} ชม.`;
+    case 'cs': return `ไม่ตอบ ${Math.floor(hrs(m.contact, t))} ชม.`;
+    case 'stop': return `ไม่ตอบ ${daysSince(lastReplyAt(m, t), t)} วัน`;
+    case 'sp': return `พักที่ ${EPN[m.pause.ep]} · ${daysSince(m.pause.start, t)} วัน`;
+    case 'gap': return ({invited:'รอนัด Screening', scheduled: m.ft.screenAt ? `นัด Screening ${fd(m.ft.screenAt)}` : 'นัด Screening', hw:'การบ้าน 3 ส่วน', clip:'คลิป 30 นาที + การบ้าน 1 ข้อ'})[m.ft.status] || 'Fast Track';
+    case 'tp': return m.grad && m.grad <= t ? `จบ Basic ${fd(m.grad)}` : 'ไป Advance (Fast Track)';
+    default: return cur ? `${EPN[cur.ep]} · ${daysSince(cur.at, t)} วัน` : 'ยังไม่เริ่มบทเรียน';
+  }
+}
+
+/* ============ state + plumbing ============ */
+const S = {now:new Date(BASE), coach:'แนน', view:'today', sel:'m07', mv:'m07', ftSel:'m17', sf:'all', smode:'heat', quiz:null, form:null, advSel:'m28', advForm:null};
+let ACT = {}, seq = 0;
+const A = fn => { const k = 'a' + (++seq); ACT[k] = fn; return k; };
+const B = (label, fn, cls = '') => `<button class="${cls}" data-a="${A(fn)}">${label}</button>`;
+const now = () => new Date(S.now);
+const log = (m, text) => m.log.push({at:now(), text});
+const mine = () => M.filter(m => m.join <= S.now && (S.coach === 'all' || m.coach === S.coach));
+const visible = () => M.filter(m => m.join <= S.now);
+const chip = st => st ? `<span class="chip"><i style="background:${ST[st].c}"></i>${ST[st].name}</span>` : '';
+function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2200); }
+function closeModal() { $('#modal').classList.add('hidden'); $('#modal').innerHTML = ''; }
+function done(msg) { closeModal(); render(); if (msg) toast(msg); }
+function go(v, id) { S.view = v; if (v === 'profile' && id) S.sel = id; if (v === 'member' && id) { S.mv = id; S.quiz = null; } if (v === 'ft' && id) { S.ftSel = id; S.form = null; } if (v === 'adv' && id) { S.advSel = id; S.advForm = null; } render(); window.scrollTo(0, 0); }
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-a]'); if (a && ACT[a.dataset.a]) { e.preventDefault(); ACT[a.dataset.a](e); return; }
+  const g = e.target.closest('[data-go]'); if (g) { const [v, id] = g.dataset.go.split(':'); go(v, id); return; }
+  if (e.target.id === 'modal') closeModal();
+});
+document.addEventListener('change', e => { const c = e.target.closest('[data-ch]'); if (c && ACT[c.dataset.ch]) ACT[c.dataset.ch](e); });
+document.addEventListener('input', e => { const c = e.target.closest('[data-in]'); if (c && ACT[c.dataset.in]) ACT[c.dataset.in](e); });
+const tipEl = $('#tip');
+document.addEventListener('mouseover', e => { const t = e.target.closest('[data-tip]'); if (!t) return; tipEl.textContent = t.dataset.tip; tipEl.style.display = 'block'; });
+document.addEventListener('mousemove', e => { if (tipEl.style.display === 'block') { tipEl.style.left = (e.clientX + 12) + 'px'; tipEl.style.top = (e.clientY + 12) + 'px'; } });
+document.addEventListener('mouseout', e => { if (e.target.closest('[data-tip]')) tipEl.style.display = 'none'; });
+
+/* ============ LINE templates ============ */
+const TPL = {
+  welcome:(m, t) => `สวัสดี คุณ${m.nick}! ยินดีต้อนรับสู่คอร์ส Basic<br>โค้ช${m.coach}จะดูแลคุณ${m.nick}ตลอดคอร์สเลยนะ<br><br>ก่อนเริ่ม ขอรู้จักกันนิดนึง 4 ข้อ ไม่ถึง 1 นาที ตอบเสร็จได้การ์ดสไตล์นักเทรดของตัวเองด้วย<span class="lbtn">เริ่ม Trader Type Quiz</span>คลาสสดครั้งถัดไป: ${nextC(null, t)}`,
+  follow:(m, t) => { const c = lessonAt(m, t); return `คุณ${m.nick} ตอนนี้อยู่ ${c ? EPN[c.ep] : 'บทแรก'} แล้ว เป็นยังไงบ้าง มีตรงไหนติดไหม ส่งกราฟมาให้โค้ชดูได้เลยนะ`; },
+  nudge:(m, t) => `คุณ${m.nick} ครบ 1 เดือนแล้ว โค้ชทำทางลัดมาให้: คลิปสั้น 3 นาทีจาก EP.1<span class="lbtn">ดูคลิป 3 นาที</span>แล้ว EP.1 จะสอนสด${nextC(1, t)} มาเรียนพร้อมกันไหม`,
+  ftInvite:(m) => `เห็นว่าคุณ${m.nick}มีพื้นฐานมาแล้ว โค้ชขอชวนคุยสั้นๆ 20 นาที (onsite / online)<br>ถ้าผ่าน Checklist ไปต่อ Advance ได้เลย ไม่ต้องเรียน Basic ซ้ำ สะดวกวันไหนดี`,
+  sideway:(m, t) => { const c = lessonAt(m, t), ep = c ? c.ep : 1; return `คุณ${m.nick} ${EPF[ep]} ที่ค้างอยู่ จะสอนสด${nextC(ep, t)} นี้<br>มาเรียนสดด้วยกันไหม ติดตรงไหนถามในคลาสได้เลย`; },
+  m3:(m) => `คุณ${m.nick} ครบ 3 เดือนแล้ว โค้ชมี 2 ทางให้เลือก<br>1) พักการเรียนก่อน พร้อมเมื่อไหร่ค่อยกลับมา (โค้ชจะทักทุกวันที่ 8)<br>2) Fast Track คุย 20 นาที + ทำการบ้านกราฟ แล้วไปต่อ Advance`,
+  comeback:(m, t) => { const ep = m.pause ? m.pause.ep : 1; return `วันที่ 8 วันคืนสนาม! คุณ${m.nick}พักไว้ที่ ${EPN[ep]}<br>โค้ชสรุปคลิปทบทวน 5 นาทีไว้ให้แล้ว<span class="lbtn">ดูคลิปทบทวน</span>${EPN[ep]} จะสอนสด${nextC(ep, t)} พร้อมกลับมาเมื่อไหร่ทักโค้ชได้เลย`; },
+  classRemind:(m, t) => { const c = lessonAt(m, t), ep = c ? c.ep : 1; return `${EPF[ep]} ที่คุณ${m.nick}เรียนอยู่ จะสอนสด${nextC(ep, t)} เจอกันในคลาสนะ`; },
+  advCall:(m) => `ยินดีด้วย คุณ${m.nick} จบ Basic แล้ว!<br>ขั้นต่อไปคือโค้ชประจำตัวใน Advance · CS ขอโทรคุย 10 นาที เพื่อช่วยเลือกโค้ชที่เข้ากับสไตล์ของคุณ${m.nick}<br>สะดวกช่วงไหน ตอบกลับมาได้เลย`,
+  advSet:(m, c) => `คุณ${m.nick} ทีมตั้ง<b>โค้ช${c.name}</b>เป็นโค้ชประจำตัวใน Advance ให้แล้ว<br>คลิปสอน คอร์ส และ Small Group${c.sg ? ' (' + c.sg + ')' : ''} ของโค้ช${c.name}เปิดให้บนเว็บแล้ว<span class="lbtn">เข้าสู่หน้า Advance</span>`,
+  advAdd:(m, c) => `คุณ${m.nick} เพิ่ม<b>โค้ช${c.name}</b>ในบัญชีให้แล้ว<br>คลิปและ Small Group ของโค้ช${c.name}ขึ้นบนเว็บแล้ว<span class="lbtn">เปิดหน้าโค้ชของฉัน</span>`,
+};
+function lineModal(m, key, onSend, choices) {
+  const btns = choices
+    ? choices.map(x => B(x.label, () => { x.fn(); done(x.toast || 'บันทึกแล้ว'); }, x.cls || '')).join('')
+    : B('ส่งข้อความ', () => { if (onSend) onSend(); done(`ส่งข้อความถึงคุณ${m.nick}แล้ว`); }, 'pri');
+  $('#modal').innerHTML = `<div class="mbox"><div class="mhead">ส่ง LINE ถึงคุณ${esc(m.nick)}</div>
+    <div class="mchat"><div class="bub">${TPL[key](m, now())}</div></div>
+    <div class="note">ข้อความสำเร็จรูป ระบบเติมชื่อ บทเรียน และวันคลาสสดให้อัตโนมัติ</div>
+    <div class="mfoot">${B('ยกเลิก', closeModal, 'ghost')}${btns}</div></div>`;
+  $('#modal').classList.remove('hidden');
+}
+
+/* ============ actions per alert ============ */
+function actionsFor(m, a) {
+  const t = now();
+  switch (a.k) {
+    case 'ipo': return B('ส่งข้อความต้อนรับ', () => lineModal(m, 'welcome', () => { m.contact = now(); log(m, 'ทักครั้งแรกทาง LINE'); }), 'pri');
+    case 'pend': return B('สมช ตอบแล้ว', () => { m.reply = now(); log(m, 'สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว`); });
+    case 'cs1': return B('ส่งให้ CS', () => { m.cs1At = now(); log(m, 'ส่งต่อ CS-1 (ไม่ตอบ 24 ชม.)'); done('ส่งรายชื่อให้ CS แล้ว'); }, 'pri');
+    case 'cs2': return B('ส่งให้ CS พร้อมประวัติ', () => { m.cs2At = now(); log(m, 'ส่งต่อ CS-2 (No Active)'); done('ส่งเป็น No Active ให้ CS แล้ว'); }, 'pri');
+    case 'unreach': return B('บันทึก: โทรไม่รับ', () => { m.attempts.push({ch:'โทร', at:now()}); log(m, 'โทรไม่รับสาย'); done('บันทึกการโทรแล้ว'); }) + B('บันทึก: ไลน์ไม่ตอบ', () => { m.attempts.push({ch:'LINE', at:now()}); log(m, 'ส่งไลน์ ไม่ตอบ'); done('บันทึกแล้ว'); });
+    case 'down': return m.tags && m.tags.level >= 2
+      ? B('ชวน Fast Track', () => lineModal(m, 'ftInvite', () => { m.ft = {gate:'A', status:'invited', since:now()}; log(m, 'ชวนเข้า Fast Track (ประตู A)'); }), 'pri')
+      : B('ส่งคลิปตามมาเรียน', () => lineModal(m, 'nudge', () => { m.follows.push(now()); log(m, 'ส่งคลิป 3 นาทีตามมาเรียน'); }), 'pri');
+    case 'side': return B('ชวนคลาสสดของบทนี้', () => lineModal(m, 'sideway', () => { m.follows.push(now()); log(m, 'ชวนเข้าคลาสสดบทที่ค้าง'); }), 'pri');
+    case 'm3': return B('เสนอ 2 ทาง', () => lineModal(m, 'm3', null, [
+      {label:'ส่ง · รอ สมช ตัดสินใจ', fn:() => { m.offer3At = now(); log(m, 'เสนอ พักการเรียน / Fast Track'); }},
+      {label:'สมช เลือกพักการเรียน', fn:() => { m.offer3At = now(); const c = lessonAt(m, now()); m.pause = {start:now(), ep:c ? c.ep : 1, reason:'เลือกพักหลังครบ 3 เดือน', expect:'—', ret:null, comeback:null}; log(m, 'เลือกพักการเรียน'); }, toast:'บันทึกพักการเรียนแล้ว'},
+      {label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'},
+    ]), 'pri');
+    case 'follow': return B('ส่ง LINE', () => lineModal(m, 'follow', () => { m.follows.push(now()); log(m, 'Follow ทาง LINE'); })) + B('โทรแล้ว', () => { m.follows.push(now()); log(m, 'โทร Follow'); done('บันทึก Follow แล้ว'); });
+    case 'hw': return B('ตรวจแล้ว: ผ่าน', () => { a.hw.rev = now(); a.hw.pass = true; log(m, `ตรวจการบ้าน ${EPN[a.hw.ep]} ข้อ ${a.hw.n}: ผ่าน`); done('บันทึกผลตรวจแล้ว'); }, 'pri');
+    case 'comeback': return B('ส่ง Comeback pack', () => lineModal(m, 'comeback', () => { m.pause.comeback = now(); log(m, 'ส่ง Comeback pack'); }), 'pri') + B('กลับมาเรียนแล้ว', () => { m.pause.ret = now(); log(m, 'กลับมาเรียน (เริ่มนับรอบใหม่)'); done(`คุณ${m.nick}กลับมาเรียนแล้ว`); });
+    case 'ftInvite': return B('นัด Screening พรุ่งนี้', () => { const d = addDays(dOnly(now()), 1); d.setHours(14); m.ft.status = 'scheduled'; m.ft.screenAt = d; m.ft.channel = m.tags && m.tags.bkk ? 'onsite' : 'online'; log(m, `นัด Screening ${fd(d)} 14:00`); done('นัด Screening แล้ว'); });
+    case 'ftScreen': return B('เปิดฟอร์ม Screening', () => go('ft', m.id), 'pri');
+    case 'ftHw': return B('ตรวจผ่าน → ไป Advance', () => { m.ft.status = 'adv'; m.ft.advAt = now(); log(m, 'ตรวจการบ้าน Fast Track ผ่าน · ส่งต่อ Advance'); done(`คุณ${m.nick}ไป Advance แล้ว`); }, 'pri');
+  }
+  return '';
+}
+
+/* ============ layout ============ */
+function renderSide() {
+  const t = now(), list = mine();
+  const nToday = list.reduce((s, m) => s + alertsOf(m, t).filter(a => a.pri < 2).length, 0);
+  const nFT = visible().filter(m => m.ft && m.ft.since <= t && m.ft.status !== 'adv').length;
+  const nCS = visible().filter(m => { const st = statusOf(m, t); return (st === 'cs' && !m.cs1At) || (st === 'stop' && !m.cs2At); }).length;
+  const nAdv = advTodo(t);
+  const nav = (v, label, n) => `<button class="nav ${S.view === v || (v === 'screener' && S.view === 'profile') ? 'on' : ''}" data-go="${v}">${label}${n ? `<span class="cnt">${n}</span>` : ''}</button>`;
+  $('#side').innerHTML = `<div class="logo">Basic Member System<small>ต้นแบบระบบดูแล สมช</small></div>
+    <div class="sec">มุมมองโค้ช</div>
+    ${nav('today', 'งานวันนี้', nToday)}${nav('screener', 'Member Screener')}${nav('ft', 'Fast Track', nFT)}${nav('cs', 'ส่งต่อ CS', nCS)}${nav('report', 'Report วันศุกร์')}
+    <div class="sec">ทีม CS + หลังบ้าน</div>
+    ${nav('adv', 'ตั้งโค้ช Advance', nAdv)}
+    <div class="sec">มุมมอง สมช</div>
+    ${nav('member', 'LINE + หน้าเว็บ สมช')}
+    <div class="sec">ดูในนาม</div>
+    <select data-ch="${A(e => { S.coach = e.target.value; render(); })}">
+      ${COACHES.map(c => `<option value="${c}" ${S.coach === c ? 'selected' : ''}>โค้ช${c}</option>`).join('')}
+      <option value="all" ${S.coach === 'all' ? 'selected' : ''}>หัวหน้า (ทุกโค้ช)</option>
+    </select>
+    <div class="sfoot">ต้นแบบเพื่อดูภาพการใช้งานจริง<br>รายชื่อและตัวเลขทั้งหมดเป็นข้อมูลสมมติ<br>ไม่ได้เชื่อมต่อระบบจริง</div>`;
+}
+function renderTop() {
+  const t = now();
+  $('#top').innerHTML = `<div><div class="simlbl">วันที่จำลอง</div><div class="simdate">${fdl(t)} · ${ftm(t)} น.</div></div>
+    ${B('−1 วัน', () => { S.now = addDays(S.now, -1); render(); })}${B('+1 วัน', () => { S.now = addDays(S.now, 1); render(); })}${B('+1 สัปดาห์', () => { S.now = addDays(S.now, 7); render(); })}${B('+1 เดือน', () => { S.now = addMonths(S.now, 1); render(); })}${B('กลับวันนี้', () => { S.now = new Date(BASE); render(); }, 'ghost')}
+    <span class="simlbl" style="margin-left:4px">ข้ามไป</span>
+    ${B('ศ. 25 ก.ย. · Report', () => { S.now = at(2, 18); render(); }, 'jump')}${B('พฤ. 8 ต.ค. · วันคืนสนาม', () => { S.now = at(15, 18); render(); }, 'jump')}${B('จ. 12 ต.ค. · Sideway', () => { S.now = at(19, 18); render(); }, 'jump')}
+    <span class="mockflag">ข้อมูลสมมติ</span>`;
+}
+
+/* ============ view: today ============ */
+function taskRow(m, as) {
+  return `<div class="task"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> ${chip(statusOf(m, now()))}${S.coach === 'all' ? ` <span class="muted" style="font-size:12px">· โค้ช${m.coach}</span>` : ''}
+    ${as.map(a => `<div class="tt">${a.title}</div><div class="ss">${a.sub}</div>`).join('')}</div><div class="acts">${as.map(a => actionsFor(m, a)).join('')}</div></div>`;
+}
+function vToday() {
+  const t = now(), list = mine();
+  const tasks = []; list.forEach(m => alertsOf(m, t).forEach(a => tasks.push({m, a})));
+  const G = [0, 1, 2].map(p => { const g = []; tasks.filter(x => x.a.pri === p).forEach(x => { const e = g.find(y => y.m === x.m); e ? e.as.push(x.a) : g.push({m:x.m, as:[x.a]}); }); return g; });
+  const sts = list.map(m => statusOf(m, t));
+  const cnt = k => sts.filter(s => s === k).length;
+  const act = cnt('up') + cnt('side') + cnt('down');
+  const idx = act ? Math.round(cnt('up') / act * 100) : 0;
+  const hwN = tasks.filter(x => x.a.k === 'hw' || x.a.k === 'ftHw').length;
+  const c = classOn(t), nc = nextClass(null, addDays(t, c ? 1 : 0));
+  let banners = '';
+  banners += c ? `<div class="banner cls"><b>วันนี้มีคลาสสด</b> วัน${c.day} "${c.kind}" · ${c.label}${c.day === 'พุธ' ? ' · เปิด Streaming ตลาดจริง' : ''}</div>`
+               : `<div class="banner cls">วันนี้ไม่มีคลาสสด · ครั้งถัดไป วัน${nc.day} ${fd(nc.date)} · ${nc.label}</div>`;
+  if (t.getDay() === 5) banners += `<div class="banner rep"><b>วันศุกร์: ส่ง Report ก่อนประชุมหัวหน้าวันจันทร์</b><span class="sp">${B('เปิด Report', () => go('report'), 'pri')}</span></div>`;
+  if (t.getDate() === 8) banners += `<div class="banner cb"><b>วันที่ 8 วันคืนสนาม</b> มี สมช พักการเรียน ${list.filter(m => statusOf(m, t) === 'sp').length} คน รอส่ง Comeback pack</div>`;
+  const group = (title, color, arr, emptyTxt) => `<div class="card" style="margin-bottom:12px"><div class="grp"><span class="dotl" style="background:${color}"></span>${title} <span class="n">${arr.reduce((n, x) => n + x.as.length, 0)} งาน</span></div>
+    ${arr.length ? arr.map(x => taskRow(x.m, x.as)).join('') : `<div class="empty">${emptyTxt}</div>`}</div>`;
+  const week0 = addDays(dOnly(t), -((t.getDay() + 6) % 7));
+  const wk = [2, 5].map(o => { const d = addDays(week0, o); const cc = classOn(d); return `<div style="padding:6px 0;border-bottom:1px solid #eef1f5;font-size:13.5px"><b>${TH_DS[d.getDay()]} ${fd(d)}</b> · ${cc.kind}<div class="note">${cc.label}</div></div>`; }).join('');
+  return `<h1>สวัสดี ${S.coach === 'all' ? 'หัวหน้าทีม Basic' : 'โค้ช' + S.coach}</h1><p class="sub">งานที่ระบบจัดให้วันนี้ เรียงจากด่วนที่สุด</p>
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+      <div class="card kpi"><div class="lb">สมช ที่ดูแล</div><div class="vl">${list.length}</div><div class="note">รวมทุกสถานะ</div></div>
+      <div class="card kpi"><div class="lb">Basic Index (% Uptrend)</div><div class="vl">${idx}%</div><div class="note">จาก ${act} คนที่กำลังเรียน</div></div>
+      <div class="card kpi"><div class="lb">งานด่วน + แจ้งเตือน</div><div class="vl">${tasks.filter(x => x.a.pri < 2).length}</div><div class="note">งานประจำอีก ${tasks.filter(x => x.a.pri === 2).length}</div></div>
+      <div class="card kpi"><div class="lb">การบ้านรอตรวจ</div><div class="vl">${hwN}</div><div class="note">เป้า: ตรวจภายใน 48 ชม.</div></div>
+    </div>
+    <div class="grid" style="grid-template-columns:2.1fr 1fr;align-items:start">
+      <div>${banners}
+        ${group('ด่วน', '#d03b3b', G[0], 'ไม่มีงานด่วน')}
+        ${group('แจ้งเตือนจากระบบ', '#fab219', G[1], 'ไม่มีแจ้งเตือน')}
+        ${group('งานประจำ', '#2f6fdb', G[2], 'ไม่มีงานประจำค้าง')}
+      </div>
+      <div class="grid">
+        <div class="hint"><b>ลองเลื่อนเวลาดู (แถบด้านบน)</b><ul>
+          <li><b>+1 วัน</b> ถ้ายังไม่ทักคุณภัทรา/ธนกร จะเลย 24 ชม. และคนที่ทักแล้วไม่ตอบจะเด้งให้ส่ง CS</li>
+          <li><b>ศ. 25 ก.ย.</b> มีปุ่มเปิด Report และคุณรัชนีถึงวันนัด Screening (ดูในนามโค้ชบีม)</li>
+          <li><b>พฤ. 8 ต.ค.</b> วันคืนสนาม รายชื่อคนพักการเรียนขึ้นมาให้ส่ง Comeback pack</li>
+          <li><b>จ. 12 ต.ค.</b> คุณมณีรัตน์ (สมัคร 12/08) ขึ้น Sideway ตามตัวอย่างในข้อ 6</li>
+          <li>กดปุ่มในแต่ละงานได้จริง สถานะจะเปลี่ยนตาม</li></ul></div>
+        <div class="card"><h3>คลาสสดสัปดาห์นี้</h3>${wk}</div>
+        <div class="card"><h3>สถานะพอร์ต</h3><div style="display:flex;flex-wrap:wrap;gap:6px">${ST_ORDER.filter(k => cnt(k)).map(k => `<span class="chip" style="cursor:pointer" data-a="${A(() => { S.sf = k; go('screener'); })}"><i style="background:${ST[k].c}"></i>${ST[k].name} ${cnt(k)}</span>`).join('')}</div></div>
+      </div>
+    </div>`;
+}
+
+/* ============ view: screener ============ */
+function vScreener() {
+  const t = now(), list = mine().map(m => ({m, st:statusOf(m, t)}));
+  const cnt = k => list.filter(x => x.st === k).length;
+  const shown = list.filter(x => S.sf === 'all' || x.st === S.sf);
+  const chipsRow = `<div class="fchips">${B(`ทั้งหมด ${list.length}`, () => { S.sf = 'all'; render(); }, 'fchip' + (S.sf === 'all' ? ' on' : ''))}${ST_ORDER.filter(k => cnt(k)).map(k => B(`${ST[k].name} ${cnt(k)}`, () => { S.sf = k; render(); }, 'fchip' + (S.sf === k ? ' on' : ''))).join('')}
+    <span style="margin-left:auto"></span>${B('Heatmap', () => { S.smode = 'heat'; render(); }, 'fchip' + (S.smode === 'heat' ? ' on' : ''))}${B('ตาราง', () => { S.smode = 'table'; render(); }, 'fchip' + (S.smode === 'table' ? ' on' : ''))}</div>`;
+  let body = '';
+  if (S.smode === 'heat') {
+    body = ST_ORDER.filter(k => shown.some(x => x.st === k)).map(k => `<div class="grp" style="margin:6px 0"><span class="dotl" style="background:${ST[k].c}"></span>${ST[k].name} <span class="n">· ${ST[k].th} · ${shown.filter(x => x.st === k).length} คน</span></div>
+      <div class="tiles">${shown.filter(x => x.st === k).map(({m}) => `<div class="tile" data-go="profile:${m.id}" style="background:${ST[k].bg};border-color:${ST[k].c};color:${ST[k].tx}"><b>${esc(m.name)}</b><span>${infoOf(m, t, k)}</span><span style="opacity:.8">โค้ช${m.coach}${alertsOf(m, t).some(a => a.pri < 2) ? ' · มีแจ้งเตือน' : ''}</span></div>`).join('')}</div>`).join('');
+  } else {
+    const rows = shown.sort((a, b) => ST_ORDER.indexOf(a.st) - ST_ORDER.indexOf(b.st)).map(({m, st}) => {
+      const cur = lessonAt(m, t), nf = nextFollow(m, t), al = alertsOf(m, t).filter(a => a.pri < 2);
+      return `<tr class="click" data-go="profile:${m.id}"><td><b>${esc(m.name)}</b></td><td>${m.coach}</td><td>${daysSince(m.join, t)} วัน</td><td>${cur ? EPN[cur.ep] : '—'}</td><td>${cur ? daysSince(cur.at, t) + ' วัน' : '—'}</td><td>${chip(st)}</td><td>${al.map(a => esc(a.title)).join('<br>') || '<span class="muted">—</span>'}</td><td>${nf && ['up','side','down'].includes(st) ? fd(nf) : '—'}</td></tr>`;
+    }).join('');
+    body = `<div class="card" style="padding:6px 8px"><table><tr><th>ชื่อ</th><th>โค้ช</th><th>อายุ สมช</th><th>บทปัจจุบัน</th><th>อยู่บทนี้มา</th><th>สถานะ</th><th>แจ้งเตือน</th><th>Follow ถัดไป</th></tr>${rows}</table></div>`;
+  }
+  return `<h1>Member Screener</h1><p class="sub">สแกนสถานะ สมช ทั้งพอร์ตในจอเดียว เหมือนโปรแกรมสแกนหุ้น · กดที่ชื่อเพื่อดูโปรไฟล์</p>${chipsRow}${body}`;
+}
+
+/* ============ view: profile ============ */
+function chart(m, t) {
+  const W = 640, H = 236, L = 86, R = 18, T = 34, Bm = 30;
+  const end = m.grad && m.grad <= t ? m.grad : (m.ft && m.ft.status === 'adv' && m.ft.advAt <= t ? m.ft.advAt : t);
+  const start = m.join, span = Math.max(DAY, end - start);
+  const X = d => L + (W - L - R) * Math.min(1, Math.max(0, (d - start) / span)), Y = v => T + (H - T - Bm) * (1 - v / 5);
+  const LV = ['ยังไม่เริ่ม','EP.1','EP.2','EP.3','EP.4','จบ Basic'];
+  const st = statusOf(m, t);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="กราฟความคืบหน้าบทเรียนของคุณ${esc(m.name)}">`;
+  LV.forEach((l, i) => { s += `<line x1="${L}" x2="${W - R}" y1="${Y(i)}" y2="${Y(i)}" stroke="#eef1f5"/><text x="${L - 10}" y="${Y(i) + 4}" text-anchor="end" font-size="11.5" fill="#8a92a3">${l}</text>`; });
+  if (m.pause && m.pause.start <= t) { const a = X(m.pause.start), b = X(m.pause.ret && m.pause.ret <= t ? m.pause.ret : end); s += `<rect x="${a}" y="${T}" width="${Math.max(3, b - a)}" height="${H - T - Bm}" fill="#9aa1ab" opacity=".16"/><text x="${a + 6}" y="${T + 14}" font-size="11.5" fill="#4b525c">พักการเรียน</text>`; }
+  const n = monthsSince(start, end);
+  for (let i = 1; i <= n; i++) { const d = addMonths(dOnly(start), i), x = X(d); s += `<line x1="${x}" x2="${x}" y1="${T - 6}" y2="${H - Bm}" stroke="#c9d1dd" stroke-dasharray="3 4"/><text x="${x}" y="${T - 12}" text-anchor="middle" font-size="11" fill="#8a92a3">เดือน ${i}</text><rect x="${x - 10}" y="${T - 24}" width="20" height="${H - Bm - T + 24}" fill="transparent" data-tip="ครบรอบเดือนที่ ${i} · ${fdy(d)} · ระบบเช็ค Sideway"/>`; }
+  s += `<text x="${L}" y="${H - 8}" font-size="11" fill="#8a92a3">สมัคร ${fnum(start)}</text><text x="${W - R}" y="${H - 8}" text-anchor="end" font-size="11" fill="#8a92a3">${end === t ? 'วันนี้' : 'จบ'} ${fnum(end)}</text>`;
+  const pts = [[start, 0]]; m.lessons.forEach(l => { if (l.at <= end) pts.push([l.at, l.ep]); }); if (m.grad && m.grad <= t) pts.push([m.grad, 5]);
+  let d = `M${X(pts[0][0])} ${Y(0)}`; for (let i = 1; i < pts.length; i++) d += ` H${X(pts[i][0])} V${Y(pts[i][1])}`; d += ` H${X(end)}`;
+  s += `<path d="${d}" fill="none" stroke="#14213d" stroke-width="2" stroke-linejoin="round"/>`;
+  pts.slice(1).forEach(([d0, v]) => { const tip = v === 5 ? `จบ Basic · ${fdy(d0)}` : `เข้า ${EPF[v]} · ${fdy(d0)}`; s += `<circle cx="${X(d0)}" cy="${Y(v)}" r="5" fill="#fff" stroke="#14213d" stroke-width="2"/><circle cx="${X(d0)}" cy="${Y(v)}" r="13" fill="transparent" data-tip="${esc(tip)}"/>`; });
+  const lv = pts[pts.length - 1][1];
+  s += `<circle cx="${X(end)}" cy="${Y(lv)}" r="7" fill="${ST[st].c}" stroke="#fff" stroke-width="2"/><circle cx="${X(end)}" cy="${Y(lv)}" r="14" fill="transparent" data-tip="${esc('สถานะวันนี้: ' + ST[st].name + ' · ' + ST[st].th)}"/>`;
+  return s + '</svg>';
+}
+function timeline(m, t) {
+  const ev = [];
+  ev.push([m.join, 'สมัครสมาชิก']);
+  if (m.contact) ev.push([m.contact, 'โค้ชทักครั้งแรก']);
+  if (m.reply) ev.push([m.reply, 'สมช ตอบกลับ']);
+  m.lessons.forEach(l => ev.push([l.at, `เข้า ${EPF[l.ep]}`]));
+  m.follows.forEach(f => ev.push([f, 'Follow 14 วัน']));
+  m.attempts.forEach(a => ev.push([a.at, a.ch === 'LINE' ? 'ส่งไลน์ ไม่ตอบ' : 'โทร ไม่รับสาย']));
+  m.hw.forEach(h => { ev.push([h.sub, `ส่งการบ้าน ${EPN[h.ep]} ข้อ ${h.n}`]); if (h.rev) ev.push([h.rev, `โค้ชตรวจ ${EPN[h.ep]} ข้อ ${h.n}: ผ่าน`]); });
+  if (m.pause) ev.push([m.pause.start, `พักการเรียน (${m.pause.reason})`]);
+  if (m.ft) { ev.push([m.ft.since, `เข้า Fast Track ประตู ${m.ft.gate}`]); if (m.ft.screenAt && m.ft.score) ev.push([m.ft.screenAt, `Screening ได้ ${ftTotal(m.ft.score)}/10`]); if (m.ft.hwSub) ev.push([m.ft.hwSub, 'ส่งการบ้าน Fast Track']); }
+  if (m.grad) ev.push([m.grad, 'จบ Basic → Advance']);
+  m.adv.calls.forEach(c => ev.push([c.at, c.ch === 'LINE' ? 'CS ส่ง LINE นัดคุยเรื่องโค้ช Advance' : 'CS โทรเรื่องโค้ช Advance · ไม่รับสาย']));
+  if (m.adv.talkAt) ev.push([m.adv.talkAt, `CS คุยเรื่องโค้ช Advance · เลือกโค้ช${advC(m.adv.pick).name}`]);
+  if (m.adv.setAt) ev.push([m.adv.setAt, `ตั้งโค้ชประจำตัว: โค้ช${advC(m.adv.coach).name}`]);
+  m.adv.extra.forEach(x => ev.push([x.at, `เพิ่มโค้ช${advC(x.id).name} (ผ่านเซล)`]));
+  m.log.forEach(l => ev.push([l.at, l.text]));
+  return ev.filter(e => e[0] && e[0] <= t).sort((a, b) => b[0] - a[0]).slice(0, 12).map(e => `<li><span class="d">${fd(e[0])} ${ftm(e[0])}</span><span>${esc(e[1])}</span></li>`).join('');
+}
+function vProfile() {
+  const t = now(), m = byId(S.sel); if (!m || m.join > t) return `<p class="sub">ยังไม่มี สมช คนนี้ในวันที่จำลอง</p>`;
+  const st = statusOf(m, t), cur = lessonAt(m, t), ty = typeOf(m), al = alertsOf(m, t);
+  const grad = m.grad && m.grad <= t;
+  const steps = [1, 2, 3, 4].map(ep => { const l = m.lessons.find(x => x.ep === ep && x.at <= t); const isCur = cur && cur.ep === ep && !grad; const isDone = grad || (cur && cur.ep > ep);
+    return `<div class="step ${isDone ? 'done' : isCur ? 'cur' : ''}"><b>${EPN[ep]}</b>${isDone ? 'ผ่านแล้ว' : isCur ? `กำลังเรียน · ${daysSince(l.at, t)} วัน` : 'ยังไม่ถึง'}</div>`; }).join('') + `<div class="step ${grad ? 'done' : ''}"><b>จบ Basic</b>${grad ? fd(m.grad) : '—'}</div>`;
+  const hwCell = (ep, n) => { const h = m.hw.find(x => x.ep === ep && x.n === n && x.sub <= t); if (!h) return '<span class="muted">ยังไม่ส่ง</span>'; if (h.rev && h.rev <= t) return '<span style="color:#0b5c40;font-weight:700">ผ่าน</span>'; return '<span style="color:#7a5200;font-weight:700">รอตรวจ</span>'; };
+  const exams = `<table><tr><th>บท</th><th>ข้อสอบ (20)</th><th>การบ้านกราฟ</th></tr>${[1, 2, 3, 4].map(ep => `<tr><td>${EPN[ep]}</td><td>${m.exams[ep] != null ? m.exams[ep] + '/20' : '<span class="muted">—</span>'}</td><td>${ep === 2 || ep === 3 ? [1, 2, 3].map(n => `ข้อ ${n}: ${hwCell(ep, n)}`).join('<br>') : '<span class="muted">ไม่มี</span>'}</td></tr>`).join('')}</table>`;
+  const tagBox = m.tags ? `<div style="border-radius:12px;padding:12px 14px;background:${ty.c};color:#fff;margin-bottom:10px"><div style="font-size:12px;opacity:.85">Trader Type Quiz</div><div style="font-size:18px;font-weight:700">${ty.name} <span style="font-weight:400;font-size:13px">· ${ty.en}</span></div></div>
+      <span class="tag">${esc(m.tags.job || 'ไม่ระบุอาชีพ')}</span><span class="tag">${SCREEN[m.tags.screen]}</span><span class="tag">ความรู้: ${LEVEL[m.tags.level]}</span><span class="tag">สนใจ: ${esc(m.tags.asset)}</span><span class="tag">${m.tags.bkk ? 'อยู่ กทม. · ชวน onsite ได้' : 'ต่างจังหวัด · เรียน online'}</span>${m.tags.level >= 2 && !m.ft ? '<span class="tag ft">FT candidate</span>' : ''}`
+    : `<div class="empty">ยังไม่ได้ทำ Trader Type Quiz · ข้อมูล 4 ข้อจะขึ้นที่นี่อัตโนมัติ</div>`;
+  const ftBox = m.ft ? `<div class="card"><h3>Fast Track · ประตู ${m.ft.gate}</h3><div class="note">${infoOf(m, t, 'gap')}${m.ft.score ? ` · Screening ${ftTotal(m.ft.score)}/10 ${m.ft.score.plan[1] ? '' : '(ไม่มี Stop loss)'}` : ''}</div><div style="margin-top:8px">${B('เปิดใน Fast Track', () => go('ft', m.id))}</div></div>` : '';
+  const pauseBox = m.pause && m.pause.start <= t ? `<div class="card"><h3>พักการเรียน</h3><div class="note">เริ่มพัก ${fdy(m.pause.start)} · ค้างที่ ${EPF[m.pause.ep]}<br>เหตุผล: ${esc(m.pause.reason)} · คาดว่ากลับ: ${esc(m.pause.expect)}${m.pause.ret && m.pause.ret <= t ? `<br>กลับมาเรียน ${fdy(m.pause.ret)} (เริ่มนับรอบเดือนใหม่)` : ''}</div></div>` : '';
+  return `<div style="margin-bottom:10px">${B('← กลับไป Member Screener', () => go('screener'), 'ghost')}</div>
+    <div class="card" style="display:flex;gap:16px;align-items:center;margin-bottom:14px">
+      <div style="flex:1"><h1 style="margin:0">คุณ${esc(m.name)} ${chip(st)}</h1><div class="note" style="font-size:13.5px">โค้ช${m.coach} · สมัคร ${fdy(m.join)} · อายุสมาชิก ${daysSince(m.join, t)} วัน · ${ST[st].th}${cur ? ` · อยู่ ${EPN[cur.ep]} มา ${daysSince(cur.at, t)} วัน` : ''}</div></div>
+      <div class="acts">${B('ดูมุมมอง สมช', () => go('member', m.id))}${m.contact && m.contact <= t ? B('ส่ง LINE เตือนคลาสสด', () => lineModal(m, 'classRemind', () => log(m, 'ส่ง LINE เตือนคลาสสด'))) : ''}</div>
+    </div>
+    <div class="grid" style="grid-template-columns:1.75fr 1fr;align-items:start">
+      <div class="grid">
+        <div class="card"><h3>กราฟความคืบหน้า</h3><div class="note" style="margin:-4px 0 6px">เส้นแนวนอนยาว = ไม่ขยับบท · เส้นประ = วันครบรอบเดือนที่ระบบเช็ค Sideway · ชี้ที่จุดเพื่อดูรายละเอียด</div>${chart(m, t)}</div>
+        <div class="card"><h3>บทเรียน</h3><div class="steps">${steps}</div></div>
+        <div class="card"><h3>ข้อสอบ + การบ้าน</h3>${exams}</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>แจ้งเตือนตอนนี้</h3>${al.length ? al.map(a => `<div class="task" style="grid-template-columns:1fr"><div><div class="tt"><b>${a.title}</b></div><div class="ss">${a.sub}</div></div><div class="acts" style="justify-content:flex-start">${actionsFor(m, a)}</div></div>`).join('') : '<div class="empty">ไม่มีแจ้งเตือน</div>'}</div>
+        <div class="card"><h3>ข้อมูลจากการคุยครั้งแรก</h3>${tagBox}</div>
+        ${ftBox}${pauseBox}${advProfileBox(m, t)}
+        <div class="card"><h3>ประวัติล่าสุด</h3><ul class="tl">${timeline(m, t)}</ul></div>
+      </div>
+    </div>`;
+}
+
+/* ============ view: fast track ============ */
+function vFT() {
+  const t = now(), list = S.coach === 'all' ? visible() : mine();
+  const cand = list.filter(m => { const st = statusOf(m, t); if (m.ft || !['up','side','down'].includes(st)) return false; const unreach = alertsOf(m, t).some(a => a.k === 'unreach'); if (unreach) return false; return (st === 'down' && m.tags && m.tags.level >= 2) || (monthsSince(anchorOf(m, t), t) >= 3); });
+  const inFT = list.filter(m => m.ft && m.ft.since <= t);
+  const col = (title, arr, fn) => `<div class="kcol"><h4>${title}<span class="muted">${arr.length}</span></h4>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
+  const card = (m, extra) => `<div class="kcard ${S.ftSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.ftSel = m.id; S.form = null; render(); })}"><b>คุณ${esc(m.name)}</b> <span class="muted">· โค้ช${m.coach}</span><br>${extra}</div>`;
+  const kan = `<div class="kan">
+    ${col('เข้าข่าย Fast Track', cand, m => { const gB = monthsSince(anchorOf(m, t), t) >= 3; return `<div class="kcard"><b>คุณ${esc(m.name)}</b> <span class="muted">· โค้ช${m.coach}</span><br>${gB ? 'ประตู B · ครบ 3 เดือน' : 'ประตู A · มีพื้นฐาน ไม่ active'}<div style="margin-top:6px">${gB ? B('เสนอ 2 ทาง', () => lineModal(m, 'm3', null, [{label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'}])) : B('ชวน Fast Track', () => lineModal(m, 'ftInvite', () => { m.ft = {gate:'A', status:'invited', since:now()}; log(m, 'ชวนเข้า Fast Track (ประตู A)'); }), 'pri')}</div></div>`; })}
+    ${col('รอนัด / นัด Screening', inFT.filter(m => ['invited','scheduled'].includes(m.ft.status)), m => card(m, `ประตู ${m.ft.gate} · ${m.ft.status === 'invited' ? 'รอนัดวัน' : `นัด ${fd(m.ft.screenAt)} ${ftm(m.ft.screenAt)} · ${m.ft.channel}`}`))}
+    ${col('การบ้าน / รอโค้ชตรวจ', inFT.filter(m => ['hw','clip'].includes(m.ft.status)), m => card(m, `${m.ft.status === 'hw' ? 'ผ่าน Screening · การบ้าน 3 ส่วน' : 'ไม่ผ่าน · คลิป 30 นาที + การบ้าน 1 ข้อ'}<br>${m.ft.hwSub && m.ft.hwSub <= t ? `<span style="color:${hrs(m.ft.hwSub, t) >= 48 ? '#8f1f1f' : '#7a5200'};font-weight:700">ส่งแล้ว รอตรวจ ${Math.floor(hrs(m.ft.hwSub, t))} ชม.</span>` : 'ยังไม่ส่งการบ้าน'}`))}
+    ${col('ไป Advance แล้ว', inFT.filter(m => m.ft.status === 'adv' && m.ft.advAt <= t), m => card(m, `ไป Advance ${fd(m.ft.advAt)}`))}
+  </div>`;
+  const m = byId(S.ftSel);
+  let panel = '<div class="card"><div class="empty">เลือก สมช จากคอลัมน์ด้านบนเพื่อเปิดฟอร์ม Screening</div></div>';
+  if (m && m.ft && m.ft.since <= t) panel = ['invited','scheduled'].includes(m.ft.status) ? ftForm(m) : ftSummary(m, t);
+  return `<h1>Fast Track</h1><p class="sub">ทางด่วนสู่ Advance · คุยประเมินด้วย Checklist เดียวกันทุกคน ผ่านหรือไม่ผ่านก็มีทางไปต่อ</p>${kan}${panel}`;
+}
+function ftResult(f) {
+  const sc = {t:f.t, sr:f.sr, plan:f.plan}, tot = ftTotal(sc), sl = !!f.plan[1];
+  if (!f.touched) return `<div class="res wait">คะแนนรวม ${tot}/10 · เลือกคะแนนตาม Checklist ผลจะขึ้นอัตโนมัติ</div>`;
+  if (tot >= 7 && sl) return `<div class="res ok"><b>ผ่าน · ${tot}/10</b><br>ส่งการบ้านกราฟทันที 1 หุ้น 3 ส่วน (โค้ชเลือกหุ้นให้ใหม่ คนละตัวกับที่คุย) ตรวจผ่านแล้วไป Advance</div>`;
+  return `<div class="res no"><b>ยังไม่ผ่าน · ${tot}/10</b>${!sl ? ' · ไม่มี Stop loss = ไม่ผ่านทันที' : ''}<br>ส่งคลิป Basic Express 30 นาที แล้วทำการบ้านกราฟในระบบ 1 ข้อ</div>`;
+}
+function ftForm(m) {
+  if (!S.form || S.form.id !== m.id) S.form = {id:m.id, t:[0,0,0], sr:0, plan:[0,0,0,0], stock:'', memo:'', err:'', touched:false};
+  const f = S.form;
+  const upd = () => { f.touched = true; $('#ftres').innerHTML = ftResult(f); $('#ftsum1').textContent = f.t.reduce((a, b) => a + b, 0) + '/3'; $('#ftsum3').textContent = f.plan.reduce((a, b) => a + b, 0) + '/4'; };
+  const cb = (arr, i, label) => `<label class="ck"><input type="checkbox" ${arr[i] ? 'checked' : ''} data-ch="${A(e => { arr[i] = e.target.checked ? 1 : 0; upd(); })}">${label}</label>`;
+  const save = () => {
+    if (!f.stock.trim()) { $('#fterr').textContent = 'กรอกชื่อหุ้นที่ สมช เลือกมาคุยก่อนบันทึก'; return; }
+    const sc = {t:[...f.t], sr:f.sr, plan:[...f.plan]}, pass = ftTotal(sc) >= 7 && !!f.plan[1];
+    Object.assign(m.ft, {score:sc, stock:f.stock.trim(), memo:f.memo, screenAt: m.ft.screenAt && m.ft.screenAt <= now() ? m.ft.screenAt : now(), status: pass ? 'hw' : 'clip', hwSub:null});
+    log(m, `Screening ${ftTotal(sc)}/10 · ${pass ? 'ผ่าน' : 'ไม่ผ่าน'}`); S.form = null; done(pass ? 'ผ่าน Screening · ส่งการบ้าน 3 ส่วนแล้ว' : 'ยังไม่ผ่าน · ส่งคลิป Basic Express แล้ว');
+  };
+  return `<div class="card" style="max-width:760px"><h3>ฟอร์ม Screening · คุณ${esc(m.name)} (ประตู ${m.ft.gate})</h3>
+    <div class="note" style="margin-bottom:8px">${m.ft.status === 'scheduled' ? `นัด ${fdl(m.ft.screenAt)} ${ftm(m.ft.screenAt)} น. · ${m.ft.channel}` : 'ยังไม่ได้นัดวัน'} · ${m.tags ? `ความรู้: ${LEVEL[m.tags.level]}` : ''}</div>
+    <div class="fsec"><h4>หุ้นที่ สมช เลือกมาคุย</h4><input type="text" placeholder="เช่น AOT" value="${esc(f.stock)}" data-in="${A(e => { f.stock = e.target.value; $('#fterr').textContent = ''; })}" style="width:220px"><div class="err" id="fterr"></div></div>
+    <div class="fsec"><h4>1. เทรนด์ภาพใหญ่ / กลาง / เล็ก <span id="ftsum1" class="muted">${f.t.reduce((a, b) => a + b, 0)}/3</span></h4>${cb(f.t, 0, 'ภาพใหญ่ถูก + ให้เหตุผลแบบ Dow')}${cb(f.t, 1, 'ภาพกลางถูก + ให้เหตุผลแบบ Dow')}${cb(f.t, 2, 'ภาพเล็กถูก + ให้เหตุผลแบบ Dow')}</div>
+    <div class="fsec"><h4>2. ตีแนวรับแนวต้าน <span class="muted">0–3</span></h4><div style="display:flex;gap:14px">${[0, 1, 2, 3].map(v => `<label class="ck"><input type="radio" name="sr" ${f.sr === v ? 'checked' : ''} data-ch="${A(() => { f.sr = v; upd(); })}">${v}</label>`).join('')}</div><div class="note">3 = เส้นมีนัยสำคัญ ไม่รก อธิบายได้ว่าทำไม</div></div>
+    <div class="fsec"><h4>3. วางแผนเทรด ณ ราคาปัจจุบัน <span id="ftsum3" class="muted">${f.plan.reduce((a, b) => a + b, 0)}/4</span></h4><div style="display:grid;grid-template-columns:1fr 1fr">${cb(f.plan, 0, 'จุดเข้า')}${cb(f.plan, 1, 'Stop loss (ต้องมี)')}${cb(f.plan, 2, 'เป้าหมาย')}${cb(f.plan, 3, 'ขนาดไม้ (Risk %)')}</div></div>
+    <div class="fsec"><h4>Memo</h4><textarea placeholder="จุดเด่น / จุดที่ต้องเสริม" data-in="${A(e => { f.memo = e.target.value; })}">${esc(f.memo)}</textarea></div>
+    <div id="ftres" style="margin:6px 0 12px">${ftResult(f)}</div>
+    ${B('บันทึกผล Screening', save, 'pri')}</div>`;
+}
+function ftSummary(m, t) {
+  const f = m.ft, sc = f.score;
+  let acts = '';
+  if ((f.status === 'hw' || f.status === 'clip') && !(f.hwSub && f.hwSub <= t)) acts = B('จำลอง: สมช ส่งการบ้านแล้ว', () => { f.hwSub = now(); log(m, 'ส่งการบ้าน Fast Track'); done('สมช ส่งการบ้านแล้ว'); });
+  if ((f.status === 'hw' || f.status === 'clip') && f.hwSub && f.hwSub <= t) acts = B('ตรวจผ่าน → ไป Advance', () => { f.status = 'adv'; f.advAt = now(); log(m, 'ตรวจการบ้าน Fast Track ผ่าน · ส่งต่อ Advance'); done(`คุณ${m.nick}ไป Advance แล้ว`); }, 'pri') + B('ส่งกลับให้แก้', () => { f.hwSub = null; log(m, 'ส่งการบ้าน FT กลับให้แก้'); done('ส่งกลับให้แก้แล้ว'); });
+  const row = (l, v) => `<tr><td style="width:44%">${l}</td><td>${v}</td></tr>`;
+  return `<div class="card" style="max-width:760px"><h3>ผล Screening · คุณ${esc(m.name)} (ประตู ${f.gate})</h3>
+    ${sc ? `<table>${row('หุ้นที่คุย', esc(f.stock))}${row('1. เทรนด์ 3 ภาพ', sc.t.reduce((a, b) => a + b, 0) + '/3')}${row('2. แนวรับแนวต้าน', sc.sr + '/3')}${row('3. แผนเทรด', `${sc.plan.reduce((a, b) => a + b, 0)}/4 ${sc.plan[1] ? '' : '<b style="color:#8f1f1f">· ไม่มี Stop loss</b>'}`)}${row('Memo', esc(f.memo || '—'))}</table>
+    <div style="margin:10px 0">${ftResult({...sc, touched:true})}</div>` : ''}
+    ${f.status === 'adv' ? `<div class="res ok">ไป Advance แล้ว ${fdy(f.advAt)}</div>` : ''}
+    <div class="acts" style="justify-content:flex-start">${acts}</div></div>`;
+}
+
+/* ============ view: CS ============ */
+function vCS() {
+  const t = now(), list = visible();
+  const cs1 = list.filter(m => statusOf(m, t) === 'cs');
+  const cs2 = list.filter(m => statusOf(m, t) === 'stop' || alertsOf(m, t).some(a => a.k === 'unreach'));
+  const r1 = cs1.map(m => `<tr><td><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></td><td>${m.coach}</td><td>${fd(m.contact)} ${ftm(m.contact)}</td><td>${Math.floor(hrs(m.contact, t))} ชม.</td><td>${m.cs1At ? `<span class="chip"><i style="background:#2f6fdb"></i>CS กำลังติดต่อ</span>` : `<span class="chip"><i style="background:#d03b3b"></i>โค้ชยังไม่ส่ง</span>`}</td><td>${m.cs1At ? B('CS ติดต่อได้แล้ว', () => { m.reply = now(); log(m, 'CS ติดต่อได้ · สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว`); }) : B('ส่งให้ CS', () => { m.cs1At = now(); log(m, 'ส่งต่อ CS-1'); done('ส่งให้ CS แล้ว'); }, 'pri')}</td></tr>`).join('');
+  const r2 = cs2.map(m => { const lr = lastReplyAt(m, t), a = attemptsAfter(m, lr, t), st = statusOf(m, t);
+    const hist = m.attempts.filter(x => x.at > lr && x.at <= t).map(x => `${fd(x.at)} ${x.ch}`).join(' · ');
+    return `<tr><td><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></td><td>${m.coach}</td><td>${daysSince(lr, t)} วัน</td><td>ไลน์ ${a.line}/3 · โทร ${a.call}/3<div class="note">${hist}</div></td><td>${st === 'stop' ? (m.cs2At ? `<span class="chip"><i style="background:#2f6fdb"></i>CS รับเรื่องแล้ว</span>` : `<span class="chip"><i style="background:#3a3f47"></i>ครบ รอส่ง CS</span>`) : `<span class="chip"><i style="background:#fab219"></i>ยังติดต่อไม่ครบ</span>`}</td><td>${st === 'stop' && !m.cs2At ? B('ส่งให้ CS', () => { m.cs2At = now(); log(m, 'ส่งต่อ CS-2 (No Active)'); done('ส่งให้ CS แล้ว'); }, 'pri') : ''}</td></tr>`; }).join('');
+  return `<h1>ส่งต่อ CS</h1><p class="sub">3 จุดส่งต่อ · CS เห็นรายชื่อพร้อมข้อมูลที่ต้องใช้ ไม่ต้องถามโค้ชซ้ำ</p>
+    <div class="card" style="margin-bottom:14px"><h3>CS-1 · ทักแล้ว 24 ชม. ยังไม่ตอบ</h3>${cs1.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ทักเมื่อ</th><th>ผ่านมา</th><th>สถานะ</th><th></th></tr>${r1}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
+    <div class="card"><h3>CS-2 · No Active (ติดต่อไม่ได้ 3 เดือน)</h3><div class="note" style="margin:-4px 0 8px">เกณฑ์ (ข้อเสนอ): ไลน์ 3 ครั้ง + โทร 3 ครั้ง คนละวัน คนละช่วงเวลา</div>${cs2.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ไม่ตอบมา</th><th>ประวัติการติดต่อ</th><th>สถานะ</th><th></th></tr>${r2}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
+    ${csAdvCard(t)}`;
+}
+
+/* ============ view: report ============ */
+function teamStats(t, list) {
+  const sts = list.map(m => statusOf(m, t)), cnt = k => sts.filter(s => s === k).length, act = cnt('up') + cnt('side') + cnt('down');
+  return {cnt, act, idx: act ? Math.round(cnt('up') / act * 100) : 0};
+}
+function vReport() {
+  const t = now(), all = visible(), prev = addDays(t, -7);
+  const s = teamStats(t, all), sp = teamStats(prev, M.filter(m => m.join <= prev));
+  const delta = s.idx - sp.idx;
+  const newM = all.filter(m => m.join > prev);
+  const due = newM.filter(m => (m.contact && m.contact <= t) || hrs(m.join, t) >= 24);
+  const ok = due.filter(m => m.contact && m.contact <= t && hrs(m.join, m.contact) <= 24);
+  const pct = due.length ? Math.round(ok.length / due.length * 100) : 100;
+  const pipe = [1, 2, 3, 4].map(ep => all.filter(m => ['up','side','down'].includes(statusOf(m, t)) && lessonAt(m, t) && lessonAt(m, t).ep === ep).length);
+  const notStarted = all.filter(m => ['up','down'].includes(statusOf(m, t)) && !lessonAt(m, t)).length;
+  const alerts = all.flatMap(m => alertsOf(m, t));
+  const hwOpen = alerts.filter(a => a.k === 'hw' || a.k === 'ftHw');
+  const ft = all.filter(m => m.ft && m.ft.since <= t);
+  const coachRows = COACHES.map(c => { const l = all.filter(m => m.coach === c), cs = teamStats(t, l), al = l.flatMap(m => alertsOf(m, t)); return `<tr><td>โค้ช${c}</td><td>${cs.act}</td><td>${cs.idx}%</td><td>${al.filter(a => a.pri === 0).length}</td><td>${al.filter(a => a.k === 'hw' || a.k === 'ftHw').length}</td></tr>`; }).join('');
+  const text = [`Basic Market Report · ${fdy(t)}`, `Basic Index ${s.idx}% (${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta)} จุด)`, `สมช ใหม่ ${newM.length} คน · ทักภายใน 24 ชม. ${pct}%`, `EP.1 ${pipe[0]} · EP.2 ${pipe[1]} · EP.3 ${pipe[2]} · EP.4 ${pipe[3]} · จบ/ไป Advance ${s.cnt('tp')}`, `Downtrend ${s.cnt('down')} · Sideway ${s.cnt('side')} · พัก ${s.cnt('sp')} · Stop loss ${s.cnt('stop')}`, `Fast Track ${ft.filter(m => m.ft.status !== 'adv').length} คน · การบ้านรอตรวจ ${hwOpen.length}`].join('\n');
+  const copy = () => { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('คัดลอกสรุปแล้ว วางใน LINE ได้เลย'); } catch (e) { toast('คัดลอกไม่สำเร็จ'); } ta.remove(); };
+  const tile = (lb, vl, note = '') => `<div class="card kpi"><div class="lb">${lb}</div><div class="vl">${vl}</div>${note ? `<div class="note">${note}</div>` : ''}</div>`;
+  return `<div style="display:flex;align-items:flex-start;gap:12px"><div style="flex:1"><h1>Basic Market Report</h1><p class="sub">สัปดาห์ ${fd(addDays(t, -6))} – ${fdy(t)} · ระบบสร้างให้อัตโนมัติทุกวันศุกร์</p></div>${B('คัดลอกสรุปส่ง LINE', copy, 'pri')}</div>
+    <div class="grid" style="grid-template-columns:1.1fr 2.4fr;margin-bottom:14px">
+      <div class="card kpi" style="display:flex;flex-direction:column;justify-content:center"><div class="lb">Basic Index · % สมช ที่เป็น Uptrend</div><div class="vl" style="font-size:52px">${s.idx}%</div><div class="dl" style="color:${delta >= 0 ? '#006300' : '#8f1f1f'}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta)} จุด จากสัปดาห์ก่อน</div><div class="note">จาก ${s.act} คนที่กำลังเรียน</div></div>
+      <div class="grid">
+        <div class="grid" style="grid-template-columns:repeat(4,1fr)">${tile('สมช ใหม่ (7 วัน)', newM.length)}${tile('ทักภายใน 24 ชม.', pct + '%', `${ok.length}/${due.length} คนที่ครบกำหนด`)}${tile('ส่ง CS-1', s.cnt('cs'))}${tile('การบ้านรอตรวจ', hwOpen.length, `เกิน 48 ชม. ${hwOpen.filter(a => a.pri === 0).length}`)}</div>
+        <div class="card"><div class="note" style="margin-bottom:6px">จำนวน สมช แยกตามบทเรียน</div><div class="stage">
+          <div class="stg"><div class="n">${notStarted}</div><div class="t">ยังไม่เริ่ม</div></div><span class="a">▶</span>
+          ${pipe.map((n, i) => `<div class="stg"><div class="n">${n}</div><div class="t">EP.${i + 1}</div></div><span class="a">▶</span>`).join('')}
+          <div class="stg" style="background:#fbf3d9;border-color:#e9d38a"><div class="n">${s.cnt('tp')}</div><div class="t">จบ / Advance</div></div></div></div>
+      </div>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
+      <div class="card"><h3>แจ้งเตือน</h3><div style="line-height:2">${['down','side','sp','stop'].map(k => `${chip(k)} ${s.cnt(k)} คน`).join('<br>')}</div></div>
+      <div class="card"><h3>Fast Track</h3><div style="line-height:2">รอนัด / นัดแล้ว: ${ft.filter(m => ['invited','scheduled'].includes(m.ft.status)).length}<br>การบ้าน / รอตรวจ: ${ft.filter(m => ['hw','clip'].includes(m.ft.status)).length}<br>ไป Advance แล้ว: ${ft.filter(m => m.ft.status === 'adv').length}</div></div>
+      <div class="card"><h3>รายโค้ช</h3><table><tr><th>โค้ช</th><th>กำลังเรียน</th><th>Index</th><th>งานด่วน</th><th>การบ้าน</th></tr>${coachRows}</table></div>
+    </div>
+    <div class="card"><h3>Voice of Members <span class="muted" style="font-weight:400;font-size:12.5px">· ตัวอย่างคอมเม้นท์ สมช</span></h3>${VOICE.map(v => `<div class="voice"><span class="tag">${v.tag}</span> "${v.text}"<div class="note">ทีมทำแล้ว: ${v.act}</div></div>`).join('')}</div>`;
+}
+
+/* ============ view: member side ============ */
+function chatHTML(m, t) {
+  const msgs = [];
+  if (m.contact && m.contact <= t) msgs.push({at:m.contact, html:`<div class="bub">${TPL.welcome(m, m.contact).replace('<span class="lbtn">เริ่ม Trader Type Quiz</span>', `<button class="lbtn" data-a="${A(() => { S.quiz = {id:m.id, step:0, ans:[null, null, null, null], err:''}; render(); })}">เริ่ม Trader Type Quiz</button>`)}</div>`});
+  if (m.tags && m.reply && m.reply <= t) { const ty = typeOf(m); msgs.push({at:m.reply, html:`<div class="bub me">ทำควิซแล้ว ขอบคุณมากเลย</div>`}); msgs.push({at:new Date(m.reply.getTime() + 60e3), html:`<div class="lcard"><div class="hd" style="background:${ty.c}"><div style="font-size:11.5px;opacity:.85">สไตล์นักเทรดของคุณ</div><div style="font-size:17px;font-weight:700">${ty.name}</div><div style="font-size:12px">${ty.en}</div></div><div class="bd">${ty.tip}</div></div>`}); }
+  else if (m.reply && m.reply <= t) msgs.push({at:m.reply, html:`<div class="bub me">สวัสดี ขอบคุณมากเลย</div>`});
+  const lf = m.follows.filter(f => f <= t).pop(); if (lf) msgs.push({at:lf, html:`<div class="bub">${TPL.follow(m, lf)}</div>`});
+  const st = statusOf(m, t);
+  if (st === 'side') msgs.push({at:t, html:`<div class="bub">${TPL.sideway(m, t)}</div>`});
+  else if (st === 'up' && lessonAt(m, t)) msgs.push({at:t, html:`<div class="bub">${TPL.classRemind(m, t)}</div>`});
+  else if (st === 'down') msgs.push({at:t, html:`<div class="bub">${m.tags && m.tags.level >= 2 ? TPL.ftInvite(m) : TPL.nudge(m, t)}</div>`});
+  else if (st === 'sp') { const d8 = new Date(t.getFullYear(), t.getMonth(), 8, 10); const cb = d8 <= t ? d8 : new Date(t.getFullYear(), t.getMonth() - 1, 8, 10); if (cb >= m.pause.start) msgs.push({at:cb, html:`<div class="bub">${TPL.comeback(m, cb)}</div>`}); }
+  else if (st === 'gap') msgs.push({at:m.ft.since, html:`<div class="bub">${m.ft.status === 'clip' ? `ส่งคลิป Basic Express 30 นาทีให้แล้ว ดูจบแล้วทำการบ้านกราฟ 1 ข้อในระบบได้เลย<span class="lbtn">ดูคลิป Basic Express</span>` : m.ft.status === 'hw' ? 'ยินดีด้วย ผ่าน Screening แล้ว! โจทย์การบ้านกราฟ 3 ส่วนอยู่ในระบบ Fast Track ส่งแล้วโค้ชตรวจให้เลย' : TPL.ftInvite(m)}</div>`});
+  else if (st === 'tp') msgs.push({at:m.grad || m.ft.advAt, html:`<div class="lcard"><div class="hd" style="background:#c99400"><div style="font-size:11.5px">Take Profit Day</div><div style="font-size:17px;font-weight:700">ยินดีด้วย จบ Basic แล้ว!</div></div><div class="bd">ใบประกาศพร้อมแล้ว แชร์การ์ดนี้ให้เพื่อนได้เลย · ขั้นต่อไป: Advance</div></div>`});
+  if (st === 'tp') msgs.push(...advChat(m, t));
+  msgs.sort((a, b) => a.at - b.at);
+  let last = null, out = '';
+  msgs.forEach(x => { if (!sameDay(last, x.at)) { out += `<div class="lday">${fd(x.at)}</div>`; last = x.at; } out += x.html; });
+  return out || '<div class="lday">ยังไม่มีข้อความ</div>';
+}
+function quizHTML(m) {
+  const q = S.quiz, i = q.step;
+  if (i >= QUIZ.length) {
+    const ty = TYPES[q.ans[0]];
+    return `<div class="qz"><div style="font-size:12px;color:#5b6475">ผลควิซของคุณ${esc(m.nick)}</div>
+      <div class="lcard" style="width:100%;border:1px solid #e3e7ee"><div class="hd" style="background:${ty.c}"><div style="font-size:11.5px;opacity:.85">สไตล์นักเทรดของคุณ</div><div style="font-size:19px;font-weight:700">${ty.name}</div><div style="font-size:12px">${ty.en}</div></div><div class="bd">${ty.tip}${q.ans[1] >= 2 ? '<br><b>คุณมีพื้นฐานแล้ว โค้ชอาจชวนเข้า Fast Track</b>' : ''}</div></div>
+      <div class="note">ข้อมูล 4 ข้อจะส่งเข้าโปรไฟล์ของคุณให้โค้ชเห็นทันที</div>
+      ${B('ส่งผลให้โค้ช', () => { m.tags = {job:(m.tags && m.tags.job) || 'ไม่ระบุ', screen:q.ans[0], level:q.ans[1], asset:ASSETS[q.ans[2]], bkk:q.ans[3] === 0}; if (!m.reply || m.reply > now()) m.reply = now(); log(m, 'ทำ Trader Type Quiz'); S.quiz = null; done('โค้ชได้รับผลควิซแล้ว · ดูได้ในโปรไฟล์ สมช'); }, 'lbtn')}</div>`;
+  }
+  const Q = QUIZ[i];
+  return `<div class="qz"><div class="qbar"><i style="width:${(i + 1) / QUIZ.length * 100}%"></i></div><div style="font-size:12px;color:#5b6475">ข้อ ${i + 1} จาก ${QUIZ.length}</div><div style="font-size:16px;font-weight:700;color:#14213d">${Q.q}</div>
+    ${Q.o.map((o, j) => B(o, () => { q.ans[i] = j; q.err = ''; render(); }, 'qopt' + (q.ans[i] === j ? ' on' : ''))).join('')}
+    ${q.err ? `<div class="err">${q.err}</div>` : ''}
+    <div style="display:flex;gap:8px;margin-top:auto">${i > 0 ? B('ย้อนกลับ', () => { q.step--; q.err = ''; render(); }) : B('ปิด', () => { S.quiz = null; render(); })}${B(i === QUIZ.length - 1 ? 'ดูผล' : 'ถัดไป', () => { if (q.ans[i] == null) { q.err = 'เลือกคำตอบก่อนไปข้อถัดไป'; render(); return; } q.step++; render(); }, 'pri')}</div></div>`;
+}
+function vMember() {
+  const t = now(), m = byId(S.mv), list = visible().filter(x => x.contact && x.contact <= t);
+  if (!m || !list.includes(m)) S.mv = (list.find(x => x.id === 'm07') || list[0]).id;
+  const mm = byId(S.mv), st = statusOf(mm, t), cur = lessonAt(mm, t), ty = typeOf(mm);
+  const grad = st === 'tp';
+  const nc = nextClass(cur ? cur.ep : 1, t);
+  const steps = [1, 2, 3, 4].map(ep => { const isDone = grad || (cur && cur.ep > ep), isCur = !grad && cur && cur.ep === ep; return `<div class="step ${isDone ? 'done' : isCur ? 'cur' : ''}"><b>${EPN[ep]}</b>${isDone ? 'ผ่านแล้ว' : isCur ? 'กำลังเรียน' : 'ล็อกอยู่'}</div>`; }).join('');
+  const hwList = cur && (cur.ep === 2 || cur.ep === 3) ? [1, 2, 3].map(n => { const h = mm.hw.find(x => x.ep === cur.ep && x.n === n && x.sub <= t); return `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #eef1f5;font-size:13.5px"><span>การบ้านกราฟ ${EPN[cur.ep]} ข้อ ${n}</span><span>${!h ? '<span class="muted">ยังไม่ส่ง</span>' : h.rev && h.rev <= t ? '<b style="color:#0b5c40">ผ่าน</b>' : '<b style="color:#7a5200">รอโค้ชตรวจ</b>'}</span></div>`; }).join('') : `<div class="note">${cur ? `${EPN[cur.ep]} ไม่มีการบ้านกราฟ ทำข้อสอบกากบาท 20 ข้อท้ายบท` : 'เริ่มจาก EP.1 ได้เลย'}</div>`;
+  const cw = nextClass(null, t);
+  return `<h1>มุมมอง สมช</h1><p class="sub">สิ่งที่ สมช เห็นจริง: แชท LINE กับโค้ช และหน้าเว็บของตัวเอง · ลองกดปุ่มสีเขียวในแชทเพื่อทำ Trader Type Quiz</p>
+    <div style="margin-bottom:14px">ดูในนาม <select data-ch="${A(e => { S.mv = e.target.value; S.quiz = null; render(); })}">${list.map(x => `<option value="${x.id}" ${x.id === S.mv ? 'selected' : ''}>คุณ${esc(x.name)} · ${ST[statusOf(x, t)].name}</option>`).join('')}</select></div>
+    <div style="display:flex;gap:24px;align-items:flex-start">
+      <div class="phone"><div class="pscreen"><div class="phead">โค้ช${mm.coach} · Basic<small>LINE Official Account</small></div>
+        ${S.quiz && S.quiz.id === mm.id ? quizHTML(mm) : `<div class="lchat" id="lchat">${chatHTML(mm, t)}</div><div class="pinput">พิมพ์ข้อความ…</div>`}</div></div>
+      <div class="web" style="flex:1"><div class="wbar"><span>●●●</span><span class="u">เว็บไซต์ Basic · หน้าของฉัน</span></div><div class="wbody">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><div style="flex:1"><div style="font-size:21px;font-weight:700;color:#14213d">สวัสดี คุณ${esc(mm.nick)}</div><div class="note">คอร์ส Basic · สมาชิกมา ${daysSince(mm.join, t)} วัน</div></div>${ty ? `<span class="chip" style="border-color:${ty.c};color:${ty.c}">${ty.name}</span>` : ''}</div>
+        <div class="steps" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">${steps}</div>
+        ${grad ? `<div class="res ok" style="margin-bottom:12px"><b>ยินดีด้วย จบ Basic แล้ว</b> · ดาวน์โหลดใบประกาศ<br>${advWeb(mm, t)}</div>` : ''}
+        <div class="grid" style="grid-template-columns:1fr 1fr">
+          <div class="card"><h3>คลาสสดของบทที่คุณเรียน</h3>${nc && !grad ? `<div style="font-size:17px;font-weight:700;color:#173f86">${TH_D[nc.date.getDay()]} ${fd(nc.date)}</div><div class="note">${nc.label} · "${nc.kind}"</div>` : `<div class="note">คลาสถัดไป: วัน${cw.day} ${fd(cw.date)} · ${cw.label}</div>`}${st === 'side' ? '<div class="res wait" style="margin-top:8px;font-size:13px">บทนี้กำลังจะสอนสด เข้าเรียนพร้อมเพื่อนๆ แล้วถามโค้ชได้เลย</div>' : ''}</div>
+          <div class="card"><h3>ข้อสอบ + การบ้าน</h3>${cur && mm.exams[cur.ep] != null ? `<div class="note">ข้อสอบ ${EPN[cur.ep]}: ${mm.exams[cur.ep]}/20</div>` : ''}${hwList}</div>
+          <div class="card" style="grid-column:1 / -1;background:#efeafd;border-color:#d9d2f6"><h3 style="color:#2e1f73">Chart Challenge สัปดาห์นี้</h3><div style="font-size:13.5px;color:#3a2e6e">โจทย์หุ้น 1 ตัว: บอกเทรนด์ภาพใหญ่ / กลาง / เล็ก · ตีแนวรับแนวต้าน · วางแผนเทรด ณ ราคาปัจจุบัน<br>คำตอบดีๆ จะถูกนำไปเป็นเคสในคลาสเสาร์ "Case Clinic"</div></div>
+        </div>
+      </div></div>
+    </div>`;
+}
+
+/* ============ view: Advance coach desk (CS + back office) ============ */
+// สมช ไม่ได้เลือกโค้ชเองบนเว็บ: จบ Basic → CS คุยกับ สมช → ทีมตั้งโค้ชประจำตัว 1 ท่านในระบบ
+// เพิ่มโค้ช: สมช ติดต่อเซล → ชำระกับเซล → หลังบ้านตรวจยอดแล้วเพิ่มโค้ชในระบบ
+const ADV = [
+  {id:'jay', name:'เจ', assets:['หุ้นไทย','หุ้นต่างประเทศ','ทอง','คริปโต','TFEX'], screen:[0,1], note:'Day trade ทอง / TFEX · Swing หุ้นไทย-อเมริกา', sg:'พฤ. 09:50', base:34},
+  {id:'lek', name:'เล็ก', assets:['หุ้นไทย','ทอง'], screen:[1,2], note:'วางแผนสัปดาห์ละครั้ง เทรดช่วงเย็น–ค่ำ', sg:'พฤ. 10:00', base:41},
+  {id:'pop', name:'ป๊อป', assets:['หุ้นต่างประเทศ'], screen:[1,2], note:'หุ้นอเมริกา + Options ไม่ต้องเฝ้าจอ', sg:'จ. 14:00', base:27},
+  {id:'kim', name:'คิม', assets:['หุ้นต่างประเทศ','คริปโต','ทอง'], screen:[0,1], note:'มีระบบเทรด ความเสี่ยงมาก่อนรางวัล', sg:'อ. 14:00', base:22},
+  {id:'koi', name:'ก้อย', assets:['TFEX','หุ้นต่างประเทศ','ทอง','คริปโต'], screen:[1,2], note:'จัดพอร์ตเทรด + ลงทุนระยะกลาง-ยาว', sg:null, base:30},
+  {id:'film', name:'ฟิล์ม', assets:['หุ้นไทย','TFEX','ทอง'], screen:[1], note:'สอนจากมุมพนักงานประจำ ไม่มีเวลาเฝ้าจอ', sg:null, base:25},
+  {id:'poom', name:'พูม', assets:['หุ้นไทย','หุ้นต่างประเทศ','TFEX'], screen:[1,2], note:'ปั้นพอร์ตหุ้นใหญ่ ไม่ต้องเฝ้าจอ', sg:null, base:19},
+  {id:'nof', name:'นอฟ', assets:['TFEX','ทอง','คริปโต'], screen:[1,2], note:'TFEX + ค่าเงิน เทรดเป็นระบบ ใจเย็น', sg:null, base:16},
+  {id:'ohm', name:'โอม', assets:['หุ้นต่างประเทศ','ทอง','คริปโต'], screen:[1], note:'หุ้นอเมริกาช่วงค่ำ ใช้ Bot ช่วยเฝ้าจอ', sg:null, base:14},
+  {id:'top', name:'ท๊อป', assets:['ทอง','TFEX','คริปโต','หุ้นต่างประเทศ','หุ้นไทย'], screen:[0,1,2], note:'สอนใจเย็น ไม่มีพื้นฐานก็ตามทัน', sg:null, base:29, easy:true},
+  {id:'ball', name:'บอล', assets:['หุ้นไทย'], screen:[0], note:'เฝ้าจอทั้งวัน Scalp / Day trade หุ้นไทย', sg:null, base:18},
+];
+const advC = id => ADV.find(c => c.id === id);
+const ME_CS = 'มิ้นท์ · ทีม CS';
+const SALES = ['เซลพลอย', 'เซลกอล์ฟ', 'เซลเบียร์'];
+const REQ = [
+  {id:'r1', m:'m29', coach:'lek', sales:'เซลกอล์ฟ', at:at(-14, 13), paidAt:at(-13, 11), receipt:'INV-690910-021', doneAt:at(-12, 15), by:'ฝน · ทีม CS'},
+  {id:'r2', m:'m20', coach:'jay', sales:'เซลพลอย', at:at(-1, 13), paidAt:at(0, 10), receipt:'INV-690923-004', doneAt:null},
+  {id:'r3', m:'m29', coach:'kim', sales:'เซลเบียร์', at:at(0, 14), paidAt:null, receipt:'', doneAt:null},
+];
+function addWorkDays(d, n) { const x = new Date(d); while (n > 0) { x.setDate(x.getDate() + 1); if (x.getDay() % 6) n--; } return x; }
+const tpAt = m => m.grad || (m.ft && m.ft.advAt) || null;
+function advStage(m, t) { if (statusOf(m, t) !== 'tp') return null; const a = m.adv; return a.setAt && a.setAt <= t ? 'set' : a.talkAt && a.talkAt <= t ? 'talked' : 'wait'; }
+function advDue(m, t) { const st = advStage(m, t); return st === 'wait' ? addWorkDays(tpAt(m), 1) : st === 'talked' ? addWorkDays(m.adv.talkAt, 1) : null; }
+const coachesOf = (m, t) => m.adv.setAt && m.adv.setAt <= t ? [...new Set([m.adv.coach, ...m.adv.extra.filter(x => x.at <= t).map(x => x.id)])] : [];
+const coachNames = (m, t) => coachesOf(m, t).map(id => 'โค้ช' + advC(id).name);
+const loadOf = (c, t) => c.base + M.filter(m => coachesOf(m, t).includes(c.id)).length;
+const reqSt = (r, t) => r.doneAt && r.doneAt <= t ? 'done' : r.paidAt && r.paidAt <= t ? 'paid' : 'unpaid';
+const openReqs = t => REQ.filter(r => r.at <= t && reqSt(r, t) !== 'done');
+const advTodo = t => visible().filter(m => ['wait', 'talked'].includes(advStage(m, t))).length + REQ.filter(r => r.at <= t && reqSt(r, t) === 'paid').length;
+function sla(due, t, what) {
+  if (!due) return '';
+  if (t > due) { const h = hrs(due, t); return `<span class="sla late">เกินกำหนด${what} ${h < 24 ? Math.max(1, Math.ceil(h)) + ' ชม.' : Math.floor(h / 24) + ' วัน'}</span>`; }
+  return `<span class="sla ${hrs(t, due) < 24 ? 'due' : 'ok'}">${what}ภายใน ${TH_DS[due.getDay()]} ${fd(due)} ${ftm(due)} น.</span>`;
+}
+function recFor(m, t) {
+  const g = m.tags;
+  return ADV.map(c => {
+    let sc = 0; const why = [];
+    if (g) {
+      const i = c.assets.indexOf(g.asset); if (i >= 0) { sc += 3 - Math.min(2, i); why.push(`สอน${g.asset}${i === 0 ? 'เป็นหลัก' : ''}`); }
+      if (c.screen.includes(g.screen)) { sc += 2; why.push(SCREEN[g.screen]); }
+      if (g.level <= 1 && c.easy) { sc += 1; why.push('ไม่มีพื้นฐานก็ตามทัน'); }
+    }
+    return {c, sc, why};
+  }).sort((a, b) => b.sc - a.sc || loadOf(a.c, t) - loadOf(b.c, t));
+}
+function advForm(m) { if (!S.advForm || S.advForm.id !== m.id) S.advForm = {id:m.id, ch:'โทร', pick:'', memo:'', err:''}; return S.advForm; }
+function advModal(title, body, okLabel, onOk) {
+  $('#modal').innerHTML = `<div class="mbox" style="width:560px"><div class="mhead">${title}</div>${body}<div class="err" id="mderr"></div><div class="mfoot">${B('ยกเลิก', closeModal, 'ghost')}${B(okLabel, onOk, 'pri')}</div></div>`;
+  $('#modal').classList.remove('hidden');
+}
+function advSetModal(m) {
+  const a = m.adv, c = advC(a.pick);
+  advModal(`ตั้งโค้ชประจำตัว · คุณ${esc(m.name)}`, `<table>
+      <tr><td style="width:34%">โค้ชประจำตัว</td><td><b>โค้ช${c.name}</b> · ${esc(c.note)}</td></tr>
+      <tr><td>เปิดให้บนเว็บ</td><td>คลิปและคอร์สของโค้ช${c.name} · Small Group${c.sg ? ' ' + c.sg : ''} + คลิปย้อนหลัง · ไลฟ์ของโค้ช</td></tr>
+      <tr><td>ตั้งโดย</td><td>${ME_CS}</td></tr></table>
+    <div class="note" style="margin:12px 0 4px">LINE ที่ สมช จะได้รับอัตโนมัติ</div><div class="mchat"><div class="bub">${TPL.advSet(m, c)}</div></div>`,
+    'ยืนยันตั้งโค้ช', () => { Object.assign(a, {setAt:now(), coach:c.id, by:ME_CS}); done(`ตั้งโค้ช${c.name}ให้คุณ${m.nick}แล้ว · ส่ง LINE แจ้งแล้ว`); });
+}
+function advAddModal(r) {
+  const m = byId(r.m), c = advC(r.coach), t = now(); let ok = false;
+  advModal(`เพิ่มโค้ช · คุณ${esc(m.name)}`, `<table>
+      <tr><td style="width:34%">โค้ชที่เพิ่ม</td><td><b>โค้ช${c.name}</b></td></tr>
+      <tr><td>เซลผู้รับเรื่อง</td><td>${r.sales} · ${fd(r.at)} ${ftm(r.at)} น.</td></tr>
+      <tr><td>ใบเสร็จ</td><td>${esc(r.receipt)} · ชำระ ${fd(r.paidAt)} ${ftm(r.paidAt)} น.</td></tr>
+      <tr><td>หลังเพิ่ม สมช มีโค้ช</td><td>${[...new Set([...coachesOf(m, t), c.id])].map(id => 'โค้ช' + advC(id).name).join(' · ')}</td></tr></table>
+    <label class="ck" style="margin-top:10px"><input type="checkbox" data-ch="${A(e => { ok = e.target.checked; $('#mderr').textContent = ''; })}">ตรวจยอดกับใบเสร็จแล้ว ตรงกัน</label>
+    <div class="note" style="margin:10px 0 4px">LINE ที่ สมช จะได้รับอัตโนมัติ</div><div class="mchat"><div class="bub">${TPL.advAdd(m, c)}</div></div>`,
+    'เพิ่มโค้ชในระบบ', () => {
+      if (!ok) { $('#mderr').textContent = 'ติ๊กยืนยันว่าตรวจยอดกับใบเสร็จแล้วก่อนเพิ่มโค้ช'; return; }
+      r.doneAt = now(); r.by = ME_CS; m.adv.extra = m.adv.extra.filter(x => x.id !== c.id); m.adv.extra.push({id:c.id, at:now(), by:ME_CS});
+      done(`เพิ่มโค้ช${c.name}ให้คุณ${m.nick}แล้ว · ส่ง LINE แจ้งแล้ว`);
+    });
+}
+function advReqModal(mid) {
+  const t = now(), pool = visible().filter(m => advStage(m, t) === 'set');
+  if (!pool.length) { toast('ยังไม่มี สมช ที่ตั้งโค้ชแล้ว'); return; }
+  const m = byId(pool.some(x => x.id === mid) ? mid : pool[0].id);
+  const taken = [...coachesOf(m, t), ...openReqs(t).filter(r => r.m === m.id).map(r => r.coach)];
+  const f = {coach:'', sales:SALES[0], paid:false, receipt:''};
+  advModal('บันทึกคำขอเพิ่มโค้ชจากเซล', `<div class="fsec" style="border-top:none;padding-top:0"><h4>สมช</h4><select data-ch="${A(e => advReqModal(e.target.value))}">${pool.map(x => `<option value="${x.id}" ${x.id === m.id ? 'selected' : ''}>คุณ${esc(x.name)} · ${coachNames(x, t).join(', ')}</option>`).join('')}</select></div>
+    <div class="fsec"><h4>โค้ชที่ สมช ต้องการเพิ่ม</h4><select data-ch="${A(e => { f.coach = e.target.value; $('#mderr').textContent = ''; })}"><option value="">— เลือกโค้ช —</option>${ADV.filter(c => !taken.includes(c.id)).map(c => `<option value="${c.id}">โค้ช${c.name} · ${c.assets.slice(0, 2).join(', ')}</option>`).join('')}</select></div>
+    <div class="fsec"><h4>เซลผู้รับเรื่อง</h4><select data-ch="${A(e => { f.sales = e.target.value; })}">${SALES.map(x => `<option>${x}</option>`).join('')}</select></div>
+    <div class="fsec"><h4>การชำระเงิน</h4><label class="ck"><input type="checkbox" data-ch="${A(e => { f.paid = e.target.checked; $('#mderr').textContent = ''; })}">สมช ชำระกับเซลแล้ว</label><input type="text" placeholder="เลขที่ใบเสร็จ เช่น INV-690923-010" data-in="${A(e => { f.receipt = e.target.value; })}" style="width:280px;margin-top:4px"></div>`,
+    'บันทึกคำขอ', () => {
+      if (!f.coach) { $('#mderr').textContent = 'เลือกโค้ชที่ สมช ต้องการเพิ่มก่อนบันทึก'; return; }
+      if (f.paid && !f.receipt.trim()) { $('#mderr').textContent = 'ชำระแล้ว กรอกเลขที่ใบเสร็จด้วย'; return; }
+      REQ.push({id:'r' + (REQ.length + 1), m:m.id, coach:f.coach, sales:f.sales, at:now(), paidAt:f.paid ? now() : null, receipt:f.paid ? f.receipt.trim() : '', doneAt:null});
+      S.advSel = m.id; done(f.paid ? 'บันทึกแล้ว · พร้อมให้หลังบ้านเพิ่มโค้ช' : 'บันทึกแล้ว · รอ สมช ชำระกับเซล');
+    });
+}
+function advInfo(m, t) {
+  const st = advStage(m, t), ty = typeOf(m), ex = [1, 2, 3, 4].map(ep => m.exams[ep]).filter(x => x != null);
+  return `<div class="grid">
+    <div class="card"><h3>คุณ${esc(m.name)} ${chip('tp')}</h3>
+      <div class="note" style="font-size:13.5px;margin-bottom:8px">${m.grad && m.grad <= t ? `จบ Basic ${fdy(m.grad)}` : `ผ่าน Fast Track ${fdy(m.ft.advAt)}`} · Basic โค้ช${m.coach}${ex.length ? ` · ข้อสอบเฉลี่ย ${(ex.reduce((x, y) => x + y, 0) / ex.length).toFixed(1)}/20` : ''}</div>
+      ${m.tags ? `<span class="tag" style="background:${ty.c};color:#fff;font-weight:700">${ty.name}</span><span class="tag">${SCREEN[m.tags.screen]}</span><span class="tag">สนใจ: ${esc(m.tags.asset)}</span><span class="tag">ความรู้: ${LEVEL[m.tags.level]}</span><span class="tag">${m.tags.bkk ? 'อยู่ กทม.' : 'ต่างจังหวัด'}</span>` : '<div class="empty">ยังไม่มีข้อมูลควิซ</div>'}
+      ${m.ft && m.ft.memo ? `<div class="note" style="margin-top:6px">Memo Fast Track: ${esc(m.ft.memo)}</div>` : ''}
+      <div class="acts" style="justify-content:flex-start;margin-top:10px">${B('โปรไฟล์ Basic', () => go('profile', m.id))}${B('ดูมุมมอง สมช', () => go('member', m.id))}</div></div>
+    <div class="card"><h3>โค้ชที่ระบบแนะนำ</h3><div class="note" style="margin:-4px 0 4px">จากควิซและสินทรัพย์ที่สนใจ · ใช้ประกอบการคุย สมช เป็นคนตัดสินใจ</div>
+      ${recFor(m, t).slice(0, 3).map(({c, why}) => `<div class="rec"><div><b>โค้ช${c.name}</b> <span class="muted" style="font-size:12px">· ลูกศิษย์ ${loadOf(c, t)} คน${c.sg ? ` · Small Group ${c.sg}` : ''}</span><div class="why">${why.length ? why.map(w => '✓ ' + esc(w)).join(' · ') : esc(c.note)}</div></div>${st === 'wait' ? B('เลือก', () => { const f = advForm(m); f.pick = c.id; f.err = ''; render(); }) : ''}</div>`).join('')}</div>
+  </div>`;
+}
+function advAction(m, t) {
+  const st = advStage(m, t), a = m.adv;
+  if (st === 'wait') {
+    const f = advForm(m), calls = a.calls.filter(c => c.at <= t);
+    const opts = recFor(m, t).map(({c, sc}, i) => `<option value="${c.id}" ${f.pick === c.id ? 'selected' : ''}>${i < 3 && sc ? '★ ' : ''}โค้ช${c.name} · ${c.assets.slice(0, 2).join(', ')}</option>`).join('');
+    return `<div class="card"><h3>บันทึกการคุยกับ สมช</h3>
+      <div class="note" style="margin:-6px 0 6px">${sla(advDue(m, t), t, 'ติดต่อ')}${calls.length ? ` · ติดต่อแล้ว: ${calls.map(c => `${fd(c.at)} ${c.ch === 'LINE' ? 'ส่ง LINE' : 'โทรไม่รับ'}`).join(', ')}` : ''}</div>
+      <div class="note">ถามเวลาที่เทรดได้ สินทรัพย์ที่สนใจ และเป้าหมาย แล้วช่วย สมช เลือกโค้ช 1 ท่าน (รวมในแพ็กเกจ Advance)</div>
+      <div class="fsec" style="margin-top:8px"><h4>ช่องทาง</h4><div style="display:flex;gap:14px">${['โทร', 'LINE'].map(ch => `<label class="ck"><input type="radio" name="advch" ${f.ch === ch ? 'checked' : ''} data-ch="${A(() => { f.ch = ch; })}">${ch}</label>`).join('')}</div></div>
+      <div class="fsec"><h4>โค้ชที่ สมช เลือก <span class="muted" style="font-weight:400;font-size:12.5px">★ = ระบบแนะนำ</span></h4><select style="min-width:320px" data-ch="${A(e => { f.pick = e.target.value; f.err = ''; $('#adverr').textContent = ''; })}"><option value="">— เลือกโค้ช —</option>${opts}</select><div class="err" id="adverr">${esc(f.err)}</div></div>
+      <div class="fsec"><h4>Memo</h4><textarea placeholder="เช่น เทรดทองหลังเลิกงาน สะดวก Small Group เช้าวันพฤหัส" data-in="${A(e => { f.memo = e.target.value; })}">${esc(f.memo)}</textarea></div>
+      <div class="acts" style="justify-content:flex-start">${B('บันทึก · ส่งไปตั้งโค้ช', () => {
+        if (!f.pick) { f.err = 'เลือกโค้ชที่ สมช ต้องการก่อนบันทึก'; $('#adverr').textContent = f.err; return; }
+        Object.assign(a, {talkAt:now(), pick:f.pick, memo:f.memo.trim(), ch:f.ch, talkBy:ME_CS}); S.advForm = null; done(`บันทึกแล้ว · คุณ${m.nick}เลือกโค้ช${advC(f.pick).name}`);
+      }, 'pri')}${B('ส่ง LINE นัดคุย', () => lineModal(m, 'advCall', () => a.calls.push({at:now(), ch:'LINE'})))}${B('บันทึก: โทรไม่รับ', () => { a.calls.push({at:now(), ch:'โทร'}); done('บันทึกการโทรแล้ว'); })}</div></div>`;
+  }
+  if (st === 'talked') {
+    const c = advC(a.pick);
+    return `<div class="card"><h3>ตั้งโค้ชในระบบ</h3>
+      <div class="res wait" style="margin-bottom:10px"><b>คุณ${esc(m.nick)}เลือกโค้ช${c.name}</b> · คุยทาง${a.ch} ${fd(a.talkAt)} ${ftm(a.talkAt)} น. · ${a.talkBy}${a.memo ? `<br>Memo: ${esc(a.memo)}` : ''}</div>
+      <div class="note">${sla(advDue(m, t), t, 'ตั้งโค้ช')}<br>ตั้งแล้ว สมช เห็นคลิป คอร์ส Small Group และไลฟ์ของโค้ช${c.name}บนเว็บทันที และได้ LINE แจ้ง</div>
+      <div class="acts" style="justify-content:flex-start;margin-top:10px">${B(`ตั้งโค้ช${c.name}เป็นโค้ชประจำตัว`, () => advSetModal(m), 'pri')}${B('สมช ขอเปลี่ยนโค้ช', () => { S.advForm = {id:m.id, ch:a.ch, pick:a.pick, memo:a.memo, err:''}; a.talkAt = null; log(m, 'สมช ขอเปลี่ยนโค้ชที่เลือก'); render(); }, 'ghost')}</div></div>`;
+  }
+  const pend = openReqs(t).filter(r => r.m === m.id);
+  return `<div class="card"><h3>โค้ชของ สมช</h3>
+    ${coachesOf(m, t).map((id, i) => { const c = advC(id), x = i ? a.extra.find(e => e.id === id) : null; return `<div class="rec"><div><b>โค้ช${c.name}</b> <span class="muted" style="font-size:12px">· ${x ? `เพิ่มผ่านเซล ${fd(x.at)} · ${x.by}` : `โค้ชประจำตัว · ตั้ง ${fd(a.setAt)} · ${a.by}`}</span><div class="why">${esc(c.note)}${c.sg ? ` · Small Group ${c.sg}` : ''}</div></div></div>`; }).join('')}
+    ${pend.length ? `<div class="note" style="margin-top:8px">คำขอเพิ่มโค้ชที่ค้าง: ${pend.map(r => `โค้ช${advC(r.coach).name} (${reqSt(r, t) === 'paid' ? 'ชำระแล้ว รอเพิ่ม' : 'รอชำระกับเซล'})`).join(', ')}</div>` : ''}
+    <div class="acts" style="justify-content:flex-start;margin-top:10px">${B('+ บันทึกคำขอเพิ่มโค้ชจากเซล', () => advReqModal(m.id))}</div></div>`;
+}
+function vAdv() {
+  const t = now(), grads = visible().filter(m => statusOf(m, t) === 'tp'), D30 = addDays(t, -30);
+  const stg = k => grads.filter(m => advStage(m, t) === k);
+  const W = stg('wait').sort((a, b) => advDue(a, t) - advDue(b, t)), T = stg('talked').sort((a, b) => advDue(a, t) - advDue(b, t)), D = stg('set').sort((a, b) => b.adv.setAt - a.adv.setAt);
+  const lateW = W.filter(m => t > advDue(m, t)).length, lateT = T.filter(m => t > advDue(m, t)).length;
+  const reqs = REQ.filter(r => r.at <= t), rq = k => reqs.filter(r => reqSt(r, t) === k);
+  if (!grads.some(m => m.id === S.advSel)) S.advSel = (W[0] || T[0] || D[0] || {}).id || null;
+  const col = (title, sub, arr, fn) => `<div class="kcol"><h4>${title}<span class="muted">${arr.length}</span></h4><div class="note" style="margin:-4px 4px 8px">${sub}</div>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
+  const card = (m, body) => `<div class="kcard ${S.advSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.advSel = m.id; S.advForm = null; render(); })}"><b>คุณ${esc(m.name)}</b> <span class="muted">· Basic โค้ช${m.coach}</span><br>${body}</div>`;
+  const fin = m => `${m.grad && m.grad <= t ? 'จบ Basic' : 'ผ่าน Fast Track'} ${fd(tpAt(m))}`;
+  const kan = `<div class="kan" style="grid-template-columns:repeat(3,1fr)">
+    ${col('1 · รอ CS ติดต่อ', 'ระบบส่งรายชื่อให้เมื่อจบ Basic / ผ่าน Fast Track', W, m => { const n = m.adv.calls.filter(c => c.at <= t).length; return card(m, `${fin(m)}${n ? ` · ติดต่อแล้ว ${n} ครั้ง` : ''}<br>${sla(advDue(m, t), t, 'ติดต่อ')}`); })}
+    ${col('2 · คุยแล้ว รอตั้งโค้ช', 'สมช เลือกโค้ชแล้ว ทีมตั้งในระบบ', T, m => card(m, `เลือกโค้ช${advC(m.adv.pick).name} · คุย ${fd(m.adv.talkAt)}<br>${sla(advDue(m, t), t, 'ตั้งโค้ช')}`))}
+    ${col('3 · ตั้งโค้ชแล้ว', 'สมช เห็นคลิปของโค้ชบนเว็บแล้ว', D, m => card(m, `${coachNames(m, t).join(' + ')}<br><span class="muted">ตั้ง ${fd(m.adv.setAt)}</span>`))}
+  </div>`;
+  const m = byId(S.advSel);
+  const panel = m ? `<div class="grid" style="grid-template-columns:1fr 1.15fr;align-items:start;margin-bottom:14px">${advInfo(m, t)}${advAction(m, t)}</div>` : '<div class="card" style="margin-bottom:14px"><div class="empty">ยังไม่มี สมช ที่จบ Basic ในวันที่จำลอง</div></div>';
+  const tile = (lb, vl, note) => `<div class="card kpi"><div class="lb">${lb}</div><div class="vl">${vl}</div><div class="note">${note}</div></div>`;
+  const red = x => `<b style="color:#8f1f1f">${x}</b>`;
+  const order = ['paid', 'unpaid', 'done'];
+  const rows = reqs.slice().sort((a, b) => order.indexOf(reqSt(a, t)) - order.indexOf(reqSt(b, t)) || b.at - a.at).map(r => {
+    const mm = byId(r.m), c = advC(r.coach), s = reqSt(r, t), cur = coachNames(mm, t).filter(n => !(s === 'done' && n === 'โค้ช' + c.name));
+    const stc = s === 'unpaid' ? '<span class="chip"><i style="background:#9aa1ab"></i>รอ สมช ชำระกับเซล</span>'
+      : s === 'paid' ? `<span class="chip"><i style="background:#fab219"></i>ชำระแล้ว · รอเพิ่มในระบบ</span><div class="note">${esc(r.receipt)}</div>${sla(addWorkDays(r.paidAt, 1), t, 'เพิ่ม')}`
+      : `<span class="chip"><i style="background:#0ca30c"></i>เพิ่มแล้ว ${fd(r.doneAt)}</span><div class="note">${esc(r.receipt)}${r.by ? ' · ' + r.by : ''}</div>`;
+    const act = s === 'unpaid' ? B('จำลอง: เซลแจ้งชำระแล้ว', () => { const d = now(); r.paidAt = d; r.receipt = `INV-${String(d.getFullYear() + 543).slice(2)}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-0${11 + REQ.indexOf(r)}`; done('เซลแจ้งชำระแล้ว · พร้อมให้หลังบ้านเพิ่มโค้ช'); }, 'jump')
+      : s === 'paid' ? B('เพิ่มโค้ชในระบบ', () => advAddModal(r), 'pri') : '';
+    return `<tr><td><span class="nm" data-a="${A(() => { S.advSel = mm.id; S.advForm = null; render(); })}">คุณ${esc(mm.name)}</span></td><td>${cur.join(', ') || '—'}</td><td><b>โค้ช${c.name}</b></td><td>${r.sales}<div class="note">${fd(r.at)} ${ftm(r.at)} น.</div></td><td>${stc}</td><td>${act}</td></tr>`;
+  }).join('');
+  return `<h1>ตั้งโค้ช Advance</h1><p class="sub">สมช ไม่ได้เลือกโค้ชเองบนเว็บ · CS คุยกับ สมช แล้วทีมตั้งโค้ชให้ในระบบ · อยากเพิ่มโค้ช ติดต่อเซล แล้วหลังบ้านเพิ่มให้</p>
+    <div class="flow"><b>จบ Basic</b>→<b>CS ติดต่อภายใน 1 วันทำการ</b>→<b>สมช เลือกโค้ช 1 ท่าน</b>→<b>ทีมตั้งในระบบ</b>→<b>สมช ได้ LINE + เห็นคลิปโค้ชบนเว็บ</b></div>
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+      ${tile('รอ CS ติดต่อ', W.length, lateW ? red(`เกิน 1 วันทำการ ${lateW} คน`) : 'อยู่ในกำหนดทั้งหมด')}
+      ${tile('คุยแล้ว รอตั้งโค้ช', T.length, lateT ? red(`เกิน 1 วันทำการ ${lateT} คน`) : 'เป้า: ตั้งภายใน 1 วันทำการ')}
+      ${tile('คำขอเพิ่มโค้ช รอหลังบ้าน', rq('paid').length, `รอ สมช ชำระกับเซล ${rq('unpaid').length}`)}
+      ${tile('ตั้งโค้ชประจำตัว 30 วัน', D.filter(x => x.adv.setAt >= D30).length, `เพิ่มโค้ชผ่านเซล ${rq('done').filter(r => r.doneAt >= D30).length}`)}
+    </div>
+    ${kan}${panel}
+    <div class="card" style="margin-bottom:14px"><div style="display:flex;align-items:center;gap:10px"><h3 style="flex:1;margin:0">คำขอเพิ่มโค้ช · เซลส่งเข้าระบบ</h3>${B('+ บันทึกคำขอจากเซล', () => advReqModal(S.advSel))}</div>
+      <div class="note" style="margin:4px 0 8px">สมช ติดต่อเซล → ชำระกับเซล → หลังบ้านตรวจยอดแล้วเพิ่มโค้ชในระบบ (เป้า: ภายใน 1 วันทำการหลังชำระ) · บนเว็บไม่มีราคาและไม่มีหน้าชำระเงิน</div>
+      ${reqs.length ? `<table><tr><th>สมช</th><th>โค้ชตอนนี้</th><th>ขอเพิ่ม</th><th>เซล</th><th>สถานะ</th><th></th></tr>${rows}</table>` : '<div class="empty">ยังไม่มีคำขอ</div>'}</div>
+    <div class="grid" style="grid-template-columns:2.1fr 1fr;align-items:start">
+      <div class="card"><h3>โค้ช Advance <span class="muted" style="font-weight:400;font-size:12.5px">· ใช้ประกอบการคุยกับ สมช</span></h3><table><tr><th>โค้ช</th><th>สินทรัพย์หลัก</th><th>เหมาะกับ</th><th>Small Group</th><th>ลูกศิษย์</th></tr>${ADV.map(c => `<tr><td><b>โค้ช${c.name}</b></td><td>${c.assets.slice(0, 3).join(', ')}</td><td>${esc(c.note)}</td><td>${c.sg || '<span class="muted">ตามตารางโค้ช</span>'}</td><td>${loadOf(c, t)}</td></tr>`).join('')}</table></div>
+      <div class="hint"><b>ลองกดดู</b><ul>
+        <li><b>คุณไพโรจน์</b> เกินกำหนดติดต่อ → เลือกโค้ชที่ระบบแนะนำ → บันทึก → ตั้งโค้ชในระบบ</li>
+        <li>กด <b>ดูมุมมอง สมช</b> เพื่อดู LINE ที่ สมช ได้รับ และหน้าเว็บที่เปลี่ยน</li>
+        <li>คำขอของ<b>คุณเอกชัย</b> ชำระกับเซลแล้ว → กด เพิ่มโค้ชในระบบ</li>
+        <li>โค้ชตรวจการบ้าน Fast Track ผ่าน → สมช เข้าคิวนี้อัตโนมัติ</li>
+        <li><b>+1 วัน</b> ดูว่าใครเกินกำหนด 1 วันทำการ</li></ul></div>
+    </div>`;
+}
+function csAdvCard(t) {
+  const W = visible().filter(m => advStage(m, t) === 'wait').sort((a, b) => advDue(a, t) - advDue(b, t));
+  return `<div class="card" style="margin-top:14px"><h3>CS-3 · จบ Basic → คุยเรื่องโค้ช Advance</h3><div class="note" style="margin:-4px 0 8px">ระบบส่งรายชื่อให้อัตโนมัติเมื่อ สมช จบ Basic หรือผ่าน Fast Track · CS ติดต่อภายใน 1 วันทำการ แล้วทีมตั้งโค้ชประจำตัวให้ในระบบ</div>
+    ${W.length ? `<table><tr><th>ชื่อ</th><th>โค้ช Basic</th><th>จบเมื่อ</th><th>กำหนดติดต่อ</th><th></th></tr>${W.map(m => `<tr><td><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></td><td>${m.coach}</td><td>${fd(tpAt(m))} ${ftm(tpAt(m))}</td><td>${sla(advDue(m, t), t, 'ติดต่อ')}</td><td>${B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id), 'pri')}</td></tr>`).join('')}</table>` : '<div class="empty">ไม่มีรายชื่อรอติดต่อ</div>'}</div>`;
+}
+function advProfileBox(m, t) {
+  const st = advStage(m, t); if (!st) return '';
+  const txt = st === 'wait' ? `รอ CS ติดต่อเรื่องโค้ช<br>${sla(advDue(m, t), t, 'ติดต่อ')}` : st === 'talked' ? `เลือกโค้ช${advC(m.adv.pick).name} · รอทีมตั้งในระบบ` : coachNames(m, t).map((n, i) => `${n} ${i ? '(เพิ่มผ่านเซล)' : '(โค้ชประจำตัว)'}`).join('<br>');
+  return `<div class="card"><h3>Advance · โค้ช</h3><div class="note" style="font-size:13.5px">${txt}</div><div style="margin-top:8px">${B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id))}</div></div>`;
+}
+function advChat(m, t) {
+  const a = m.adv, out = [], line = a.calls.find(c => c.ch === 'LINE' && c.at <= t);
+  if (line) out.push({at:line.at, html:`<div class="bub">${TPL.advCall(m)}</div>`});
+  if (a.talkAt && a.talkAt <= t && !(a.setAt && a.setAt <= t)) out.push({at:a.talkAt, html:`<div class="bub">ขอบคุณที่คุยกับ CS นะ สรุป: คุณ${m.nick}เลือกโค้ช${advC(a.pick).name} ทีมกำลังตั้งให้ในระบบ พร้อมแล้วจะแจ้งอีกครั้ง</div>`});
+  if (a.setAt && a.setAt <= t) { const c = advC(a.coach); out.push({at:a.setAt, html:`<div class="lcard"><div class="hd" style="background:#14213d"><div style="font-size:11.5px;opacity:.85">SPTR Advance</div><div style="font-size:17px;font-weight:700">โค้ชประจำตัว: โค้ช${c.name}</div></div><div class="bd">${TPL.advSet(m, c)}</div></div>`}); }
+  a.extra.filter(x => x.at <= t).forEach(x => out.push({at:x.at, html:`<div class="bub">${TPL.advAdd(m, advC(x.id))}</div>`}));
+  return out;
+}
+function advWeb(m, t) {
+  const st = advStage(m, t);
+  if (st === 'set') return `โค้ชของคุณ: <b>${coachNames(m, t).join(' + ')}</b> · เข้าเรียนบนเว็บ Advance ได้แล้ว`;
+  if (st === 'talked') return `คุณเลือกโค้ช${advC(m.adv.pick).name}แล้ว · ทีมกำลังตั้งให้ในระบบ`;
+  return 'ขั้นต่อไป: ทีม CS จะติดต่อภายใน 1 วันทำการ เพื่อช่วยเลือกโค้ชประจำตัวใน Advance';
+}
+
+/* ============ render ============ */
+function render() {
+  ACT = {}; seq = 0;
+  renderSide(); renderTop();
+  const v = {today:vToday, screener:vScreener, profile:vProfile, ft:vFT, cs:vCS, report:vReport, member:vMember, adv:vAdv}[S.view];
+  $('#view').innerHTML = v();
+  const lc = $('#lchat'); if (lc) lc.scrollTop = lc.scrollHeight;
+}
+// ลิงก์ตรงไปหน้าที่ต้องการ เช่น #v=profile&id=m07&d=19 (d = จำนวนวันจาก 23 ก.ย.)
+(() => {
+  const h = new URLSearchParams(location.hash.slice(1));
+  if (h.get('d')) S.now = at(+h.get('d'), 18);
+  if (h.get('coach')) S.coach = h.get('coach');
+  if (h.get('mode')) S.smode = h.get('mode');
+  const v = h.get('v'), id = h.get('id');
+  if (v) { S.view = v; if (id) { if (v === 'profile') S.sel = id; if (v === 'member') S.mv = id; if (v === 'ft') S.ftSel = id; if (v === 'adv') S.advSel = id; } }
+  if (h.get('quiz') != null) { const ans = (h.get('ans') || '').split(',').map(x => x === '' || x === '-' ? null : +x); while (ans.length < 4) ans.push(null); S.quiz = {id:S.mv, step:+h.get('quiz'), ans, err:''}; }
+  if (h.get('pre')) S.form = {id:S.ftSel, t:[1,1,1], sr:2, plan:[1,1,1,0], stock:'AOT', memo:'อ่านเทรนด์ครบ 3 ภาพ แผนเทรดยังไม่คำนวณขนาดไม้', err:'', touched:true};
+})();
+render();
+</script>
+</body>
+</html>
