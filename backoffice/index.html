@@ -7,7 +7,7 @@
 <title>SPTR หลังบ้าน — Member System (Mockup)</title>
 <style>
 /* same colours as the member site's Advance theme (navy · royal blue · gold) */
-:root{--bg:#0b1222;--bg2:#111a2e;--bg3:#17223a;--bg4:#1f2b46;--line:rgba(160,185,255,.09);--line2:rgba(160,185,255,.18);--ink:#eef2fa;--ink2:#b7c0d4;--mut:#9aa6bd;--gold:#e3b857;--gold2:#f3d98f;--goldbg:rgba(227,184,87,.13);--goldln:rgba(227,184,87,.45);--green:#56d68a;--greenbg:rgba(86,214,138,.12);--purple:#b69cff;--purplebg:rgba(182,156,255,.13);--blue:#7aa2ff;--bluebg:rgba(122,162,255,.14);--rose:#ff7a90;--rosebg:rgba(255,122,144,.12);--shadow:0 18px 44px rgba(0,0,0,.5);--btn:linear-gradient(135deg,#f6d983,#d9a63f)}
+:root{--artbg:#0d1a3a;--bg:#0b1222;--bg2:#111a2e;--bg3:#17223a;--bg4:#1f2b46;--line:rgba(160,185,255,.09);--line2:rgba(160,185,255,.18);--ink:#eef2fa;--ink2:#b7c0d4;--mut:#9aa6bd;--gold:#e3b857;--gold2:#f3d98f;--goldbg:rgba(227,184,87,.13);--goldln:rgba(227,184,87,.45);--green:#56d68a;--greenbg:rgba(86,214,138,.12);--purple:#b69cff;--purplebg:rgba(182,156,255,.13);--blue:#7aa2ff;--bluebg:rgba(122,162,255,.14);--rose:#ff7a90;--rosebg:rgba(255,122,144,.12);--shadow:0 18px 44px rgba(0,0,0,.5);--btn:linear-gradient(135deg,#f6d983,#d9a63f)}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{font-family:"Leelawadee UI","Leelawadee","Thonburi","Sukhumvit Set","Noto Sans Thai",Tahoma,sans-serif;color:var(--ink);background:radial-gradient(1100px 560px at 88% -8%,rgba(36,89,224,.18),transparent 62%) no-repeat,var(--bg);font-size:14.5px;line-height:1.55;min-width:1180px;-webkit-font-smoothing:antialiased}
@@ -184,6 +184,151 @@ tr.click:hover td{background:rgba(255,255,255,.03)}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--bg4);color:var(--ink);border:1px solid var(--line2);box-shadow:var(--shadow);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:700;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60;max-width:80vw}
 #toast.show{opacity:1}
 #tip{position:fixed;display:none;background:var(--bg4);color:var(--ink);border:1px solid var(--line2);font-size:12.5px;padding:5px 9px;border-radius:8px;pointer-events:none;z-index:70;max-width:320px}
+/* ===== member-site components ===== */
+.ic{flex:none;display:inline-block;vertical-align:middle}
+button .ic{margin-right:2px;vertical-align:-3px}
+.ph{display:flex;align-items:flex-end;gap:16px;margin:0 0 18px}
+.ph h1{font-size:30px;margin:0;letter-spacing:-.015em}
+.ph p{color:var(--ink2);margin:4px 0 0}
+.ph .pa{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.hk{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--mut);margin-bottom:6px}
+.nS{font-family:Georgia,"Times New Roman",serif;font-weight:700;color:var(--gold);letter-spacing:.1em;font-size:14px;padding-right:10px;border-right:1px solid rgba(255,255,255,.3);line-height:1}
+.ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none}
+.ico.sm{width:30px;height:30px;border-radius:10px}
+.i-g{background:var(--goldbg);color:var(--gold)}.i-gr{background:var(--greenbg);color:var(--green)}.i-pu{background:var(--purplebg);color:var(--purple)}.i-bl{background:var(--bluebg);color:var(--blue)}.i-ro{background:var(--rosebg);color:var(--rose)}.i-mu{background:var(--bg4);color:var(--ink2)}
+.sh{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.sh h3{margin:0;font-size:16px}
+.sh .n{color:var(--mut);font-size:12.5px}
+.sh .more{margin-left:auto;display:flex;gap:6px}
+.mav{border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#0b1222;flex:none;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 80%,#fff),color-mix(in srgb,var(--c) 78%,#000));box-shadow:0 0 0 2px var(--bg2),0 0 0 3.5px color-mix(in srgb,var(--c) 55%,transparent);vertical-align:middle;line-height:1}
+.who{display:flex;align-items:center;gap:10px;min-width:0}
+.who .wn{min-width:0}
+.who .wn b{display:block;font-size:14.5px;color:var(--ink);line-height:1.35}
+.who .wn span{display:block;font-size:12.5px;color:var(--mut)}
+.hero{position:relative;border-radius:24px;overflow:hidden;border:1px solid rgba(227,184,87,.22);background:var(--artbg);margin-bottom:16px;isolation:isolate}
+.hero>svg.th{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(9,15,31,.96) 0%,rgba(9,15,31,.78) 42%,rgba(9,15,31,.12) 100%)}
+.hin{padding:26px 30px 24px;display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap}
+.hin .ht{flex:1;min-width:340px}
+.hero .hk{color:rgba(223,230,245,.82)}
+.hero h1{font-size:34px;margin:4px 0 4px;letter-spacing:-.015em}
+.hero p{margin:0;color:var(--ink2)}
+.hchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hchip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(11,18,34,.72);border:1px solid var(--line2);color:var(--ink)}
+.hchip .ic{color:var(--gold)}
+.hstats{display:flex;gap:10px;flex-wrap:wrap}
+.hs{background:rgba(11,18,34,.74);border:1px solid var(--line2);border-radius:18px;padding:12px 16px;min-width:128px;backdrop-filter:blur(6px);cursor:pointer}
+.hs:hover{border-color:var(--goldln)}
+.hs b{display:block;font-size:28px;color:var(--gold2);line-height:1.2}
+.hs span{font-size:12.5px;color:var(--ink2)}
+.hs.alert b{color:var(--rose)}
+.kc{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:16px 18px;overflow:hidden}
+.kc .ico{margin-bottom:12px}
+.kc .kl{font-size:13px;color:var(--ink2)}
+.kc .kv{font-size:29px;font-weight:700;line-height:1.2;color:var(--ink)}
+.kc .kn{font-size:12.5px;color:var(--mut)}
+.kc .spk{position:absolute;right:16px;top:20px;width:110px;height:40px}
+.tk{display:grid;grid-template-columns:4px auto 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.tk:last-child{border-bottom:none}
+.tk .pb{align-self:stretch;border-radius:4px}
+.tl2{display:flex;flex-direction:column;gap:5px;min-width:0}
+.ti{display:flex;gap:8px;align-items:flex-start;font-size:13.5px}
+.ti>.ic{margin-top:3px;color:var(--gold)}
+.ti small{display:block;font-size:12.5px;color:var(--mut)}
+.tctl{display:flex;gap:2px;align-items:center;background:var(--bg3);border:1px solid var(--line);border-radius:999px;padding:3px}
+.tctl button{border:0;background:transparent;padding:4px 10px;font-size:12.5px;color:var(--ink2)}
+.tctl button:hover{background:var(--bg4);color:var(--ink)}
+.srch{position:relative;display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--line2);border-radius:999px;padding:0 12px 0 14px;width:240px;color:var(--mut)}
+.srch:focus-within{border-color:var(--goldln)}
+.srch input[type=text]{border:0;background:transparent;padding:7px 0;flex:1;min-width:0;font-size:13.5px;border-radius:0}
+.pop{position:absolute;top:calc(100% + 8px);background:var(--bg2);border:1px solid var(--line2);border-radius:16px;box-shadow:var(--shadow);padding:8px;z-index:30}
+.sres{left:0;width:330px}
+.pop .it{display:flex;width:100%;gap:10px;align-items:center;border:0;border-radius:12px;background:transparent;padding:8px 10px;text-align:left;font-weight:500;color:var(--ink)}
+.pop .it:hover{background:var(--bg3)}
+.bellw{position:relative}
+.ibtn{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;padding:0;background:var(--bg3);border:1px solid var(--line2);color:var(--ink2);position:relative}
+.ibtn:hover{color:var(--ink)}
+.ibtn .bdg{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--rose);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg)}
+.npanel{right:0;width:410px;max-height:540px;overflow-y:auto}
+.npanel h4{margin:4px 6px 8px 10px;font-size:14.5px;display:flex;justify-content:space-between;align-items:center}
+.npanel .it{align-items:flex-start}
+.npanel .it .tx{flex:1;min-width:0;font-size:13.5px;line-height:1.45}
+.npanel .it .tx small{display:block;color:var(--mut);font-size:12px}
+.npanel .it.new{background:rgba(227,184,87,.07)}
+.npanel .it.new .tx:after{content:"ใหม่";font-size:11px;font-weight:700;color:var(--gold);margin-left:6px}
+.nav .nl{display:flex;align-items:center;gap:11px}
+.nav .nl .ic{opacity:.8}
+.nav.on .nl .ic{opacity:1;color:var(--gold)}
+.ucard{display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;background:var(--bg3);border:1px solid var(--line);margin-top:10px}
+.ucard select{flex:1;min-width:0;padding:6px 8px;font-size:13px}
+.donut{display:flex;gap:16px;align-items:center}
+.lg{display:grid;gap:3px;font-size:13px;flex:1}
+.lg span{display:flex;align-items:center;gap:8px;cursor:pointer;border-radius:8px;padding:2px 6px}
+.lg span:hover{background:var(--bg3)}
+.lg i{width:9px;height:9px;border-radius:50%;flex:none}
+.lg em{margin-left:auto;font-style:normal;color:var(--ink2);font-weight:700}
+.bar{height:8px;border-radius:999px;background:var(--bg4);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#d9a63f,#f6d983)}
+.ag{display:grid;grid-template-columns:50px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center;cursor:pointer}
+.ag:last-child{border-bottom:none}
+.ag:hover b{color:var(--gold2)}
+.ag .d{text-align:center;border-radius:12px;background:var(--bg3);padding:5px 0;line-height:1.15}
+.ag .d b{display:block;font-size:18px}
+.ag .d span{font-size:11px;color:var(--mut)}
+.ag.today .d{background:var(--goldbg);color:var(--gold2)}
+.phc{display:flex;gap:16px;align-items:center;margin-bottom:14px;padding:20px 22px;position:relative;overflow:hidden}
+.phc h1{font-size:26px}
+.hwi{display:grid;grid-template-columns:210px 1fr 190px;gap:16px;align-items:start;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--bg2);margin-bottom:10px}
+.hwi.late{border-color:rgba(255,122,144,.45)}
+.hwi.focus{box-shadow:0 0 0 3px var(--goldbg);border-color:var(--gold)}
+.hwt{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--artbg)}
+.hwt svg{position:absolute;inset:0;width:100%;height:100%}
+.hwt b{position:absolute;left:10px;top:7px;font-family:Georgia,serif;font-size:19px;color:#f0d9a3}
+.hwt span{position:absolute;left:10px;bottom:8px;font-size:11.5px;color:#fff;background:rgba(0,0,0,.55);padding:1px 8px;border-radius:6px}
+.quote{border-left:3px solid var(--goldln);padding:6px 12px;margin:8px 0 6px;background:rgba(255,255,255,.03);border-radius:0 10px 10px 0;font-size:13.5px;color:var(--ink)}
+.quote.fix{border-left-color:var(--rose)}
+.tpl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tpl button{font-size:12px;padding:4px 10px;font-weight:500}
+.wk{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.wkd{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:10px 7px;min-height:300px}
+.wkd.today{border-color:var(--goldln);box-shadow:0 0 0 3px var(--goldbg)}
+.wkh{display:flex;align-items:baseline;gap:6px;padding:0 4px 8px}
+.wkh span{color:var(--mut);font-size:13px}.wkh b{font-size:20px}.wkh em{margin-left:auto;font-style:normal;font-size:11.5px;color:var(--gold);font-weight:700}
+.wkd.today .wkh b{color:var(--gold)}
+.evc{display:block;width:100%;text-align:left;border-radius:12px;padding:7px 8px 8px 11px;margin-bottom:6px;background:var(--bg3);border:1px solid var(--line);position:relative;overflow:hidden;font-weight:500;color:var(--ink)}
+.evc:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+.evc:hover{border-color:var(--line2);background:var(--bg4)}
+.evc.sel{border-color:var(--gold);box-shadow:0 0 0 2px var(--goldbg)}
+.evc .tm{display:block;font-size:11.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.evc b{display:block;font-size:12.5px;line-height:1.35;margin-top:1px}
+.evc .sb{display:block;font-size:11px;color:var(--mut);line-height:1.35}
+.evc.past{opacity:.55}
+.seat{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin:8px 0 4px;max-width:420px}
+.seat i{aspect-ratio:1;border-radius:5px;background:var(--bg4)}
+.seat i.b{background:var(--gold)}
+.seat i.me{background:var(--green)}
+.slotg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.slotg>div{border:1px solid var(--line2);border-radius:12px;padding:8px 10px;font-size:12.5px;min-height:62px}
+.slotg>div b{display:block;font-size:13.5px;font-variant-numeric:tabular-nums}
+.slotg>div.b{background:var(--goldbg);border-color:var(--goldln)}
+.slotg>div.me{background:var(--greenbg);border-color:rgba(86,214,138,.35)}
+.slotg>div button{margin-top:4px;font-size:12px;padding:3px 10px}
+.epc{display:grid;grid-template-columns:270px 1fr;gap:20px;background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:14px;margin-bottom:12px}
+.cov{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--artbg)}
+.cov svg{position:absolute;inset:0;width:100%;height:100%}
+.cov:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,15,31,.85),transparent 60%)}
+.cov .cn{position:absolute;left:14px;bottom:10px;color:#fff;z-index:1}
+.cov .cn b{display:block;font-family:Georgia,serif;font-size:32px;color:#f0d9a3;line-height:1}
+.cov .cn span{font-size:12px;opacity:.9}
+.vers{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.vers span{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--bg3);border:1px solid var(--line);color:var(--ink2)}
+.vers span.cur{background:var(--goldbg);border-color:var(--goldln);color:var(--gold2);font-weight:700}
+.vers span.nx{background:var(--bluebg);border-color:rgba(122,162,255,.3);color:var(--blue);font-weight:700}
+.mst{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.mst div{background:var(--bg3);border-radius:12px;padding:8px 12px}
+.mst b{display:block;font-size:18px}
+.mst span{font-size:12px;color:var(--mut)}
+.tplk{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -205,6 +350,81 @@ const LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAACvCAYAAADT5IgA
 document.documentElement.style.setProperty('--logo', 'url("' + LOGO + '")');
 const PH = {jay:'data:image/webp;base64,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', lek:'data:image/webp;base64,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', pop:'data:image/webp;base64,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', kim:'data:image/webp;base64,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', koi:'data:image/webp;base64,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', film:'data:image/webp;base64,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', poom:'data:image/webp;base64,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', nof:'data:image/webp;base64,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', ohm:'data:image/webp;base64,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', top:'data:image/webp;base64,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', ball:'data:image/webp;base64,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', pack:'data:image/webp;base64,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'};
 Object.entries(PH).forEach(([k, v]) => document.documentElement.style.setProperty('--h-' + k, 'url("' + v + '")'));
+
+/* ============ icons + chart art (same set as the member site) ============ */
+const I = {
+  home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>',
+  live:'<circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/>',
+  lib:'<path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>',
+  play:'<path d="M7 4.5v15l12-7.5z" fill="currentColor" stroke="none"/>',
+  heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  chev:'<path d="m9 18 6-6-6-6"/>',
+  back:'<path d="m15 18-6-6 6-6"/>',
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+  note:'<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+  moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  trend:'<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+  users:'<circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2M16 3.1a4 4 0 0 1 0 7.8M21 21v-2a4 4 0 0 0-3-3.9"/>',
+  msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  eye:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  award:'<circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
+  swap:'<path d="M7 16V4M3 8l4-4 4 4M17 8v12M21 16l-4 4-4-4"/>',
+  help:'<circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/>',
+  layers:'<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>',
+  cc:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 10.5a2 2 0 1 0 0 3M16.5 10.5a2 2 0 1 0 0 3"/>',
+  full:'<path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/>',
+  spark:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>',
+  logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
+  send:'<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',
+  minus:'<path d="M5 12h14"/>',
+  arrowl:'<path d="M20 12H4M11 19l-7-7 7-7"/>',
+  flag:'<path d="M5 22V3.5"/><path d="M5 4h11.5l-2.2 4.3 2.2 4.2H5"/>',
+  stack:'<rect x="2.5" y="9" width="14" height="11" rx="1.5"/><path d="M6.5 5.5h14v11"/>',
+  gauge:'<path d="M3.5 17.5a9.5 9.5 0 1 1 17 0"/><path d="m12 14 4.5-4.5"/><circle cx="12" cy="14.5" r="1.3"/>',
+  pin:'<path d="M12 21s-7-6.1-7-11.4a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.6" r="2.4"/>',
+  ticket:'<path d="M3 8a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2.2a1.8 1.8 0 0 0 0 3.6V16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2.2a1.8 1.8 0 0 0 0-3.6z"/><path d="M15 7.5v1.5M15 11.25v1.5M15 15v1.5"/>',
+  headset:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14h2.5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM20 14h-2.5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1H19a1 1 0 0 0 1-1z"/>',
+  pause:'<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/>',
+  mute:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="m23 9-6 6M17 9l6 6"/>',
+  vol:'<path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>',
+  thumb:'<path d="M7 10v11H3V10zM7 10l4-8a3 3 0 0 1 3 3v4h5.5a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.1 21H7"/>',
+  down:'<path d="m6 9 6 6 6-6"/>',
+  next:'<path d="M5 4.5v15l10-7.5z" fill="currentColor" stroke="none"/><path d="M19 5v14"/>',
+  rw:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>',
+  fw:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',
+  eps:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M12 16v4"/>',
+  tv:'<rect x="2" y="6" width="20" height="14" rx="2"/><path d="m8 2 4 4 4-4"/>',
+};
+const ic = (n, s = 20, extra = '') => `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${I[n] || ''}</svg>`;
+function rng(seed) { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+let gid = 0;
+function art(seed, hue, o = {}) {
+  const r = rng(seed), W = 320, H = 180, n = o.n || 24, id = 'g' + (++gid);
+  let s = `<svg class="th" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--artbg)"/><stop offset="1" stop-color="${hue}" stop-opacity=".34"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#${id})"/>`;
+  for (let i = 1; i < 4; i++) s += `<line x1="0" x2="${W}" y1="${H * i / 4}" y2="${H * i / 4}" stroke="rgba(255,255,255,.05)"/>`;
+  let p = .3 + r() * .2; const trend = o.trend ?? .012, step = W / (n + 1), pts = [];
+  for (let i = 0; i < n; i++) {
+    const op = p, cl = Math.min(.9, Math.max(.1, p + (r() - .46) * .09 + trend)), hi = Math.max(op, cl) + r() * .035, lo = Math.min(op, cl) - r() * .035;
+    const x = step * (i + 1), y = v => H * (1 - v) * .86 + H * .07, up = cl >= op;
+    s += `<line x1="${x}" x2="${x}" y1="${y(hi)}" y2="${y(lo)}" stroke="${up ? hue : 'rgba(255,255,255,.35)'}" stroke-width="1"/><rect x="${x - step * .28}" y="${y(Math.max(op, cl))}" width="${step * .56}" height="${Math.max(1.5, Math.abs(y(op) - y(cl)))}" rx="1" fill="${up ? hue : 'rgba(255,255,255,.28)'}" opacity="${up ? .92 : .8}"/>`;
+    pts.push(`${x},${y((op + cl) / 2)}`); p = cl;
+  }
+  return s + `<polyline points="${pts.join(' ')}" fill="none" stroke="${hue}" stroke-width="1.6" opacity=".55"/></svg>`;
+}
 
 /* ============ helpers ============ */
 const $ = s => document.querySelector(s);
@@ -285,7 +505,7 @@ const SEED = [
  {id:'m04', name:'กิตติ พ.', nick:'กิตติ', coach:'บีม', join:[0,8,0], contact:[0,11,0]},
  {id:'m05', name:'อรุณี ท.', nick:'อรุณี', coach:'แนน', join:[-6,13,0], contact:[-6,16,20], reply:[-5,9,10], lastReply:[-2,20,0], tags:{job:'ค้าขายออนไลน์', screen:0, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-4]]},
  {id:'m06', name:'วีระ จ.', nick:'วีระ', coach:'แนน', join:[-40,11,0], contact:[-40,14,0], reply:[-40,20,5], lastReply:[-14,21,0], tags:{job:'วิศวกร', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-38],[2,-12]], follows:[-28,-14], exams:{1:17}},
- {id:'m07', name:'มณีรัตน์ ก.', nick:'มณีรัตน์', coach:'แนน', join:[-42,10,0], contact:[-42,15,0], reply:[-42,19,30], lastReply:[-6,20,0], tags:{job:'พนักงานบริษัท', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-40],[2,-22]], follows:[-28,-12], exams:{1:18}, hw:[{ep:2,n:1,sub:-5,rev:-4,pass:true}]},
+ {id:'m07', name:'มณีรัตน์ ก.', nick:'มณีรัตน์', coach:'แนน', join:[-42,10,0], contact:[-42,15,0], reply:[-42,19,30], lastReply:[-6,20,0], tags:{job:'พนักงานบริษัท', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-40],[2,-22]], follows:[-28,-12], exams:{1:18}, hw:[{ep:2,n:1,sub:-5,rev:-4,pass:true,text:'ตีแนวรับที่ 58.50 เพราะราคาเด้งโซนนี้ 3 ครั้ง ต้าน 63.00 เคยโดนขายลง 2 ครั้ง'}], bk:{basic1010:{mode:'onsite', slot:null}}},
  {id:'m08', name:'สุรเชษฐ์ น.', nick:'สุรเชษฐ์', coach:'แนน', join:[-75,9,0], contact:[-75,13,0], reply:[-74,8,0], lastReply:[-16,19,0], tags:{job:'ข้าราชการ', screen:1, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-70],[2,-50]], follows:[-44,-30,-16], exams:{1:16}, hw:[{ep:2,n:1,sub:-45,rev:-44,pass:true}]},
  {id:'m09', name:'ปวีณา ร.', nick:'ปวีณา', coach:'แนน', join:[-35,20,0], contact:[-34,10,0], reply:[-34,12,0], lastReply:[-10,18,0], tags:{job:'นักลงทุนอิสระ', screen:0, level:3, asset:'TFEX', bkk:true}, follows:[-20,-10]},
  {id:'m10', name:'ชยพล อ.', nick:'ชยพล', coach:'บีม', join:[-33,12,0], contact:[-33,15,0], reply:[-32,9,0], lastReply:[-12,20,0], tags:{job:'นักศึกษา', screen:1, level:0, asset:'คริปโต', bkk:true}, follows:[-18]},
@@ -299,10 +519,10 @@ const SEED = [
  {id:'m18', name:'ปกรณ์ จ.', nick:'ปกรณ์', coach:'ต้น', join:[-36,10,0], contact:[-36,12,0], reply:[-36,14,0], lastReply:[-1,19,0], tags:{job:'โปรแกรมเมอร์', screen:1, level:2, asset:'หุ้นต่างประเทศ', bkk:false}, ft:{gate:'A', since:-12, status:'clip', screenAt:-10, channel:'online', score:{t:[1,1,0], sr:1, plan:[1,0,1,0]}, stock:'PTT', memo:'ยังไม่วาง Stop loss ให้ดูคลิป Basic Express ก่อน', hwSub:-1}},
  {id:'m19', name:'สุนิสา ย.', nick:'สุนิสา', coach:'แนน', join:[-70,10,0], contact:[-70,11,0], reply:[-70,12,0], lastReply:[-5,19,0], tags:{job:'นักการตลาด', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-68],[2,-50],[3,-30],[4,-15]], follows:[-56,-42,-28,-14], exams:{1:19,2:18,3:17,4:18}, hw:[{ep:2,n:1,sub:-45,rev:-44,pass:true},{ep:2,n:2,sub:-42,rev:-41,pass:true},{ep:2,n:3,sub:-38,rev:-37,pass:true},{ep:3,n:1,sub:-25,rev:-24,pass:true},{ep:3,n:2,sub:-22,rev:-21,pass:true},{ep:3,n:3,sub:-18,rev:-17,pass:true}], grad:-5, adv:{calls:[['โทร',-4,11]], talk:[0,11,0], pick:'lek', ch:'โทร', memo:'ดูกราฟได้หลังเลิกงาน อยากวางแผนสัปดาห์ละครั้ง'}},
  {id:'m20', name:'เอกชัย ม.', nick:'เอกชัย', coach:'บีม', join:[-80,10,0], contact:[-80,12,0], reply:[-80,13,0], lastReply:[-20,19,0], tags:{job:'วิศวกร', screen:0, level:2, asset:'TFEX', bkk:false}, lessons:[[1,-78],[2,-60],[3,-45],[4,-32]], exams:{1:18,2:17,3:18,4:17}, grad:-20, adv:{talk:[-19,11,0], pick:'nof', ch:'โทร', memo:'เทรด TFEX อยู่แล้ว อยากได้ระบบที่ไม่ต้องเฝ้าจอ', set:[-19,14,0], coach:'nof'}},
- {id:'m21', name:'กัญญา ต.', nick:'กัญญา', coach:'ต้น', join:[-20,10,0], contact:[-20,15,0], reply:[-19,9,0], lastReply:[-3,19,0], tags:{job:'ฟรีแลนซ์', screen:0, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-18],[2,-8]], follows:[-5], exams:{1:17}, hw:[{ep:2,n:1,sub:-3}]},
+ {id:'m21', name:'กัญญา ต.', nick:'กัญญา', coach:'ต้น', join:[-20,10,0], contact:[-20,15,0], reply:[-19,9,0], lastReply:[-3,19,0], tags:{job:'ฟรีแลนซ์', screen:0, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-18],[2,-8]], follows:[-5], exams:{1:17}, hw:[{ep:2,n:1,sub:-3,text:'ตีแนวรับ 3 เส้น 41.25 / 40.50 / 39.75 แนวต้าน 43.00 ตามจุดที่ราคาเคยกลับตัว'}]},
  {id:'m22', name:'ภาณุ ส.', nick:'ภาณุ', coach:'ต้น', join:[-60,10,0], contact:[-60,13,0], reply:[-60,16,0], lastReply:[-10,19,0], tags:{job:'แพทย์', screen:2, level:1, asset:'หุ้นต่างประเทศ', bkk:true}, lessons:[[1,-58],[2,-40],[3,-15]], follows:[-24,-10], exams:{1:18,2:17}, hw:[{ep:2,n:1,sub:-30,rev:-29,pass:true},{ep:2,n:2,sub:-25,rev:-24,pass:true},{ep:2,n:3,sub:-20,rev:-19,pass:true}]},
  {id:'m23', name:'ดารุณี แ.', nick:'ดารุณี', coach:'บีม', join:[-10,10,0], contact:[-10,12,0], reply:[-10,13,0], lastReply:[-4,19,0], tags:{job:'พนักงานธนาคาร', screen:1, level:1, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-8]]},
- {id:'m24', name:'วรพล ค.', nick:'วรพล', coach:'แนน', join:[-25,10,0], contact:[-25,12,0], reply:[-25,14,0], lastReply:[-1,19,0], tags:{job:'พนักงานขาย', screen:0, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-24],[2,-3]], follows:[-11], exams:{1:16}, hw:[{ep:2,n:1,sub:-1}]},
+ {id:'m24', name:'วรพล ค.', nick:'วรพล', coach:'แนน', join:[-25,10,0], contact:[-25,12,0], reply:[-25,14,0], lastReply:[-1,19,0], tags:{job:'พนักงานขาย', screen:0, level:1, asset:'หุ้นไทย', bkk:false}, lessons:[[1,-24],[2,-3]], follows:[-11], exams:{1:16}, hw:[{ep:2,n:1,sub:-1,text:'แนวรับ 118 เพราะเป็น low เดิมเดือนที่แล้ว แนวต้าน 124 จุดที่ราคาโดนขายลง'}]},
  {id:'m25', name:'ศุภชัย อ.', nick:'ศุภชัย', coach:'บีม', join:[-50,10,0], contact:[-50,12,0], reply:[-50,14,0], lastReply:[-8,19,0], tags:{job:'ช่างภาพ', screen:1, level:0, asset:'หุ้นไทย', bkk:true}, lessons:[[1,-48]], follows:[-36,-22,-8]},
  {id:'m26', name:'ลลิตา ฟ.', nick:'ลลิตา', coach:'ต้น', join:[-3,10,0], contact:[-3,12,0], reply:[-2,9,0], lastReply:[-2,9,0], tags:{job:'นักวิเคราะห์ข้อมูล', screen:1, level:2, asset:'หุ้นไทย', bkk:true}},
  {id:'m27', name:'ชนิดา ร.', nick:'ชนิดา', coach:'ต้น', join:[-70,10,0], contact:[-70,12,0], reply:[-70,13,0], lastReply:[-2,19,0], tags:{job:'พนักงานบริษัท', screen:1, level:1, asset:'ทอง', bkk:true}, lessons:[[1,-68],[2,-48],[3,-28],[4,-12]], follows:[-56,-42,-28,-14], exams:{1:18,2:17,3:19,4:18}, hw:[{ep:2,n:1,sub:-44,rev:-43,pass:true},{ep:2,n:2,sub:-40,rev:-39,pass:true},{ep:2,n:3,sub:-36,rev:-35,pass:true},{ep:3,n:1,sub:-24,rev:-23,pass:true},{ep:3,n:2,sub:-20,rev:-19,pass:true},{ep:3,n:3,sub:-16,rev:-15,pass:true}], grad:0},
@@ -318,7 +538,8 @@ const M = SEED.map(s => ({
   lessons:(s.lessons || []).map(([ep, o]) => ({ep, at:at(o, 9)})),
   follows:(s.follows || []).map(o => at(o, 11)),
   attempts:(s.attempts || []).map(([ch, o]) => ({ch, at:at(o, 14)})),
-  hw:(s.hw || []).map(h => ({ep:h.ep, n:h.n, sub:at(h.sub, 10), rev:h.rev != null ? at(h.rev, 16) : null, pass:!!h.pass})),
+  hw:(s.hw || []).map(h => ({ep:h.ep, n:h.n, sub:at(h.sub, 10), rev:h.rev != null ? at(h.rev, 16) : null, pass:!!h.pass, text:h.text || '', note:h.note || ''})),
+  bk:{...(s.bk || {})}, chall:null, notes:[],
   exams:{...(s.exams || {})},
   pause: s.pause ? {...s.pause, start:at(s.pause.start, 10), ret:null, comeback:null} : null,
   ft: s.ft ? {...s.ft, since:at(s.ft.since, 11), screenAt: s.ft.screenAt != null ? at(s.ft.screenAt, 14) : null, hwSub: s.ft.hwSub != null ? at(s.ft.hwSub, 10) : null, advAt:null} : null,
@@ -408,7 +629,7 @@ function infoOf(m, t, st) {
 }
 
 /* ============ state + plumbing ============ */
-const S = {now:new Date(BASE), coach:'แนน', view:'today', sel:'m07', mv:'m07', ftSel:'m17', sf:'all', smode:'heat', quiz:null, form:null, advSel:'m28', advForm:null};
+const S = {now:new Date(BASE), coach:'แนน', view:'today', sel:'m07', mv:'m07', ftSel:'m17', sf:'all', smode:'heat', quiz:null, form:null, advSel:'m28', advForm:null, bell:false, seenAt:at(0, 18), hwTab:'wait', hwFocus:null, wk:null, evSel:null, ctypes:null, upl:{}, cpick:{}, att:{}, cbk:{}};
 let ACT = {}, seq = 0;
 const gateTxt = g => g === 'web' ? 'สมช ขอผ่านหน้าเว็บ' : 'ประตู ' + g;
 const A = fn => { const k = 'a' + (++seq); ACT[k] = fn; return k; };
@@ -417,11 +638,31 @@ const now = () => new Date(S.now);
 const log = (m, text) => m.log.push({at:now(), text});
 const mine = () => M.filter(m => m.join <= S.now && (S.coach === 'all' || m.coach === S.coach));
 const visible = () => M.filter(m => m.join <= S.now);
+const ini = n => { const c = [...String(n)]; return (/[เแโใไ]/.test(c[0]) ? c[1] : c[0]) || '?'; };
+const mav = (m, px = 36) => `<span class="mav" aria-hidden="true" style="--c:${ST[statusOf(m, now()) || 'up'].c};width:${px}px;height:${px}px;font-size:${Math.round(px * .42)}px">${esc(ini(m.nick))}</span>`;
+const cav = (name, px = 30) => `<span class="mav" aria-hidden="true" style="--c:#e3b857;width:${px}px;height:${px}px;font-size:${Math.round(px * .42)}px">${esc(ini(name))}</span>`;
+const ico = (n, cls = 'i-g', px = 19) => `<span class="ico ${cls}">${ic(n, px)}</span>`;
+const ph = (k, title, sub, acts = '') => `<div class="ph"><div><div class="hk"><span class="nS">SPTR</span>${k}</div><h1>${title}</h1>${sub ? `<p>${sub}</p>` : ''}</div>${acts ? `<div class="pa">${acts}</div>` : ''}</div>`;
+const sh = (icon, cls, title, extra = '', more = '') => `<div class="sh">${ico(icon, cls + ' sm', 16)}<h3>${title}</h3>${extra ? `<span class="n">${extra}</span>` : ''}${more ? `<span class="more">${more}</span>` : ''}</div>`;
+const kc = (i, cls, lb, vl, note = '', sp = null) => `<div class="kc">${ico(i, cls)}${sp ? spark(sp, cls === 'i-ro' ? '#ff7a90' : cls === 'i-gr' ? '#56d68a' : cls === 'i-bl' ? '#7aa2ff' : cls === 'i-pu' ? '#b69cff' : '#e3b857') : ''}<div class="kl">${lb}</div><div class="kv">${vl}</div>${note ? `<div class="kn">${note}</div>` : ''}</div>`;
+function spark(vals, color = '#e3b857', w = 110, h = 40) {
+  const mx = Math.max(...vals), mn = Math.min(...vals), rg = mx - mn || 1;
+  const pts = vals.map((v, i) => [(i / (vals.length - 1) * (w - 6) + 3).toFixed(1), (h - 5 - (v - mn) / rg * (h - 10)).toFixed(1)]);
+  return `<svg class="spk" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${pts[pts.length - 1][0]}" cy="${pts[pts.length - 1][1]}" r="3.2" fill="${color}"/></svg>`;
+}
+function donut(parts, center, label, size = 124) {
+  const tot = parts.reduce((a, p) => a + p.v, 0) || 1, R = 46, C = 2 * Math.PI * R; let off = 0;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 120 120" role="img" aria-label="${esc(label)} ${center}"><circle cx="60" cy="60" r="${R}" fill="none" stroke="#1f2b46" stroke-width="14"/>${parts.map(p => { const len = p.v / tot * C; const x = `<circle cx="60" cy="60" r="${R}" fill="none" stroke="${p.c}" stroke-width="14" stroke-dasharray="${Math.max(0, len - 1.5)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 60 60)"/>`; off += len; return x; }).join('')}<text x="60" y="60" text-anchor="middle" font-size="24" font-weight="700" fill="#eef2fa">${center}</text><text x="60" y="78" text-anchor="middle" font-size="11" fill="#9aa6bd">${esc(label)}</text></svg>`;
+}
+function ring(v, label, size = 150) {
+  const R = 58, C = 2 * Math.PI * R, id = 'rg' + (++gid);
+  return `<svg width="${size}" height="${size}" viewBox="0 0 150 150" role="img" aria-label="${esc(label)} ${v}%"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6d983"/><stop offset="1" stop-color="#d9a63f"/></linearGradient></defs><circle cx="75" cy="75" r="${R}" fill="none" stroke="#1f2b46" stroke-width="13"/><circle cx="75" cy="75" r="${R}" fill="none" stroke="url(#${id})" stroke-width="13" stroke-linecap="round" stroke-dasharray="${C * v / 100} ${C}" transform="rotate(-90 75 75)"/><text x="75" y="80" text-anchor="middle" font-size="34" font-weight="700" fill="#f3d98f">${v}%</text><text x="75" y="101" text-anchor="middle" font-size="11.5" fill="#9aa6bd">${esc(label)}</text></svg>`;
+}
 const chip = st => st ? `<span class="chip"><i style="background:${ST[st].c}"></i>${ST[st].name}</span>` : '';
 function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2200); }
 function closeModal() { $('#modal').classList.add('hidden'); $('#modal').innerHTML = ''; }
 function done(msg) { closeModal(); render(); if (msg) toast(msg); }
-function go(v, id) { S.view = v; if (v === 'profile' && id) S.sel = id; if (v === 'member' && id) { S.mv = id; S.quiz = null; } if (v === 'ft' && id) { S.ftSel = id; S.form = null; } if (v === 'adv' && id) { S.advSel = id; S.advForm = null; } render(); window.scrollTo(0, 0); }
+function go(v, id) { S.view = v; S.bell = false; if (v === 'hw' && id) { S.hwFocus = id; S.hwTab = 'wait'; } if (v === 'sched' && id) S.evSel = id; if (v === 'profile' && id) S.sel = id; if (v === 'member' && id) { S.mv = id; S.quiz = null; } if (v === 'ft' && id) { S.ftSel = id; S.form = null; } if (v === 'adv' && id) { S.advSel = id; S.advForm = null; } render(); window.scrollTo(0, 0); }
 
 document.addEventListener('click', e => {
   const a = e.target.closest('[data-a]'); if (a && ACT[a.dataset.a]) { e.preventDefault(); ACT[a.dataset.a](e); return; }
@@ -430,6 +671,14 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('change', e => { const c = e.target.closest('[data-ch]'); if (c && ACT[c.dataset.ch]) ACT[c.dataset.ch](e); });
 document.addEventListener('input', e => { const c = e.target.closest('[data-in]'); if (c && ACT[c.dataset.in]) ACT[c.dataset.in](e); });
+document.addEventListener('keydown', e => {
+  if (e.target.id === 'q' && e.key === 'Enter') { const b = $('#sres .it'); if (b) b.click(); }
+  if (e.key === 'Escape') { const r = $('#sres'); if (r) r.hidden = true; if (S.bell) { S.bell = false; S.seenAt = now(); renderTop(); } if (!$('#modal').classList.contains('hidden')) closeModal(); }
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.srch')) { const r = $('#sres'); if (r) r.hidden = true; }
+  if (S.bell && !e.target.closest('.bellw') && e.target.isConnected) { S.bell = false; S.seenAt = now(); renderTop(); }
+});
 const tipEl = $('#tip');
 document.addEventListener('mouseover', e => { const t = e.target.closest('[data-tip]'); if (!t) return; tipEl.textContent = t.dataset.tip; tipEl.style.display = 'block'; });
 document.addEventListener('mousemove', e => { if (tipEl.style.display === 'block') { tipEl.style.left = (e.clientX + 12) + 'px'; tipEl.style.top = (e.clientY + 12) + 'px'; } });
@@ -479,7 +728,7 @@ function actionsFor(m, a) {
       {label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'},
     ]), 'pri');
     case 'follow': return B('ส่ง LINE', () => lineModal(m, 'follow', () => { m.follows.push(now()); log(m, 'Follow ทาง LINE'); })) + B('โทรแล้ว', () => { m.follows.push(now()); log(m, 'โทร Follow'); done('บันทึก Follow แล้ว'); });
-    case 'hw': return B('ตรวจแล้ว: ผ่าน', () => { a.hw.rev = now(); a.hw.pass = true; log(m, `ตรวจการบ้าน ${EPN[a.hw.ep]} ข้อ ${a.hw.n}: ผ่าน`); done('บันทึกผลตรวจแล้ว'); }, 'pri');
+    case 'hw': return B('ตรวจแล้ว: ผ่าน', () => { a.hw.rev = now(); a.hw.pass = true; a.hw.note = ''; done('บันทึกผลตรวจแล้ว · แจ้ง สมช แล้ว'); }, 'pri') + B('ส่งกลับให้แก้', () => hwFixModal(m, a.hw));
     case 'comeback': return B('ส่ง Comeback pack', () => lineModal(m, 'comeback', () => { m.pause.comeback = now(); log(m, 'ส่ง Comeback pack'); }), 'pri') + B('กลับมาเรียนแล้ว', () => { m.pause.ret = now(); log(m, 'กลับมาเรียน (เริ่มนับรอบใหม่)'); done(`คุณ${m.nick}กลับมาเรียนแล้ว`); });
     case 'ftInvite': return B('นัด Screening พรุ่งนี้', () => { const d = addDays(dOnly(now()), 1); d.setHours(14); m.ft.status = 'scheduled'; m.ft.screenAt = d; m.ft.channel = m.tags && m.tags.bkk ? 'onsite' : 'online'; log(m, `นัด Screening ${fd(d)} 14:00`); done('นัด Screening แล้ว'); });
     case 'ftScreen': return B('เปิดฟอร์ม Screening', () => go('ft', m.id), 'pri');
@@ -489,83 +738,107 @@ function actionsFor(m, a) {
 }
 
 /* ============ layout ============ */
+const NAVS = [
+  ['งานโค้ช', [['today', 'home', 'งานวันนี้'], ['screener', 'target', 'Member Screener'], ['hw', 'note', 'ตรวจการบ้าน'], ['ft', 'flame', 'Fast Track'], ['sched', 'cal', 'ตารางคลาส + การจอง']]],
+  ['ทีม CS + หลังบ้าน', [['cs', 'headset', 'ส่งต่อ CS'], ['adv', 'users', 'ตั้งโค้ช Advance'], ['content', 'play', 'คลิปบทเรียน']]],
+  ['รายงาน', [['report', 'trend', 'Report วันศุกร์']]],
+  ['มุมมอง สมช', [['member', 'tv', 'LINE + หน้าเว็บ สมช']]],
+];
 function renderSide() {
   const t = now(), list = mine();
-  const nToday = list.reduce((s, m) => s + alertsOf(m, t).filter(a => a.pri < 2).length, 0);
-  const nFT = visible().filter(m => m.ft && m.ft.since <= t && m.ft.status !== 'adv').length;
-  const nCS = visible().filter(m => { const st = statusOf(m, t); return (st === 'cs' && !m.cs1At) || (st === 'stop' && !m.cs2At); }).length;
-  const nAdv = advTodo(t);
-  const nav = (v, label, n) => `<button class="nav ${S.view === v || (v === 'screener' && S.view === 'profile') ? 'on' : ''}" data-go="${v}">${label}${n ? `<span class="cnt">${n}</span>` : ''}</button>`;
+  const cnt = {today:list.reduce((a, m) => a + alertsOf(m, t).filter(x => x.pri < 2).length, 0), hw:hwQueue(t).length, ft:visible().filter(m => m.ft && m.ft.since <= t && m.ft.status !== 'adv').length,
+    cs:visible().filter(m => { const st = statusOf(m, t); return (st === 'cs' && !m.cs1At) || (st === 'stop' && !m.cs2At); }).length, adv:advTodo(t)};
+  const nav = ([v, i, label]) => `<button class="nav ${S.view === v || (v === 'screener' && S.view === 'profile') ? 'on' : ''}" data-go="${v}"><span class="nl">${ic(i, 18)}${label}</span>${cnt[v] ? `<span class="cnt">${cnt[v]}</span>` : ''}</button>`;
   $('#side').innerHTML = `<div class="logo"><i role="img" aria-label="Super Trader Republic"></i><small>หลังบ้าน · MEMBER SYSTEM</small></div>
-    <div class="sec">มุมมองโค้ช</div>
-    ${nav('today', 'งานวันนี้', nToday)}${nav('screener', 'Member Screener')}${nav('ft', 'Fast Track', nFT)}${nav('cs', 'ส่งต่อ CS', nCS)}${nav('report', 'Report วันศุกร์')}
-    <div class="sec">ทีม CS + หลังบ้าน</div>
-    ${nav('adv', 'ตั้งโค้ช Advance', nAdv)}
-    <div class="sec">มุมมอง สมช</div>
-    ${nav('member', 'LINE + หน้าเว็บ สมช')}
-    <div class="sec">ดูในนาม</div>
-    <select aria-label="ดูในนาม" data-ch="${A(e => { S.coach = e.target.value; render(); })}">
-      ${COACHES.map(c => `<option value="${c}" ${S.coach === c ? 'selected' : ''}>โค้ช${c}</option>`).join('')}
-      <option value="all" ${S.coach === 'all' ? 'selected' : ''}>หัวหน้า (ทุกโค้ช)</option>
-    </select>
-    <div class="lkbox"><span class="linkdot" data-tip="ข้อมูลของคุณมณีรัตน์ใช้ร่วมกับหน้าเว็บสมาชิก เปิดคู่กันในเบราว์เซอร์เดียวกัน กดฝั่งไหนก็ขึ้นอีกฝั่งทันที"><i></i>เชื่อมหน้าเว็บสมาชิกอยู่</span><span class="note">คุณมณีรัตน์ใช้ข้อมูลชุดเดียวกันทั้งสองฝั่ง</span><div class="lkact"><a class="abtn" href="${FRONT_URL}" target="_blank" rel="noopener">หน้าเว็บสมาชิก ↗</a>${B('รีเซ็ตข้อมูล', linkResetAsk, 'jump')}</div></div>
-    <div class="sfoot">ต้นแบบเพื่อดูภาพการใช้งานจริง · รายชื่อและตัวเลขเป็นข้อมูลสมมติ</div>`;
+    ${NAVS.map(([sec, items]) => `<div class="sec">${sec}</div>${items.map(nav).join('')}`).join('')}
+    <div class="lkbox"><span class="linkdot" data-tip="ข้อมูลของคุณมณีรัตน์ใช้ร่วมกับหน้าเว็บสมาชิก เปิดคู่กันในเบราว์เซอร์เดียวกัน กดฝั่งไหนก็ขึ้นอีกฝั่งทันที"><i></i>เชื่อมหน้าเว็บสมาชิกอยู่</span><div class="lkact"><a class="abtn" href="${FRONT_URL}" target="_blank" rel="noopener">หน้าเว็บสมาชิก ↗</a>${B('รีเซ็ตข้อมูล', linkResetAsk, 'jump')}</div></div>
+    <div class="ucard">${S.coach === 'all' ? cav('หัวหน้า', 34) : cav(S.coach, 34)}<select aria-label="ดูในนาม" data-ch="${A(e => { S.coach = e.target.value; render(); })}">${COACHES.map(c => `<option value="${c}" ${S.coach === c ? 'selected' : ''}>โค้ช${c}</option>`).join('')}<option value="all" ${S.coach === 'all' ? 'selected' : ''}>หัวหน้าทีม (ทุกโค้ช)</option></select></div>
+    <div class="sfoot">ต้นแบบ · รายชื่อและตัวเลขเป็นข้อมูลสมมติ</div>`;
+}
+/* activity feed for the bell: what happened in the last 3 days (member side + team side) */
+function feed(t) {
+  const from = addDays(t, -3), L = S.coach === 'all' ? visible() : mine(), out = [];
+  const add = (at, icon, cls, text, go) => { if (at && at <= t && at > from) out.push({at, icon, cls, text, go}); };
+  L.forEach(m => {
+    add(m.join, 'user', 'i-bl', `สมช ใหม่: คุณ${m.name} สมัครเข้า Basic`, ['profile', m.id]);
+    if (m.reply) add(m.reply, 'msg', 'i-gr', `คุณ${m.nick}ตอบกลับ LINE แล้ว`, ['profile', m.id]);
+    m.hw.forEach(h => add(h.sub, 'note', 'i-g', `คุณ${m.nick}ส่งการบ้าน ${EPN[h.ep]} ข้อ ${h.n}`, ['hw', m.id]));
+    if (m.ft) { add(m.ft.since, 'flame', 'i-pu', `คุณ${m.nick}เข้า Fast Track`, ['ft', m.id]); add(m.ft.hwSub, 'note', 'i-pu', `คุณ${m.nick}ส่งการบ้าน Fast Track`, ['hw', m.id]); }
+    add(m.grad, 'award', 'i-g', `คุณ${m.nick}จบ Basic · รอ CS ติดต่อเรื่องโค้ช`, ['adv', m.id]);
+  });
+  visible().forEach(m => { if (m.adv.csReq) add(m.adv.csReq.at, 'headset', 'i-bl', `คุณ${m.nick}กด "ให้ CS ติดต่อกลับ" จากหน้าเว็บ`, ['adv', m.id]); if (m.chall) add(new Date(m.chall.at), 'target', 'i-pu', `คุณ${m.nick}ส่งคำตอบ Chart Challenge`, ['hw', 'chall']); });
+  REQ.forEach(r => { const m = byId(r.m); add(r.at, 'users', 'i-pu', r.web ? `คุณ${m.nick}ขอเพิ่มโค้ช${cn(r.coach)}ผ่านหน้าเว็บ` : `${r.sales}ส่งคำขอเพิ่มโค้ช${cn(r.coach)} ของคุณ${m.nick}`, ['adv', r.m]); add(r.paidAt, 'check', 'i-gr', `คุณ${m.nick}ชำระค่าโค้ช${cn(r.coach)}แล้ว · รอหลังบ้านเพิ่ม`, ['adv', r.m]); });
+  WEBFB.forEach(f => add(new Date(f.at), 'heart', 'i-ro', `คุณมณีรัตน์ส่งความคิดเห็น ${'★'.repeat(f.stars)}`, ['report']));
+  return out.sort((a, b) => b.at - a.at).slice(0, 14);
+}
+function searchShow(q) {
+  const box = $('#sres'), t = now(); q = q.trim();
+  if (!q) { box.hidden = true; return; }
+  const res = visible().filter(m => (m.name + ' ' + m.nick).includes(q)).slice(0, 7);
+  box.innerHTML = res.map(m => `<button class="it" data-go="profile:${m.id}">${mav(m, 30)}<span class="who"><span class="wn"><b>คุณ${esc(m.name)}</b><span>${ST[statusOf(m, t)].name} · โค้ช${m.coach}</span></span></span></button>`).join('') || '<div class="empty" style="padding:8px 10px">ไม่พบ สมช ชื่อนี้</div>';
+  box.hidden = false;
 }
 function renderTop() {
-  const t = now();
+  const t = now(), items = feed(t), unread = items.filter(x => x.at > S.seenAt).length, urgent = mine().reduce((a, m) => a + alertsOf(m, t).filter(x => x.pri === 0).length, 0);
+  const openAt = x => A(() => { S.bell = false; S.seenAt = now(); if (x.go[0] === 'hw' && x.go[1] === 'chall') { S.hwTab = 'chall'; go('hw'); } else go(...x.go); });
   $('#top').innerHTML = `<div><div class="simlbl">วันที่จำลอง · วันเดียวกับหน้าเว็บ</div><div class="simdate">${fdl(t)} · ${ftm(t)} น.</div></div>
-    ${B('−1 วัน', () => { S.now = addDays(S.now, -1); render(); })}${B('+1 วัน', () => { S.now = addDays(S.now, 1); render(); })}${B('+1 สัปดาห์', () => { S.now = addDays(S.now, 7); render(); })}${B('+1 เดือน', () => { S.now = addMonths(S.now, 1); render(); })}${B('กลับวันนี้', () => { S.now = new Date(BASE); render(); }, 'ghost')}
+    <div class="tctl" role="group" aria-label="เลื่อนวันที่จำลอง">${B('−1 วัน', () => { S.now = addDays(S.now, -1); render(); })}${B('+1 วัน', () => { S.now = addDays(S.now, 1); render(); })}${B('+1 สัปดาห์', () => { S.now = addDays(S.now, 7); render(); })}${B('+1 เดือน', () => { S.now = addMonths(S.now, 1); render(); })}${B('วันนี้', () => { S.now = new Date(BASE); render(); })}</div>
     <select aria-label="ข้ามไปวันสำคัญ" style="padding:5px 10px;font-size:13px;border-radius:999px" data-ch="${A(e => { if (e.target.value) { S.now = at(+e.target.value, 18); render(); } })}"><option value="">ข้ามไปวันสำคัญ…</option><option value="2">ศ. 25 ก.ย. · Report วันศุกร์</option><option value="15">พฤ. 8 ต.ค. · วันคืนสนาม</option><option value="19">จ. 12 ต.ค. · Sideway</option></select>
-    <span class="mockflag"><span class="flag">ข้อมูลสมมติ</span></span>`;
+    <span style="margin-left:auto"></span>
+    <div class="srch">${ic('search', 16)}<input type="text" id="q" placeholder="ค้นหา สมช…" autocomplete="off" aria-label="ค้นหา สมช" data-in="${A(e => searchShow(e.target.value))}"><div class="pop sres" id="sres" hidden></div></div>
+    <div class="bellw"><button class="ibtn" aria-label="การแจ้งเตือน${unread ? ` · ใหม่ ${unread}` : ''}" aria-expanded="${S.bell}" data-a="${A(() => { S.bell = !S.bell; if (!S.bell) S.seenAt = now(); renderTop(); })}">${ic('bell', 18)}${unread + urgent ? `<span class="bdg">${unread + urgent}</span>` : ''}</button>
+      ${S.bell ? `<div class="pop npanel" role="dialog" aria-label="การแจ้งเตือน"><h4>การแจ้งเตือน${B('อ่านทั้งหมด', () => { S.bell = false; S.seenAt = now(); renderTop(); }, 'ghost')}</h4>
+        ${urgent ? `<button class="it" data-a="${A(() => { S.bell = false; S.seenAt = now(); go('today'); })}">${ico('flag', 'i-ro sm', 16)}<span class="tx"><b>งานด่วน ${urgent} งาน</b><small>ดูในงานวันนี้</small></span></button>` : ''}
+        ${items.map(x => `<button class="it ${x.at > S.seenAt ? 'new' : ''}" data-a="${openAt(x)}">${ico(x.icon, x.cls + ' sm', 16)}<span class="tx">${esc(x.text)}<small>${fd(x.at)} · ${ftm(x.at)} น.</small></span></button>`).join('') || '<div class="empty" style="padding:8px 10px">ไม่มีความเคลื่อนไหว 3 วันล่าสุด</div>'}</div>` : ''}</div>`;
 }
 
 /* ============ view: today ============ */
+const AIC = {ipo:'user', pend:'clock', cs1:'headset', cs2:'headset', unreach:'x', down:'trend', side:'trend', m3:'clock', follow:'msg', hw:'note', comeback:'rw', ftInvite:'flame', ftScreen:'flame', ftHw:'note'};
 function taskRow(m, as) {
-  return `<div class="task"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> ${chip(statusOf(m, now()))}${S.coach === 'all' ? ` <span class="muted" style="font-size:12px">· โค้ช${m.coach}</span>` : ''}
-    ${as.map(a => `<div class="tt">${a.title}</div><div class="ss">${a.sub}</div>`).join('')}</div><div class="acts">${as.map(a => actionsFor(m, a)).join('')}</div></div>`;
+  const pc = as.some(a => a.pri === 0) ? '#ff6b7d' : as.some(a => a.pri === 1) ? '#f0b44c' : '#7aa2ff';
+  return `<div class="tk"><span class="pb" style="background:${pc}"></span>${mav(m, 40)}<div class="tl2"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> ${chip(statusOf(m, now()))}${S.coach === 'all' ? ` <span class="muted" style="font-size:12px">· โค้ช${m.coach}</span>` : ''}</div>
+    ${as.map(a => `<div class="ti">${ic(AIC[a.k] || 'info', 16)}<div>${a.title}<small>${a.sub}</small></div></div>`).join('')}</div><div class="acts">${as.map(a => actionsFor(m, a)).join('')}</div></div>`;
+}
+function agRow(e, t) {
+  const seat = e.type === 'basic' ? `onsite ${e.os.seats - evLeft(e)}/${e.os.seats}` : e.type === 'care' ? `ว่าง ${evLeft(e)}/12 ช่วง` : '';
+  return `<div class="ag ${sameDay(e.at, t) ? 'today' : ''}" data-a="${A(() => { S.evSel = e.id; S.wk = mondayOf(e.at); go('sched'); })}"><div class="d"><span>${TH_DS[e.at.getDay()]}</span><b>${e.at.getDate()}</b></div><div><b style="font-size:13.5px">${esc(evName(e))}</b><div class="note">${ftm(e.at)}–${e.end}${seat ? ' · ' + seat : ''}${meBk()[e.id] ? ' · คุณมณีรัตน์จอง' : ''}</div></div></div>`;
 }
 function vToday() {
   const t = now(), list = mine();
   const tasks = []; list.forEach(m => alertsOf(m, t).forEach(a => tasks.push({m, a})));
   const G = [0, 1, 2].map(p => { const g = []; tasks.filter(x => x.a.pri === p).forEach(x => { const e = g.find(y => y.m === x.m); e ? e.as.push(x.a) : g.push({m:x.m, as:[x.a]}); }); return g; });
-  const sts = list.map(m => statusOf(m, t));
-  const cnt = k => sts.filter(s => s === k).length;
-  const act = cnt('up') + cnt('side') + cnt('down');
-  const idx = act ? Math.round(cnt('up') / act * 100) : 0;
-  const hwN = tasks.filter(x => x.a.k === 'hw' || x.a.k === 'ftHw').length;
-  const c = classOn(t), nc = nextClass(null, addDays(t, c ? 1 : 0));
+  const sts = list.map(m => statusOf(m, t)), cnt = k => sts.filter(x => x === k).length;
+  const act = cnt('up') + cnt('side') + cnt('down'), idx = act ? Math.round(cnt('up') / act * 100) : 0;
+  const hwN = hwQueue(t).length, urgent = tasks.filter(x => x.a.pri === 0).length;
+  const c = classOn(t), nc = nextClass(null, addDays(t, c ? 1 : 0)), hh = t.getHours();
+  const who = S.coach === 'all' ? 'หัวหน้าทีม Basic' : 'โค้ช' + S.coach;
   let banners = '';
-  banners += c ? `<div class="banner cls"><b>วันนี้มีคลาสสด</b> วัน${c.day} "${c.kind}" · ${c.label}${c.day === 'พุธ' ? ' · เปิด Streaming ตลาดจริง' : ''}</div>`
-               : `<div class="banner cls">วันนี้ไม่มีคลาสสด · ครั้งถัดไป วัน${nc.day} ${fd(nc.date)} · ${nc.label}</div>`;
-  if (t.getDay() === 5) banners += `<div class="banner rep"><b>วันศุกร์: ส่ง Report ก่อนประชุมหัวหน้าวันจันทร์</b><span class="sp">${B('เปิด Report', () => go('report'), 'pri')}</span></div>`;
-  if (t.getDate() === 8) banners += `<div class="banner cb"><b>วันที่ 8 วันคืนสนาม</b> มี สมช พักการเรียน ${list.filter(m => statusOf(m, t) === 'sp').length} คน รอส่ง Comeback pack</div>`;
-  const group = (title, color, arr, emptyTxt) => `<div class="card" style="margin-bottom:12px"><div class="grp"><span class="dotl" style="background:${color}"></span>${title} <span class="n">${arr.reduce((n, x) => n + x.as.length, 0)} งาน</span></div>
-    ${arr.length ? arr.map(x => taskRow(x.m, x.as)).join('') : `<div class="empty">${emptyTxt}</div>`}</div>`;
-  const week0 = addDays(dOnly(t), -((t.getDay() + 6) % 7));
-  const wk = [2, 5].map(o => { const d = addDays(week0, o); const cc = classOn(d); return `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:13.5px"><b>${TH_DS[d.getDay()]} ${fd(d)}</b> · ${cc.kind}<div class="note">${cc.label}</div></div>`; }).join('');
-  return `<h1>สวัสดี ${S.coach === 'all' ? 'หัวหน้าทีม Basic' : 'โค้ช' + S.coach}</h1><p class="sub">งานที่ระบบจัดให้วันนี้ เรียงจากด่วนที่สุด</p>
-    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
-      <div class="card kpi"><div class="lb">สมช ที่ดูแล</div><div class="vl">${list.length}</div><div class="note">รวมทุกสถานะ</div></div>
-      <div class="card kpi"><div class="lb">Basic Index (% Uptrend)</div><div class="vl">${idx}%</div><div class="note">จาก ${act} คนที่กำลังเรียน</div></div>
-      <div class="card kpi"><div class="lb">งานด่วน + แจ้งเตือน</div><div class="vl">${tasks.filter(x => x.a.pri < 2).length}</div><div class="note">งานประจำอีก ${tasks.filter(x => x.a.pri === 2).length}</div></div>
-      <div class="card kpi"><div class="lb">การบ้านรอตรวจ</div><div class="vl">${hwN}</div><div class="note">เป้า: ตรวจภายใน 48 ชม.</div></div>
-    </div>
+  if (t.getDay() === 5) banners += `<div class="banner rep">${ic('trend', 18)}<b>วันศุกร์: ส่ง Report ก่อนประชุมหัวหน้าวันจันทร์</b><span class="sp">${B('เปิด Report', () => go('report'), 'pri')}</span></div>`;
+  if (t.getDate() === 8) banners += `<div class="banner cb">${ic('rw', 18)}<b>วันที่ 8 วันคืนสนาม</b> มี สมช พักการเรียน ${list.filter(m => statusOf(m, t) === 'sp').length} คน รอส่ง Comeback pack</div>`;
+  const group = (id, title, color, arr, emptyTxt) => `<div class="card" id="${id}" style="margin-bottom:12px"><div class="sh"><span class="dotl" style="background:${color};width:10px;height:10px"></span><h3>${title}</h3><span class="n">${arr.reduce((n, x) => n + x.as.length, 0)} งาน</span></div>
+    ${arr.length ? arr.map(x => taskRow(x.m, x.as)).join('') : `<div class="empty">${ic('check', 16)} ${emptyTxt}</div>`}</div>`;
+  const wk0 = mondayOf(t), agenda = CALX.filter(e => ['basic', 'care'].includes(e.type) && e.at >= wk0 && e.at < addDays(wk0, 7));
+  const parts = ST_ORDER.filter(k => cnt(k)).map(k => ({k, v:cnt(k), c:ST[k].c}));
+  return `<section class="hero">${art(3100 + t.getDate() * 7, '#e3b857', {n:46, trend:.009})}<div class="hin"><div class="ht"><div class="hk"><span class="nS">SPTR</span>หลังบ้าน · งานวันนี้</div>
+      <h1>${hh < 12 ? 'สวัสดีตอนเช้า' : hh < 17 ? 'สวัสดีตอนบ่าย' : 'สวัสดีตอนเย็น'} ${who}</h1><p>${fdl(t)} · ดูแล สมช ${list.length} คน · งานเรียงจากด่วนที่สุด</p>
+      <div class="hchips"><span class="hchip">${ic('cal', 15)}${c ? `วันนี้มีคลาสสด · ${c.label}` : `คลาสสดถัดไป วัน${nc.day} ${fd(nc.date)} · ${EPN[nc.ep]} · 09:50`}</span>${c && c.day === 'พุธ' ? `<span class="hchip">${ic('tv', 15)}เปิด Streaming ตลาดจริง</span>` : ''}<span class="hchip">${ic('users', 15)}CARE DAY ทุกวันอังคาร 13:00</span></div></div>
+      <div class="hstats"><div class="hs ${urgent ? 'alert' : ''}" data-a="${A(() => { const el = $('#g0'); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); })}"><b>${urgent}</b><span>งานด่วน</span></div><div class="hs" data-go="hw"><b>${hwN}</b><span>การบ้านรอตรวจ</span></div><div class="hs" data-go="screener"><b>${idx}%</b><span>Basic Index</span></div></div></div></section>
     <div class="grid" style="grid-template-columns:2.1fr 1fr;align-items:start">
       <div>${banners}
-        ${group('ด่วน', '#ff6b7d', G[0], 'ไม่มีงานด่วน')}
-        ${group('แจ้งเตือนจากระบบ', '#f0b44c', G[1], 'ไม่มีแจ้งเตือน')}
-        ${group('งานประจำ', '#7aa2ff', G[2], 'ไม่มีงานประจำค้าง')}
+        ${group('g0', 'ด่วน', '#ff6b7d', G[0], 'ไม่มีงานด่วน')}
+        ${group('g1', 'แจ้งเตือนจากระบบ', '#f0b44c', G[1], 'ไม่มีแจ้งเตือน')}
+        ${group('g2', 'งานประจำ', '#7aa2ff', G[2], 'ไม่มีงานประจำค้าง')}
       </div>
       <div class="grid">
+        <div class="card">${sh('cal', 'i-bl', 'คลาส + CARE DAY สัปดาห์นี้', '', '<button class="jump" data-go="sched">ดูตาราง</button>')}${agenda.map(e => agRow(e, t)).join('') || '<div class="empty">ไม่มีคลาสสัปดาห์นี้</div>'}</div>
+        <div class="card">${sh('target', 'i-g', 'สถานะพอร์ต', `${list.length} คน`)}<div class="donut">${donut(parts, list.length, 'สมช')}<div class="lg">${parts.map(p => `<span data-a="${A(() => { S.sf = p.k; go('screener'); })}"><i style="background:${p.c}"></i>${ST[p.k].name}<em>${p.v}</em></span>`).join('')}</div></div></div>
         <div class="hint"><b>ลองเลื่อนเวลาดู (แถบด้านบน · ข้ามไปวันสำคัญ)</b><ul>
-          <li><b>เปิดหน้าเว็บสมาชิกคู่กัน</b> คุณมณีรัตน์ส่งการบ้าน / ขอ Fast Track ในเว็บ งานเด้งขึ้นที่นี่ทันที ตรวจแล้วเว็บของเธอก็อัปเดต</li>
+          <li><b>เปิดหน้าเว็บสมาชิกคู่กัน</b> คุณมณีรัตน์ส่งการบ้าน / ขอ Fast Track / จองคลาสในเว็บ งานเด้งขึ้นที่นี่ทันที ตรวจแล้วเว็บของเธอก็อัปเดต</li>
           <li><b>+1 วัน</b> ถ้ายังไม่ทักคุณธนกร จะเลย 24 ชม. เหมือนคุณภัทรา และคนที่ทักแล้วไม่ตอบจะเด้งให้ส่ง CS</li>
           <li><b>ศ. 25 ก.ย.</b> มีปุ่มเปิด Report และคุณรัชนีถึงวันนัด Screening (ดูในนามโค้ชบีม)</li>
           <li><b>พฤ. 8 ต.ค.</b> วันคืนสนาม รายชื่อคนพักการเรียนขึ้นมาให้ส่ง Comeback pack</li>
           <li><b>จ. 12 ต.ค.</b> คุณมณีรัตน์ (สมัคร 12/08) ขึ้น Sideway ตามตัวอย่างในข้อ 6</li>
-          <li>กดปุ่มในแต่ละงานได้จริง สถานะจะเปลี่ยนตาม</li></ul></div>
-        <div class="card"><h3>คลาสสดสัปดาห์นี้</h3>${wk}</div>
-        <div class="card"><h3>สถานะพอร์ต</h3><div style="display:flex;flex-wrap:wrap;gap:6px">${ST_ORDER.filter(k => cnt(k)).map(k => `<span class="chip" style="cursor:pointer" data-a="${A(() => { S.sf = k; go('screener'); })}"><i style="background:${ST[k].c}"></i>${ST[k].name} ${cnt(k)}</span>`).join('')}</div></div>
+          <li>ค้นหาชื่อ สมช ได้จากช่องค้นหาด้านบน · กระดิ่งรวมความเคลื่อนไหว 3 วันล่าสุด</li></ul></div>
       </div>
     </div>`;
 }
@@ -575,20 +848,21 @@ function vScreener() {
   const t = now(), list = mine().map(m => ({m, st:statusOf(m, t)}));
   const cnt = k => list.filter(x => x.st === k).length;
   const shown = list.filter(x => S.sf === 'all' || x.st === S.sf);
-  const chipsRow = `<div class="fchips">${B(`ทั้งหมด ${list.length}`, () => { S.sf = 'all'; render(); }, 'fchip' + (S.sf === 'all' ? ' on' : ''))}${ST_ORDER.filter(k => cnt(k)).map(k => B(`${ST[k].name} ${cnt(k)}`, () => { S.sf = k; render(); }, 'fchip' + (S.sf === k ? ' on' : ''))).join('')}
-    <span style="margin-left:auto"></span>${B('Heatmap', () => { S.smode = 'heat'; render(); }, 'fchip' + (S.smode === 'heat' ? ' on' : ''))}${B('ตาราง', () => { S.smode = 'table'; render(); }, 'fchip' + (S.smode === 'table' ? ' on' : ''))}</div>`;
+  const filt = A(e => { const q = e.target.value.trim(); document.querySelectorAll('[data-nm]').forEach(el => { el.hidden = !!q && !el.dataset.nm.includes(q); }); });
+  const chipsRow = `<div class="fchips" style="align-items:center">${B(`ทั้งหมด ${list.length}`, () => { S.sf = 'all'; render(); }, 'fchip' + (S.sf === 'all' ? ' on' : ''))}${ST_ORDER.filter(k => cnt(k)).map(k => B(`<i class="dotl" style="background:${ST[k].c};margin-right:6px"></i>${ST[k].name} ${cnt(k)}`, () => { S.sf = k; render(); }, 'fchip' + (S.sf === k ? ' on' : ''))).join('')}
+    <span style="margin-left:auto"></span><div class="srch" style="width:200px">${ic('search', 15)}<input type="text" placeholder="กรองชื่อ…" aria-label="กรองชื่อ สมช" data-in="${filt}"></div>${B(ic('layers', 15) + 'Heatmap', () => { S.smode = 'heat'; render(); }, 'fchip' + (S.smode === 'heat' ? ' on' : ''))}${B(ic('lib', 15) + 'ตาราง', () => { S.smode = 'table'; render(); }, 'fchip' + (S.smode === 'table' ? ' on' : ''))}</div>`;
   let body = '';
   if (S.smode === 'heat') {
-    body = ST_ORDER.filter(k => shown.some(x => x.st === k)).map(k => `<div class="grp" style="margin:6px 0"><span class="dotl" style="background:${ST[k].c}"></span>${ST[k].name} <span class="n">· ${ST[k].th} · ${shown.filter(x => x.st === k).length} คน</span></div>
-      <div class="tiles">${shown.filter(x => x.st === k).map(({m}) => `<div class="tile" data-go="profile:${m.id}" style="--c:${ST[k].c}"><b>${esc(m.name)}</b><span>${infoOf(m, t, k)}</span><span style="opacity:.8">โค้ช${m.coach}${alertsOf(m, t).some(a => a.pri < 2) ? ' · มีแจ้งเตือน' : ''}</span></div>`).join('')}</div>`).join('');
+    body = ST_ORDER.filter(k => shown.some(x => x.st === k)).map(k => `<div class="grp" style="margin:6px 0 8px"><span class="dotl" style="background:${ST[k].c}"></span>${ST[k].name} <span class="n">· ${ST[k].th} · ${shown.filter(x => x.st === k).length} คน</span></div>
+      <div class="tiles">${shown.filter(x => x.st === k).map(({m}) => `<div class="tile" data-go="profile:${m.id}" data-nm="${esc(m.name + m.nick)}" style="--c:${ST[k].c}"><div class="who">${mav(m, 32)}<div class="wn"><b>${esc(m.name)}</b><span>${infoOf(m, t, k)}</span></div></div><span style="margin-top:6px">โค้ช${m.coach}${alertsOf(m, t).some(a => a.pri < 2) ? ' · <b style="color:var(--gold2);display:inline">มีแจ้งเตือน</b>' : ''}</span></div>`).join('')}</div>`).join('');
   } else {
     const rows = shown.sort((a, b) => ST_ORDER.indexOf(a.st) - ST_ORDER.indexOf(b.st)).map(({m, st}) => {
       const cur = lessonAt(m, t), nf = nextFollow(m, t), al = alertsOf(m, t).filter(a => a.pri < 2);
-      return `<tr class="click" data-go="profile:${m.id}"><td><b>${esc(m.name)}</b></td><td>${m.coach}</td><td>${daysSince(m.join, t)} วัน</td><td>${cur ? EPN[cur.ep] : '—'}</td><td>${cur ? daysSince(cur.at, t) + ' วัน' : '—'}</td><td>${chip(st)}</td><td>${al.map(a => esc(a.title)).join('<br>') || '<span class="muted">—</span>'}</td><td>${nf && ['up','side','down'].includes(st) ? fd(nf) : '—'}</td></tr>`;
+      return `<tr class="click" data-go="profile:${m.id}" data-nm="${esc(m.name + m.nick)}"><td><div class="who">${mav(m, 30)}<b>${esc(m.name)}</b></div></td><td>${m.coach}</td><td>${daysSince(m.join, t)} วัน</td><td>${cur ? EPN[cur.ep] : '—'}</td><td>${cur ? daysSince(cur.at, t) + ' วัน' : '—'}</td><td>${chip(st)}</td><td>${al.map(a => esc(a.title)).join('<br>') || '<span class="muted">—</span>'}</td><td>${nf && ['up','side','down'].includes(st) ? fd(nf) : '—'}</td></tr>`;
     }).join('');
     body = `<div class="card" style="padding:6px 8px"><table><tr><th>ชื่อ</th><th>โค้ช</th><th>อายุ สมช</th><th>บทปัจจุบัน</th><th>อยู่บทนี้มา</th><th>สถานะ</th><th>แจ้งเตือน</th><th>Follow ถัดไป</th></tr>${rows}</table></div>`;
   }
-  return `<h1>Member Screener</h1><p class="sub">สแกนสถานะ สมช ทั้งพอร์ตในจอเดียว เหมือนโปรแกรมสแกนหุ้น · กดที่ชื่อเพื่อดูโปรไฟล์</p>${chipsRow}${body}`;
+  return `${ph('สแกนพอร์ต สมช', 'Member Screener', 'สแกนสถานะ สมช ทั้งพอร์ตในจอเดียว เหมือนโปรแกรมสแกนหุ้น · กดที่ชื่อเพื่อดูโปรไฟล์')}${chipsRow}${body}`;
 }
 
 /* ============ view: profile ============ */
@@ -621,7 +895,8 @@ function timeline(m, t) {
   m.lessons.forEach(l => ev.push([l.at, `เข้า ${EPF[l.ep]}`]));
   m.follows.forEach(f => ev.push([f, 'Follow 14 วัน']));
   m.attempts.forEach(a => ev.push([a.at, a.ch === 'LINE' ? 'ส่งไลน์ ไม่ตอบ' : 'โทร ไม่รับสาย']));
-  m.hw.forEach(h => { ev.push([h.sub, `ส่งการบ้าน ${EPN[h.ep]} ข้อ ${h.n}`]); if (h.rev) ev.push([h.rev, `โค้ชตรวจ ${EPN[h.ep]} ข้อ ${h.n}: ผ่าน`]); });
+  m.hw.forEach(h => { ev.push([h.sub, `ส่งการบ้าน ${EPN[h.ep]} ข้อ ${h.n}`]); if (h.rev) ev.push([h.rev, `โค้ชตรวจ ${EPN[h.ep]} ข้อ ${h.n}: ${h.pass ? 'ผ่าน' : 'ส่งกลับให้แก้'}`]); });
+  m.notes.forEach(x => ev.push([x.at, `โน้ต: ${x.text}`]));
   if (m.pause) ev.push([m.pause.start, `พักการเรียน (${m.pause.reason})`]);
   if (m.ft) { ev.push([m.ft.since, `เข้า Fast Track ${gateTxt(m.ft.gate)}`]); if (m.ft.screenAt && m.ft.score) ev.push([m.ft.screenAt, `Screening ได้ ${ftTotal(m.ft.score)}/10`]); if (m.ft.hwSub) ev.push([m.ft.hwSub, 'ส่งการบ้าน Fast Track']); }
   if (m.grad) ev.push([m.grad, 'จบ Basic → Advance']);
@@ -632,35 +907,51 @@ function timeline(m, t) {
   m.log.forEach(l => ev.push([l.at, l.text]));
   return ev.filter(e => e[0] && e[0] <= t).sort((a, b) => b[0] - a[0]).slice(0, 12).map(e => `<li><span class="d">${fd(e[0])} ${ftm(e[0])}</span><span>${esc(e[1])}</span></li>`).join('');
 }
+const LINES = [['classRemind', 'เตือนคลาสสด'], ['follow', 'Follow 14 วัน'], ['sideway', 'ชวนคลาสบทที่ค้าง'], ['nudge', 'ส่งคลิป 3 นาที'], ['ftInvite', 'ชวน Fast Track'], ['comeback', 'Comeback pack']];
+function linePick(m, key = 'classRemind') {
+  const label = (LINES.find(x => x[0] === key) || [0, ''])[1];
+  $('#modal').innerHTML = `<div class="mbox"><div class="mhead">ส่ง LINE ถึงคุณ${esc(m.nick)}</div>
+    <div class="tplk">${LINES.map(([k, l]) => B(l, () => linePick(m, k), 'fchip' + (k === key ? ' on' : ''))).join('')}</div>
+    <div class="mchat"><div class="bub">${TPL[key](m, now())}</div></div>
+    <div class="note">ข้อความสำเร็จรูป ระบบเติมชื่อ บทเรียน และวันคลาสสดให้อัตโนมัติ</div>
+    <div class="mfoot">${B('ยกเลิก', closeModal, 'ghost')}${B(ic('send', 15) + 'ส่งข้อความ', () => { if (['follow', 'sideway', 'nudge'].includes(key)) m.follows.push(now()); log(m, 'ส่ง LINE: ' + label); done(`ส่งข้อความถึงคุณ${m.nick}แล้ว`); }, 'pri')}</div></div>`;
+  $('#modal').classList.remove('hidden');
+}
+function noteModal(m) {
+  let tx = '';
+  advModal(`บันทึกโน้ต · คุณ${esc(m.name)}`, `<textarea id="nt" placeholder="เช่น นัดคุยเรื่องแผนเทรดหลังคลาสเสาร์ · ชอบคุยทาง LINE ช่วงเย็น" data-in="${A(e => { tx = e.target.value; $('#mderr').textContent = ''; })}"></textarea><div class="note" style="margin-top:6px">โน้ตเห็นเฉพาะทีม ไม่ส่งถึง สมช</div>`, 'บันทึกโน้ต',
+    () => { if (!tx.trim()) { $('#mderr').textContent = 'พิมพ์โน้ตก่อนบันทึก'; return; } m.notes.push({at:now(), by:S.coach === 'all' ? 'หัวหน้าทีม' : 'โค้ช' + S.coach, text:tx.trim()}); done('บันทึกโน้ตแล้ว'); });
+}
 function vProfile() {
   const t = now(), m = byId(S.sel); if (!m || m.join > t) return `<p class="sub">ยังไม่มี สมช คนนี้ในวันที่จำลอง</p>`;
   const st = statusOf(m, t), cur = lessonAt(m, t), ty = typeOf(m), al = alertsOf(m, t);
   const grad = m.grad && m.grad <= t;
   const steps = [1, 2, 3, 4].map(ep => { const l = m.lessons.find(x => x.ep === ep && x.at <= t); const isCur = cur && cur.ep === ep && !grad; const isDone = grad || (cur && cur.ep > ep);
     return `<div class="step ${isDone ? 'done' : isCur ? 'cur' : ''}"><b>${EPN[ep]}</b>${isDone ? 'ผ่านแล้ว' : isCur ? `กำลังเรียน · ${daysSince(l.at, t)} วัน` : 'ยังไม่ถึง'}</div>`; }).join('') + `<div class="step ${grad ? 'done' : ''}"><b>จบ Basic</b>${grad ? fd(m.grad) : '—'}</div>`;
-  const hwCell = (ep, n) => { const h = m.hw.find(x => x.ep === ep && x.n === n && x.sub <= t); if (!h) return '<span class="muted">ยังไม่ส่ง</span>'; if (h.rev && h.rev <= t) return '<span style="color:var(--green);font-weight:700">ผ่าน</span>'; return '<span style="color:var(--gold);font-weight:700">รอตรวจ</span>'; };
-  const exams = `<table><tr><th>บท</th><th>ข้อสอบ (20)</th><th>การบ้านกราฟ</th></tr>${[1, 2, 3, 4].map(ep => `<tr><td>${EPN[ep]}</td><td>${m.exams[ep] != null ? m.exams[ep] + '/20' : '<span class="muted">—</span>'}</td><td>${ep === 2 || ep === 3 ? [1, 2, 3].map(n => `ข้อ ${n}: ${hwCell(ep, n)}`).join('<br>') : '<span class="muted">ไม่มี</span>'}</td></tr>`).join('')}</table>`;
-  const tagBox = m.tags ? `<div style="border-radius:12px;padding:12px 14px;background:${ty.c};color:#fff;margin-bottom:10px"><div style="font-size:12px;opacity:.85">Trader Type Quiz</div><div style="font-size:18px;font-weight:700">${ty.name} <span style="font-weight:400;font-size:13px">· ${ty.en}</span></div></div>
+  const hwCell = (ep, n) => { const hs = m.hw.filter(x => x.ep === ep && x.n === n && x.sub <= t), h = hs[hs.length - 1]; if (!h) return '<span class="muted">ยังไม่ส่ง</span>'; if (h.rev && h.rev <= t) return h.pass ? '<span style="color:var(--green);font-weight:700">ผ่าน</span>' : `<span style="color:var(--rose);font-weight:700" data-tip="${esc(h.note)}">ส่งกลับให้แก้</span>`; return '<span style="color:var(--gold);font-weight:700">รอตรวจ</span>'; };
+  const exams = `<table><tr><th>บท</th><th>ข้อสอบ (20)</th><th>การบ้านกราฟ</th></tr>${[1, 2, 3, 4].map(ep => `<tr><td>${EPN[ep]}</td><td>${m.exams[ep] != null ? `<b style="color:${m.exams[ep] >= 16 ? 'var(--green)' : 'var(--rose)'}">${m.exams[ep]}/20</b>` : '<span class="muted">—</span>'}</td><td>${ep === 2 || ep === 3 ? [1, 2, 3].map(n => `ข้อ ${n}: ${hwCell(ep, n)}`).join('<br>') : '<span class="muted">ไม่มี</span>'}</td></tr>`).join('')}</table>`;
+  const tagBox = m.tags ? `<div style="border-radius:14px;padding:12px 14px;background:linear-gradient(135deg,${ty.c},color-mix(in srgb,${ty.c} 60%,#000));color:#fff;margin-bottom:10px"><div style="font-size:12px;opacity:.85">Trader Type Quiz</div><div style="font-size:18px;font-weight:700">${ty.name} <span style="font-weight:400;font-size:13px">· ${ty.en}</span></div></div>
       <span class="tag">${esc(m.tags.job || 'ไม่ระบุอาชีพ')}</span><span class="tag">${SCREEN[m.tags.screen]}</span><span class="tag">ความรู้: ${LEVEL[m.tags.level]}</span><span class="tag">สนใจ: ${esc(m.tags.asset)}</span><span class="tag">${m.tags.bkk ? 'อยู่ กทม. · ชวน onsite ได้' : 'ต่างจังหวัด · เรียน online'}</span>${m.tags.level >= 2 && !m.ft ? '<span class="tag ft">FT candidate</span>' : ''}`
     : `<div class="empty">ยังไม่ได้ทำ Trader Type Quiz · ข้อมูล 4 ข้อจะขึ้นที่นี่อัตโนมัติ</div>`;
-  const ftBox = m.ft ? `<div class="card"><h3>Fast Track · ${gateTxt(m.ft.gate)}</h3><div class="note">${infoOf(m, t, 'gap')}${m.ft.score ? ` · Screening ${ftTotal(m.ft.score)}/10 ${m.ft.score.plan[1] ? '' : '(ไม่มี Stop loss)'}` : ''}</div><div style="margin-top:8px">${B('เปิดใน Fast Track', () => go('ft', m.id))}</div></div>` : '';
-  const pauseBox = m.pause && m.pause.start <= t ? `<div class="card"><h3>พักการเรียน</h3><div class="note">เริ่มพัก ${fdy(m.pause.start)} · ค้างที่ ${EPF[m.pause.ep]}<br>เหตุผล: ${esc(m.pause.reason)} · คาดว่ากลับ: ${esc(m.pause.expect)}${m.pause.ret && m.pause.ret <= t ? `<br>กลับมาเรียน ${fdy(m.pause.ret)} (เริ่มนับรอบเดือนใหม่)` : ''}</div></div>` : '';
-  return `<div style="margin-bottom:10px">${B('← กลับไป Member Screener', () => go('screener'), 'ghost')}</div>
-    <div class="card" style="display:flex;gap:16px;align-items:center;margin-bottom:14px">
-      <div style="flex:1"><h1 style="margin:0">คุณ${esc(m.name)} ${chip(st)}</h1><div class="note" style="font-size:13.5px">โค้ช${m.coach} · สมัคร ${fdy(m.join)} · อายุสมาชิก ${daysSince(m.join, t)} วัน · ${ST[st].th}${cur ? ` · อยู่ ${EPN[cur.ep]} มา ${daysSince(cur.at, t)} วัน` : ''}</div></div>
-      <div class="acts">${B('ดูมุมมอง สมช', () => go('member', m.id))}${m.contact && m.contact <= t ? B('ส่ง LINE เตือนคลาสสด', () => lineModal(m, 'classRemind', () => log(m, 'ส่ง LINE เตือนคลาสสด'))) : ''}</div>
-    </div>
+  const ftBox = m.ft ? `<div class="card">${sh('flame', 'i-pu', 'Fast Track', gateTxt(m.ft.gate))}<div class="note">${infoOf(m, t, 'gap')}${m.ft.score ? ` · Screening ${ftTotal(m.ft.score)}/10 ${m.ft.score.plan[1] ? '' : '(ไม่มี Stop loss)'}` : ''}</div><div style="margin-top:8px">${B('เปิดใน Fast Track', () => go('ft', m.id))}</div></div>` : '';
+  const pauseBox = m.pause && m.pause.start <= t ? `<div class="card">${sh('pause', 'i-mu', 'พักการเรียน')}<div class="note">เริ่มพัก ${fdy(m.pause.start)} · ค้างที่ ${EPF[m.pause.ep]}<br>เหตุผล: ${esc(m.pause.reason)} · คาดว่ากลับ: ${esc(m.pause.expect)}${m.pause.ret && m.pause.ret <= t ? `<br>กลับมาเรียน ${fdy(m.pause.ret)} (เริ่มนับรอบเดือนใหม่)` : ''}</div></div>` : '';
+  const bks = Object.keys(m.bk || {}).map(id => CALX.find(e => e.id === id)).filter(Boolean);
+  const bkBox = bks.length ? `<div class="card">${sh('ticket', 'i-bl', 'การจองคลาส', m.id === ME_ID ? 'จองผ่านหน้าเว็บ' : '')}${bks.map(e => agRow(e, t)).join('')}</div>` : '';
+  const notes = m.notes.length ? `<div class="card">${sh('note', 'i-mu', 'โน้ตทีม', `${m.notes.length} รายการ`)}${m.notes.slice().reverse().map(x => `<div class="quote">${esc(x.text)}<div class="note">${x.by} · ${fd(x.at)} ${ftm(x.at)} น.</div></div>`).join('')}</div>` : '';
+  return `<div style="margin-bottom:10px">${B(ic('back', 15) + 'กลับไป Member Screener', () => go('screener'), 'ghost')}</div>
+    <section class="card phc">${mav(m, 68)}<div style="flex:1;min-width:0"><div class="hk"><span class="nS">SPTR</span>สมช · BASIC · โค้ช${m.coach}</div><h1 style="margin:0">คุณ${esc(m.name)} ${chip(st)}</h1><div class="note" style="font-size:13.5px;margin-top:2px">สมัคร ${fdy(m.join)} · อายุสมาชิก ${daysSince(m.join, t)} วัน · ${ST[st].th}${cur ? ` · อยู่ ${EPN[cur.ep]} มา ${daysSince(cur.at, t)} วัน` : ''}</div></div>
+      <div class="acts">${m.contact && m.contact <= t ? B(ic('msg', 15) + 'ส่ง LINE', () => linePick(m), 'pri') : ''}${B(ic('note', 15) + 'บันทึกโน้ต', () => noteModal(m))}${B(ic('tv', 15) + 'ดูมุมมอง สมช', () => go('member', m.id))}</div></section>
     <div class="grid" style="grid-template-columns:1.75fr 1fr;align-items:start">
       <div class="grid">
-        <div class="card"><h3>กราฟความคืบหน้า</h3><div class="note" style="margin:-4px 0 6px">เส้นแนวนอนยาว = ไม่ขยับบท · เส้นประ = วันครบรอบเดือนที่ระบบเช็ค Sideway · ชี้ที่จุดเพื่อดูรายละเอียด</div>${chart(m, t)}</div>
-        <div class="card"><h3>บทเรียน</h3><div class="steps">${steps}</div></div>
-        <div class="card"><h3>ข้อสอบ + การบ้าน</h3>${exams}</div>
+        <div class="card">${sh('trend', 'i-g', 'กราฟความคืบหน้า')}<div class="note" style="margin:-6px 0 6px">เส้นแนวนอนยาว = ไม่ขยับบท · เส้นประ = วันครบรอบเดือนที่ระบบเช็ค Sideway · ชี้ที่จุดเพื่อดูรายละเอียด</div>${chart(m, t)}</div>
+        <div class="card">${sh('book', 'i-bl', 'บทเรียน')}<div class="steps">${steps}</div></div>
+        <div class="card">${sh('note', 'i-pu', 'ข้อสอบ + การบ้าน', 'ผ่านข้อสอบ = 16/20 ขึ้นไป', B('เปิดหน้าตรวจการบ้าน', () => go('hw', m.id), 'jump'))}${exams}</div>
       </div>
       <div class="grid">
-        <div class="card"><h3>แจ้งเตือนตอนนี้</h3>${al.length ? al.map(a => `<div class="task" style="grid-template-columns:1fr"><div><div class="tt"><b>${a.title}</b></div><div class="ss">${a.sub}</div></div><div class="acts" style="justify-content:flex-start">${actionsFor(m, a)}</div></div>`).join('') : '<div class="empty">ไม่มีแจ้งเตือน</div>'}</div>
-        <div class="card"><h3>ข้อมูลจากการคุยครั้งแรก</h3>${tagBox}</div>
-        ${ftBox}${pauseBox}${advProfileBox(m, t)}
-        <div class="card"><h3>ประวัติล่าสุด</h3><ul class="tl">${timeline(m, t)}</ul></div>
+        <div class="card">${sh('bell', 'i-ro', 'แจ้งเตือนตอนนี้', al.length ? `${al.length} รายการ` : '')}${al.length ? al.map(a => `<div class="task" style="grid-template-columns:1fr"><div><div class="tt"><b>${a.title}</b></div><div class="ss">${a.sub}</div></div><div class="acts" style="justify-content:flex-start">${actionsFor(m, a)}</div></div>`).join('') : `<div class="empty">${ic('check', 16)} ไม่มีแจ้งเตือน</div>`}</div>
+        <div class="card">${sh('user', 'i-g', 'ข้อมูลจากการคุยครั้งแรก')}${tagBox}</div>
+        ${ftBox}${pauseBox}${advProfileBox(m, t)}${bkBox}${notes}
+        <div class="card">${sh('clock', 'i-mu', 'ประวัติล่าสุด')}<ul class="tl">${timeline(m, t)}</ul></div>
       </div>
     </div>`;
 }
@@ -670,18 +961,18 @@ function vFT() {
   const t = now(), list = S.coach === 'all' ? visible() : mine();
   const cand = list.filter(m => { const st = statusOf(m, t); if (m.ft || !['up','side','down'].includes(st)) return false; const unreach = alertsOf(m, t).some(a => a.k === 'unreach'); if (unreach) return false; return (st === 'down' && m.tags && m.tags.level >= 2) || (monthsSince(anchorOf(m, t), t) >= 3); });
   const inFT = list.filter(m => m.ft && m.ft.since <= t);
-  const col = (title, arr, fn) => `<div class="kcol"><h4>${title}<span class="muted">${arr.length}</span></h4>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
-  const card = (m, extra) => `<div class="kcard ${S.ftSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.ftSel = m.id; S.form = null; render(); })}"><b>คุณ${esc(m.name)}</b> <span class="muted">· โค้ช${m.coach}</span><br>${extra}</div>`;
+  const col = (title, arr, fn, ci = ['flame', 'i-pu']) => `<div class="kcol"><h4><span style="display:flex;gap:8px;align-items:center">${ico(ci[0], ci[1] + ' sm', 15)}${title}</span><span class="muted">${arr.length}</span></h4>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
+  const card = (m, extra) => `<div class="kcard ${S.ftSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.ftSel = m.id; S.form = null; render(); })}"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>โค้ช${m.coach}</span></div></div>${extra}</div>`;
   const kan = `<div class="kan">
-    ${col('เข้าข่าย Fast Track', cand, m => { const gB = monthsSince(anchorOf(m, t), t) >= 3; return `<div class="kcard"><b>คุณ${esc(m.name)}</b> <span class="muted">· โค้ช${m.coach}</span><br>${gB ? 'ประตู B · ครบ 3 เดือน' : 'ประตู A · มีพื้นฐาน ไม่ active'}<div style="margin-top:6px">${gB ? B('เสนอ 2 ทาง', () => lineModal(m, 'm3', null, [{label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'}])) : B('ชวน Fast Track', () => lineModal(m, 'ftInvite', () => { m.ft = {gate:'A', status:'invited', since:now()}; log(m, 'ชวนเข้า Fast Track (ประตู A)'); }), 'pri')}</div></div>`; })}
-    ${col('รอนัด / นัด Screening', inFT.filter(m => ['invited','scheduled'].includes(m.ft.status)), m => card(m, `${gateTxt(m.ft.gate)} · ${m.ft.status === 'invited' ? 'รอนัดวัน' : `นัด ${fd(m.ft.screenAt)} ${ftm(m.ft.screenAt)} · ${m.ft.channel}`}`))}
-    ${col('การบ้าน / รอโค้ชตรวจ', inFT.filter(m => ['hw','clip'].includes(m.ft.status)), m => card(m, `${m.ft.status === 'hw' ? 'ผ่าน Screening · การบ้าน 3 ส่วน' : 'ไม่ผ่าน · คลิป 30 นาที + การบ้าน 1 ข้อ'}<br>${m.ft.hwSub && m.ft.hwSub <= t ? `<span style="color:${hrs(m.ft.hwSub, t) >= 48 ? 'var(--rose)' : 'var(--gold)'};font-weight:700">ส่งแล้ว รอตรวจ ${Math.floor(hrs(m.ft.hwSub, t))} ชม.</span>` : 'ยังไม่ส่งการบ้าน'}`))}
-    ${col('ไป Advance แล้ว', inFT.filter(m => m.ft.status === 'adv' && m.ft.advAt <= t), m => card(m, `ไป Advance ${fd(m.ft.advAt)}`))}
+    ${col('เข้าข่าย Fast Track', cand, m => { const gB = monthsSince(anchorOf(m, t), t) >= 3; return `<div class="kcard"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>โค้ช${m.coach}</span></div></div>${gB ? 'ประตู B · ครบ 3 เดือน' : 'ประตู A · มีพื้นฐาน ไม่ active'}<div style="margin-top:6px">${gB ? B('เสนอ 2 ทาง', () => lineModal(m, 'm3', null, [{label:'สมช เลือก Fast Track', cls:'pri', fn:() => { m.offer3At = now(); m.ft = {gate:'B', status:'invited', since:now()}; log(m, 'เลือก Fast Track (ประตู B)'); }, toast:'ย้ายเข้า Fast Track แล้ว'}])) : B('ชวน Fast Track', () => lineModal(m, 'ftInvite', () => { m.ft = {gate:'A', status:'invited', since:now()}; log(m, 'ชวนเข้า Fast Track (ประตู A)'); }), 'pri')}</div></div>`; })}
+    ${col('รอนัด / นัด Screening', inFT.filter(m => ['invited','scheduled'].includes(m.ft.status)), m => card(m, `${gateTxt(m.ft.gate)} · ${m.ft.status === 'invited' ? 'รอนัดวัน' : `นัด ${fd(m.ft.screenAt)} ${ftm(m.ft.screenAt)} · ${m.ft.channel}`}`), ['cal', 'i-bl'])}
+    ${col('การบ้าน / รอโค้ชตรวจ', inFT.filter(m => ['hw','clip'].includes(m.ft.status)), m => card(m, `${m.ft.status === 'hw' ? 'ผ่าน Screening · การบ้าน 3 ส่วน' : 'ไม่ผ่าน · คลิป 30 นาที + การบ้าน 1 ข้อ'}<br>${m.ft.hwSub && m.ft.hwSub <= t ? `<span style="color:${hrs(m.ft.hwSub, t) >= 48 ? 'var(--rose)' : 'var(--gold)'};font-weight:700">ส่งแล้ว รอตรวจ ${Math.floor(hrs(m.ft.hwSub, t))} ชม.</span>` : 'ยังไม่ส่งการบ้าน'}`), ['note', 'i-g'])}
+    ${col('ไป Advance แล้ว', inFT.filter(m => m.ft.status === 'adv' && m.ft.advAt <= t), m => card(m, `ไป Advance ${fd(m.ft.advAt)}`), ['award', 'i-gr'])}
   </div>`;
   const m = byId(S.ftSel);
   let panel = '<div class="card"><div class="empty">เลือก สมช จากคอลัมน์ด้านบนเพื่อเปิดฟอร์ม Screening</div></div>';
   if (m && m.ft && m.ft.since <= t) panel = ['invited','scheduled'].includes(m.ft.status) ? ftForm(m) : ftSummary(m, t);
-  return `<h1>Fast Track</h1><p class="sub">ทางด่วนสู่ Advance · คุยประเมินด้วย Checklist เดียวกันทุกคน ผ่านหรือไม่ผ่านก็มีทางไปต่อ</p>${kan}${panel}`;
+  return `${ph('ทางด่วนสู่ Advance', 'Fast Track', 'คุยประเมินด้วย Checklist เดียวกันทุกคน ผ่านหรือไม่ผ่านก็มีทางไปต่อ · ผ่าน 7/10 และต้องมี Stop loss')}${kan}${panel}`;
 }
 function ftResult(f) {
   const sc = {t:f.t, sr:f.sr, plan:f.plan}, tot = ftTotal(sc), sl = !!f.plan[1];
@@ -728,13 +1019,16 @@ function vCS() {
   const t = now(), list = visible();
   const cs1 = list.filter(m => statusOf(m, t) === 'cs');
   const cs2 = list.filter(m => statusOf(m, t) === 'stop' || alertsOf(m, t).some(a => a.k === 'unreach'));
-  const r1 = cs1.map(m => `<tr><td><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></td><td>${m.coach}</td><td>${fd(m.contact)} ${ftm(m.contact)}</td><td>${Math.floor(hrs(m.contact, t))} ชม.</td><td>${m.cs1At ? `<span class="chip"><i style="background:#7aa2ff"></i>CS กำลังติดต่อ</span>` : `<span class="chip"><i style="background:#ff6b7d"></i>โค้ชยังไม่ส่ง</span>`}</td><td>${m.cs1At ? B('CS ติดต่อได้แล้ว', () => { m.reply = now(); log(m, 'CS ติดต่อได้ · สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว`); }) : B('ส่งให้ CS', () => { m.cs1At = now(); log(m, 'ส่งต่อ CS-1'); done('ส่งให้ CS แล้ว'); }, 'pri')}</td></tr>`).join('');
+  const nm = m => `<div class="who">${mav(m, 30)}<span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></div>`;
+  const r1 = cs1.map(m => `<tr><td>${nm(m)}</td><td>${m.coach}</td><td>${fd(m.contact)} ${ftm(m.contact)}</td><td>${Math.floor(hrs(m.contact, t))} ชม.</td><td>${m.cs1At ? `<span class="chip"><i style="background:#7aa2ff"></i>CS กำลังติดต่อ</span>` : `<span class="chip"><i style="background:#ff6b7d"></i>โค้ชยังไม่ส่ง</span>`}</td><td>${m.cs1At ? B('CS ติดต่อได้แล้ว', () => { m.reply = now(); log(m, 'CS ติดต่อได้ · สมช ตอบกลับ'); done(`คุณ${m.nick}ตอบกลับแล้ว`); }) : B('ส่งให้ CS', () => { m.cs1At = now(); log(m, 'ส่งต่อ CS-1'); done('ส่งให้ CS แล้ว'); }, 'pri')}</td></tr>`).join('');
   const r2 = cs2.map(m => { const lr = lastReplyAt(m, t), a = attemptsAfter(m, lr, t), st = statusOf(m, t);
     const hist = m.attempts.filter(x => x.at > lr && x.at <= t).map(x => `${fd(x.at)} ${x.ch}`).join(' · ');
-    return `<tr><td><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></td><td>${m.coach}</td><td>${daysSince(lr, t)} วัน</td><td>ไลน์ ${a.line}/3 · โทร ${a.call}/3<div class="note">${hist}</div></td><td>${st === 'stop' ? (m.cs2At ? `<span class="chip"><i style="background:#7aa2ff"></i>CS รับเรื่องแล้ว</span>` : `<span class="chip"><i style="background:#8b95a8"></i>ครบ รอส่ง CS</span>`) : `<span class="chip"><i style="background:#f0b44c"></i>ยังติดต่อไม่ครบ</span>`}</td><td>${st === 'stop' && !m.cs2At ? B('ส่งให้ CS', () => { m.cs2At = now(); log(m, 'ส่งต่อ CS-2 (No Active)'); done('ส่งให้ CS แล้ว'); }, 'pri') : ''}</td></tr>`; }).join('');
-  return `<h1>ส่งต่อ CS</h1><p class="sub">3 จุดส่งต่อ · CS เห็นรายชื่อพร้อมข้อมูลที่ต้องใช้ ไม่ต้องถามโค้ชซ้ำ</p>
-    <div class="card" style="margin-bottom:14px"><h3>CS-1 · ทักแล้ว 24 ชม. ยังไม่ตอบ</h3>${cs1.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ทักเมื่อ</th><th>ผ่านมา</th><th>สถานะ</th><th></th></tr>${r1}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
-    <div class="card"><h3>CS-2 · No Active (ติดต่อไม่ได้ 3 เดือน)</h3><div class="note" style="margin:-4px 0 8px">เกณฑ์ (ข้อเสนอ): ไลน์ 3 ครั้ง + โทร 3 ครั้ง คนละวัน คนละช่วงเวลา</div>${cs2.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ไม่ตอบมา</th><th>ประวัติการติดต่อ</th><th>สถานะ</th><th></th></tr>${r2}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
+    return `<tr><td>${nm(m)}</td><td>${m.coach}</td><td>${daysSince(lr, t)} วัน</td><td>ไลน์ ${a.line}/3 · โทร ${a.call}/3<div class="note">${hist}</div></td><td>${st === 'stop' ? (m.cs2At ? `<span class="chip"><i style="background:#7aa2ff"></i>CS รับเรื่องแล้ว</span>` : `<span class="chip"><i style="background:#8b95a8"></i>ครบ รอส่ง CS</span>`) : `<span class="chip"><i style="background:#f0b44c"></i>ยังติดต่อไม่ครบ</span>`}</td><td>${st === 'stop' && !m.cs2At ? B('ส่งให้ CS', () => { m.cs2At = now(); log(m, 'ส่งต่อ CS-2 (No Active)'); done('ส่งให้ CS แล้ว'); }, 'pri') : ''}</td></tr>`; }).join('');
+  const w3 = visible().filter(m => advStage(m, t) === 'wait').length;
+  return `${ph('ทีม CS', 'ส่งต่อ CS', '3 จุดส่งต่อ · CS เห็นรายชื่อพร้อมข้อมูลที่ต้องใช้ ไม่ต้องถามโค้ชซ้ำ')}
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">${kc('headset', 'i-ro', 'CS-1 · ไม่ตอบ 24 ชม.', cs1.length, `ส่งแล้ว ${cs1.filter(m => m.cs1At).length}`)}${kc('x', 'i-mu', 'CS-2 · No Active', cs2.filter(m => statusOf(m, t) === 'stop').length, `กำลังติดต่อให้ครบ ${cs2.filter(m => statusOf(m, t) !== 'stop').length}`)}${kc('award', 'i-g', 'CS-3 · จบ Basic รอคุยเรื่องโค้ช', w3, 'เป้า: ติดต่อภายใน 1 วันทำการ')}</div>
+    <div class="card" style="margin-bottom:14px">${sh('headset', 'i-ro', 'CS-1 · ทักแล้ว 24 ชม. ยังไม่ตอบ')}${cs1.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ทักเมื่อ</th><th>ผ่านมา</th><th>สถานะ</th><th></th></tr>${r1}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
+    <div class="card">${sh('x', 'i-mu', 'CS-2 · No Active (ติดต่อไม่ได้ 3 เดือน)', 'เกณฑ์ (ข้อเสนอ): ไลน์ 3 ครั้ง + โทร 3 ครั้ง คนละวัน คนละช่วงเวลา')}${cs2.length ? `<table><tr><th>ชื่อ</th><th>โค้ช</th><th>ไม่ตอบมา</th><th>ประวัติการติดต่อ</th><th>สถานะ</th><th></th></tr>${r2}</table>` : '<div class="empty">ไม่มีรายชื่อ</div>'}</div>
     ${csAdvCard(t)}`;
 }
 
@@ -742,6 +1036,16 @@ function vCS() {
 function teamStats(t, list) {
   const sts = list.map(m => statusOf(m, t)), cnt = k => sts.filter(s => s === k).length, act = cnt('up') + cnt('side') + cnt('down');
   return {cnt, act, idx: act ? Math.round(cnt('up') / act * 100) : 0};
+}
+function trendChart(hist) {
+  const W = 560, H = 190, L = 34, R = 14, T = 16, Bm = 28, n = hist.length, id = 'tr' + (++gid);
+  const X = i => L + (W - L - R) * i / (n - 1), Y = v => T + (H - T - Bm) * (1 - v / 100);
+  const pts = hist.map((h, i) => `${X(i).toFixed(1)},${Y(h.v).toFixed(1)}`);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Basic Index ย้อนหลัง ${n} สัปดาห์"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3b857" stop-opacity=".35"/><stop offset="1" stop-color="#e3b857" stop-opacity="0"/></linearGradient></defs>`;
+  [0, 25, 50, 75, 100].forEach(v => { s += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#1f2b46"/><text x="${L - 6}" y="${Y(v) + 4}" text-anchor="end" font-size="10.5" fill="#9aa6bd">${v}</text>`; });
+  s += `<polygon points="${X(0)},${Y(0)} ${pts.join(' ')} ${X(n - 1)},${Y(0)}" fill="url(#${id})"/><polyline points="${pts.join(' ')}" fill="none" stroke="#e3b857" stroke-width="2.4" stroke-linejoin="round"/>`;
+  hist.forEach((h, i) => { s += `<circle cx="${X(i)}" cy="${Y(h.v)}" r="${i === n - 1 ? 5 : 3.5}" fill="${i === n - 1 ? '#f3d98f' : '#111a2e'}" stroke="#e3b857" stroke-width="2"/><text x="${X(i)}" y="${H - 8}" text-anchor="middle" font-size="10.5" fill="#9aa6bd">${fnum(h.d)}</text><circle cx="${X(i)}" cy="${Y(h.v)}" r="12" fill="transparent" data-tip="สัปดาห์ ${fd(h.d)} · Basic Index ${h.v}%"/>`; });
+  return s + '</svg>';
 }
 function vReport() {
   const t = now(), all = visible(), prev = addDays(t, -7);
@@ -756,27 +1060,29 @@ function vReport() {
   const alerts = all.flatMap(m => alertsOf(m, t));
   const hwOpen = alerts.filter(a => a.k === 'hw' || a.k === 'ftHw');
   const ft = all.filter(m => m.ft && m.ft.since <= t);
-  const coachRows = COACHES.map(c => { const l = all.filter(m => m.coach === c), cs = teamStats(t, l), al = l.flatMap(m => alertsOf(m, t)); return `<tr><td>โค้ช${c}</td><td>${cs.act}</td><td>${cs.idx}%</td><td>${al.filter(a => a.pri === 0).length}</td><td>${al.filter(a => a.k === 'hw' || a.k === 'ftHw').length}</td></tr>`; }).join('');
+  const hist = [7, 6, 5, 4, 3, 2, 1, 0].map(k => { const d = addDays(t, -7 * k); return {d, v:teamStats(d, M.filter(m => m.join <= d)).idx}; });
+  const weekly = f => [7, 6, 5, 4, 3, 2, 1, 0].map(k => f(addDays(t, -7 * k)));
+  const coachRows = COACHES.map(c => { const l = all.filter(m => m.coach === c), cs = teamStats(t, l), al = l.flatMap(m => alertsOf(m, t)); return `<tr><td><div class="who">${cav(c, 28)}<b>โค้ช${c}</b></div></td><td>${cs.act}</td><td style="min-width:120px"><div style="display:flex;gap:8px;align-items:center"><div class="bar" style="flex:1"><i style="width:${cs.idx}%"></i></div><b>${cs.idx}%</b></div></td><td>${al.filter(a => a.pri === 0).length}</td><td>${al.filter(a => a.k === 'hw' || a.k === 'ftHw').length}</td></tr>`; }).join('');
   const text = [`Basic Market Report · ${fdy(t)}`, `Basic Index ${s.idx}% (${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta)} จุด)`, `สมช ใหม่ ${newM.length} คน · ทักภายใน 24 ชม. ${pct}%`, `EP.1 ${pipe[0]} · EP.2 ${pipe[1]} · EP.3 ${pipe[2]} · EP.4 ${pipe[3]} · จบ/ไป Advance ${s.cnt('tp')}`, `Downtrend ${s.cnt('down')} · Sideway ${s.cnt('side')} · พัก ${s.cnt('sp')} · Stop loss ${s.cnt('stop')}`, `Fast Track ${ft.filter(m => m.ft.status !== 'adv').length} คน · การบ้านรอตรวจ ${hwOpen.length}`].join('\n');
   const copy = () => { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('คัดลอกสรุปแล้ว วางใน LINE ได้เลย'); } catch (e) { toast('คัดลอกไม่สำเร็จ'); } ta.remove(); };
-  const tile = (lb, vl, note = '') => `<div class="card kpi"><div class="lb">${lb}</div><div class="vl">${vl}</div>${note ? `<div class="note">${note}</div>` : ''}</div>`;
-  return `<div style="display:flex;align-items:flex-start;gap:12px"><div style="flex:1"><h1>Basic Market Report</h1><p class="sub">สัปดาห์ ${fd(addDays(t, -6))} – ${fdy(t)} · ระบบสร้างให้อัตโนมัติทุกวันศุกร์</p></div>${B('คัดลอกสรุปส่ง LINE', copy, 'pri')}</div>
-    <div class="grid" style="grid-template-columns:1.1fr 2.4fr;margin-bottom:14px">
-      <div class="card kpi" style="display:flex;flex-direction:column;justify-content:center"><div class="lb">Basic Index · % สมช ที่เป็น Uptrend</div><div class="vl" style="font-size:52px">${s.idx}%</div><div class="dl" style="color:${delta >= 0 ? 'var(--green)' : 'var(--rose)'}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta)} จุด จากสัปดาห์ก่อน</div><div class="note">จาก ${s.act} คนที่กำลังเรียน</div></div>
+  const stages = [['ยังไม่เริ่ม', notStarted, '#7aa2ff'], ...pipe.map((n, i) => [EPN[i + 1], n, '#e3b857']), ['จบ / Advance', s.cnt('tp'), '#56d68a']], mx = Math.max(1, ...stages.map(x => x[1]));
+  return `${ph('รายงานประจำสัปดาห์', 'Basic Market Report', `สัปดาห์ ${fd(addDays(t, -6))} – ${fdy(t)} · ระบบสร้างให้อัตโนมัติทุกวันศุกร์`, B(ic('share', 15) + 'คัดลอกสรุปส่ง LINE', copy, 'pri'))}
+    <div class="grid" style="grid-template-columns:1fr 1.9fr;margin-bottom:14px">
+      <div class="card" style="display:flex;gap:18px;align-items:center">${ring(s.idx, 'Uptrend')}<div><div class="kl" style="font-size:13px;color:var(--ink2)">Basic Index · % สมช ที่เป็น Uptrend</div><div style="font-size:15px;font-weight:700;margin:6px 0;color:${delta >= 0 ? 'var(--green)' : 'var(--rose)'}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta)} จุด จากสัปดาห์ก่อน</div><div class="note">จาก ${s.act} คนที่กำลังเรียน · Uptrend ${s.cnt('up')} · Sideway ${s.cnt('side')} · Downtrend ${s.cnt('down')}</div></div></div>
+      <div class="card">${sh('trend', 'i-g', 'Basic Index ย้อนหลัง 8 สัปดาห์')}${trendChart(hist)}</div>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">${kc('user', 'i-bl', 'สมช ใหม่ (7 วัน)', newM.length, 'สมัครเข้า Basic', weekly(d => all.filter(m => m.join <= d && m.join > addDays(d, -7)).length))}${kc('clock', 'i-gr', 'ทักภายใน 24 ชม.', pct + '%', `${ok.length}/${due.length} คนที่ครบกำหนด`)}${kc('headset', 'i-ro', 'ส่ง CS-1', s.cnt('cs'), 'ทักแล้วไม่ตอบ 24 ชม.')}${kc('note', 'i-g', 'การบ้านรอตรวจ', hwOpen.length, `เกิน 48 ชม. ${hwOpen.filter(a => a.pri === 0).length}`)}</div>
+    <div class="grid" style="grid-template-columns:1.3fr 1fr;margin-bottom:14px">
+      <div class="card">${sh('layers', 'i-bl', 'จำนวน สมช แยกตามบทเรียน')}${stages.map(([l, n, c]) => `<div style="display:grid;grid-template-columns:110px 1fr 36px;gap:10px;align-items:center;margin:8px 0"><span class="note" style="font-size:13px">${l}</span><div class="bar" style="height:12px"><i style="width:${n / mx * 100}%;background:${c}"></i></div><b style="text-align:right">${n}</b></div>`).join('')}</div>
       <div class="grid">
-        <div class="grid" style="grid-template-columns:repeat(4,1fr)">${tile('สมช ใหม่ (7 วัน)', newM.length)}${tile('ทักภายใน 24 ชม.', pct + '%', `${ok.length}/${due.length} คนที่ครบกำหนด`)}${tile('ส่ง CS-1', s.cnt('cs'))}${tile('การบ้านรอตรวจ', hwOpen.length, `เกิน 48 ชม. ${hwOpen.filter(a => a.pri === 0).length}`)}</div>
-        <div class="card"><div class="note" style="margin-bottom:6px">จำนวน สมช แยกตามบทเรียน</div><div class="stage">
-          <div class="stg"><div class="n">${notStarted}</div><div class="t">ยังไม่เริ่ม</div></div><span class="a">▶</span>
-          ${pipe.map((n, i) => `<div class="stg"><div class="n">${n}</div><div class="t">EP.${i + 1}</div></div><span class="a">▶</span>`).join('')}
-          <div class="stg" style="background:var(--goldbg);border-color:var(--goldln)"><div class="n">${s.cnt('tp')}</div><div class="t">จบ / Advance</div></div></div></div>
+        <div class="card">${sh('bell', 'i-ro', 'แจ้งเตือน')}<div style="display:flex;flex-wrap:wrap;gap:8px">${['down','side','sp','stop'].map(k => `<span class="chip" style="cursor:pointer" data-a="${A(() => { S.sf = k; go('screener'); })}"><i style="background:${ST[k].c}"></i>${ST[k].name} ${s.cnt(k)} คน</span>`).join('')}</div></div>
+        <div class="card">${sh('flame', 'i-pu', 'Fast Track')}${[['รอนัด / นัดแล้ว', ft.filter(m => ['invited','scheduled'].includes(m.ft.status)).length], ['การบ้าน / รอตรวจ', ft.filter(m => ['hw','clip'].includes(m.ft.status)).length], ['ไป Advance แล้ว', ft.filter(m => m.ft.status === 'adv').length]].map(([l, n]) => `<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:13.5px"><span>${l}</span><b>${n}</b></div>`).join('')}</div>
       </div>
     </div>
-    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
-      <div class="card"><h3>แจ้งเตือน</h3><div style="line-height:2">${['down','side','sp','stop'].map(k => `${chip(k)} ${s.cnt(k)} คน`).join('<br>')}</div></div>
-      <div class="card"><h3>Fast Track</h3><div style="line-height:2">รอนัด / นัดแล้ว: ${ft.filter(m => ['invited','scheduled'].includes(m.ft.status)).length}<br>การบ้าน / รอตรวจ: ${ft.filter(m => ['hw','clip'].includes(m.ft.status)).length}<br>ไป Advance แล้ว: ${ft.filter(m => m.ft.status === 'adv').length}</div></div>
-      <div class="card"><h3>รายโค้ช</h3><table><tr><th>โค้ช</th><th>กำลังเรียน</th><th>Index</th><th>งานด่วน</th><th>การบ้าน</th></tr>${coachRows}</table></div>
-    </div>
-    <div class="card"><h3>Voice of Members <span class="muted" style="font-weight:400;font-size:12.5px">· ตัวอย่างคอมเม้นท์ สมช</span></h3>${WEBFB.slice().reverse().map(f => `<div class="voice"><span class="tag web">จากหน้าเว็บ</span> ${'★'.repeat(f.stars)}${f.text ? ` "${esc(f.text)}"` : ''}<div class="note">คุณมณีรัตน์ · ${fd(new Date(f.at))} · รอทีมพิจารณา</div></div>`).join('')}${VOICE.map(v => `<div class="voice"><span class="tag">${v.tag}</span> "${v.text}"<div class="note">ทีมทำแล้ว: ${v.act}</div></div>`).join('')}</div>`;
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div class="card">${sh('users', 'i-g', 'รายโค้ช')}<table><tr><th>โค้ช</th><th>กำลังเรียน</th><th>Index</th><th>งานด่วน</th><th>การบ้าน</th></tr>${coachRows}</table></div>
+      <div class="card">${sh('heart', 'i-ro', 'Voice of Members', 'ตัวอย่างคอมเม้นท์ สมช')}${WEBFB.slice().reverse().map(f => `<div class="voice"><span class="tag web">จากหน้าเว็บ</span> ${'★'.repeat(f.stars)}${f.text ? ` "${esc(f.text)}"` : ''}<div class="note">คุณมณีรัตน์ · ${fd(new Date(f.at))} · รอทีมพิจารณา</div></div>`).join('')}${VOICE.map(v => `<div class="voice"><span class="tag">${v.tag}</span> "${v.text}"<div class="note">ทีมทำแล้ว: ${v.act}</div></div>`).join('')}</div>
+    </div>`;
 }
 
 /* ============ view: member side ============ */
@@ -834,13 +1140,217 @@ function vMember() {
   const t = now(), list = visible().filter(x => x.contact && x.contact <= t);
   if (!list.some(x => x.id === S.mv)) S.mv = (list.find(x => x.id === ME_ID) || list[0]).id;
   const mm = byId(S.mv), live = mm.id === ME_ID;
-  return `<h1>มุมมอง สมช</h1><p class="sub">สิ่งที่ สมช เห็นจริง: LINE กับโค้ช และหน้าเว็บสมาชิก${live ? ' · ด้านขวาคือเว็บจริงของคุณมณีรัตน์ กดในนั้นแล้วหลังบ้านอัปเดตทันที และกลับกัน' : ''}</p>
+  return `${ph('มุมมอง สมช', 'LINE + หน้าเว็บ สมช', 'สิ่งที่ สมช เห็นจริง: LINE กับโค้ช และหน้าเว็บสมาชิก' + (live ? ' · ด้านขวาคือเว็บจริงของคุณมณีรัตน์ กดในนั้นแล้วหลังบ้านอัปเดตทันที และกลับกัน' : ''))}
     <div style="margin-bottom:14px;display:flex;gap:10px;align-items:center">ดูในนาม <select aria-label="เลือก สมช" data-ch="${A(e => { S.mv = e.target.value; S.quiz = null; render(); })}">${list.map(x => `<option value="${x.id}" ${x.id === S.mv ? 'selected' : ''}>คุณ${esc(x.name)} · ${ST[statusOf(x, t)].name}${x.id === ME_ID ? ' · หน้าเว็บจริง' : ''}</option>`).join('')}</select>${live ? '' : B('ดูคุณมณีรัตน์ · หน้าเว็บจริง', () => { S.mv = ME_ID; S.quiz = null; render(); }, 'jump')}</div>
     <div class="mvw">
       <div class="phone"><div class="pscreen"><div class="phead">โค้ช${mm.coach} · Basic<small>LINE Official Account</small></div>
         ${S.quiz && S.quiz.id === mm.id ? quizHTML(mm) : `<div class="lchat" id="lchat">${chatHTML(mm, t)}</div><div class="pinput">พิมพ์ข้อความ…</div>`}</div></div>
       ${live ? `<div id="dockslot" data-tier="${statusOf(mm, t) === 'tp' ? 'adv' : 'basic'}"></div>` : webMock(mm, t)}
     </div>`;
+}
+
+/* ============ view: homework review ============ */
+const HWT = {2:['แนวรับแนวต้าน', 'Higher High / Higher Low (Dow Theory)', 'Candlestick กลับตัว'], 3:['ขนาดไม้ (Risk %)', 'Stop loss + เป้าหมาย', 'แผนเทรดครบ 1 หุ้น']};
+const HWS = {'2-1':'ตีแนวรับที่ 58.50 เพราะราคาเด้งโซนนี้ 3 ครั้ง ต้าน 63.00 เคยโดนขายลง 2 ครั้ง', '2-2':'ภาพใหญ่ HH-HL ยังเป็นขาขึ้น ภาพกลาง Sideway รอเบรก 63', '2-3':'เจอ Hammer ที่แนวรับ 58.50 วอลุ่มเข้า รอยืนยันแท่งถัดไป',
+  '3-1':'ทุน 100,000 เสี่ยง 1% = 1,000 บาท SL ห่าง 2 บาท ซื้อได้ 500 หุ้น', '3-2':'SL ใต้แนวรับ 57.80 เป้า 63.00 R:R = 1:2.4', '3-3':'หุ้น CPALL จุดเข้า 58.80 SL 57.80 เป้า 61.50 ขนาดไม้ 1% ของพอร์ต'};
+const hwText = (m, h) => h.text || HWS[h.ep + '-' + h.n] || '';
+const FIXT = ['ตีเส้นเฉพาะจุดที่ราคาเคารพ 2 ครั้งขึ้นไป', 'ยังไม่อธิบายว่าทำไมตีเส้นตรงนี้', 'ดูภาพใหญ่ก่อน แล้วค่อยซูมลงภาพเล็ก', 'ใส่ Stop loss และขนาดไม้ให้ครบ'];
+function hwQueue(t) {
+  const L = S.coach === 'all' ? visible() : mine(), q = [];
+  L.forEach(m => {
+    m.hw.forEach(h => { if (h.sub <= t && !(h.rev && h.rev <= t)) q.push({m, h, at:h.sub}); });
+    if (m.ft && ['hw', 'clip'].includes(m.ft.status) && m.ft.hwSub && m.ft.hwSub <= t) q.push({m, ft:true, at:m.ft.hwSub});
+  });
+  return q.sort((a, b) => a.at - b.at);
+}
+function hwFixModal(m, h) {
+  let tx = '';
+  advModal(`ส่งการบ้านกลับให้แก้ · คุณ${esc(m.name)}`, `<div class="note">${EPN[h.ep]} ข้อ ${h.n} · ${HWT[h.ep][h.n - 1]}</div><div class="quote">${esc(hwText(m, h))}</div>
+    <div class="fsec" style="margin-top:8px"><h4>คอมเมนต์ถึง สมช</h4><textarea id="fixt" placeholder="บอกสิ่งที่ต้องแก้ สั้นๆ" data-in="${A(e => { tx = e.target.value; $('#mderr').textContent = ''; })}"></textarea>
+    <div class="tpl">${FIXT.map(x => `<button data-a="${A(() => { const el = $('#fixt'); el.value = (el.value ? el.value + ' ' : '') + x; tx = el.value; $('#mderr').textContent = ''; })}">${x}</button>`).join('')}</div></div>
+    <div class="note" style="margin-top:6px">สมช ได้ LINE และเห็นคอมเมนต์ในหน้าเว็บ แล้วส่งข้อนี้ใหม่ได้</div>`,
+    'ส่งกลับให้แก้', () => { if (!tx.trim()) { $('#mderr').textContent = 'เขียนคอมเมนต์ก่อนส่งกลับ'; return; } h.rev = now(); h.pass = false; h.note = tx.trim(); done(`ส่งการบ้านกลับให้คุณ${m.nick}แก้แล้ว`); });
+}
+function hwCard(x, t) {
+  const {m, h, ft} = x, hh = hrs(x.at, t), due = new Date(+x.at + 48 * HOUR);
+  const title = ft ? `Fast Track · การบ้าน${m.ft.status === 'hw' ? ' 3 ส่วน' : ' 1 ข้อ'}` : `${EPN[h.ep]} ข้อ ${h.n}`;
+  const topic = ft ? `หุ้น ${esc(m.ft.stock || '-')} · ${m.ft.status === 'hw' ? 'เทรนด์ 3 ภาพ + แนวรับแนวต้าน + แผนเทรด' : 'หลังดูคลิป Basic Express'}` : HWT[h.ep][h.n - 1];
+  const text = ft ? (m.ft.memo ? 'Memo จาก Screening: ' + m.ft.memo : '') : hwText(m, h);
+  const prev = ft ? null : m.hw.filter(y => y.ep === h.ep && y.n === h.n && y !== h && y.rev && !y.pass).pop();
+  const acts = ft ? B(ic('check', 15) + 'ผ่าน → ไป Advance', () => { m.ft.status = 'adv'; m.ft.advAt = now(); log(m, 'ตรวจการบ้าน Fast Track ผ่าน · ส่งต่อ Advance'); done(`คุณ${m.nick}ไป Advance แล้ว`); }, 'pri') + B('ส่งกลับให้แก้', () => { m.ft.hwSub = null; log(m, 'ส่งการบ้าน FT กลับให้แก้'); done('ส่งกลับให้แก้แล้ว'); })
+    : B(ic('check', 15) + 'ผ่าน', () => { h.rev = now(); h.pass = true; h.note = ''; done(`การบ้าน ${EPN[h.ep]} ข้อ ${h.n} ของคุณ${m.nick}: ผ่าน · แจ้ง สมช แล้ว`); }, 'pri') + B('ส่งกลับให้แก้', () => hwFixModal(m, h));
+  return `<div class="hwi ${hh >= 48 ? 'late' : ''} ${S.hwFocus === m.id ? 'focus' : ''}"><div class="hwt">${art(500 + (+m.id.slice(1)) * 13 + (h ? h.ep * 7 + h.n : 99), ft ? '#b69cff' : '#e3b857', {n:26, trend:.006})}<b>${ft ? 'FT' : EPN[h.ep]}</b><span>${ft ? 'Fast Track' : 'ข้อ ' + h.n}</span></div>
+    <div style="min-width:0"><div class="who">${mav(m, 34)}<div class="wn"><b><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></b><span>โค้ช${m.coach} · ส่งมา ${fd(x.at)} ${ftm(x.at)} น. · ${Math.floor(hh)} ชม.ที่แล้ว</span></div></div>
+      <div style="margin-top:8px;font-weight:700">${title} <span class="muted" style="font-weight:400">· ${topic}</span></div>
+      ${prev ? `<div class="note" style="margin-top:4px">ส่งใหม่หลังโค้ชให้แก้: "${esc(prev.note)}"</div>` : ''}
+      ${text ? `<div class="quote">${esc(text)}</div>` : ''}
+      <div>${sla(due, t, 'ตรวจ')}${m.id === ME_ID ? ' <span class="tag web">ส่งจากหน้าเว็บ</span>' : ''}</div></div>
+    <div class="acts" style="flex-direction:column;align-items:stretch">${acts}</div></div>`;
+}
+const CHQ = {title:'Chart Challenge สัปดาห์ 21–25 ก.ย.', q:'โจทย์หุ้น 1 ตัว: บอกเทรนด์ภาพใหญ่ / กลาง / เล็ก · ตีแนวรับแนวต้าน · วางแผนเทรด ณ ราคาปัจจุบัน', sent:312};
+const CHA = [
+  {m:'m24', c1:'ขาขึ้น / Sideway / Sideway', c2:'รับ 58.75 · ต้าน 63.00', c3:'เข้า 59.00 SL 58.00 เป้า 62.00', at:at(-2, 12)},
+  {m:'m05', c1:'ขาขึ้น / Sideway / ขาลง', c2:'รับ 58.50 · ต้าน 63.00', c3:'รอเข้าที่ 58.80 SL 57.90 เป้า 62.50', at:at(-2, 20)},
+  {m:'m16', c1:'ขาขึ้น / ขาขึ้น / ขาขึ้น', c2:'รับ 60.25 · ต้าน 63.00', c3:'Breakout 63.10 SL 61.90 เป้า 66.00', at:at(-1, 9)},
+  {m:'m09', c1:'ขาขึ้น / ขาขึ้น / Sideway', c2:'รับ 59.00 · ต้าน 62.75', c3:'เข้า 59.25 SL 58.40 เป้า 62.50 ไม้ 1%', at:at(-1, 21)},
+  {m:'m22', c1:'Sideway / Sideway / ขาลง', c2:'รับ 58.50 · ต้าน 61.00', c3:'ยังไม่เข้า รอยืนแนวรับก่อน', at:at(0, 22)},
+];
+function challList(t) {
+  const L = CHA.filter(a => a.at <= t).map(a => ({...a, m:byId(a.m)})), me = byId(ME_ID);
+  if (me.chall && new Date(me.chall.at) <= t) L.push({...me.chall, m:me, web:true, at:new Date(me.chall.at)});
+  return L.sort((a, b) => b.at - a.at);
+}
+function challView(t, L) {
+  const isOn = a => a.web ? !!a.m.chall.pick : !!S.cpick[a.m.id], picked = L.filter(isOn).length;
+  return `<div class="card" style="margin-bottom:12px;display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:center"><div class="hwt">${art(4242, '#b69cff', {n:30, trend:.01})}<b>CC</b><span>โจทย์ประจำสัปดาห์</span></div><div>${sh('target', 'i-pu', CHQ.title)}<div class="note" style="font-size:13.5px">${CHQ.q}</div>
+    <div class="hchips"><span class="hchip">${ic('users', 15)}ส่งแล้ว ${CHQ.sent + L.length} คน</span><span class="hchip">${ic('clock', 15)}ปิดรับ ศ. 25 ก.ย. 23:59</span><span class="hchip">${ic('award', 15)}เลือกเป็นเคสแล้ว ${picked}/3</span></div></div></div>
+    <div class="card">${sh('msg', 'i-g', 'คำตอบล่าสุด', 'เลือก 3 คำตอบไปเป็นเคสในคลาสเสาร์ "Case Clinic"')}
+    ${L.map(a => { const on = isOn(a); return `<div class="tk" style="grid-template-columns:auto 1fr auto">${mav(a.m, 36)}<div class="tl2"><div><span class="nm" data-go="profile:${a.m.id}">คุณ${esc(a.m.name)}</span> <span class="muted" style="font-size:12px">· ${fd(a.at)} ${ftm(a.at)} น.</span>${a.web ? ' <span class="tag web">ส่งจากหน้าเว็บ</span>' : ''}</div><div class="note" style="font-size:13px">1) ${esc(a.c1)} · 2) ${esc(a.c2)} · 3) ${esc(a.c3)}</div></div>${B(on ? ic('check', 15) + 'เลือกแล้ว' : 'เลือกเป็นเคส', () => { if (!on && picked >= 3) { toast('เลือกครบ 3 เคสแล้ว · ยกเลิกเคสเดิมก่อน'); return; } if (a.web) a.m.chall.pick = !on; else S.cpick[a.m.id] = !on; done(on ? 'ยกเลิกการเลือกแล้ว' : `เลือกคำตอบของคุณ${a.m.nick}เป็นเคส Case Clinic แล้ว`); }, on ? 'pri' : '')}</div>`; }).join('')}</div>`;
+}
+function vHw() {
+  const t = now(), L = S.coach === 'all' ? visible() : mine(), tab = S.hwTab, D14 = addDays(t, -14), D7 = addDays(t, -7);
+  const Q = hwQueue(t), CH = challList(t);
+  const doneL = L.flatMap(m => m.hw.filter(h => h.rev && h.rev <= t && h.rev > D14).map(h => ({m, h}))).sort((a, b) => b.h.rev - a.h.rev);
+  const wk = doneL.filter(x => x.h.rev > D7), first = wk.filter(x => x.h.pass && !x.m.hw.some(y => y !== x.h && y.ep === x.h.ep && y.n === x.h.n && y.sub < x.h.sub)).length;
+  const tabs = [['wait', `รอตรวจ ${Q.length}`], ['done', `ตรวจแล้ว 14 วัน ${doneL.length}`], ['chall', `Chart Challenge ${CH.length}`]];
+  let body;
+  if (tab === 'wait') body = Q.length ? Q.map(x => hwCard(x, t)).join('') : `<div class="card"><div class="empty">${ic('check', 16)} ตรวจครบแล้ว ไม่มีการบ้านค้าง</div></div>`;
+  else if (tab === 'done') body = `<div class="card">${doneL.length ? doneL.map(({m, h}) => `<div class="tk" style="grid-template-columns:auto 1fr auto">${mav(m, 36)}<div class="tl2"><div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> · ${EPN[h.ep]} ข้อ ${h.n} <span class="muted">· ${HWT[h.ep][h.n - 1]}</span></div>${h.note ? `<div class="quote fix">${esc(h.note)}</div>` : ''}</div><div style="text-align:right">${h.pass ? '<span class="chip"><i style="background:#56d68a"></i>ผ่าน</span>' : '<span class="chip"><i style="background:#ff6b7d"></i>ส่งกลับให้แก้</span>'}<div class="note">${fd(h.rev)} ${ftm(h.rev)} น.</div></div></div>`).join('') : '<div class="empty">ยังไม่มีการบ้านที่ตรวจใน 14 วัน</div>'}</div>`;
+  else body = challView(t, CH);
+  return `${ph('งานโค้ช', 'ตรวจการบ้าน', 'การบ้านกราฟ EP.2 / EP.3 และการบ้าน Fast Track · เป้า: ตรวจภายใน 48 ชม. · ผลแจ้ง สมช ทาง LINE และขึ้นในหน้าเว็บทันที')}
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">${kc('note', 'i-g', 'รอตรวจ', Q.length, 'รวมการบ้าน Fast Track')}${kc('clock', Q.some(x => hrs(x.at, t) >= 48) ? 'i-ro' : 'i-gr', 'เกิน 48 ชม.', Q.filter(x => hrs(x.at, t) >= 48).length, 'เป้า: 0')}${kc('check', 'i-gr', 'ตรวจแล้ว 7 วัน', wk.length, `ส่งกลับให้แก้ ${wk.filter(x => !x.h.pass).length}`)}${kc('award', 'i-pu', 'ผ่านรอบแรก', wk.length ? Math.round(first / wk.length * 100) + '%' : '—', 'ของที่ตรวจใน 7 วัน')}</div>
+    <div class="fchips">${tabs.map(([k, l]) => B(l, () => { S.hwTab = k; S.hwFocus = null; render(); }, 'fchip' + (tab === k ? ' on' : ''))).join('')}</div>${body}`;
+}
+
+/* ============ view: class schedule + bookings (same calendar as the member site) ============ */
+const mondayOf = d => addDays(dOnly(d), -((d.getDay() + 6) % 7));
+const ETY = {mentor:{n:'LIVE MENTOR', c:'#caa865', i:'live'}, basic:{n:'Basic คลาสสด', c:'#4fae86', i:'book'}, small:{n:'Small Group', c:'#9585d6', i:'users'}, care:{n:'CARE DAY', c:'#6b95cf', i:'headset'}, event:{n:'Workshop / อีเวนต์', c:'#d47a88', i:'award'}};
+/* built exactly like the member site's calendar (same order, same random seeds) so seats left match on both sides */
+const CALX = (() => {
+  const L = [], D2 = (m, d, h = 0, mi = 0) => new Date(2026, m - 1, d, h, mi), r = rng(77);
+  for (let d = D2(8, 3); d <= D2(10, 31); d = addDays(d, 1)) {
+    const wd = d.getDay(), a2 = (h, mi) => new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, mi), key = String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+    const add = e => L.push({...e, id:e.type + key + (e.sfx || '')});
+    if (wd >= 1 && wd <= 5) add({type:'mentor', at:a2(9, 30), end:'10:30', title:'LIVE MENTOR · เปิดตลาดเช้า', sub:'ช่องหลัก · โค้ชแพค โค้ชนอฟ', coaches:['แพค', 'นอฟ']});
+    if (wd === 3 || wd === 6) { const ep = cycleEP(d), kind = wd === 3 ? 'ตลาดจริง' : 'Case Clinic'; add({type:'basic', ep, kind, at:a2(9, 50), end:'11:30', title:'Basic คลาสสด · ' + EPF[ep], sub:`วัน${wd === 3 ? 'พุธ' : 'เสาร์'} "${kind}" · โค้ชแนน`, coaches:['แนน']}); }
+    if (wd === 1) add({type:'small', at:a2(14, 0), end:'15:30', title:'Small Group · โค้ชป๊อป', sub:'หุ้นอเมริกาแบบคนทำงาน · Swing + Options', coaches:['ป๊อป'], seats:30, left:1 + Math.floor(r() * 12)});
+    if (wd === 2) { add({type:'care', at:a2(13, 0), end:'17:00', title:'CARE DAY · คุยกับโค้ช 1:1', sub:'20 นาที · onsite / online', coaches:['แนน'], seats:12, left:1 + Math.floor(r() * 5)}); add({type:'small', sfx:'k', at:a2(14, 0), end:'15:30', title:'Small Group · โค้ชคิม', sub:'อ่าน Price action ให้ขาด', coaches:['คิม'], seats:30, left:1 + Math.floor(r() * 12)}); }
+    if (wd === 4) { add({type:'small', sfx:'j', at:a2(9, 50), end:'11:30', title:'Small Group · โค้ชเจ', sub:'เทรดทองเริ่มต้นจาก 0', coaches:['เจ'], seats:30, left:Math.floor(r() * 8)}); add({type:'small', sfx:'l', at:a2(10, 0), end:'11:30', title:'Small Group · โค้ชเล็ก', sub:'Lekclusive · price pattern momentum', coaches:['เล็ก'], seats:30, left:1 + Math.floor(r() * 8)}); }
+  }
+  L.push({id:'ev0905', type:'event', at:D2(9, 5, 10, 0), end:'12:00', title:'Workshop · เข้าซื้ออย่างมีแผน', sub:'onsite กทม. + online', coaches:['ทีม Basic']},
+    {id:'ev0912', type:'event', at:D2(9, 12, 10, 0), end:'12:00', title:'THE REPUBLIC Talk · ทิศทางตลาดไตรมาส 4', sub:'กิจกรรมพิเศษ · ถ่ายทอดสดทุกช่องทาง', coaches:['แพค', 'นอฟ']},
+    {id:'ev0919', type:'event', at:D2(9, 19, 9, 55), end:'11:30', title:'Workshop · ต้นทุนและขนาดไม้', sub:'onsite กทม. + online', coaches:['ทีม Basic']},
+    {id:'ev1003', type:'event', at:D2(10, 3, 13, 30), end:'16:00', title:'Workshop · ตีเส้นแนวรับแนวต้านจากกราฟจริง', sub:'onsite กทม. + online · ต่อยอด EP.2', coaches:['แนน'], seats:36, left:9},
+    {id:'ev1017', type:'event', at:D2(10, 17, 13, 0), end:'16:00', title:'Chart Café · พบปะ สมช กทม.', sub:'onsite · นัด Screening Fast Track ได้ในงาน', coaches:['แนน', 'ป๊อป'], seats:40, left:12},
+    {id:'ev1024', type:'event', at:D2(10, 24, 13, 30), end:'16:00', title:'Workshop · Money Management ภาคปฏิบัติ', sub:'onsite กทม. + online · ต่อยอด EP.3', coaches:['ทีม Basic'], seats:36, left:0});
+  L.sort((a, b) => a.at - b.at);
+  const r2 = rng(311);
+  L.forEach(e => {
+    if (e.type === 'basic') e.os = {seats:24, left:2 + Math.floor(r2() * 17)};
+    if (e.type === 'care') { const free = new Set(); while (free.size < e.left) free.add(Math.floor(r2() * 12)); e.slots = [...Array(12)].map((_, i) => ({t:ftm(new Date(+e.at + i * 12e5)), free:free.has(i)})); }
+  });
+  return L;
+})();
+const evEnd = e => { const [h, mi] = e.end.split(':'); return new Date(e.at.getFullYear(), e.at.getMonth(), e.at.getDate(), +h, +mi); };
+const evName = e => e.type === 'basic' ? `${EPN[e.ep]} · ${e.kind}` : e.type === 'care' ? 'CARE DAY · 1:1' : e.title.replace(/^Small Group · /, 'SG · ');
+const meBk = () => byId(ME_ID).bk || {};
+const OTHERS = () => M.filter(m => m.id !== ME_ID);
+function careSlots(e) {
+  const mb = meBk()[e.id], loc = S.cbk[e.id] || {};
+  return e.slots.map((s, i) => {
+    if (mb && mb.slot === s.t) return {...s, who:byId(ME_ID), me:true, mode:mb.mode};
+    if (loc[s.t]) return {...s, who:byId(loc[s.t].m), mode:loc[s.t].mode, local:true};
+    if (!s.free) { const o = OTHERS(); return {...s, who:o[(i * 7 + e.at.getDate()) % o.length], mode:i % 3 ? 'onsite' : 'online'}; }
+    return {...s, who:null};
+  });
+}
+const evLeft = e => e.type === 'basic' ? e.os.left - (meBk()[e.id] ? 1 : 0) : e.type === 'care' ? careSlots(e).filter(x => !x.who).length : e.seats ? e.left : 0;
+function careBook(e, slot) {
+  const L = (S.coach === 'all' ? visible() : mine()).filter(m => m.id !== ME_ID && m.contact && statusOf(m, now()) !== 'stop');
+  let mid = '', mode = 'onsite';
+  advModal(`จอง CARE DAY ให้ สมช · ${slot} น.`, `<div class="note">${fdl(e.at)} · 20 นาที · โค้ช${e.coaches[0]}</div>
+    <div class="fsec" style="margin-top:8px"><h4>สมช</h4><select style="width:100%" data-ch="${A(ev => { mid = ev.target.value; $('#mderr').textContent = ''; })}"><option value="">— เลือก สมช —</option>${L.map(m => `<option value="${m.id}">คุณ${esc(m.name)} · ${ST[statusOf(m, now())].name}</option>`).join('')}</select></div>
+    <div class="fsec"><h4>รูปแบบ</h4><div style="display:flex;gap:14px">${['onsite', 'online'].map(k => `<label class="ck"><input type="radio" name="cbm" ${k === mode ? 'checked' : ''} data-ch="${A(() => { mode = k; })}">${k === 'onsite' ? 'onsite ที่ห้องเรียน' : 'online วิดีโอคอล'}</label>`).join('')}</div></div>
+    <div class="note">คุณมณีรัตน์จองเองผ่านหน้าเว็บ · หน้านี้ใช้จองแทน สมช ที่ทักมาทาง LINE</div>`, 'ยืนยันนัด',
+    () => { if (!mid) { $('#mderr').textContent = 'เลือก สมช ก่อน'; return; } const m = byId(mid); (S.cbk[e.id] = S.cbk[e.id] || {})[slot] = {m:mid, mode}; log(m, `นัด CARE DAY ${fd(e.at)} ${slot} น. (${mode})`); done(`นัด CARE DAY ให้คุณ${m.nick} ${slot} น. แล้ว · ส่งรายละเอียดทาง LINE`); });
+}
+function evDetail(e, t) {
+  if (!e) return `<div class="card"><div class="empty">ไม่มีคลาสในสัปดาห์นี้ตามตัวกรอง</div></div>`;
+  const ty = ETY[e.type], started = e.at <= t, past = evEnd(e) < t, att = S.att[e.id] || (S.att[e.id] = {});
+  const head = `<div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:12px">${ico(ty.i, 'i-g')}<div style="flex:1"><div class="hk" style="margin:0 0 2px">${ty.n.toUpperCase()}</div><h3 style="margin:0;font-size:19px">${esc(e.title)}</h3><div class="note" style="font-size:13.5px">${fdl(e.at)} · ${ftm(e.at)}–${e.end} น. · ${esc(e.sub)}</div></div>${past ? '<span class="chip"><i style="background:#8b95a8"></i>จบแล้ว</span>' : started ? '<span class="chip"><i style="background:#ff6b7d"></i>กำลังเรียน</span>' : '<span class="chip"><i style="background:#56d68a"></i>เปิดจอง</span>'}</div>`;
+  let body = '';
+  if (e.type === 'basic') {
+    const mb = meBk()[e.id], booked = e.os.seats - evLeft(e);
+    const ref = e.at < t ? e.at : t;   // past class: who was on this EP that day · upcoming: who is on it now
+    const expect = visible().filter(m => { const c = lessonAt(m, ref); return (m.id === ME_ID && mb) || (c && c.ep === e.ep && ['up', 'side'].includes(statusOf(m, ref))); });
+    const mode = m => m.id === ME_ID ? (mb ? 'onsite' : 'online') : (m.tags && m.tags.bkk && rng(+m.id.slice(1) * 31 + e.at.getDate())() < .6 ? 'onsite' : 'online');
+    body = `<div class="grid" style="grid-template-columns:1fr 1.3fr;gap:18px"><div><b>ที่นั่ง onsite ${booked}/${e.os.seats}</b> <span class="muted">· เหลือ ${evLeft(e)} ที่</span><div class="seat" aria-hidden="true">${[...Array(e.os.seats)].map((_, i) => `<i class="${i < booked - (mb ? 1 : 0) ? 'b' : i === booked - 1 && mb ? 'me' : ''}"></i>`).join('')}</div><div class="note"><span style="color:var(--gold)">■</span> จองแล้ว · <span style="color:var(--green)">■</span> คุณมณีรัตน์ (จองผ่านหน้าเว็บ${mb && mb.code ? ' · ' + esc(mb.code) : ''})</div>
+      <div class="acts" style="justify-content:flex-start;margin-top:12px">${B(ic('bell', 15) + 'ส่ง LINE เตือนผู้เรียน', () => { expect.forEach(m => log(m, `ส่ง LINE เตือนคลาสสด ${EPN[e.ep]} ${fd(e.at)}`)); done(`ส่ง LINE เตือน ${expect.length} คนแล้ว`); })}${e.kind === 'ตลาดจริง' ? B(ic('tv', 15) + 'เปิด Streaming', () => toast('เปิด Streaming ตลาดจริง (ในระบบจริง)')) : ''}</div></div>
+      <div>${sh('users', 'i-gr', 'สมช ในพอร์ตที่เรียนบทนี้', `${expect.length} คน · เช็กอินแล้ว ${Object.keys(att).length}`)}<div class="note" style="margin:-6px 0 6px">ที่นั่ง onsite นับรวม สมช ทุกพอร์ต · รายชื่อนี้เฉพาะในระบบตัวอย่าง</div>${expect.map(m => { const md = mode(m), inn = att[m.id]; return `<div class="tk" style="grid-template-columns:auto 1fr auto;padding:8px 0">${mav(m, 32)}<div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> <span class="tag" style="margin:0 0 0 4px">${md}</span>${m.id === ME_ID ? ' <span class="tag web">จองผ่านหน้าเว็บ</span>' : ''}</div>${started ? B(inn ? ic('check', 14) + 'เช็กอินแล้ว' : 'เช็กอิน', () => { if (inn) delete att[m.id]; else { att[m.id] = true; log(m, `เข้าคลาสสด ${EPN[e.ep]} (${md})`); } done(inn ? 'ยกเลิกเช็กอิน' : `เช็กอินคุณ${m.nick}แล้ว`); }, inn ? 'pri' : '') : '<span class="muted" style="font-size:12px">เช็กอินเมื่อคลาสเริ่ม</span>'}</div>`; }).join('') || `<div class="empty">ยังไม่มี สมช ในพอร์ตที่อยู่ ${EPN[e.ep]} ${e.at < t ? 'ในวันนั้น' : 'ตอนนี้'}</div>`}</div></div>`;
+  } else if (e.type === 'care') {
+    const sl = careSlots(e);
+    body = `<div class="note" style="margin-bottom:10px">12 ช่วง × 20 นาที · ว่าง ${sl.filter(x => !x.who).length} ช่วง · โค้ช${e.coaches[0]} · onsite หรือ online</div><div class="slotg">${sl.map(x => `<div class="${x.me ? 'me' : x.who ? 'b' : ''}"><b>${x.t}</b>${x.who ? `<span class="nm" data-go="profile:${x.who.id}" style="font-weight:600">คุณ${esc(x.who.nick)}</span><div class="note">${x.mode}${x.me ? ' · จองผ่านหน้าเว็บ' : x.local ? ' · ทีมจองให้' : ''}</div>` : past ? '<div class="note">ว่าง</div>' : B('จองให้ สมช', () => careBook(e, x.t))}</div>`).join('')}</div>`;
+  } else if (e.type === 'small') {
+    const co = ADV.find(c => e.coaches[0] === c.name), studs = co ? visible().filter(m => coachesOf(m, t).includes(co.id)) : [];
+    body = `<div style="display:flex;gap:14px;align-items:center;margin-bottom:10px">${co ? avC(co.id, 44) : ''}<div><b>โค้ช${e.coaches[0]}</b><div class="note">ที่นั่ง ${e.seats - e.left}/${e.seats} · ลูกศิษย์ทั้งหมด ${co ? loadOf(co, t) : '—'} คน · เปิดเฉพาะลูกศิษย์ของโค้ช</div></div></div>
+      ${sh('users', 'i-pu', 'ลูกศิษย์ในระบบนี้', `${studs.length} คน`, '<button class="jump" data-go="adv">ตั้งโค้ช Advance</button>')}${studs.map(m => `<div class="tk" style="grid-template-columns:auto 1fr;padding:8px 0">${mav(m, 30)}<div><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span> <span class="muted" style="font-size:12px">· ${coachNames(m, t).join(' + ')}</span></div></div>`).join('') || '<div class="empty">ยังไม่มีลูกศิษย์ที่ตั้งในระบบตัวอย่าง</div>'}`;
+  } else if (e.type === 'mentor') {
+    body = `<div class="note" style="font-size:13.5px">ไลฟ์ช่องหลัก เปิดให้ สมช ทุกระดับ · ผู้ชมเฉลี่ย 1,248 คน · มีคลิปย้อนหลังให้ดูในหน้าเว็บ</div>`;
+  } else {
+    body = `<div class="note" style="font-size:13.5px">${e.seats ? `ที่นั่ง onsite ${e.seats - e.left}/${e.seats}${e.left ? ` · เหลือ ${e.left} ที่` : ' · เต็มแล้ว (มีคิวรอ)'}` : 'ถ่ายทอดสดทุกช่องทาง'} · โค้ช${e.coaches.join(' / ')}</div>`;
+  }
+  return `<div class="card">${head}${body}</div>`;
+}
+function vSched() {
+  const t = now(); if (!S.wk) S.wk = mondayOf(t);
+  const types = S.ctypes || new Set(Object.keys(ETY)), end = addDays(S.wk, 7);
+  const days = [...Array(7)].map((_, i) => addDays(S.wk, i));
+  const evs = CALX.filter(e => e.at >= S.wk && e.at < end && types.has(e.type));
+  let sel = evs.find(e => e.id === S.evSel);
+  if (!sel) { sel = evs.find(e => e.type === 'basic' && evEnd(e) >= t) || evs.find(e => e.type === 'basic') || evs[0]; if (sel) S.evSel = sel.id; }
+  const toggle = k => A(() => { const n = new Set(types); n.has(k) ? n.delete(k) : n.add(k); if (!n.size) Object.keys(ETY).forEach(x => n.add(x)); S.ctypes = n; render(); });
+  const evc = e => { const past = evEnd(e) < t, seat = e.type === 'basic' ? `onsite ${e.os.seats - evLeft(e)}/${e.os.seats}` : e.type === 'care' ? `ว่าง ${evLeft(e)}/12` : e.seats ? `ที่นั่ง ${e.seats - e.left}/${e.seats}` : 'ออนไลน์';
+    return `<button class="evc ${sel && sel.id === e.id ? 'sel' : ''} ${past ? 'past' : ''}" style="--c:${ETY[e.type].c}" data-a="${A(() => { S.evSel = e.id; render(); })}"><span class="tm">${ftm(e.at)}–${e.end}</span><b>${esc(evName(e))}</b><span class="sb">${seat}${meBk()[e.id] ? ' · คุณมณีรัตน์จอง' : ''}</span></button>`; };
+  const wkLabel = `${S.wk.getDate()} ${TH_M[S.wk.getMonth()]} – ${addDays(S.wk, 6).getDate()} ${TH_M[addDays(S.wk, 6).getMonth()]} ${addDays(S.wk, 6).getFullYear() + 543}`;
+  return `${ph('งานโค้ช', 'ตารางคลาส + การจอง', 'ตารางเดียวกับหน้าเว็บสมาชิก · ที่นั่ง onsite, CARE DAY และการจองของ สมช อัปเดตตรงกันทั้งสองฝั่ง', B(ic('arrowl', 15) + 'สัปดาห์ก่อน', () => { S.wk = addDays(S.wk, -7); S.evSel = null; render(); }) + B('สัปดาห์นี้', () => { S.wk = mondayOf(t); S.evSel = null; render(); }) + B('สัปดาห์ถัดไป ' + ic('chev', 15), () => { S.wk = addDays(S.wk, 7); S.evSel = null; render(); }))}
+    <div class="fchips" style="align-items:center"><b style="margin-right:6px">${wkLabel}</b>${Object.entries(ETY).map(([k, v]) => `<button class="fchip ${types.has(k) ? 'on' : ''}" aria-pressed="${types.has(k)}" data-a="${toggle(k)}"><i class="dotl" style="background:${v.c};margin-right:6px"></i>${v.n}</button>`).join('')}</div>
+    <div class="wk">${days.map(d => `<div class="wkd ${sameDay(d, t) ? 'today' : ''}"><div class="wkh"><span>${TH_DS[d.getDay()]}</span><b>${d.getDate()}</b>${sameDay(d, t) ? '<em>วันนี้</em>' : ''}</div>${evs.filter(e => sameDay(e.at, d)).map(evc).join('') || '<div class="note" style="padding:4px">—</div>'}</div>`).join('')}</div>
+    ${evDetail(sel, t)}`;
+}
+
+/* ============ view: lesson clips (one main clip per EP, re-recorded every month) ============ */
+const CLIPB = {1:{dur:80, views:4210}, 2:{dur:55, views:3615}, 3:{dur:47, views:3120}, 4:{dur:51, views:2890}};
+const VBACK = [['ส.ค. 2569', 3, .55], ['ก.ค. 2569', -2, .40], ['มิ.ย. 2569', 4, .25]];
+const monTH = d => `${TH_M[d.getMonth()]} ${d.getFullYear() + 543}`;
+function uplModal(ep) {
+  const t = now(), nx = new Date(t.getFullYear(), t.getMonth() + 1, 1), ver = monTH(nx), f = {dur:'' + CLIPB[ep].dur, pub:'next', note:''};
+  advModal(`อัปโหลดคลิปหลัก ${EPN[ep]} · รอบ ${ver}`, `<div class="note">${EPF[ep]}</div>
+    <div class="fsec" style="margin-top:8px"><h4>ไฟล์วิดีโอ</h4><button style="width:100%;border-style:dashed;padding:18px" data-a="${A(() => toast('เลือกไฟล์ (ตัวอย่าง)'))}">${ic('plus', 16)}เลือกไฟล์ .mp4 (ตัวอย่าง)</button></div>
+    <div class="fsec"><h4>ความยาว (นาที)</h4><input type="text" value="${f.dur}" style="width:120px" data-in="${A(e => { f.dur = e.target.value; $('#mderr').textContent = ''; })}"></div>
+    <div class="fsec"><h4>สิ่งที่ปรับจากรอบก่อน</h4><textarea placeholder="เช่น เปลี่ยนตัวอย่างหุ้นเป็นเคสเดือนนี้ · อธิบาย Candlestick ช้าลง" data-in="${A(e => { f.note = e.target.value; })}"></textarea></div>
+    <div class="fsec"><h4>เผยแพร่</h4><div style="display:flex;gap:14px">${[['next', `1 ${ver} (ต้นรอบ)`], ['now', 'ทันที']].map(([k, l]) => `<label class="ck"><input type="radio" name="pub" ${k === f.pub ? 'checked' : ''} data-ch="${A(() => { f.pub = k; })}">${l}</label>`).join('')}</div></div>
+    <div class="note">เมื่อเผยแพร่ คลิปเดือนก่อนย้ายไปคลังย้อนหลังอัตโนมัติ · ข้อสอบนับจากคลิปหลัก</div>`, 'บันทึก',
+    () => { const d = +f.dur; if (!(d >= 10 && d <= 180)) { $('#mderr').textContent = 'ใส่ความยาว 10–180 นาที'; return; } S.upl[ep] = {ver, dur:d, note:f.note.trim(), pub:f.pub === 'now' ? now() : nx, at:now()}; done(f.pub === 'now' ? `เผยแพร่คลิป ${EPN[ep]} รอบ ${ver} แล้ว` : `ตั้งเวลาเผยแพร่ ${EPN[ep]} รอบ ${ver} วันที่ 1 แล้ว`); });
+}
+function vContent() {
+  const t = now(), L = visible(), nx = new Date(t.getFullYear(), t.getMonth() + 1, 1), dueUp = addDays(nx, -3);
+  const cards = [1, 2, 3, 4].map(ep => {
+    const up = S.upl[ep], live = up && up.pub <= t, cur = live ? {ver:up.ver, dur:up.dur, views:Math.round(CLIPB[ep].views * .08)} : {ver:'ก.ย. 2569', dur:CLIPB[ep].dur, views:CLIPB[ep].views};
+    const arch = (live ? [['ก.ย. 2569', 0, 1]] : []).concat(VBACK);
+    const reached = L.filter(m => m.lessons.some(l => l.ep === ep && l.at <= t) || (m.grad && m.grad <= t)).length;
+    const ex = L.map(m => m.exams[ep]).filter(x => x != null), passEx = ex.filter(x => x >= 16).length;
+    const hwAll = ep === 2 || ep === 3 ? L.flatMap(m => [1, 2, 3].map(n => { const hs = m.hw.filter(h => h.ep === ep && h.n === n && h.sub <= t); return hs[hs.length - 1]; }).filter(Boolean)) : [];
+    const hwOk = hwAll.filter(h => h.pass && h.rev && h.rev <= t).length;
+    return `<div class="epc"><div class="cov">${art(700 + ep * 37, '#e3b857', {n:30, trend:.012})}<div class="cn"><b>EP.${ep}</b><span>คลิปหลัก · ${cur.dur} นาที</span></div></div>
+      <div><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><h3 style="margin:0 0 2px;font-size:17px">${EPF[ep]}</h3><div class="note">คลิปหลักเดือน ${cur.ver} · ${cur.dur} นาที · ดู ${cur.views.toLocaleString()} ครั้ง</div></div>
+        <div class="acts">${up && !live ? B(ic('clock', 15) + 'แก้รอบ ' + up.ver, () => uplModal(ep)) : B(ic('plus', 15) + `อัปโหลดรอบ ${monTH(nx)}`, () => uplModal(ep), 'pri')}<a class="abtn" href="${FRONT_URL}#v=ep&id=${ep}&intro=0" target="_blank" rel="noopener">ดูบนหน้าเว็บ ↗</a></div></div>
+        <div class="vers"><span class="cur">คลิปหลัก · ${cur.ver}</span>${up && !live ? `<span class="nx">รอเผยแพร่ · ${up.ver} · ${up.dur} นาที · ${fd(up.pub)}</span>` : ''}${arch.map(([v, dd]) => `<span>คลังย้อนหลัง · ${v} · ${CLIPB[ep].dur + dd} นาที</span>`).join('')}</div>
+        ${up && up.note ? `<div class="quote">${esc(up.note)}</div>` : ''}
+        <div class="mst"><div><b>${reached}</b><span>สมช ที่เรียนบทนี้</span></div><div><b>${passEx}/${ex.length || 0}</b><span>ผ่านข้อสอบ 16/20</span></div><div><b>${ex.length ? (ex.reduce((a, b) => a + b, 0) / ex.length).toFixed(1) : '—'}</b><span>คะแนนเฉลี่ย /20</span></div><div><b>${hwAll.length ? Math.round(hwOk / hwAll.length * 100) + '%' : 'ไม่มี'}</b><span>${hwAll.length ? `การบ้านผ่าน (${hwOk}/${hwAll.length})` : 'การบ้านกราฟ'}</span></div></div></div></div>`;
+  }).join('');
+  return `${ph('ทีม CS + หลังบ้าน', 'คลิปบทเรียน', 'Basic มีคลิปหลักบทละ 1 คลิป อัดใหม่ทุกเดือน · คลิปเดือนก่อนย้ายเข้าคลังย้อนหลังให้ทบทวน · ข้อสอบนับจากคลิปหลัก')}
+    <div class="banner cls">${ic('clock', 18)}<b>รอบอัดใหม่ ${monTH(nx)}</b> ส่งไฟล์ภายใน ${fdl(dueUp)} · เผยแพร่วันที่ 1 ${monTH(nx)} · อัปโหลดแล้ว ${[1, 2, 3, 4].filter(ep => S.upl[ep]).length}/4 บท</div>
+    ${cards}`;
 }
 
 /* ============ view: Advance coach desk (CS + back office) ============ */
@@ -945,7 +1455,7 @@ function advReqModal(mid) {
 function advInfo(m, t) {
   const st = advStage(m, t), ty = typeOf(m), ex = [1, 2, 3, 4].map(ep => m.exams[ep]).filter(x => x != null);
   return `<div class="grid">
-    <div class="card"><h3>คุณ${esc(m.name)} ${chip('tp')}</h3>
+    <div class="card"><div class="who" style="margin-bottom:8px">${mav(m, 44)}<div class="wn"><b style="font-size:17px">คุณ${esc(m.name)} ${chip('tp')}</b></div></div>
       <div class="note" style="font-size:13.5px;margin-bottom:8px">${m.grad && m.grad <= t ? `จบ Basic ${fdy(m.grad)}` : `ผ่าน Fast Track ${fdy(m.ft.advAt)}`} · Basic โค้ช${m.coach}${ex.length ? ` · ข้อสอบเฉลี่ย ${(ex.reduce((x, y) => x + y, 0) / ex.length).toFixed(1)}/20` : ''}</div>
       ${m.tags ? `<span class="tag" style="background:${ty.c};color:#fff;font-weight:700">${ty.name}</span><span class="tag">${SCREEN[m.tags.screen]}</span><span class="tag">สนใจ: ${esc(m.tags.asset)}</span><span class="tag">ความรู้: ${LEVEL[m.tags.level]}</span><span class="tag">${m.tags.bkk ? 'อยู่ กทม.' : 'ต่างจังหวัด'}</span>` : '<div class="empty">ยังไม่มีข้อมูลควิซ</div>'}
       ${m.ft && m.ft.memo ? `<div class="note" style="margin-top:6px">Memo Fast Track: ${esc(m.ft.memo)}</div>` : ''}
@@ -991,16 +1501,17 @@ function vAdv() {
   const reqs = REQ.filter(r => r.at <= t), rq = k => reqs.filter(r => reqSt(r, t) === k);
   if (!grads.some(m => m.id === S.advSel)) S.advSel = (W[0] || T[0] || D[0] || {}).id || null;
   const col = (title, sub, arr, fn) => `<div class="kcol"><h4>${title}<span class="muted">${arr.length}</span></h4><div class="note" style="margin:-4px 4px 8px">${sub}</div>${arr.map(fn).join('') || '<div class="empty" style="padding:4px">—</div>'}</div>`;
-  const card = (m, body) => `<div class="kcard ${S.advSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.advSel = m.id; S.advForm = null; render(); })}"><b>คุณ${esc(m.name)}</b> <span class="muted">· Basic โค้ช${m.coach}</span><br>${body}</div>`;
+  const card = (m, body) => `<div class="kcard ${S.advSel === m.id ? 'sel' : ''}" data-a="${A(() => { S.advSel = m.id; S.advForm = null; render(); })}"><div class="who" style="margin-bottom:4px">${mav(m, 28)}<div class="wn"><b>คุณ${esc(m.name)}</b><span>Basic โค้ช${m.coach}</span></div></div>${body}</div>`;
   const fin = m => `${m.grad && m.grad <= t ? 'จบ Basic' : 'ผ่าน Fast Track'} ${fd(tpAt(m))}`;
   const kan = `<div class="kan" style="grid-template-columns:repeat(3,1fr)">
     ${col('1 · รอ CS ติดต่อ', 'ระบบส่งรายชื่อให้เมื่อจบ Basic / ผ่าน Fast Track', W, m => { const n = m.adv.calls.filter(c => c.at <= t).length; const cr = m.adv.csReq && m.adv.csReq.at <= t ? m.adv.csReq : null; return card(m, `${fin(m)}${n ? ` · ติดต่อแล้ว ${n} ครั้ง` : ''}${cr ? `<br><span class="tag web">กด "ให้ CS ติดต่อกลับ"${cr.coach ? ' · สนใจโค้ช' + cn(cr.coach) : ''}</span>` : ''}<br>${sla(advDue(m, t), t, 'ติดต่อ')}`); })}
     ${col('2 · คุยแล้ว รอตั้งโค้ช', 'สมช เลือกโค้ชแล้ว ทีมตั้งในระบบ', T, m => card(m, `เลือกโค้ช${advC(m.adv.pick).name} · คุย ${fd(m.adv.talkAt)}<br>${sla(advDue(m, t), t, 'ตั้งโค้ช')}`))}
-    ${col('3 · ตั้งโค้ชแล้ว', 'สมช เห็นคลิปของโค้ชบนเว็บแล้ว', D, m => card(m, `${coachNames(m, t).join(' + ')}<br><span class="muted">ตั้ง ${fd(m.adv.setAt)}</span>`))}
+    ${col('3 · ตั้งโค้ชแล้ว', 'สมช เห็นคลิปของโค้ชบนเว็บแล้ว', D, m => card(m, `<span style="display:inline-flex;gap:4px;vertical-align:middle;margin-right:6px">${coachesOf(m, t).map(id => avC(id, 24)).join('')}</span>${coachNames(m, t).join(' + ')}<br><span class="muted">ตั้ง ${fd(m.adv.setAt)}</span>`))}
   </div>`;
   const m = byId(S.advSel);
   const panel = m ? `<div class="grid" style="grid-template-columns:1fr 1.15fr;align-items:start;margin-bottom:14px">${advInfo(m, t)}${advAction(m, t)}</div>` : '<div class="card" style="margin-bottom:14px"><div class="empty">ยังไม่มี สมช ที่จบ Basic ในวันที่จำลอง</div></div>';
-  const tile = (lb, vl, note) => `<div class="card kpi"><div class="lb">${lb}</div><div class="vl">${vl}</div><div class="note">${note}</div></div>`;
+  const TI = {'รอ CS ติดต่อ':['headset', 'i-bl'], 'คุยแล้ว รอตั้งโค้ช':['users', 'i-g'], 'คำขอเพิ่มโค้ช รอหลังบ้าน':['check', 'i-pu'], 'ตั้งโค้ชประจำตัว 30 วัน':['award', 'i-gr']};
+  const tile = (lb, vl, note) => kc(TI[lb][0], TI[lb][1], lb, vl, note);
   const red = x => `<b style="color:var(--rose)">${x}</b>`;
   const order = ['paid', 'unpaid', 'done'];
   const rows = reqs.slice().sort((a, b) => order.indexOf(reqSt(a, t)) - order.indexOf(reqSt(b, t)) || b.at - a.at).map(r => {
@@ -1012,7 +1523,7 @@ function vAdv() {
       : s === 'paid' ? B('เพิ่มโค้ชในระบบ', () => advAddModal(r), 'pri') : '';
     return `<tr><td><span class="nm" data-a="${A(() => { S.advSel = mm.id; S.advForm = null; render(); })}">คุณ${esc(mm.name)}</span></td><td>${cur.join(', ') || '—'}</td><td><b>โค้ช${c.name}</b></td><td>${r.sales || '<span class="muted">รอเซลรับเรื่อง</span>'}<div class="note">${fd(r.at)} ${ftm(r.at)} น.${r.web ? ' · จากหน้าเว็บ' : ''}</div></td><td>${stc}</td><td>${act}</td></tr>`;
   }).join('');
-  return `<h1>ตั้งโค้ช Advance</h1><p class="sub">สมช ไม่ได้เลือกโค้ชเองบนเว็บ · CS คุยกับ สมช แล้วทีมตั้งโค้ชให้ในระบบ · อยากเพิ่มโค้ช ติดต่อเซล แล้วหลังบ้านเพิ่มให้</p>
+  return `${ph('ทีม CS + หลังบ้าน', 'ตั้งโค้ช Advance', 'สมช ไม่ได้เลือกโค้ชเองบนเว็บ · CS คุยกับ สมช แล้วทีมตั้งโค้ชให้ในระบบ · อยากเพิ่มโค้ช ติดต่อเซล แล้วหลังบ้านเพิ่มให้')}
     <div class="flow"><b>จบ Basic</b>→<b>CS ติดต่อภายใน 1 วันทำการ</b>→<b>สมช เลือกโค้ช 1 ท่าน</b>→<b>ทีมตั้งในระบบ</b>→<b>สมช ได้ LINE + เห็นคลิปโค้ชบนเว็บ</b></div>
     <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
       ${tile('รอ CS ติดต่อ', W.length, lateW ? red(`เกิน 1 วันทำการ ${lateW} คน`) : 'อยู่ในกำหนดทั้งหมด')}
@@ -1037,8 +1548,8 @@ function vAdv() {
 }
 function csAdvCard(t) {
   const W = visible().filter(m => advStage(m, t) === 'wait').sort((a, b) => advDue(a, t) - advDue(b, t));
-  return `<div class="card" style="margin-top:14px"><h3>CS-3 · จบ Basic → คุยเรื่องโค้ช Advance</h3><div class="note" style="margin:-4px 0 8px">ระบบส่งรายชื่อให้อัตโนมัติเมื่อ สมช จบ Basic หรือผ่าน Fast Track · CS ติดต่อภายใน 1 วันทำการ แล้วทีมตั้งโค้ชประจำตัวให้ในระบบ</div>
-    ${W.length ? `<table><tr><th>ชื่อ</th><th>โค้ช Basic</th><th>จบเมื่อ</th><th>กำหนดติดต่อ</th><th></th></tr>${W.map(m => `<tr><td><span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></td><td>${m.coach}</td><td>${fd(tpAt(m))} ${ftm(tpAt(m))}</td><td>${sla(advDue(m, t), t, 'ติดต่อ')}</td><td>${B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id), 'pri')}</td></tr>`).join('')}</table>` : '<div class="empty">ไม่มีรายชื่อรอติดต่อ</div>'}</div>`;
+  return `<div class="card" style="margin-top:14px">${sh('award', 'i-g', 'CS-3 · จบ Basic → คุยเรื่องโค้ช Advance')}<div class="note" style="margin:-4px 0 8px">ระบบส่งรายชื่อให้อัตโนมัติเมื่อ สมช จบ Basic หรือผ่าน Fast Track · CS ติดต่อภายใน 1 วันทำการ แล้วทีมตั้งโค้ชประจำตัวให้ในระบบ</div>
+    ${W.length ? `<table><tr><th>ชื่อ</th><th>โค้ช Basic</th><th>จบเมื่อ</th><th>กำหนดติดต่อ</th><th></th></tr>${W.map(m => `<tr><td><div class="who">${mav(m, 30)}<span class="nm" data-go="profile:${m.id}">คุณ${esc(m.name)}</span></div></td><td>${m.coach}</td><td>${fd(tpAt(m))} ${ftm(tpAt(m))}</td><td>${sla(advDue(m, t), t, 'ติดต่อ')}</td><td>${B('เปิดหน้าตั้งโค้ช', () => go('adv', m.id), 'pri')}</td></tr>`).join('')}</table>` : '<div class="empty">ไม่มีรายชื่อรอติดต่อ</div>'}</div>`;
 }
 function advProfileBox(m, t) {
   const st = advStage(m, t); if (!st) return '';
@@ -1073,7 +1584,7 @@ let WEBFB = [];   // ความเห็นที่ สมช ส่งจา
 const ms = d => d ? +d : null, dt = x => x == null ? null : new Date(x);
 function meSnap() {
   const m = byId(ME_ID), a = m.adv;
-  return {hw:m.hw.map(h => ({ep:h.ep, n:h.n, sub:ms(h.sub), rev:ms(h.rev), pass:!!h.pass})),
+  return {hw:m.hw.map(h => ({ep:h.ep, n:h.n, sub:ms(h.sub), rev:ms(h.rev), pass:!!h.pass, text:h.text || '', note:h.note || ''})), chall:m.chall ? {...m.chall} : null, bk:JSON.parse(JSON.stringify(m.bk || {})), cbk:JSON.parse(JSON.stringify(S.cbk)),
     ft:m.ft ? {...m.ft, since:ms(m.ft.since), screenAt:ms(m.ft.screenAt), hwSub:ms(m.ft.hwSub), advAt:ms(m.ft.advAt)} : null,
     fb:WEBFB.map(f => ({...f})), grad:ms(m.grad),
     adv:{calls:a.calls.map(c => ({ch:c.ch, at:ms(c.at)})), csReq:a.csReq ? {at:ms(a.csReq.at), coach:a.csReq.coach || null} : null, talkAt:ms(a.talkAt), pick:a.pick, ch:a.ch, memo:a.memo, talkBy:a.talkBy,
@@ -1083,7 +1594,8 @@ function meSnap() {
 const ME0 = meSnap();   // ค่าเริ่มต้นของคุณมณีรัตน์ (ตรงกับหน้าเว็บ: EP.2 · การบ้านผ่าน 1/3)
 function linkApply(o) {
   const m = byId(ME_ID), L = o || ME0, a = L.adv || {};
-  m.hw = (L.hw || []).map(h => ({ep:h.ep, n:h.n, sub:dt(h.sub), rev:dt(h.rev), pass:!!h.pass}));
+  m.hw = (L.hw || []).map(h => ({ep:h.ep, n:h.n, sub:dt(h.sub), rev:dt(h.rev), pass:!!h.pass, text:h.text || '', note:h.note || ''}));
+  m.chall = L.chall ? {...L.chall} : null; m.bk = JSON.parse(JSON.stringify(L.bk || ME0.bk || {})); S.cbk = JSON.parse(JSON.stringify(L.cbk || {}));   // CARE DAY slots the team booked for other members
   m.ft = L.ft ? {...L.ft, since:dt(L.ft.since), screenAt:dt(L.ft.screenAt), hwSub:dt(L.ft.hwSub), advAt:dt(L.ft.advAt)} : null;
   WEBFB = (L.fb || []).map(f => ({...f}));
   m.grad = dt(L.grad);
@@ -1095,7 +1607,11 @@ let linkLast = '';
 function linkSave() { const cur = JSON.stringify(meSnap()); if (cur === linkLast) return; linkLast = cur; LINK.set({...JSON.parse(cur), from:'back', at:Date.now()}); }
 function linkNews(a, b) {
   const nm = 'คุณมณีรัตน์', out = [];
-  b.hw.filter(h => !a.hw.some(x => x.ep === h.ep && x.n === h.n)).forEach(h => out.push(`${nm}ส่งการบ้าน EP.${h.ep} ข้อ ${h.n}`));
+  b.hw.filter(h => !a.hw.some(x => x.ep === h.ep && x.n === h.n && x.sub === h.sub)).forEach(h => out.push(`${nm}ส่งการบ้าน EP.${h.ep} ข้อ ${h.n}${a.hw.some(x => x.ep === h.ep && x.n === h.n) ? ' (ส่งใหม่หลังแก้)' : ''}`));
+  if (!a.chall && b.chall) out.push(`${nm}ส่งคำตอบ Chart Challenge`);
+  const ev = id => { const e = CALX.find(x => x.id === id); return e ? `${evName(e)} ${TH_DS[e.at.getDay()]} ${fd(e.at)}` : id; };
+  Object.keys(b.bk || {}).filter(id => !(a.bk || {})[id]).forEach(id => out.push(`${nm}จอง ${ev(id)}${b.bk[id].slot ? ' ' + b.bk[id].slot + ' น.' : ''}`));
+  Object.keys(a.bk || {}).filter(id => !(b.bk || {})[id]).forEach(id => out.push(`${nm}ยกเลิกการจอง ${ev(id)}`));
   if (!a.ft && b.ft) out.push(`${nm}ขอ Fast Track`);
   if (b.fb.length > a.fb.length) out.push(`${nm}ส่งความคิดเห็น ${'★'.repeat(b.fb[b.fb.length - 1].stars)}`);
   if (!a.grad && b.grad) out.push(`${nm}จบ Basic · เข้าคิวรอ CS ติดต่อ`);
@@ -1131,7 +1647,7 @@ window.addEventListener('resize', () => { if ($('#dockslot')) placeDock(); });
 function render() {
   ACT = {}; seq = 0;
   renderSide(); renderTop();
-  const v = {today:vToday, screener:vScreener, profile:vProfile, ft:vFT, cs:vCS, report:vReport, member:vMember, adv:vAdv}[S.view] || vToday;
+  const v = {today:vToday, screener:vScreener, profile:vProfile, ft:vFT, cs:vCS, report:vReport, member:vMember, adv:vAdv, hw:vHw, sched:vSched, content:vContent}[S.view] || vToday;
   $('#view').innerHTML = v();
   const lc = $('#lchat'); if (lc) lc.scrollTop = lc.scrollHeight;
   placeDock(); linkSave();
