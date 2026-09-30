@@ -1571,6 +1571,19 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
 }
 .bolink{margin-left:6px;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--gold);text-decoration:none;border:1px solid var(--goldln)}.bolink:hover{background:var(--goldbg)}
 .simh a{color:var(--gold);letter-spacing:0}
+/* first-visit guide */
+.gws{display:grid;gap:8px;margin:16px 0 4px}
+.gwt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line2);border-radius:16px;background:var(--bg3);color:var(--ink);font:inherit;cursor:pointer}
+.gwt:hover{border-color:var(--goldln)}
+.gwt .wn{flex:1;min-width:0}
+.gwt b{display:block;font-size:16px}
+.gwt .wn span{display:block;font-size:13.5px;color:var(--mut);line-height:1.5}
+.gwt .no{width:30px;height:30px;border-radius:50%;background:var(--goldbg);color:var(--gold2);display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+.gwf{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;font-size:13.5px;color:var(--mut)}
+.tiersw .gq{padding:3px 6px;margin-right:4px;display:inline-flex}
+.gwf .mob{display:none}
+.gqb{margin:12px 0 0 8px;padding:7px 14px;font-size:13.5px;vertical-align:top}
+@media (max-width:900px){ .gwf .dsk{display:none} .gwf .mob{display:inline} }
 /* demo controls: one group in the bottom-right corner */
 .demobar{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;gap:8px;align-items:center}
 .demobar .chgbtn,.demobar .mock{position:static}
@@ -3127,7 +3140,7 @@ function vLibrary() {
 }
 function vMe() {
   const sw = (k, label, sub) => `<div class="row"><div class="tx">${label}<span>${sub}</span></div><button class="sw ${S.pref[k] ? 'on' : ''}" role="switch" aria-checked="${S.pref[k]}" aria-label="${label}" data-a="${A(() => { S.pref[k] = !S.pref[k]; render(); })}"><i></i></button></div>`;
-  return `<div class="card pad" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${av(ME.nick, 72)}<div style="flex:1"><h1 style="margin:0;font-size:26px">คุณ${ME.nick}</h1><div class="muted">สมาชิกตั้งแต่ ${ME.since}</div><div class="chips" style="margin-top:8px;gap:6px;align-items:center">${rankChip()}<span class="tag g">${ME.type} · ${ME.typeEn}</span><span class="tag">${S.tier === 'adv' ? 'จบ Basic แล้ว' : 'กำลังเรียน EP.2'}</span></div><div class="seg" style="margin-top:12px" role="group" aria-label="มุมมองตัวอย่างสำหรับทีม">${[['basic','ดูแบบ Basic'],['adv','ดูแบบ Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}</div></div></div>
+  return `<div class="card pad" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${av(ME.nick, 72)}<div style="flex:1"><h1 style="margin:0;font-size:26px">คุณ${ME.nick}</h1><div class="muted">สมาชิกตั้งแต่ ${ME.since}</div><div class="chips" style="margin-top:8px;gap:6px;align-items:center">${rankChip()}<span class="tag g">${ME.type} · ${ME.typeEn}</span><span class="tag">${S.tier === 'adv' ? 'จบ Basic แล้ว' : 'กำลังเรียน EP.2'}</span></div><div class="seg" style="margin-top:12px" role="group" aria-label="มุมมองตัวอย่างสำหรับทีม">${[['basic','ดูแบบ Basic'],['adv','ดูแบบ Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}</div><button class="btn ghost gqb" data-a="${A(() => { S.modal = 'guide'; render(); })}">${ic('help', 15)}วิธีดูต้นแบบ</button></div></div>
     <div class="mgrid sec">
       <div class="card pad"><h3 style="margin:0 0 6px">โค้ชของฉัน</h3>
         ${S.tier === 'adv' ? meCoaches() : `<div class="row">${av(ME.coach, 44)}<div class="tx"><b>${coachName(ME.coach)}</b><span>โค้ชประจำตัว Basic · ตอบใน LINE</span></div><button class="btn sm ghost">${ic('msg', 14)}ทัก LINE</button></div>`}
@@ -3209,13 +3222,13 @@ function modalHTML() {
   if (S.modal === 'ft') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="Fast Track"><h3>Fast Track</h3><div class="muted" style="font-size:15px">สำหรับคนที่มีพื้นฐานแล้ว ไม่ต้องเรียน Basic ซ้ำ</div>
     <div class="fld"><label>ขั้นตอน</label><div class="hrow"><span>1. นัดคุยกับโค้ช 20–30 นาที (onsite หรือ online)</span></div><div class="hrow"><span>2. วิเคราะห์หุ้น 1 ตัว: เทรนด์ 3 ภาพ · แนวรับแนวต้าน · แผนเทรด</span></div><div class="hrow"><span>3. ผ่าน 7/10 ขึ้นไป และต้องมี Stop Loss</span></div><div class="hrow"><span>4. ส่งการบ้านกราฟ โค้ชตรวจผ่าน ขึ้นยศ Advance</span></div></div>
     <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ยกเลิก</button>${ftSt() ? `<span class="btn on">${ic('check', 15)}${ftSt()}</span>` : `<button class="btn" data-a="${A(() => { lkWrite(o => { if (!o.ft) o.ft = {gate:'web', status:'invited', since:+NOW}; }); S.modal = null; render(); toast('ส่งคำขอถึง' + coachName(ME.coach) + 'แล้ว โค้ชจะนัดทาง LINE'); })}">ขอนัดคุยกับโค้ช</button>`}</div></div></div>`;
-  if (S.modal === 'guide') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="วิธีดู Mockup หน้าบ้านใหม่"><h3>หน้าบ้านใหม่ Super Trader Republic</h3><div class="muted" style="font-size:15px">Mockup สำหรับดูหน้าตาและการใช้งาน · ข้อมูลทั้งหมดเป็นตัวอย่าง</div>
-    <div class="fld"><label>วิธีดู</label>
-      <div class="hrow"><span>1. สมาชิกมี 2 ระดับ: <b>Basic</b> (สมาชิกใหม่ · ธีมชมพู-ทอง) และ <b>Advance</b> (สอบผ่าน Basic แล้ว · ธีมน้ำเงิน-ทอง) · Advance มีโค้ชประจำตัว 1 ท่านที่ทีม CS ตั้งให้ และเห็นเฉพาะคลิปของโค้ชท่านนั้น (ตัวอย่างนี้คือโค้ชเจ) · อยากเพิ่มโค้ชติดต่อเซล แล้วหลังบ้านจะเพิ่มให้</span></div>
-      <div class="hrow"><span>2. สลับมุมมอง Basic / Advance ได้ที่มุมขวาล่างของจอ</span></div>
-      <div class="hrow"><span>3. ทุกปุ่มกดได้จริง ลองกด “เรียนต่อ” “ส่งการบ้าน” หรือกดวันที่ในปฏิทินแล้ว “จอง onsite”</span></div>
-      <div class="hrow"><span>4. กด “ดูว่าเปลี่ยนอะไร” มุมซ้ายล่าง เพื่อดูสรุปสิ่งที่เปลี่ยนจากเว็บเดิม</span></div></div>
-    <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; setTier('adv'); })}">ดูแบบ Advance</button><button class="btn" data-a="${A(() => { S.modal = null; render(); })}">เริ่มดูแบบ Basic</button></div></div></div>`;
+  if (S.modal === 'guide') { const close = A(() => { S.modal = null; render(); });
+    const tries = [['เรียนแบบสมาชิก Basic', 'คุณมณีรัตน์เรียนอยู่ EP.2 · ลองกด "เรียนต่อ" "ส่งการบ้าน" หรือกดวันในปฏิทินแล้ว "จอง onsite"', () => { S.modal = null; setTier('basic'); }],
+      ['ดูแบบสมาชิก Advance', 'หลังสอบผ่าน Basic · มีโค้ชประจำตัว 1 ท่านที่ทีม CS ตั้งให้ (ตัวอย่างคือโค้ชเจ) · อยากเพิ่มโค้ชติดต่อเซล บนเว็บไม่มีราคา', () => { S.modal = null; setTier('adv'); }]];
+    if (!IN_BO) tries.push(['เปิดหลังบ้านคู่กัน', 'เปิดในเบราว์เซอร์เดียวกัน กดในเว็บนี้แล้วงานไปขึ้นที่หลังบ้านทันที และกลับกัน', () => { window.open(BO_URL, '_blank', 'noopener'); S.modal = null; render(); }]);
+    return `<div class="ovl"><div class="mbox gw" role="dialog" aria-label="วิธีดูต้นแบบหน้าเว็บสมาชิก"><h3>หน้าเว็บสมาชิก SPTR · ต้นแบบ</h3><div class="muted" style="font-size:15px">เว็บที่สมาชิกเห็น ตัวอย่างเป็นของคุณมณีรัตน์ · ทุกปุ่มกดได้จริง · รายชื่อและตัวเลขเป็นข้อมูลตัวอย่าง</div>
+      <div class="gws">${tries.map(([t, d, fn], i) => `<button class="gwt" data-a="${A(fn)}"><span class="no">${i + 1}</span><span class="wn"><b>${t}</b><span>${d}</span></span>${ic('chev', 18)}</button>`).join('')}</div>
+      <div class="gwf"><span class="dsk">สลับ Basic / Advance, "ดูว่าเปลี่ยนอะไร" และเปิดหน้านี้อีกครั้ง (ปุ่ม ?) อยู่มุมขวาล่าง</span><span class="mob">สลับ Basic / Advance และเปิดหน้านี้อีกครั้งได้ที่หน้าโปรไฟล์ (กดรูปมุมขวาบน)</span><button class="btn" data-a="${close}">เริ่มดูเอง</button></div></div></div>`; }
   if (S.modal === 'coachreq') { const c = COACHES.find(x => x.id === S.buy); if (!c) return ''; const first = !S.myCoaches.length, n = courseOf(c.name).length, day = smallDay(c.name), W = first ? ' CS ' : 'เซล';
     const req = first ? !!(S.csReq && S.csReq.coach === c.id) : !!S.salesReq[c.id], close = A(() => { S.modal = null; render(); });
     const steps = first ? ['บอกทีม CS ว่าสนใจโค้ชท่านนี้', 'CS คุยรายละเอียดและยืนยันกับคุณ', 'ทีมตั้งโค้ชให้ในระบบ · คลิปและคลาสขึ้นให้อัตโนมัติ'] : ['ติดต่อเซล สอบถามราคาและรายละเอียด', 'ชำระเงินกับเซล', 'ทีมหลังบ้านเพิ่มโค้ชในบัญชีของคุณ · คลิปและคลาสขึ้นให้อัตโนมัติ'];
@@ -3321,7 +3334,7 @@ function render() {
   ACT = {}; seq = 0; gid = 0;
   renderChrome();
   const v = {home:S.tier === 'adv' ? (S.myCoaches.length ? vHome : vPick) : vHomeBasic, pick:vPick, ep:vEp, learn:vLearn, coach:vCoach, watch:vWatch, livewatch:vLiveWatch, live:S.tier === 'adv' ? vLive : vLiveBasic, library:vLibrary, me:vMe, hot:vHot}[S.view] || vHome;
-  $('#view').innerHTML = v() + `<div class="demobar"><button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}${IN_BO ? '' : `<a class="bolink" href="${BO_URL}" target="_blank" rel="noopener">หลังบ้าน ↗</a>`}</span></div>`;
+  $('#view').innerHTML = v() + `<div class="demobar"><button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง"><button class="gq" aria-label="วิธีดูต้นแบบ" data-a="${A(() => { S.modal = 'guide'; render(); })}">${ic('help', 15)}</button>Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}${IN_BO ? '' : `<a class="bolink" href="${BO_URL}" target="_blank" rel="noopener">หลังบ้าน ↗</a>`}</span></div>`;
   document.querySelectorAll('.nft').forEach(nfSync);
   document.body.classList.toggle('watching', S.view === 'watch');
   $('#ovl').innerHTML = (S.search ? searchHTML() : '') + (S.notif ? notifHTML() : '') + (S.modal ? modalHTML() : '') + (S.changes ? changesHTML() : '');

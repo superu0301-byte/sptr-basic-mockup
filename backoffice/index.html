@@ -1520,7 +1520,7 @@ function vMember() {
   const t = now(), list = visible().filter(x => x.contact && x.contact <= t);
   if (!list.some(x => x.id === S.mv)) S.mv = (list.find(x => x.id === ME_ID) || list[0]).id;
   const mm = byId(S.mv), live = mm.id === ME_ID;
-  return `${ph('มุมมองสมาชิก', 'LINE + หน้าเว็บสมาชิก', 'สิ่งที่สมาชิกเห็นจริง: LINE กับโค้ช และหน้าเว็บสมาชิก' + (live ? ' · ด้านขวาคือเว็บจริงของคุณมณีรัตน์ กดในนั้นแล้วหลังบ้านอัปเดตทันที และกลับกัน' : ''))}
+  return `${ph('มุมมองสมาชิก', 'LINE + หน้าเว็บสมาชิก', 'สิ่งที่สมาชิกเห็นจริง: LINE กับโค้ช และหน้าเว็บสมาชิก' + (live ? ' · หน้าเว็บที่แสดงคู่กันคือเว็บจริงของคุณมณีรัตน์ กดในนั้นแล้วหลังบ้านอัปเดตทันที และกลับกัน' : ''))}
     <div style="margin-bottom:14px;display:flex;gap:10px;align-items:center">ดูในนาม <select aria-label="เลือกสมาชิก" data-ch="${A(e => { S.mv = e.target.value; S.quiz = null; render(); })}">${list.map(x => `<option value="${x.id}" ${x.id === S.mv ? 'selected' : ''}>คุณ${esc(x.name)} · ${ST[statusOf(x, t)].name}${x.id === ME_ID ? ' · หน้าเว็บจริง' : ''}</option>`).join('')}</select>${live ? '' : B('ดูคุณมณีรัตน์ · หน้าเว็บจริง', () => { S.mv = ME_ID; S.quiz = null; render(); }, 'jump')}</div>
     <div class="mvw">
       <div class="phone"><div class="pscreen"><div class="phead">${coachName(mm.coach)} · Basic<small>LINE Official Account</small></div>
