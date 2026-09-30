@@ -1269,6 +1269,7 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   .epitems{grid-template-columns:1fr 1fr}
   .stat{grid-template-columns:1fr 1fr}
   .chgbtn{left:auto;right:16px;bottom:84px;padding:10px}
+  .demobar{right:16px;bottom:84px}
   .mock{display:none}
   .npanel{top:56px;right:12px}
   .ptitle h1{font-size:19px}
@@ -1537,7 +1538,7 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
   /* floating tab bar */
   .tabbar{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));padding:6px;border:1px solid var(--line2);border-radius:28px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
   .tabbar button{border-radius:22px;padding:7px 0}.tabbar button.on{background:var(--goldbg)}
-  .chgbtn{bottom:calc(96px + env(safe-area-inset-bottom))}#mini{bottom:calc(92px + env(safe-area-inset-bottom))}
+  .chgbtn{bottom:calc(96px + env(safe-area-inset-bottom))}.demobar{bottom:calc(96px + env(safe-area-inset-bottom))}#mini{bottom:calc(92px + env(safe-area-inset-bottom))}
 }
 /* phones: hero as a poster card (photo on top, title + stacked full-width buttons at the bottom) */
 .stph,.bsnum{display:none}
@@ -1570,6 +1571,14 @@ html.rm .nfb .bpvl,html.rm .nfb .bpv{display:none}html.rm .nfb .bmute{opacity:1}
 }
 .bolink{margin-left:6px;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--gold);text-decoration:none;border:1px solid var(--goldln)}.bolink:hover{background:var(--goldbg)}
 .simh a{color:var(--gold);letter-spacing:0}
+/* demo controls: one group in the bottom-right corner */
+.demobar{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;gap:8px;align-items:center}
+.demobar .chgbtn,.demobar .mock{position:static}
+.demobar .chgbtn{padding:7px 14px;font-size:13px}
+/* Thai reads badly when letter-spaced: wide tracking stays on Latin marks only */
+.bblab,.stage .bblab{letter-spacing:.04em}
+/* long pill tabs scroll sideways on a phone instead of pushing the page wider */
+@media (max-width:760px){ .seg{max-width:100%;overflow-x:auto;scrollbar-width:none} .seg::-webkit-scrollbar{display:none} }
 </style>
 </head>
 <body>
@@ -1696,7 +1705,7 @@ function art(seed, hue, o = {}) {
 }
 
 /* ---------- mock data (fictional member, sample content) ---------- */
-const ME = {nick:'มณีรัตน์', since:'12 ส.ค. 2569', coach:'แนน', type:'สายหลังเลิกงาน', typeEn:'Swing trader', ep:2, bkk:true, streak:5, goal:[3, 5], hours:'14 ชม. 20 นาที', finished:23};
+const ME = {nick:'มณีรัตน์', since:'12 ส.ค. 2569', coach:'Basic 1', type:'สายหลังเลิกงาน', typeEn:'Swing trader', ep:2, bkk:true, streak:5, goal:[3, 5], hours:'14 ชม. 20 นาที', finished:23};
 const HUES = {gold:'#d5b77c', teal:'#6cc5b8', violet:'#ada0e6', blue:'#86aee2', rose:'#e8939f', amber:'#e2bd6a', green:'#6fc9a3'};
 const COACHES = [
   {id:'lek', name:'เล็ก', full:'ภัค วิทยาพันธ์ประชา', clips:21, fit:'วางแผนสัปดาห์ละครั้ง และเทรดช่วงเย็น–ค่ำได้',
@@ -1819,16 +1828,16 @@ const evEnd = e => { const [h, m] = e.end.split(':'); return new Date(e.at.getFu
     const wd = d.getDay(), at = (h, m) => new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m), key = String(d.getMonth() + 1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
     const add = e => CAL.push({...e, id:e.type + key + (e.sfx || '')});
     if (wd >= 1 && wd <= 5) add({type:'mentor', at:at(9,30), end:'10:30', title:'LIVE MENTOR · เปิดตลาดเช้า', short:'LIVE MENTOR', sub:'ช่องหลัก · โค้ชแพค โค้ชนอฟ', coaches:['แพค','นอฟ']});
-    if (wd === 3 || wd === 6) { const ep = epOf(d), kind = wd === 3 ? 'ตลาดจริง' : 'Case Clinic'; add({type:'basic', ep, kind, at:at(9,50), end:'11:30', title:'Basic คลาสสด · ' + EPT[ep], short:'Basic EP.' + ep, sub:`วัน${wd === 3 ? 'พุธ' : 'เสาร์'} "${kind}" · โค้ชแนน`, coaches:['แนน'], mine:ep === ME.ep}); }
+    if (wd === 3 || wd === 6) { const ep = epOf(d), kind = wd === 3 ? 'ตลาดจริง' : 'Case Clinic'; add({type:'basic', ep, kind, at:at(9,50), end:'11:30', title:'Basic คลาสสด · ' + EPT[ep], short:'Basic EP.' + ep, sub:`วัน${wd === 3 ? 'พุธ' : 'เสาร์'} "${kind}" · โค้ช Basic 1`, coaches:['Basic 1'], mine:ep === ME.ep}); }
     if (wd === 1) add({type:'small', at:at(14,0), end:'15:30', title:'Small Group · โค้ชป๊อป', short:'SG · โค้ชป๊อป', sub:'หุ้นอเมริกาแบบคนทำงาน · Swing + Options', coaches:['ป๊อป'], seats:30, left:1 + Math.floor(r() * 12)});
-    if (wd === 2) { add({type:'care', at:at(13,0), end:'17:00', title:'CARE DAY · คุยกับโค้ช 1:1', short:'CARE DAY', sub:'20 นาที · onsite / online', coaches:['แนน'], seats:12, left:1 + Math.floor(r() * 5)}); add({type:'small', sfx:'k', at:at(14,0), end:'15:30', title:'Small Group · โค้ชคิม', short:'SG · โค้ชคิม', sub:'อ่าน Price action ให้ขาด', coaches:['คิม'], seats:30, left:1 + Math.floor(r() * 12)}); }
+    if (wd === 2) { add({type:'care', at:at(13,0), end:'17:00', title:'CARE DAY · คุยกับโค้ช 1:1', short:'CARE DAY', sub:'20 นาที · onsite / online', coaches:['Basic 1'], seats:12, left:1 + Math.floor(r() * 5)}); add({type:'small', sfx:'k', at:at(14,0), end:'15:30', title:'Small Group · โค้ชคิม', short:'SG · โค้ชคิม', sub:'อ่าน Price action ให้ขาด', coaches:['คิม'], seats:30, left:1 + Math.floor(r() * 12)}); }
     if (wd === 4) { add({type:'small', sfx:'j', at:at(9,50), end:'11:30', title:'Small Group · โค้ชเจ', short:'SG · โค้ชเจ', sub:'เทรดทองเริ่มต้นจาก 0', coaches:['เจ'], seats:30, left:Math.floor(r() * 8)}); add({type:'small', sfx:'l', at:at(10,0), end:'11:30', title:'Small Group · โค้ชเล็ก', short:'SG · โค้ชเล็ก', sub:'Lekclusive · price pattern momentum', coaches:['เล็ก'], seats:30, left:1 + Math.floor(r() * 8)}); }
   }
   CAL.push({id:'ev0905', type:'event', at:D(9,5,10,0), end:'12:00', title:'Workshop · เข้าซื้ออย่างมีแผน', short:'Workshop', sub:'onsite กทม. + online', coaches:['ทีม Basic']},
     {id:'ev0912', type:'event', at:D(9,12,10,0), end:'12:00', title:'THE REPUBLIC Talk · ทิศทางตลาดไตรมาส 4', short:'THE REPUBLIC Talk', sub:'กิจกรรมพิเศษ · ถ่ายทอดสดทุกช่องทาง', coaches:['แพค','นอฟ']},
     {id:'ev0919', type:'event', at:D(9,19,9,55), end:'11:30', title:'Workshop · ต้นทุนและขนาดไม้', short:'Workshop', sub:'onsite กทม. + online', coaches:['ทีม Basic']},
-    {id:'ev1003', type:'event', at:D(10,3,13,30), end:'16:00', title:'Workshop · ตีเส้นแนวรับแนวต้านจากกราฟจริง', short:'Workshop', sub:'onsite กทม. + online · ต่อยอด EP.2', coaches:['แนน'], seats:36, left:9},
-    {id:'ev1017', type:'event', at:D(10,17,13,0), end:'16:00', title:'Chart Café · พบปะ สมช กทม.', short:'Chart Café', sub:'onsite · นัด Screening Fast Track ได้ในงาน', coaches:['แนน','ป๊อป'], seats:40, left:12},
+    {id:'ev1003', type:'event', at:D(10,3,13,30), end:'16:00', title:'Workshop · ตีเส้นแนวรับแนวต้านจากกราฟจริง', short:'Workshop', sub:'onsite กทม. + online · ต่อยอด EP.2', coaches:['Basic 1'], seats:36, left:9},
+    {id:'ev1017', type:'event', at:D(10,17,13,0), end:'16:00', title:'Chart Café · พบปะสมาชิก กทม.', short:'Chart Café', sub:'onsite · นัด Screening Fast Track ได้ในงาน', coaches:['Basic 1','ป๊อป'], seats:40, left:12},
     {id:'ev1024', type:'event', at:D(10,24,13,30), end:'16:00', title:'Workshop · Money Management ภาคปฏิบัติ', short:'Workshop', sub:'onsite กทม. + online · ต่อยอด EP.3', coaches:['ทีม Basic'], seats:36, left:0});
   CAL.sort((a, b) => a.at - b.at);
 })();
@@ -1851,9 +1860,9 @@ const ROUNDS = {0:'รอบ 5–29 ส.ค. 2569', 1:'รอบ 2–26 ก.ย.
     const r = rng(e.at.getDate() * 31 + e.at.getMonth()), id = 'rb' + String(e.at.getMonth() + 1).padStart(2,'0') + String(e.at.getDate()).padStart(2,'0'), dur = 88 + Math.floor(r() * 24), q = dur * 60 / 4, day = e.at.getDay() === 3 ? 'พุธ' : 'เสาร์';
     e.rec = id;
     CLIPS.push({id, cat:'brec', rep:e.ep, kind:e.kind, day, rdate:e.at, round:Math.floor(Math.round((dOnly(e.at) - CYC0) / 864e5) / 28), title:EPT[e.ep] + ' · ' + e.kind, coach:'ทีม Basic', dur, prog:RWATCH[id] ?? null, hue:e.kind === 'ตลาดจริง' ? HUES.green : HUES.blue, views:140 + Math.floor(r() * 360), date:day + ' ' + fd(e.at),
-      ch:CH([['0:00','เปิดคลาส + ทบทวนสัปดาห์ก่อน'],[mmss(q),'เนื้อหาหลัก EP.' + e.ep],[mmss(q * 2), e.kind === 'ตลาดจริง' ? 'เปิด Streaming ดูตลาดจริง' : 'Case Clinic: เคสจากการบ้าน สมช'],[mmss(q * 3),'ถาม-ตอบ + การบ้านสัปดาห์นี้']])});
+      ch:CH([['0:00','เปิดคลาส + ทบทวนสัปดาห์ก่อน'],[mmss(q),'เนื้อหาหลัก EP.' + e.ep],[mmss(q * 2), e.kind === 'ตลาดจริง' ? 'เปิด Streaming ดูตลาดจริง' : 'Case Clinic: เคสจากการบ้านสมาชิก'],[mmss(q * 3),'ถาม-ตอบ + การบ้านสัปดาห์นี้']])});
   });
-  const t = CLIPS.find(c => c.id === 'rb0912'); if (t) t.tx = [['38:20','เคสจากการบ้านของเพื่อน สมช: ตีแนวรับตรงนี้ถูกไหม'],['52:10','Candlestick แท่งกลับตัว ต้องดูร่วมกับแนวรับแนวต้าน']];
+  const t = CLIPS.find(c => c.id === 'rb0912'); if (t) t.tx = [['38:20','เคสจากการบ้านของเพื่อนสมาชิก: ตีแนวรับตรงนี้ถูกไหม'],['52:10','Candlestick แท่งกลับตัว ต้องดูร่วมกับแนวรับแนวต้าน']];
 })();
 const LATEST_REC = CLIPS.filter(c => c.cat === 'brec').sort((a, b) => b.rdate - a.rdate)[0].id;
 /* Basic: each lesson (EP) is one main clip, recorded again every month — the new recording replaces the old one as the main clip (the one the exam counts) and older months move to the archive for review */
@@ -1883,7 +1892,7 @@ const byLive = id => LIVES.find(l => l.id === id);
 const S = {view:'home', clip:'b2', live:'L1', coach:null, learn:'basic', topic:'ทั้งหมด', lib:'continue', bview:'ep', rep:0, rkind:'all', rq:'', rsort:'new', calView:'week', calRef:new Date(NOW), calDay:null, ctypes:new Set(Object.keys(STYPE)), mineOnly:false, evId:null, speed:1, cc:null, qa:{}, fs:1, mini:null, watchedToday:false, theme:'str', search:false, q:'', notif:false, changes:false, modal:null, wtab:'chap',
   pos:{}, mode:{}, remind:{}, booked:{}, saved:new Set(['apop1','s1','atop1']), liked:new Set(['b3','akim1','r1']),
   notes:[{clip:'b2', t:'15:30', text:'HH-HL = ขาขึ้น ต้องดูให้ครบทั้ง 3 ภาพ'}, {clip:'b2', t:'34:10', text:'ตีเส้นเฉพาะจุดที่ราคาเคารพ 2 ครั้งขึ้นไป'}],
-  chat:[['สมชาย','วันนี้ SET ดูทรงยังไงครับโค้ช'],['โค้ชนอฟ','ภาพใหญ่ยัง Sideway รอดูว่าจะยืนแนวรับได้ไหม',1],['นิด','ขอบคุณค่ะ เข้าใจเรื่องแนวรับมากขึ้นเลย'],['โค้ชแพค','ใครทำการบ้าน EP.2 แล้ว ลองเอากราฟมาถามในคลาสเสาร์ได้นะ',1]],
+  chat:[['สมาชิกาย','วันนี้ SET ดูทรงยังไงครับโค้ช'],['โค้ชนอฟ','ภาพใหญ่ยัง Sideway รอดูว่าจะยืนแนวรับได้ไหม',1],['นิด','ขอบคุณค่ะ เข้าใจเรื่องแนวรับมากขึ้นเลย'],['โค้ชแพค','ใครทำการบ้าน EP.2 แล้ว ลองเอากราฟมาถามในคลาสเสาร์ได้นะ',1]],
   pref:{live1h:true, hw:true, chall:true, news:false, rm:false, ccAuto:false, warm:false, eye:true}, challSent:false, form:{}, err:'', tid:null, season:null, hot:'soon', muted:true, follow:new Set(['lek','nof']), hero:0, heroPause:false};
 S.remind[nextBasic(ME.ep).id] = true;
 /* Basic: home calendar + onsite bookings (bk: id -> {mode, slot, topic, code, rem}) · wait: waitlist · bf: booking form */
@@ -1923,7 +1932,7 @@ const simBox = inner => `<div class="simbox" role="group" aria-label="จำล�
 /* ---------- live link with the back office: คุณมณีรัตน์'s data is shared through this browser's localStorage ----------
    Open the member site and the back office from the same link (or the same computer): a change on one side shows up on the other.
    Shared: homework EP.2, Fast Track request, feedback, finishing Basic, "ให้ CS ติดต่อกลับ", coach requests to Sales, coaches set by the team. */
-const LINK = {key:'sptr-mockup-link-v1',
+const LINK = {key:'sptr-mockup-link-v2',
   get() { try { return JSON.parse(localStorage.getItem(this.key) || 'null'); } catch (e) { return null; } },
   set(o) { try { localStorage.setItem(this.key, JSON.stringify(o)); } catch (e) {} }};
 const BO_URL = location.protocol === 'file:' ? '../mockup/Basic-Member-System-Mockup.html' : 'backoffice/';
@@ -1991,13 +2000,13 @@ function lkAdvBase(o) {
 const lkNm = id => (COACHES.find(c => c.id === id) || {name:id}).name;
 function lkNews(a, b) {
   a = a || LK0; const out = [], A0 = a.adv || {}, B0 = b.adv || {}, fa = a.ft || {}, fb = b.ft || {};
-  (b.hw || []).filter(h => h.rev && !(a.hw || []).some(x => x.ep === h.ep && x.n === h.n && x.sub === h.sub && x.rev)).forEach(h => out.push(h.pass ? `โค้ช${ME.coach}ตรวจการบ้าน EP.${h.ep} ข้อ ${h.n} แล้ว: ผ่าน` : `โค้ช${ME.coach}ส่งการบ้าน EP.${h.ep} ข้อ ${h.n} กลับให้แก้: "${h.note || ''}"`));
+  (b.hw || []).filter(h => h.rev && !(a.hw || []).some(x => x.ep === h.ep && x.n === h.n && x.sub === h.sub && x.rev)).forEach(h => out.push(h.pass ? `${coachName(ME.coach)}ตรวจการบ้าน EP.${h.ep} ข้อ ${h.n} แล้ว: ผ่าน` : `${coachName(ME.coach)}ส่งการบ้าน EP.${h.ep} ข้อ ${h.n} กลับให้แก้: "${h.note || ''}"`));
   if (b.chall && b.chall.pick && !(a.chall && a.chall.pick)) out.push('คำตอบ Chart Challenge ของคุณถูกเลือกเป็นเคสในคลาสเสาร์นี้!');
   (b.qa || []).filter(q => q.ans && !(a.qa || []).some(x => x.id === q.id && x.ans)).forEach(q => out.push(`${q.by || 'โค้ช'}ตอบคำถามของคุณแล้ว: "${q.ans}"`));
   (b.eps || []).filter(x => !(a.eps || []).some(y => y.id === x.id)).forEach(x => out.push(`โค้ช${x.coach}อัปโหลดตอนใหม่: ${x.title}`));
   (b.sg || []).filter(x => !(a.sg || []).some(y => y.id === x.id)).forEach(x => out.push(`โค้ช${x.coach}เปิดรอบ Small Group ใหม่ ${lkWhen(x.at)}`));
   if (JSON.stringify(b.ce || {}) !== JSON.stringify(a.ce || {})) out.push('โปรไฟล์โค้ชอัปเดตแล้ว');
-  if (fb.status && fb.status !== fa.status) out.push({scheduled:`โค้ช${ME.coach}นัดคุย Fast Track ${fb.screenAt ? lkWhen(fb.screenAt) : ''}`, hw:'ผ่าน Screening Fast Track · ส่งการบ้าน 3 ส่วนต่อได้เลย', clip:'Fast Track: ดูคลิป Basic Express แล้วทำการบ้าน 1 ข้อ', adv:'ผ่าน Fast Track แล้ว!'}[fb.status] || '');
+  if (fb.status && fb.status !== fa.status) out.push({scheduled:`${coachName(ME.coach)}นัดคุย Fast Track ${fb.screenAt ? lkWhen(fb.screenAt) : ''}`, hw:'ผ่าน Screening Fast Track · ส่งการบ้าน 3 ส่วนต่อได้เลย', clip:'Fast Track: ดูคลิป Basic Express แล้วทำการบ้าน 1 ข้อ', adv:'ผ่าน Fast Track แล้ว!'}[fb.status] || '');
   if (!lkGrad(a) && lkGrad(b)) out.push('ยินดีด้วย คุณจบ Basic แล้ว · ทีม CS จะติดต่อเรื่องโค้ชประจำตัว');
   if (B0.setAt && B0.setAt !== A0.setAt) out.push(`ทีม CS ตั้งโค้ช${lkNm(B0.coach)}เป็นโค้ชประจำตัวของคุณแล้ว`);
   (B0.extra || []).filter(x => !(A0.extra || []).some(y => y.id === x.id)).forEach(x => out.push(`หลังบ้านเพิ่มโค้ช${lkNm(x.id)}ให้คุณแล้ว`));
@@ -2044,7 +2053,9 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------- components ---------- */
-const av = (name, size) => { const n = name.replace('โค้ช', ''), k = COACH_BY_NAME[n]; if (k && PH[k.id]) return `<span class="av ph" aria-hidden="true" style="background-image:var(--h-${k.id})${size ? `;width:${size}px;height:${size}px` : ''}"></span>`; return `<span class="av" ${size ? `style="width:${size}px;height:${size}px;font-size:${Math.round(size * .42)}px"` : ''}>${esc(name.replace('โค้ช', '').replace(/^[เแโใไ]/, '').charAt(0))}</span>`; };
+/* Latin names get a space on both sides ("โค้ช Basic 1 ตรวจแล้ว"), Thai names stay joined ("โค้ชเจ") */
+const coachName = n => /^[A-Za-z]/.test(n) ? `โค้ช ${n} ` : 'โค้ช' + n;
+const av = (name, size) => { const n = name.replace('โค้ช', ''), k = COACH_BY_NAME[n]; if (k && PH[k.id]) return `<span class="av ph" aria-hidden="true" style="background-image:var(--h-${k.id})${size ? `;width:${size}px;height:${size}px` : ''}"></span>`; return `<span class="av" ${size ? `style="width:${size}px;height:${size}px;font-size:${Math.round(size * .42)}px"` : ''}>${esc(/^Basic \d$/.test(name.replace('โค้ช', '').trim()) ? 'B' + name.trim().slice(-1) : name.replace('โค้ช', '').replace(/^[เแโใไ]/, '').charAt(0))}</span>`; };
 const durTxt = m => m >= 60 ? `${Math.floor(m / 60)}:${String(m % 60).padStart(2,'0')}:00` : `${m}:00`;
 function thumb(c, extra = '') {
   const prog = c.prog != null && c.prog > 0 && c.prog < 1 ? `<div class="prog"><i style="width:${c.prog * 100}%"></i></div>` : '';
@@ -2069,7 +2080,7 @@ function liveSmall(l) {
   return `<div class="lsm" data-go="livewatch:${l.id}">${art(l.seed, l.hue, {n:20, live:true})}<div class="ov"><div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><span class="livebadge"><i></i>LIVE</span><span style="font-size:13.5px;display:inline-flex;gap:5px;align-items:center;color:rgba(255,255,255,.85)">${ic('eye', 14)}${fmtN(l.viewers)}</span></div><b>${esc(l.title)}</b><div class="d">${esc(l.sub)}</div></div></div>`;
 }
 function sessAction(s) {
-  if (S.tier === 'adv' && s.type === 'small' && !s.coaches.some(owns)) return `<button class="btn sm ghost" data-a="${A(() => openReq(coId(s.coaches[0]), s.title))}">${ic('lock', 13)}เฉพาะลูกศิษย์โค้ช${esc(s.coaches[0])}</button>`;
+  if (S.tier === 'adv' && s.type === 'small' && !s.coaches.some(owns)) return `<button class="btn sm ghost" data-a="${A(() => openReq(coId(s.coaches[0]), s.title))}">${ic('lock', 13)}เฉพาะลูกศิษย์${coachName(esc(s.coaches[0]))}</button>`;
   if (S.tier !== 'adv' && (s.type === 'care' || (s.type === 'event' && s.seats))) return bookBtn(s);
   if (s.type === 'small' || s.type === 'care') {
     if (S.booked[s.id]) return `<button class="btn sm on" data-a="${A(() => { delete S.booked[s.id]; render(); toast('ยกเลิกการจองแล้ว', () => { S.booked[s.id] = true; }); })}">${ic('check', 14)}จองแล้ว</button>`;
@@ -2164,7 +2175,7 @@ function intro() {
 /* title ("ข้อมูลเพิ่มเติม") modal — streaming-style: hero, actions, details, seasons + episodes, similar */
 function seriesOf(c) {
   if (c.cat === 'basic' || c.cat === 'bver' || c.cat === 'brec') { const recs = CLIPS.filter(x => x.cat === 'brec').sort((a, b) => b.rdate - a.rdate);
-    return {name:'Basic Technical', big:'Basic<br>Technical', label:'ซีรีส์คอร์ส', year:'2569', desc:'อ่านกราฟเป็นใน 4 บท ตั้งแต่ความรู้เบื้องต้น Dow Theory แนวรับแนวต้าน Money Management จนถึง Volume และ Indicators แต่ละบทมีคลิปหลัก 1 คลิป อัปเดตใหม่ทุกเดือน คลิปเดือนก่อนเก็บไว้ดูทบทวนได้ มีคลาสสดพุธและเสาร์ แบบทดสอบ และการบ้านกราฟที่โค้ชตรวจให้', cast:'โค้ชแนน · ทีมโค้ช Basic', genre:'กราฟเทคนิค · หุ้นไทย · คลาสสด', vibe:'เข้าใจง่าย · ใช้ได้จริง · มีการบ้าน',
+    return {name:'Basic Technical', big:'Basic<br>Technical', label:'ซีรีส์คอร์ส', year:'2569', desc:'อ่านกราฟเป็นใน 4 บท ตั้งแต่ความรู้เบื้องต้น Dow Theory แนวรับแนวต้าน Money Management จนถึง Volume และ Indicators แต่ละบทมีคลิปหลัก 1 คลิป อัปเดตใหม่ทุกเดือน คลิปเดือนก่อนเก็บไว้ดูทบทวนได้ มีคลาสสดพุธและเสาร์ แบบทดสอบ และการบ้านกราฟที่โค้ชตรวจให้', cast:'โค้ช Basic 1 · ทีมโค้ช Basic', genre:'กราฟเทคนิค · หุ้นไทย · คลาสสด', vibe:'เข้าใจง่าย · ใช้ได้จริง · มีการบ้าน',
       count:'4 บท · คลิปหลักอัปเดตทุกเดือน',
       seasons:[...[1, 2, 3, 4].map(n => ({k:'e' + n, l:`EP.${n} · ${GRAD[n - 1].t}`, sl:`EP.${n}`, eps:[byClip(MASTER[n]), ...verOf(n)], ver:true})), {k:'rec', l:`คลาสสดย้อนหลัง (${recs.length} ตอน)`, sl:'คลาสสดย้อนหลัง', eps:recs}]}; }
   if (c.cat === 'adv') { const eps = CLIPS.filter(x => x.cat === 'adv' && x.coach === c.coach).sort((a, b) => a.title.localeCompare(b.title)), co = COACHES.find(x => x.name === c.coach);
@@ -2311,7 +2322,7 @@ function hero() {
   return `<section class="stage" id="stage" aria-roledescription="carousel" aria-label="ไฮไลต์สำหรับคุณ">
     <div class="bbart" aria-hidden="true">${art(...h.art)}</div>${stPhoto(h.coaches)}<div class="bbv"></div>
     <div class="stc" aria-live="${S.heroPause ? 'polite' : 'off'}"><div class="bblab">${h.kick}</div><h2 class="bbt">${h.title}</h2><div class="stmeta">${h.meta}</div>
-      ${h.coaches ? `<div class="stco">${h.coaches.map(x => av(x, 38)).join('')}<span>โค้ช${h.coaches.join(' · โค้ช')}</span></div>` : ''}
+      ${h.coaches ? `<div class="stco">${h.coaches.map(x => av(x, 38)).join('')}<span>${h.coaches.map(coachName).join(' · ')}</span></div>` : ''}
       <p>${esc(h.desc)}</p>
       <div class="bbbtn"><button class="btn xl ${h.live ? 'wlive' : ''}" data-go="${h.go}">${ic('play', 22)}${h.cta}</button>${h.info ? `<button class="btn xl ghost" data-a="${A(() => openTitle(h.info))}">${ic('info', 22)}ข้อมูลเพิ่มเติม</button>` : `<button class="btn xl ghost" data-a="${A(h.link[1])}">${ic('cal', 20)}${h.link[0]}</button>`}</div>
       ${h.prog ? `<div class="bbres"><div class="bbpb" aria-hidden="true"><i style="width:${h.prog * 100}%"></i></div>เรียนไป ${Math.round(h.prog * 100)}%</div>` : ''}</div>
@@ -2360,7 +2371,7 @@ function missions() {
     const care = CAL.find(e => e.type === 'care' && e.at > NOW);
     rows = row(ic('note', 19), 'var(--goldbg)', 'var(--gold)', `การบ้านกราฟ EP.2 · ${GRAD[1].hw}`, hwFix() ? `ข้อ ${hwFix().n} โค้ชให้แก้: "${hwFix().note || ''}"` : hwNext() ? `ข้อ ${hwNext()}${hwNext() < 3 ? '–3' : ''} ยังไม่ส่ง · โค้ชตรวจใน 48 ชม.` : 'ส่งครบแล้ว · โค้ชตรวจใน 48 ชม.', `<button class="btn sm" data-a="${A(openHw)}">ส่ง</button>`)
       + row(ic('layers', 19), 'var(--purplebg)', 'var(--purple)', 'แบบทดสอบ EP.2 · 20 ข้อ', `ดูคลิปอีก ${Math.round(byClip('b2').dur * (1 - byClip('b2').prog))} นาทีเพื่อปลดล็อก · ผ่าน 16/20 ขึ้นไป`, `<span class="qlock" role="img" aria-label="ปลดล็อกแล้ว ${Math.round(byClip('b2').prog * 100)} เปอร์เซ็นต์"><i style="width:${byClip('b2').prog * 100}%"></i>${ic('lock', 13)}</span>`)
-      + row(ic('users', 19), 'var(--bluebg)', 'var(--blue)', `CARE DAY คุยกับโค้ช${ME.coach} 1:1`, S.bk[care.id] ? `${TH_DL[care.at.getDay()]} ${fd(care.at)} · นัดแล้ว ${S.bk[care.id].slot}–${slotEnd(S.bk[care.id].slot)} น. · ${S.bk[care.id].mode}` : `${TH_DL[care.at.getDay()]} ${fd(care.at)} · ${hm(care.at)}–${care.end} น. · onsite / online`, sessAction(care));
+      + row(ic('users', 19), 'var(--bluebg)', 'var(--blue)', `CARE DAY คุยกับ${coachName(ME.coach)} 1:1`, S.bk[care.id] ? `${TH_DL[care.at.getDay()]} ${fd(care.at)} · นัดแล้ว ${S.bk[care.id].slot}–${slotEnd(S.bk[care.id].slot)} น. · ${S.bk[care.id].mode}` : `${TH_DL[care.at.getDay()]} ${fd(care.at)} · ${hm(care.at)}–${care.end} น. · onsite / online`, sessAction(care));
   }
   return `<div class="msnc"><div class="msh">${CDL}<b>ภารกิจสัปดาห์นี้</b></div>${S.tier === 'adv' ? streak : ''}${rows}</div>`;
 }
@@ -2453,8 +2464,8 @@ const ROOM = 'ห้องเรียน Super Trader Republic · กรุง�
 const BTYPES = ['basic', 'care', 'event'];
 const seatsOf = e => e.type === 'basic' ? e.os : e.seats ? e : null;
 const kindOf = e => e.type === 'basic' ? (e.at.getDay() === 3 ? 'พุธ · ตลาดจริง' : 'เสาร์ · Case Clinic') : e.type === 'care' ? 'CARE DAY · 1:1' : e.short;
-const evTitle = e => e.type === 'basic' ? EPT[e.ep] : e.type === 'care' ? `คุยกับโค้ช${e.coaches[0]} 1:1 · ครั้งละ 20 นาที` : e.title;
-const whoOf = e => e.coaches.map(c => c.startsWith('ทีม') ? c : 'โค้ช' + c).join(' · ');
+const evTitle = e => e.type === 'basic' ? EPT[e.ep] : e.type === 'care' ? `คุยกับ${coachName(e.coaches[0])} 1:1 · ครั้งละ 20 นาที` : e.title;
+const whoOf = e => e.coaches.map(c => c.startsWith('ทีม') ? c : coachName(c)).join(' · ');
 const relDay = d => { const n = Math.round((dOnly(d) - dOnly(NOW)) / 864e5); return n === 0 ? 'วันนี้' : n === 1 ? 'พรุ่งนี้' : n > 1 ? `อีก ${n} วัน` : n === -1 ? 'เมื่อวาน' : `${-n} วันที่แล้ว`; };
 const longDay = d => `${TH_DL[d.getDay()]} ${d.getDate()} ${TH_ML[d.getMonth()]}`;
 const bOn = d => CAL.filter(e => BTYPES.includes(e.type) && sameDay(e.at, d));
@@ -2514,7 +2525,7 @@ function agRow(e) {
 function bkItem(e) {
   const b = S.bk[e.id];
   return `<button class="bki" aria-label="บัตรจอง ${esc(evTitle(e))} ${longDay(e.at)}" data-a="${A(() => openTicket(e))}"><span class="bkd"><span>${TH_D[e.at.getDay()]}</span><b>${e.at.getDate()}</b><span>${TH_M[e.at.getMonth()]}</span></span>
-    <span class="bkb"><b>${esc(e.type === 'basic' ? `EP.${e.ep} · ${kindOf(e)}` : e.type === 'care' ? `CARE DAY · โค้ช${e.coaches[0]}` : e.short + ' · ' + e.title.split(' · ').pop())}</b><span>${b.slot || hm(e.at)} น. · ${b.mode === 'onsite' ? 'onsite ห้องเรียน กทม.' : 'online วิดีโอคอล'} · ${relDay(e.at)}</span></span><span class="bkc mono">${b.code}</span></button>`;
+    <span class="bkb"><b>${esc(e.type === 'basic' ? `EP.${e.ep} · ${kindOf(e)}` : e.type === 'care' ? `CARE DAY · ${coachName(e.coaches[0])}` : e.short + ' · ' + e.title.split(' · ').pop())}</b><span>${b.slot || hm(e.at)} น. · ${b.mode === 'onsite' ? 'onsite ห้องเรียน กทม.' : 'online วิดีโอคอล'} · ${relDay(e.at)}</span></span><span class="bkc mono">${b.code}</span></button>`;
 }
 /* check-in code art for the ticket: 21x21 grid with three finder squares (decorative in the mockup) */
 function qr(seed) {
@@ -2653,7 +2664,7 @@ function showBob(tile) {
     <div class="bin"><div class="bser"><span class="nS">SPTR</span><span>${esc(ser)}${sub ? ` · ${esc(sub)}` : ''}</span></div><b class="btt">${esc(ttl)}</b>
       <div class="brow"><button class="btn sm bpl" data-a="${A(itemPlay(x))}">${ic('play', 15)}${p > 0 && p < 1 ? 'เล่นต่อ' : p >= 1 ? 'ดูอีกครั้ง' : 'เล่น'}</button><button class="cbtn sm" aria-pressed="${sv}" aria-label="${sv ? 'นำออกจากรายการของฉัน' : 'เพิ่มในรายการของฉัน'}" data-a="${flip(() => toggleSave(c.id), ['check', 'นำออกจากรายการของฉัน'], ['plus', 'เพิ่มในรายการของฉัน'])}">${ic(sv ? 'check' : 'plus', 17)}</button><button class="cbtn sm ${lk ? 'on' : ''}" aria-pressed="${lk}" aria-label="${lk ? 'เลิกถูกใจ' : 'ถูกใจ'}" data-a="${flip(() => { const had = S.liked.has(c.id); had ? S.liked.delete(c.id) : S.liked.add(c.id); toast(had ? 'เลิกถูกใจแล้ว' : 'ถูกใจแล้ว ระบบจะแนะนำคลิปแนวนี้ให้มากขึ้น'); return !had; }, ['thumb', 'เลิกถูกใจ', 16, 1], ['thumb', 'ถูกใจ', 16])}">${ic('thumb', 16)}</button><span class="hsp"></span><button class="bmore" data-a="${A(itemInfo(x))}">${seriesOf(c) ? 'ตอนทั้งหมด' : 'รายละเอียด'}${ic('chev', 14)}</button></div>
       <div class="bm">${p >= 1 ? `<span class="ok">${ic('check', 13)}ดูจบแล้ว</span>` : pct ? `<span class="pc"><span class="bmp"><i style="width:${pct}%"></i></span>เหลือ ${left2} นาที</span>` : '<span>ยังไม่ได้ดู</span>'}<span>${mins} นาที</span>${lvlTag(c)}${['adv', 'kc', 'sk'].includes(c.cat) ? dnaTag(c) : ''}</div>
-      ${who.length ? `<div class="bwho">${who.map(n => av(n, 24)).join('')}<span>โค้ช${who.map(esc).join(' · โค้ช')}</span></div>` : ''}<div class="btg">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>`;
+      ${who.length ? `<div class="bwho">${who.map(n => av(n, 24)).join('')}<span>${who.map(esc).map(coachName).join(' · ')}</span></div>` : ''}<div class="btg">${tags.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>`;
   el.querySelectorAll('.bth>svg.th rect[rx]').forEach((b, i) => { b.style.animationDelay = (1.1 + i * .07).toFixed(2) + 's'; });
   el.addEventListener('pointerleave', () => hideBob(true));
   document.body.appendChild(el);
@@ -2721,7 +2732,7 @@ function vEp() {
     <div class="erct"><b>คลิปรอบ ${c.ver}</b><span>EP.${n} ${esc(g.t)}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · ดูทบทวนได้ · ไม่นับสอบ${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
   const recs = s.recs.filter(c => rk === 'all' || c.kind === rk);
   const recItem = c => `<div class="erc" data-bob="${c.id}" data-go="watch:${c.id}" aria-label="คลาสสดย้อนหลัง ${c.day} ${fd(c.rdate)} ${c.kind} · ${c.dur} นาที${c.prog >= 1 ? ' · ดูแล้ว' : c.prog > 0 ? ` · ดูไป ${Math.round(c.prog * 100)}%` : ''}"><div class="ercc">${cover(c)}${c.prog > 0 && c.prog < 1 ? `<span class="nfp"><i style="width:${Math.round(c.prog * 100)}%"></i></span>` : ''}${c.id === LATEST_REC ? '<span class="ercn">คลาสล่าสุด</span>' : ''}</div>
-    <div class="erct"><b>${TH_DL[c.rdate.getDay()]} ${fd(c.rdate)}</b><span>${c.kind === 'ตลาดจริง' ? 'ตลาดจริง · เปิด Streaming ดูหุ้นจริง' : 'Case Clinic · เฉลยการบ้าน + ไล่เคส'}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · โค้ชแนน${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
+    <div class="erct"><b>${TH_DL[c.rdate.getDay()]} ${fd(c.rdate)}</b><span>${c.kind === 'ตลาดจริง' ? 'ตลาดจริง · เปิด Streaming ดูหุ้นจริง' : 'Case Clinic · เฉลยการบ้าน + ไล่เคส'}</span><span class="muted">${ic('clock', 13)}${c.dur} นาที · โค้ช Basic 1${c.prog >= 1 ? ` · <em class="ok">${ic('check', 12)}ดูแล้ว</em>` : ''}</span></div></div>`;
   const tabBtn = (k, l) => `<button role="tab" aria-selected="${tab === k}" class="${tab === k ? 'on' : ''}" data-a="${A(() => { S.eptab = k; render(); })}">${l}</button>`;
   const care = CAL.find(e => e.type === 'care' && e.at > NOW);
   const body = tab === 'old' ? `<p class="epnote">${ic('cal', 16)}ทุกต้นเดือนมีคลิปหลักใหม่มาแทน คลิปเดิมย้ายมาเก็บที่นี่ ดูทบทวนได้ตลอด · การสอบนับเฉพาะคลิปหลักเดือนนี้</p><div class="ergrid">${s.vers.map(verItem).join('')}</div>`
@@ -2729,7 +2740,7 @@ function vEp() {
         <div class="ergrid">${recs.map(recItem).join('') || '<p class="muted">ยังไม่มีคลาสแบบนี้ในบทนี้</p>'}</div><p class="ekhint">${ic('live', 15)}สอนสดทุกพุธและเสาร์ 09:50 น. จบคลาสแล้วคลิปเข้าที่นี่อัตโนมัติ</p>`
     : `<div class="epfeat"><div class="epft" data-a="${playFrom(s.st === 'cur' ? pos : 0)}" aria-label="${s.st === 'cur' ? 'ดูต่อ' : 'เล่น'} คลิปหลัก EP.${n}">${cover(m)}${s.p > 0 && s.p < 1 ? `<span class="nfp"><i style="width:${s.pct}%"></i></span>` : ''}<span class="epip" aria-hidden="true">${ic('play', 24)}</span></div>
         <div class="epfb"><div class="epfk"><span class="epfx">${ic('award', 13)}ใช้สอบ</span><span>คลิปหลักเดือน ${monShort(m.ver)} · อัปเดต 1 ${monShort(m.ver)}</span></div><h3>${esc(m.title)}</h3>
-          <div class="epfm">${ic('clock', 14)}${m.dur} นาที · สอนโดยโค้ชแนน · ดูจบแล้วปลดล็อกแบบทดสอบ 20 ข้อ</div>
+          <div class="epfm">${ic('clock', 14)}${m.dur} นาที · สอนโดยโค้ช Basic 1 · ดูจบแล้วปลดล็อกแบบทดสอบ 20 ข้อ</div>
           <div class="epfp"><i><b style="width:${s.pct}%"></b></i><span>${s.st === 'done' ? 'ดูจบแล้ว' : s.st === 'cur' ? `ดูไป ${s.pct}% · เหลือ ${s.left} นาที` : 'ยังไม่เริ่มดู'}</span></div></div></div>`;
   return `<nav class="epnav" aria-label="บทเรียน Basic"><button class="eback" data-go="home">${ic('back', 18)}วิดีโอทั้งหมด</button><div class="epsw">${[1, 2, 3, 4].map(k => { const t = epState(k).st; return `<button class="${k === n ? 'on' : ''} ${t}" ${k === n ? 'aria-current="page"' : ''} data-go="ep:${k}">${t === 'done' ? ic('check', 13) : t === 'cur' ? '<i></i>' : ''}EP.${k}</button>`; }).join('')}</div></nav>
   <section class="ephero st-${s.st || 'new'}" aria-labelledby="eph1"><span class="ekart" aria-hidden="true">${art(900 + n * 37, HUES.gold, {n:30, bare:true, trend:.012, live:true})}</span>
@@ -2757,7 +2768,7 @@ function vEp() {
       <div class="eside"><h3>${ic('spark', 17)}สรุปบทนี้ใน 1 นาที</h3><ol class="epsum2">${EPSUM[n].map(t => `<li>${esc(t)}</li>`).join('')}</ol></div>
       <div class="eside"><h3>${ic('book', 17)}คำศัพท์ในบทนี้</h3><p class="muted">กดคำที่ไม่เข้าใจเพื่อดูความหมาย</p>${GLOSS[n].map(([k, d]) => `<details class="gls"><summary>${esc(k)}${ic('down', 15)}</summary><p>${esc(d)}</p></details>`).join('')}</div>
       <div class="eside help"><h3>${ic('headset', 17)}ติดตรงไหน ถามได้เลย</h3>
-        ${care && !adv ? `<div class="ehr"><div><b>CARE DAY คุยกับโค้ช${ME.coach} 1:1</b><span>${TH_DL[care.at.getDay()]} ${fd(care.at)} · ครั้งละ 20 นาที</span></div>${bookBtn(care)}</div>` : ''}
+        ${care && !adv ? `<div class="ehr"><div><b>CARE DAY คุยกับ${coachName(ME.coach)} 1:1</b><span>${TH_DL[care.at.getDay()]} ${fd(care.at)} · ครั้งละ 20 นาที</span></div>${bookBtn(care)}</div>` : ''}
         <div class="ehr"><div><b>ถามทีมงานทาง LINE</b><span>ตอบภายในวันทำการ</span></div><button class="btn sm ghost" data-a="${A(() => toast('เปิด LINE Official ของทีม CS (ในระบบจริง)'))}">${ic('msg', 14)}LINE</button></div>
         <div class="ehr"><div><b>เอกสารประกอบบทเรียน</b><span>PDF สรุป + แบบฝึกกราฟ</span></div><button class="btn sm ghost" data-a="${A(() => toast(`ดาวน์โหลดเอกสาร EP.${n} แล้ว (ในระบบจริง)`))}">${ic('down', 14)}PDF</button></div></div>
     </aside></div>`;
@@ -2819,7 +2830,7 @@ function meCoaches() {
   const pend = Object.keys(S.salesReq).map(id => (COACHES.find(c => c.id === id) || {}).name).filter(Boolean);
   return myCo().map((c, i) => `<div class="row">${av(c.name, 44)}<div class="tx"><b>โค้ช${esc(c.name)}</b><span>${i === 0 ? 'โค้ชประจำตัว · ทีม CS ตั้งให้' : 'เพิ่มโดยหลังบ้าน (ผ่านเซล)'}</span></div><button class="btn sm ghost" data-go="coach:${c.id}">โปรไฟล์</button></div>`).join('')
     + `<div class="row"><div class="tx">อยากเพิ่มโค้ช<span>ติดต่อเซลเพื่อสอบถามราคาและชำระเงิน · หลังบ้านจะเพิ่มโค้ชในบัญชีให้</span></div><button class="btn sm ghost" data-go="pick">ดูโค้ชท่านอื่น</button></div>`
-    + (pend.length ? `<div class="row"><div class="tx">คำขอถึงเซล<span>โค้ช${pend.map(esc).join(' · โค้ช')} · รอเซลติดต่อกลับ</span></div></div>` : '')
+    + (pend.length ? `<div class="row"><div class="tx">คำขอถึงเซล<span>${pend.map(esc).map(coachName).join(' · ')} · รอเซลติดต่อกลับ</span></div></div>` : '')
     + `<div class="row"><div class="tx">จำลองตั้งแต่รอ CS ตั้งโค้ช<span>สำหรับทีม · ล้างโค้ชแล้วเริ่มใหม่</span></div><button class="btn sm ghost" data-a="${A(startWait)}">เริ่มใหม่</button></div>`;
 }
 function vHomeBasic() {
@@ -2839,7 +2850,7 @@ function vLiveBasic() {
       <div style="min-width:0"><div class="lvk"><span class="tag ${STYPE[e.type].cls}">${esc(kindOf(e))}</span>${b ? '<span class="tag g">บทของคุณ</span>' : ''}<span class="muted">${hm(e.at)}–${e.end} น.</span></div><b class="lvt">${esc(evTitle(e))}</b>${seatsOf(e) ? `<div class="agm">${seatLine(e)}</div>` : ''}</div>${bActs(e)}</div>`; };
   return `<div class="phead"><h1>ตารางคลาสสด Basic</h1><p>สอนสดทุกพุธและเสาร์ 09:50–11:30 น. · ติดบทไหน ภายใน 4 สัปดาห์มีคลาสของบทนั้นแน่นอน · อยู่ กทม. จองที่นั่งมาเรียนที่ห้องเรียนได้</p></div>
     <section class="nxtc" aria-label="คลาสถัดไปของคุณ"><div class="nxd"><span>${TH_DL[mine.at.getDay()]}</span><b>${mine.at.getDate()}</b><span>${TH_ML[mine.at.getMonth()]}</span></div>
-      <div class="nxb"><span class="ck">คลาสถัดไปของบทที่คุณเรียน · อีก ${days} วัน</span><b>${esc(EPT[mine.ep])}</b><span>${hm(mine.at)}–${mine.end} น. · ${mine.kind === 'ตลาดจริง' ? 'วันพุธ "ตลาดจริง" เปิด Streaming ดูหุ้นจริง' : 'วันเสาร์ "Case Clinic" เฉลยการบ้าน + ไล่เคส'} · โค้ช${esc(ME.coach)}</span></div>
+      <div class="nxb"><span class="ck">คลาสถัดไปของบทที่คุณเรียน · อีก ${days} วัน</span><b>${esc(EPT[mine.ep])}</b><span>${hm(mine.at)}–${mine.end} น. · ${mine.kind === 'ตลาดจริง' ? 'วันพุธ "ตลาดจริง" เปิด Streaming ดูหุ้นจริง' : 'วันเสาร์ "Case Clinic" เฉลยการบ้าน + ไล่เคส'} · ${coachName(esc(ME.coach))}</span></div>
       <div class="nxa">${bActs(mine)}</div></section>
     ${sect('ปฏิทินเรียน', bcal(), {scls:'calsec', sub:'กดวันที่เพื่อดูคลาส จองที่นั่ง onsite หรือนัด CARE DAY'})}
     ${sect('คลาสที่กำลังจะมา', `<div class="chips" role="group" aria-label="กรองคลาส" style="margin-bottom:12px">${[['all','ทั้งหมด'],['mine','บทของฉัน'],['onsite','จอง onsite ได้'],['care','CARE DAY'],['booked',`การจองของฉัน${nb ? ' · ' + nb : ''}`]].map(([k, l]) => `<button class="fchip ${f === k ? 'on' : ''}" aria-pressed="${f === k}" data-a="${A(() => { S.lvf = k; render(); })}">${l}</button>`).join('')}</div>
@@ -3003,7 +3014,7 @@ function vWatch() {
       <button class="btn sm ${S.saved.has(c.id) ? 'on' : 'ghost'}" data-a="${A(() => { toggleSave(c.id); render(); })}">${ic(S.saved.has(c.id) ? 'check' : 'plus', 15)}รายการของฉัน</button>
       <button class="btn sm ghost" data-a="${A(() => { S.modal = 'ask'; S.err = ''; render(); })}">${ic('msg', 15)}ถามโค้ช</button>
       <button class="btn sm ghost" data-a="${A(() => { try { navigator.clipboard && navigator.clipboard.writeText(location.href.split('#')[0] + '#v=watch&id=' + c.id + '&t=' + pos); } catch (e) {} toast('คัดลอกลิงก์ที่นาที ' + mmss(pos) + ' แล้ว'); })}">${ic('share', 15)}แชร์นาทีนี้</button></div></div>
-    <div class="bmeta" style="margin-top:6px">${dnaTag(c)}${lvlTag(c)}<span>${c.cat === 'basic' ? 'Basic Technical · คลิปหลักเดือนนี้' : c.cat === 'bver' ? 'Basic Technical · คลิปรอบ ' + esc(c.ver) : c.cat === 'brec' ? 'Basic คลาสสด · โค้ชแนน' : 'โค้ช' + esc(c.coach)} · ${fmtN(c.views)} ครั้ง · ${c.cat === 'brec' ? c.date + ' ' + (c.rdate.getFullYear() + 543) : c.date}</span></div>
+    <div class="bmeta" style="margin-top:6px">${dnaTag(c)}${lvlTag(c)}<span>${c.cat === 'basic' ? 'Basic Technical · คลิปหลักเดือนนี้' : c.cat === 'bver' ? 'Basic Technical · คลิปรอบ ' + esc(c.ver) : c.cat === 'brec' ? 'Basic คลาสสด · โค้ช Basic 1' : 'โค้ช' + esc(c.coach)} · ${fmtN(c.views)} ครั้ง · ${c.cat === 'brec' ? c.date + ' ' + (c.rdate.getFullYear() + 543) : c.date}</span></div>
     <div class="card" id="wtabs" style="margin-top:18px"><div style="padding:10px 12px 0"><div class="seg">${tabs.map(([k, l]) => `<button class="${S.wtab === k ? 'on' : ''}" data-a="${A(() => { S.wtab = k; render(); })}">${l}</button>`).join('')}</div></div><div style="padding:10px">${tb}</div></div>
   </div><div>${side}
     <div class="card pad"><div style="font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px">${c.cat === 'basic' ? 'คลิปหลักทั้ง 4 บท' : c.cat === 'bver' ? `EP.${c.ep}: คลิปหลัก + รอบเก่า` : c.cat === 'brec' ? `EP.${c.rep}: คลิปหลัก + คลาสสดย้อนหลัง` : 'ดูต่อ'}<button class="rlink" style="margin-left:auto" data-a="${A(() => openTitle(c.id))}">ข้อมูลเพิ่มเติม${ic('chev', 14)}</button></div><div class="plist">${list.map(x => `<div class="pi ${x.id === c.id ? 'on' : ''}" data-go="watch:${x.id}">${thumb(x)}<div><div class="t">${esc(x.title)}</div><div class="muted" style="font-size:12.5px;margin-top:2px">${x.dur} นาที</div></div></div>`).join('')}</div></div>
@@ -3019,7 +3030,7 @@ function vLiveWatch() {
       <div class="pctl"><div class="prow" style="margin-top:0">${ic('play', 18)}<span>${mode === 'rt' ? 'สด · ไลฟ์มาแล้ว ' + since(l.start) : 'ดีเลย์ · ย้อนดูจากต้นไลฟ์ได้'}</span><span class="sp"></span>${ic('cc', 18)}${ic('full', 18)}</div></div></div>
     <div class="ptitle"><h1>${esc(l.title)}</h1><div class="seg">${[['rt','เรียลไทม์'],['dl','ดีเลย์']].map(([k, t]) => `<button class="${mode === k ? 'on' : ''}" data-a="${A(() => { S.mode[l.id] = k; render(); })}">${t}</button>`).join('')}</div></div>
     <div class="ink2" style="margin-top:6px">${esc(l.sub)}</div>
-    <div style="display:flex;gap:10px;align-items:center;margin-top:12px"><span class="coachs">${l.coaches.map(c => av(c)).join('')}</span><span class="muted" style="margin-left:8px;font-size:14.5px">โค้ช${l.coaches.join(' · โค้ช')}</span></div>
+    <div style="display:flex;gap:10px;align-items:center;margin-top:12px"><span class="coachs">${l.coaches.map(c => av(c)).join('')}</span><span class="muted" style="margin-left:8px;font-size:14.5px">${l.coaches.map(coachName).join(' · ')}</span></div>
     <div class="card pad" style="margin-top:18px"><div style="font-weight:700;margin-bottom:6px">หลังจบไลฟ์</div><div class="ink2" style="font-size:15px">คลิปย้อนหลังเข้า <b>Live Replay</b> อัตโนมัติ พร้อมบทย่อย และแจ้งเตือนคนที่กด "เตือนฉัน"</div></div>
   </div><div class="card chat"><div class="pad" style="border-bottom:1px solid var(--line);font-weight:700;display:flex;gap:8px;align-items:center">${ic('msg', 18)}แชทสด</div>
     <div class="cmsgs" id="cmsgs">${S.chat.map(([n, t, co]) => `<div class="cm ${co ? 'coachm' : ''}"><b>${esc(n)}</b>${esc(t)}</div>`).join('')}</div>
@@ -3119,7 +3130,7 @@ function vMe() {
   return `<div class="card pad" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${av(ME.nick, 72)}<div style="flex:1"><h1 style="margin:0;font-size:26px">คุณ${ME.nick}</h1><div class="muted">สมาชิกตั้งแต่ ${ME.since}</div><div class="chips" style="margin-top:8px;gap:6px;align-items:center">${rankChip()}<span class="tag g">${ME.type} · ${ME.typeEn}</span><span class="tag">${S.tier === 'adv' ? 'จบ Basic แล้ว' : 'กำลังเรียน EP.2'}</span></div><div class="seg" style="margin-top:12px" role="group" aria-label="มุมมองตัวอย่างสำหรับทีม">${[['basic','ดูแบบ Basic'],['adv','ดูแบบ Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}</div></div></div>
     <div class="mgrid sec">
       <div class="card pad"><h3 style="margin:0 0 6px">โค้ชของฉัน</h3>
-        ${S.tier === 'adv' ? meCoaches() : `<div class="row">${av(ME.coach, 44)}<div class="tx"><b>โค้ช${ME.coach}</b><span>โค้ชประจำตัว Basic · ตอบใน LINE</span></div><button class="btn sm ghost">${ic('msg', 14)}ทัก LINE</button></div>`}
+        ${S.tier === 'adv' ? meCoaches() : `<div class="row">${av(ME.coach, 44)}<div class="tx"><b>${coachName(ME.coach)}</b><span>โค้ชประจำตัว Basic · ตอบใน LINE</span></div><button class="btn sm ghost">${ic('msg', 14)}ทัก LINE</button></div>`}
         <div class="row"><div class="tx">ขอเปลี่ยนโค้ช<span>ส่งคำขอพร้อมเหตุผล ทีมจะติดต่อกลับ</span></div><button class="btn sm ghost" data-a="${A(() => { S.modal = 'swap'; S.err = ''; render(); })}">${ic('swap', 14)}ส่งคำขอ</button></div></div>
       <div class="card pad"><h3 style="margin:0 0 6px">แจ้งเตือนทาง LINE</h3>${sw('live1h', 'ก่อนคลาสสด 1 ชม.', 'เฉพาะคลาสที่กด "เตือนฉัน" หรือจองไว้')}${sw('hw', 'การบ้านถูกตรวจแล้ว', 'รู้ผลทันทีเมื่อโค้ชตรวจ')}${sw('chall', 'Chart Challenge ใหม่', 'ทุกวันจันทร์')}${S.tier === 'adv' ? sw('news', 'คลิปใหม่จากโค้ชที่ติดตาม', 'สรุปรายสัปดาห์') : ''}</div>
       <div class="card pad"><h3 style="margin:0 0 6px">ความสบายตาและการเข้าถึง</h3>
@@ -3178,7 +3189,7 @@ function notifHTML() {
     ['live','var(--live)','rgba(255,71,87,.14)','LIVE MENTOR เริ่มแล้ว','35 นาทีที่แล้ว','livewatch:L1'],
     ['cal','var(--green)','var(--greenbg)',`EP.2 ที่คุณเรียนอยู่ สอนสด${TH_DL[nextBasic(2).at.getDay()]} ${fd(nextBasic(2).at)} ${hm(nextBasic(2).at)}`,'1 ชม.ที่แล้ว','live'],
     ['target','var(--gold)','var(--goldbg)','Chart Challenge ใหม่ ปิดรับศุกร์ 23:59','วันจันทร์','home'],
-    ['check','var(--green)','var(--greenbg)','โค้ชแนนตรวจการบ้าน EP.2 ข้อ 1: ผ่าน','5 วันก่อน','learn'],
+    ['check','var(--green)','var(--greenbg)','โค้ช Basic 1 ตรวจการบ้าน EP.2 ข้อ 1: ผ่าน','5 วันก่อน','learn'],
   ];
   return `<div class="npanel"><div style="padding:10px 12px;font-weight:700">การแจ้งเตือน</div>${items.map(([i, c, bg, t, w, g]) => `<div class="nrow" data-go="${g}"><span class="ico" style="background:${bg};color:${c}">${ic(i, 18)}</span><div>${t}<div class="muted" style="font-size:12.5px">${w}</div></div></div>`).join('')}</div>`;
 }
@@ -3190,14 +3201,14 @@ function modalHTML() {
   if (S.modal === 'locked') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="เนื้อหาระดับ Advance"><span class="lockic">${ic('lock', 24)}</span><h3 style="margin-top:12px">เนื้อหาระดับ Advance</h3><div class="muted" style="font-size:15px">ปลดล็อกเมื่อจบ Basic: แบบทดสอบทุกบท 16/20 ขึ้นไป และการบ้านกราฟ 6 ข้อโค้ชตรวจผ่าน</div>
     <div class="fld"><label>ตอนนี้คุณอยู่ที่</label>${GRAD.map(g => `<div class="hrow"><span>EP.${g.ep} ${esc(g.t)}</span><span class="${g.st === 'done' ? 'tup' : g.st === 'cur' ? 'gold' : 'muted'}">${g.st === 'done' ? 'ผ่านแล้ว' : g.st === 'cur' ? 'กำลังเรียน' : 'ยังไม่เริ่ม'}</span></div>`).join('')}</div>
     <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ปิด</button><button class="btn" data-a="${A(() => { S.modal = null; go('watch', 'b2'); })}">${ic('play', 15)}เรียนต่อ EP.2</button></div></div></div>`;
-  if (S.modal === 'promote') return `<div class="ovl"><div class="mbox promo" role="dialog" aria-label="ยินดีด้วย คุณจบ Basic แล้ว"><div class="pbadge">ADVANCE</div><h3>ยินดีด้วย! คุณจบ Basic แล้ว</h3><div class="muted" style="font-size:15px">Take Profit · ผ่านแบบทดสอบครบ 4 บท และการบ้านกราฟ 6 ข้อ โค้ช${ME.coach}ตรวจผ่านแล้ว</div>
+  if (S.modal === 'promote') return `<div class="ovl"><div class="mbox promo" role="dialog" aria-label="ยินดีด้วย คุณจบ Basic แล้ว"><div class="pbadge">ADVANCE</div><h3>ยินดีด้วย! คุณจบ Basic แล้ว</h3><div class="muted" style="font-size:15px">Take Profit · ผ่านแบบทดสอบครบ 4 บท และการบ้านกราฟ 6 ข้อ ${coachName(ME.coach)}ตรวจผ่านแล้ว</div>
     <div class="pscore">${[['EP.1',18],['EP.2',17],['EP.3',19],['EP.4',16]].map(([e, sc]) => `<div><span>${e}</span><b>${sc}/20</b></div>`).join('')}</div>
     <div class="fld"><label>สิ่งที่ปลดล็อกแล้ว</label><div class="hrow"><span>โค้ชประจำตัว 1 ท่าน · ทีม CS จะติดต่อเพื่อช่วยเลือกและตั้งให้ในระบบ</span></div><div class="hrow"><span>คลิปสอน Small Group และไลฟ์ของโค้ชประจำตัว · อยากเพิ่มโค้ชติดต่อเซล</span></div><div class="hrow"><span>ใบประกาศ Basic Technical</span></div></div>
     <div class="muted" style="font-size:13px;margin-top:12px">ตัวอย่างสำหรับทีม · ในระบบจริงหน้านี้ขึ้นเองเมื่อโค้ชตรวจการบ้านข้อสุดท้ายผ่าน</div>
     <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ไว้ก่อน</button><button class="btn" data-a="${A(startWait)}">เข้าสู่หน้า Advance</button></div></div></div>`;
   if (S.modal === 'ft') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="Fast Track"><h3>Fast Track</h3><div class="muted" style="font-size:15px">สำหรับคนที่มีพื้นฐานแล้ว ไม่ต้องเรียน Basic ซ้ำ</div>
     <div class="fld"><label>ขั้นตอน</label><div class="hrow"><span>1. นัดคุยกับโค้ช 20–30 นาที (onsite หรือ online)</span></div><div class="hrow"><span>2. วิเคราะห์หุ้น 1 ตัว: เทรนด์ 3 ภาพ · แนวรับแนวต้าน · แผนเทรด</span></div><div class="hrow"><span>3. ผ่าน 7/10 ขึ้นไป และต้องมี Stop Loss</span></div><div class="hrow"><span>4. ส่งการบ้านกราฟ โค้ชตรวจผ่าน ขึ้นยศ Advance</span></div></div>
-    <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ยกเลิก</button>${ftSt() ? `<span class="btn on">${ic('check', 15)}${ftSt()}</span>` : `<button class="btn" data-a="${A(() => { lkWrite(o => { if (!o.ft) o.ft = {gate:'web', status:'invited', since:+NOW}; }); S.modal = null; render(); toast('ส่งคำขอถึงโค้ช' + ME.coach + 'แล้ว โค้ชจะนัดทาง LINE'); })}">ขอนัดคุยกับโค้ช</button>`}</div></div></div>`;
+    <div class="mfoot"><button class="btn ghost" data-a="${A(() => { S.modal = null; render(); })}">ยกเลิก</button>${ftSt() ? `<span class="btn on">${ic('check', 15)}${ftSt()}</span>` : `<button class="btn" data-a="${A(() => { lkWrite(o => { if (!o.ft) o.ft = {gate:'web', status:'invited', since:+NOW}; }); S.modal = null; render(); toast('ส่งคำขอถึง' + coachName(ME.coach) + 'แล้ว โค้ชจะนัดทาง LINE'); })}">ขอนัดคุยกับโค้ช</button>`}</div></div></div>`;
   if (S.modal === 'guide') return `<div class="ovl"><div class="mbox" role="dialog" aria-label="วิธีดู Mockup หน้าบ้านใหม่"><h3>หน้าบ้านใหม่ Super Trader Republic</h3><div class="muted" style="font-size:15px">Mockup สำหรับดูหน้าตาและการใช้งาน · ข้อมูลทั้งหมดเป็นตัวอย่าง</div>
     <div class="fld"><label>วิธีดู</label>
       <div class="hrow"><span>1. สมาชิกมี 2 ระดับ: <b>Basic</b> (สมาชิกใหม่ · ธีมชมพู-ทอง) และ <b>Advance</b> (สอบผ่าน Basic แล้ว · ธีมน้ำเงิน-ทอง) · Advance มีโค้ชประจำตัว 1 ท่านที่ทีม CS ตั้งให้ และเห็นเฉพาะคลิปของโค้ชท่านนั้น (ตัวอย่างนี้คือโค้ชเจ) · อยากเพิ่มโค้ชติดต่อเซล แล้วหลังบ้านจะเพิ่มให้</span></div>
@@ -3229,13 +3240,13 @@ function modalHTML() {
     const when = care && f.slot ? `${f.slot}–${slotEnd(f.slot)}` : `${hm(e.at)}–${e.end}`;
     return `<div class="ovl"><div class="mbox bkm" role="dialog" aria-label="${care ? 'นัด CARE DAY' : 'จองที่นั่ง onsite'} ${esc(evTitle(e))}">
       <div class="bkk"><span class="tag ${STYPE[e.type].cls}">${esc(kindOf(e))}</span>${e.type === 'basic' && e.ep === ME.ep ? '<span class="tag g">บทของคุณ</span>' : ''}</div>
-      <h3>${care ? `นัด CARE DAY กับโค้ช${e.coaches[0]}` : e.type === 'basic' ? 'จองที่นั่งเรียน onsite' : 'จองที่นั่ง ' + esc(e.short)}</h3><div class="bkt">${esc(evTitle(e))}</div>
+      <h3>${care ? `นัด CARE DAY กับ${coachName(e.coaches[0])}` : e.type === 'basic' ? 'จองที่นั่งเรียน onsite' : 'จองที่นั่ง ' + esc(e.short)}</h3><div class="bkt">${esc(evTitle(e))}</div>
       <div class="evmeta">${ic('cal', 16)}${longDay(e.at)} ${e.at.getFullYear() + 543} · ${when} น. · ${relDay(e.at)}</div>
       ${care ? `<div class="fld"><label id="bkml">คุยแบบไหน</label><div class="bkmode" role="radiogroup" aria-labelledby="bkml">${[['onsite','pin','onsite ที่ห้องเรียน','เจอโค้ชตัวจริง เปิดกราฟคุยกัน'],['online','tv','online วิดีโอคอล','ส่งลิงก์ทาง LINE ก่อนเวลานัด']].map(opt).join('')}</div></div>
       <div class="fld"><label id="bksl">เลือกเวลา · ครั้งละ 20 นาที <span class="muted">ว่าง ${st.left} จาก ${st.seats} ช่วง</span></label><div class="slots" role="radiogroup" aria-labelledby="bksl">${e.slots.map(s => `<button role="radio" aria-checked="${f.slot === s.t}" class="slot ${f.slot === s.t ? 'on' : ''}" data-t="${s.t}" ${s.free ? `data-a="${A(() => { S.bf.slot = s.t; render(); refocus(`.slot[data-t="${s.t}"]`); })}"` : 'disabled'} aria-label="${s.t} น.${s.free ? '' : ' มีคนจองแล้ว'}">${s.t}</button>`).join('')}</div></div>
       <div class="fld"><label>อยากคุยเรื่องอะไร <span class="muted">ไม่บังคับ · โค้ชจะได้เตรียมตัว</span></label><div class="chips">${['การบ้านกราฟ','แบบทดสอบ','แผนเทรด','Fast Track','เรื่องอื่น'].map(t => `<button class="fchip ${f.topic === t ? 'on' : ''}" aria-pressed="${f.topic === t}" data-t="${t}" data-a="${A(() => { S.bf.topic = f.topic === t ? '' : t; render(); refocus(`.fchip[data-t="${t}"]`); })}">${t}</button>`).join('')}</div></div>`
       : `<div class="bkseat"><span class="bkoi">${ic('users', 18)}</span><div><b>ที่นั่ง onsite เหลือ ${st.left} จาก ${st.seats} ที่</b><div class="sb" aria-hidden="true"><i style="width:${(st.seats - st.left) / st.seats * 100}%"></i></div></div></div>`}
-      <div class="bkinfo">${onsite ? `<div>${ic('pin', 16)}<span><b>${ROOM}</b>ส่งแผนที่และจุดจอดรถทาง LINE หลังจอง</span></div><div>${ic('clock', 16)}<span>${care ? 'มาถึงก่อนเวลานัด 10 นาที' : `เปิดเช็กอิน ${hm(new Date(+e.at - 15 * 6e4))} น. · ก่อนเริ่ม 15 นาที`}</span></div>` : `<div>${ic('tv', 16)}<span><b>วิดีโอคอลกับโค้ช${e.coaches[0]}</b>ส่งลิงก์ทาง LINE ก่อนเวลานัด 10 นาที</span></div>`}
+      <div class="bkinfo">${onsite ? `<div>${ic('pin', 16)}<span><b>${ROOM}</b>ส่งแผนที่และจุดจอดรถทาง LINE หลังจอง</span></div><div>${ic('clock', 16)}<span>${care ? 'มาถึงก่อนเวลานัด 10 นาที' : `เปิดเช็กอิน ${hm(new Date(+e.at - 15 * 6e4))} น. · ก่อนเริ่ม 15 นาที`}</span></div>` : `<div>${ic('tv', 16)}<span><b>วิดีโอคอลกับ${coachName(e.coaches[0])}</b>ส่งลิงก์ทาง LINE ก่อนเวลานัด 10 นาที</span></div>`}
         ${e.type === 'basic' ? `<div>${ic('note', 16)}<span>เอาโน้ตบุ๊กหรือแท็บเล็ตที่เปิด TradingView มาด้วย · ถ้าไม่สะดวกมา ดูออนไลน์ในแอปได้เหมือนเดิม ไม่ต้องจอง</span></div>` : care ? `<div>${ic('note', 16)}<span>เตรียมกราฟหรือการบ้านที่อยากถามไว้ จะได้คุยเต็ม 20 นาที</span></div>` : ''}
         <div>${ic('info', 16)}<span>ยกเลิกได้ก่อนเริ่ม 24 ชม. ที่นั่งจะส่งต่อให้คนที่ต่อคิวอยู่</span></div></div>
       <div class="err" id="merr" role="alert">${S.err}</div>
@@ -3256,14 +3267,14 @@ function modalHTML() {
   if (S.modal === 'ev') { const e = CAL.find(x => x.id === S.evId); if (!e) return ''; const fut = e.at > NOW;
     return `<div class="ovl"><div class="mbox" role="dialog" aria-label="${esc(e.title)}"><span class="tag ${STYPE[e.type].cls}">${STYPE[e.type].n}</span>${isLiveNow(e) ? ' <span class="livebadge"><i></i>LIVE</span>' : ''}<h3 style="margin-top:10px">${esc(e.title)}</h3><div class="ink2">${esc(e.sub)}</div>
       <div class="evmeta">${ic('cal', 16)}${TH_DL[e.at.getDay()]} ${fd(e.at)} ${e.at.getFullYear() + 543} · ${hm(e.at)}–${e.end} น.</div>
-      <div class="evmeta">${ic('users', 16)}${e.coaches.map(c => c.startsWith('ทีม') ? c : 'โค้ช' + c).join(' · ')}${e.seats ? ` · จองแล้ว ${e.seats - e.left}/${e.seats} ที่` : ''}</div>
+      <div class="evmeta">${ic('users', 16)}${e.coaches.map(c => c.startsWith('ทีม') ? c : coachName(c)).join(' · ')}${e.seats ? ` · จองแล้ว ${e.seats - e.left}/${e.seats} ที่` : ''}</div>
       ${e.mine && fut ? `<div class="evmeta gold">${ic('spark', 16)}ตรงกับบทที่คุณเรียนอยู่ (EP.${e.ep})</div>` : ''}
       <div class="mfoot" style="justify-content:flex-start;align-items:center">${evAction(e)}${fut ? `<button class="btn sm ghost" data-a="${A(() => toast('เพิ่มลงปฏิทินของคุณแล้ว'))}">${ic('cal', 14)}เพิ่มลงปฏิทิน</button>` : ''}<span style="flex:1"></span><button class="btn sm ghost" data-a="${A(() => { S.modal = null; render(); })}">ปิด</button></div></div></div>`; }
   if (S.modal === 'chall') return wrap('ส่งคำตอบ Chart Challenge', 'ตอบสั้นๆ ได้ โค้ชจะเฉลยในคลาสเสาร์', `<div class="fld"><label>1. เทรนด์ภาพใหญ่ / กลาง / เล็ก</label><input id="c1" style="width:100%" placeholder="เช่น ขาขึ้น / Sideway / ขาขึ้น"></div><div class="fld"><label>2. แนวรับ / แนวต้าน</label><input id="c2" style="width:100%" placeholder="เช่น รับ 58.50 · ต้าน 63.00"></div><div class="fld"><label>3. แผนเทรด ณ ราคาปัจจุบัน</label><textarea id="c3" placeholder="จุดเข้า · Stop loss · เป้าหมาย · ขนาดไม้"></textarea></div>`,
     () => { if (!need(['c1','c2','c3'], 'กรอกให้ครบทั้ง 3 ข้อก่อนส่ง')) return; const ca = {at:+NOW, c1:val('c1'), c2:val('c2'), c3:val('c3'), pick:false}; lkWrite(o => { o.chall = ca; }); S.challSent = true; S.modal = null; render(); toast('ส่งคำตอบแล้ว เฉลยเสาร์นี้ในคลาส Case Clinic'); }, 'ส่งคำตอบ');
-  if (S.modal === 'hw' && !hwNext()) return wrap('การบ้านกราฟ EP.2 · ส่งครบ 3 ข้อแล้ว', `${GRAD[1].hw} · โค้ช${ME.coach}ตรวจภายใน 48 ชม. ผลแจ้งทาง LINE`, '', () => { S.modal = null; render(); }, 'ปิด');
-  if (S.modal === 'hw') return wrap(`ส่งการบ้านกราฟ EP.2 · ข้อ ${hwNext()}`, `${HWT2[hwNext() - 1]} · แนบภาพกราฟพร้อมคำอธิบาย`, `${(h => h ? `<div class="fld"><label>โค้ช${ME.coach}ให้แก้ข้อนี้</label><div class="hrow" style="color:var(--rose)">"${esc(h.note || '')}"</div></div>` : '')((x => x && x.rev && !x.pass ? x : null)(lkHwN(hwNext())))}<div class="fld"><label>ภาพกราฟ</label><button class="btn ghost" style="width:100%;border-style:dashed;padding:22px">${ic('plus', 18)}เลือกภาพ (ตัวอย่าง)</button></div><div class="fld"><label>อธิบายว่าทำไมตีเส้นตรงนี้</label><textarea id="h1" placeholder="เช่น ราคาเคยกลับตัวที่โซนนี้ 3 ครั้ง"></textarea></div>`,
-    () => { if (!need(['h1'], 'เขียนคำอธิบายก่อนส่ง')) return; const n = hwNext(), tx = val('h1'); lkWrite(o => o.hw.push({ep:2, n, sub:+NOW - 60000 + o.hw.length * 1000, rev:null, pass:false, text:tx})); S.modal = null; render(); toast(`ส่งการบ้านข้อ ${n} แล้ว โค้ช${ME.coach}จะตรวจภายใน 48 ชม.`); }, 'ส่งการบ้าน');
+  if (S.modal === 'hw' && !hwNext()) return wrap('การบ้านกราฟ EP.2 · ส่งครบ 3 ข้อแล้ว', `${GRAD[1].hw} · ${coachName(ME.coach)}ตรวจภายใน 48 ชม. ผลแจ้งทาง LINE`, '', () => { S.modal = null; render(); }, 'ปิด');
+  if (S.modal === 'hw') return wrap(`ส่งการบ้านกราฟ EP.2 · ข้อ ${hwNext()}`, `${HWT2[hwNext() - 1]} · แนบภาพกราฟพร้อมคำอธิบาย`, `${(h => h ? `<div class="fld"><label>${coachName(ME.coach)}ให้แก้ข้อนี้</label><div class="hrow" style="color:var(--rose)">"${esc(h.note || '')}"</div></div>` : '')((x => x && x.rev && !x.pass ? x : null)(lkHwN(hwNext())))}<div class="fld"><label>ภาพกราฟ</label><button class="btn ghost" style="width:100%;border-style:dashed;padding:22px">${ic('plus', 18)}เลือกภาพ (ตัวอย่าง)</button></div><div class="fld"><label>อธิบายว่าทำไมตีเส้นตรงนี้</label><textarea id="h1" placeholder="เช่น ราคาเคยกลับตัวที่โซนนี้ 3 ครั้ง"></textarea></div>`,
+    () => { if (!need(['h1'], 'เขียนคำอธิบายก่อนส่ง')) return; const n = hwNext(), tx = val('h1'); lkWrite(o => o.hw.push({ep:2, n, sub:+NOW - 60000 + o.hw.length * 1000, rev:null, pass:false, text:tx})); S.modal = null; render(); toast(`ส่งการบ้านข้อ ${n} แล้ว ${coachName(ME.coach)}จะตรวจภายใน 48 ชม.`); }, 'ส่งการบ้าน');
   if (S.modal === 'ask') { const ck = byClip(S.clip), asked = ((LK || {}).qa || []).filter(q => q.clipId === S.clip);
     return wrap('ถามโค้ช', `จากคลิป "${esc(ck.title)}" · แนบนาทีที่ดูอยู่ให้อัตโนมัติ`, `${asked.length ? `<div class="fld"><label>คำถามของคุณในคลิปนี้</label>${asked.map(q => `<div class="hrow" style="display:block"><b>"${esc(q.text)}"</b> <span class="muted">· นาที ${q.t}</span>${q.ans ? `<div style="color:var(--green);margin-top:4px">${esc(q.by || 'โค้ช')}: ${esc(q.ans)}</div>` : '<div class="muted" style="font-size:13.5px">รอโค้ชตอบ</div>'}</div>`).join('')}</div>` : ''}<div class="fld"><textarea id="q1" placeholder="พิมพ์คำถาม…"></textarea></div>`,
     () => { if (!need(['q1'], 'พิมพ์คำถามก่อนส่ง')) return; const tx = val('q1'), pos = S.pos[ck.id] ?? Math.round((ck.prog || 0) * ck.dur * 60); lkWrite(o => { o.qa = o.qa || []; o.qa.push({id:'wq' + Date.now().toString(36), clip:ck.title, clipId:ck.id, coach:ck.coach, t:mmss(pos), text:tx, at:+NOW, ans:null, ansAt:null, by:null}); }); S.modal = null; render(); toast('ส่งคำถามแล้ว โค้ชจะตอบใต้คลิปและทาง LINE'); }, 'ส่งคำถาม'); }
@@ -3310,7 +3321,7 @@ function render() {
   ACT = {}; seq = 0; gid = 0;
   renderChrome();
   const v = {home:S.tier === 'adv' ? (S.myCoaches.length ? vHome : vPick) : vHomeBasic, pick:vPick, ep:vEp, learn:vLearn, coach:vCoach, watch:vWatch, livewatch:vLiveWatch, live:S.tier === 'adv' ? vLive : vLiveBasic, library:vLibrary, me:vMe, hot:vHot}[S.view] || vHome;
-  $('#view').innerHTML = v() + `<button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}${IN_BO ? '' : `<a class="bolink" href="${BO_URL}" target="_blank" rel="noopener">หลังบ้าน ↗</a>`}</span>`;
+  $('#view').innerHTML = v() + `<div class="demobar"><button class="chgbtn" data-a="${A(() => { S.changes = true; render(); })}">${ic('spark', 18)}<span class="lbl">ดูว่าเปลี่ยนอะไร</span></button><span class="mock tiersw" role="group" aria-label="มุมมองตัวอย่าง">Mockup · มุมมอง${[['basic','Basic'],['adv','Advance']].map(([k, l]) => `<button class="${S.tier === k ? 'on' : ''}" aria-pressed="${S.tier === k}" data-a="${A(() => setTier(k))}">${l}</button>`).join('')}${IN_BO ? '' : `<a class="bolink" href="${BO_URL}" target="_blank" rel="noopener">หลังบ้าน ↗</a>`}</span></div>`;
   document.querySelectorAll('.nft').forEach(nfSync);
   document.body.classList.toggle('watching', S.view === 'watch');
   $('#ovl').innerHTML = (S.search ? searchHTML() : '') + (S.notif ? notifHTML() : '') + (S.modal ? modalHTML() : '') + (S.changes ? changesHTML() : '');
